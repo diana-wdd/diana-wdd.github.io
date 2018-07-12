@@ -186,11 +186,12 @@
 （1）value代表我们要输出的内容，可以是字符串，可以是数值等内容
 （2）sep代表输出多个值之间的间隔符，默认使用空格隔开。我们可以重新定义间隔符，比如采用：#、，等.
 例1：输出1.2.3
-    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(1,2,3,sep=<span class="string">'.'</span>)</span><br></pre></td></tr></table></figure>
-
+    print(1,2,3,sep=&apos;.&apos;)
 （3）end代表输出语句的结束标识，表示以什么结尾，默认使用了换行，即缺省是表示转义字符：\n，我们可以重新定义其他内容，其输出的内容将不再进行换行操作。
 例2：输出 hello world:welcome zhengzou,how do you do
-    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   <span class="built_in">print</span>(<span class="string">'hello world'</span>,end=<span class="string">':'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'welcome zhengzou'</span>,end=<span class="string">','</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'how do you do'</span>)</span><br></pre></td></tr></table></figure>
+    print(&apos;hello world&apos;,end=&apos;:&apos;)
+    print(&apos;welcome zhengzou&apos;,end=&apos;,&apos;)
+    print(&apos;how do you do&apos;)
 </code></pre><h3 id="3、print-函数的基本使用"><a href="#3、print-函数的基本使用" class="headerlink" title="3、print()函数的基本使用"></a>3、print()函数的基本使用</h3><pre><code>1）print()常用输出方式: print(&apos;hello &apos;)、print(123456)等
 注：输出字符串，用引号隔开，多个字符串用逗号隔开；输出数字，不用引号，直接用逗号隔开就好。即print可以连续打印多个值。
 </code></pre>
