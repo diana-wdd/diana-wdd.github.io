@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Python-Day3 | diana</title>
+  <title>Python-Day4 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="控制语句——条件（if）控制1、格式如下：（1）单判断： If 条件： 代码  （2）双分支： If 条件： 代码 else： 代码  （3）多分支： If 条件： 代码 elif 条件： 代码 elif 条件： 代码 elif 条件： 代码 ...... else： 代码 2、逻辑运算符：and、or、not（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果">
+  <meta name="description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:             代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。  例如（竖着打印）：">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python-Day3">
-<meta property="og:url" content="http://yoursite.com/2018/07/12/condition-control-if/index.html">
+<meta property="og:title" content="Python-Day4">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/circulation-control-for-while/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="控制语句——条件（if）控制1、格式如下：（1）单判断： If 条件： 代码  （2）双分支： If 条件： 代码 else： 代码  （3）多分支： If 条件： 代码 elif 条件： 代码 elif 条件： 代码 elif 条件： 代码 ...... else： 代码 2、逻辑运算符：and、or、not（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果">
+<meta property="og:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:             代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。  例如（竖着打印）：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-12T13:58:08.107Z">
+<meta property="og:updated_time" content="2018-07-13T01:00:06.168Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python-Day3">
-<meta name="twitter:description" content="控制语句——条件（if）控制1、格式如下：（1）单判断： If 条件： 代码  （2）双分支： If 条件： 代码 else： 代码  （3）多分支： If 条件： 代码 elif 条件： 代码 elif 条件： 代码 elif 条件： 代码 ...... else： 代码 2、逻辑运算符：and、or、not（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果">
+<meta name="twitter:title" content="Python-Day4">
+<meta name="twitter:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:             代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。  例如（竖着打印）：">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -159,161 +159,137 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-condition-control-if" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-circulation-control-for-while" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Python-Day3
+      Python-Day4
     </h1>
   
 
         
-        <a href="/2018/07/12/condition-control-if/" class="archive-article-date">
-  	<time datetime="2018-07-12T13:15:51.755Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
+        <a href="/2018/07/12/circulation-control-for-while/" class="archive-article-date">
+  	<time datetime="2018-07-12T13:59:26.855Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="控制语句——条件（if）控制"><a href="#控制语句——条件（if）控制" class="headerlink" title="控制语句——条件（if）控制"></a>控制语句——条件（if）控制</h2><h3 id="1、格式如下："><a href="#1、格式如下：" class="headerlink" title="1、格式如下："></a>1、格式如下：</h3><pre><code>（1）单判断：
-If 条件：
-代码
+        <h2 id="控制语句——循环（for-和-while）控制"><a href="#控制语句——循环（for-和-while）控制" class="headerlink" title="控制语句——循环（for 和 while）控制"></a>控制语句——循环（for 和 while）控制</h2><h3 id="1、for循环控制语句"><a href="#1、for循环控制语句" class="headerlink" title="1、for循环控制语句"></a>1、for循环控制语句</h3><h4 id="（1）for循环格式（两种）："><a href="#（1）for循环格式（两种）：" class="headerlink" title="（1）for循环格式（两种）："></a>（1）for循环格式（两种）：</h4><h5 id="第一种格式（推荐使用）："><a href="#第一种格式（推荐使用）：" class="headerlink" title="第一种格式（推荐使用）："></a>第一种格式（推荐使用）：</h5><pre><code>            for 变量 in 集合:
+            代码
 
-（2）双分支：
-If 条件：
-代码
-else：
-代码
+说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。
 
-（3）多分支：
-If 条件：
-代码
-elif 条件：
-代码
-elif 条件：
-代码
-elif 条件：
-代码
-......
-else：
-代码
-</code></pre><h3 id="2、逻辑运算符：and、or、not"><a href="#2、逻辑运算符：and、or、not" class="headerlink" title="2、逻辑运算符：and、or、not"></a>2、逻辑运算符：and、or、not</h3><pre><code>（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果才为True；有一方为False时，其结果一定为False。
-（2）or：左右两端都是布尔型，其结果也是布尔型。有一方为True时，其结果一就为True；只有当左右两端的值都为False时，其结果才为False。
-（3）not:属于单目运算，其结果也是布尔型。其作用就是求反，如果变量为True，结果就为False；如果变量为False，结果就为True。
-注：逻辑运算、比较运算常用在条件中使用。同时，这两种运算符配合使用。
-</code></pre><h3 id="3、举例："><a href="#3、举例：" class="headerlink" title="3、举例："></a>3、举例：</h3><h4 id="（1）两个数比大小，并输出最大者"><a href="#（1）两个数比大小，并输出最大者" class="headerlink" title="（1）两个数比大小，并输出最大者"></a>（1）两个数比大小，并输出最大者</h4><pre><code>a=10
-b=100
-if a&gt;b:
-    print(&apos;a is value %d&apos;%a)
-elif a&lt;b:
-    print(&apos;b is value %d&apos;%b)
-else:
-    print(&apos;%d is equal %d&apos;%(a,b))
-</code></pre><h4 id="（2）三个数比大小并输出最大值"><a href="#（2）三个数比大小并输出最大值" class="headerlink" title="（2）三个数比大小并输出最大值"></a>（2）三个数比大小并输出最大值</h4><pre><code>a=10
-b=100
-c=50
-if a&gt;b and a&gt;c:
-    print(&apos;a is biggist %d&apos;%a)
-elif b&gt;a and b&gt;c:
-    print(&apos;b is biggist %d&apos;%b)
-else:
-    print(&apos;c is biggist %d&apos;%c)
-</code></pre><h4 id="（3）快递运费计算"><a href="#（3）快递运费计算" class="headerlink" title="（3）快递运费计算"></a>（3）快递运费计算</h4><h4 id="1-5kg-10元-kg"><a href="#1-5kg-10元-kg" class="headerlink" title="1~5kg :10元/kg"></a>1~5kg :10元/kg</h4><h4 id="5-10kg-15元-kg"><a href="#5-10kg-15元-kg" class="headerlink" title="5~10kg :15元/kg"></a>5~10kg :15元/kg</h4><h4 id="10-20kg-25元-kg"><a href="#10-20kg-25元-kg" class="headerlink" title="10~20kg :25元/kg"></a>10~20kg :25元/kg</h4><h4 id="20kg-30元-kg"><a href="#20kg-30元-kg" class="headerlink" title="20kg~ :30元/kg"></a>20kg~ :30元/kg</h4><pre><code>goods_weight=int(input(&apos;请输入快递商品的重量：&apos;))
-if goods_weight &lt;= 0: #判断输入的值是否为正整数
-    print(&apos;快递商品重量有错误，请重新输入！&apos;)
-    exit()
-goods_price=0 #快递费用
-msg = &apos;本次快递费用为{0}元&apos;
-if goods_weight &gt; 1 and goods_weight &lt;= 5:
-    goods_price = goods_weight*10
-elif  goods_weight &lt;= 10:
-    goods_price = goods_weight*15
-elif  goods_weight &lt;= 20:
-    goods_price = goods_weight*25
-else:
-    goods_price = goods_weight*30
-print(msg.format(goods_price))
-</code></pre><h4 id="（4）商场购物"><a href="#（4）商场购物" class="headerlink" title="（4）商场购物"></a>（4）商场购物</h4><h4 id="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。"><a href="#会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。" class="headerlink" title="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。"></a>会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。</h4><h4 id="钻石：100元6个积分-8折"><a href="#钻石：100元6个积分-8折" class="headerlink" title="钻石：100元6个积分 8折"></a>钻石：100元6个积分 8折</h4><h4 id="金牌：100元5个积分-8-5折"><a href="#金牌：100元5个积分-8-5折" class="headerlink" title="金牌：100元5个积分 8.5折"></a>金牌：100元5个积分 8.5折</h4><h4 id="银牌：100元3个积分-9折"><a href="#银牌：100元3个积分-9折" class="headerlink" title="银牌：100元3个积分 9折"></a>银牌：100元3个积分 9折</h4><h4 id="铜牌：100元2个积分-95折"><a href="#铜牌：100元2个积分-95折" class="headerlink" title="铜牌：100元2个积分 95折"></a>铜牌：100元2个积分 95折</h4><pre><code>from decimal import Decimal   # 引入decimal包中的 Decimal 对象
-user_level=input(&apos;请输入用户等级：&apos;)
-goods_name = input(&apos;所要购买的物品是：&apos;)
-goods_price=float(input(&apos;请输入所购买物品的价格：&apos;))
-if goods_price &lt;=0:  #判断输入的价格是否合理
-    print(&apos;物品价格输入有误，请重新输入！&apos;)
-    exit()
-real_price = 0.0 #购买商品的实际价格
-need_score = 0  #积分
-if user_level == &apos;钻石&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.8)).quantize(Decimal(&apos;0.00&apos;)))
-    need_score = int(real_price/0.6)
-elif user_level == &apos;金牌&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.85)).quantize(Decimal(&apos;0.00&apos;)))
-    need_score = int(real_price/0.5)
-elif user_level == &apos;银牌&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.9)).quantize(Decimal(&apos;0.00&apos;)))
-    need_score = int(real_price/0.3)
-elif user_level == &apos;铜牌&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.95)).quantize(Decimal(&apos;0.00&apos;)))
-    need_score = int(real_price/0.2)
-else:
-    print(&apos;请输入正确的用户等级&apos;)
-    exit()
-print(&apos;等级为{0}的顾客，购买的{1}所需要的实际价格为{2}，积分为{3}！&apos;.format(user_level,goods_name,real_price,need_score)) 
-</code></pre><h4 id="（5）英雄联盟角色"><a href="#（5）英雄联盟角色" class="headerlink" title="（5）英雄联盟角色"></a>（5）英雄联盟角色</h4><h4 id="角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50"><a href="#角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50" class="headerlink" title="角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50"></a>角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50</h4><h4 id="角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80"><a href="#角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80" class="headerlink" title="角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80"></a>角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80</h4><h4 id="角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100"><a href="#角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100" class="headerlink" title="角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100"></a>角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100</h4><pre><code>import math   # 引入math包
-play_user=input(&apos;请输入玩家角色：&apos;)
-kills_name = input(&apos;所要启用的技能名称是：&apos;)
-boss_live=10000   #Boss伤害值
-play_blood=0  #玩家技能值用完时所用的技能攻击掉的血
-defind_num=0  #打死Boss用的总次数
-simple_num=0  #技能值用完所用的技能攻击的次数
-boss_blood=0  #玩家技能值用完，boss剩余的血
-if play_user == &apos;赵云&apos;:
-    if kills_name == &apos;物理攻击&apos;:
-        defind_num = math.ceil(boss_live/80)
-    elif kills_name == &apos;技能攻击&apos;:
-        defind_num = math.ceil(boss_live/120)
-    elif kills_name == &apos;混合攻击&apos;:  
-        simple_num=math.floor(500/50)
-        play_blood=120*simple_num
-        boss_blood=boss_live-play_blood
-        defind_num=math.ceil(boss_blood/80) + simple_num
-    else:
-        print(&apos;技能方式错误！&apos;)
-        exit()
-elif play_user == &apos;李白&apos;:
-    if kills_name == &apos;物理攻击&apos;:
-        defind_num = math.ceil(boss_live/30)
-    elif kills_name == &apos;技能攻击&apos;:
-        defind_num = math.ceil(boss_live/100)
-    elif kills_name == &apos;混合攻击&apos;: 
-        simple_num=math.floor(350/80)
-        play_blood=100*simple_num
-        boss_blood=boss_live-play_blood
-        defind_num=math.ceil(boss_blood/30) + simple_num
-    else:
-        print(&apos;技能方式错误！&apos;)
-        exit()
-elif play_user == &apos;刘备&apos;:
-    if kills_name == &apos;物理攻击&apos;:
-        defind_num = math.ceil(boss_live/50)
-    elif kills_name == &apos;技能攻击&apos;:
-        defind_num = math.ceil(boss_live/200)
-    elif kills_name == &apos;混合攻击&apos;: 
-        simple_num=math.floor(400/100)
-        play_blood=200*simple_num
-        boss_blood=boss_live-play_blood
-        defind_num=math.ceil(boss_blood/50) + simple_num
-    else:
-        print(&apos;技能方式错误！&apos;)
-        exit()
-else:
-    print(&apos;请输入正确的玩家角色！&apos;)
-    exit()
-print(&apos;玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需要的次数为{2}！&apos;.format(play_user,kills_name,defind_num))
+注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。
+
+例如（竖着打印）：
+                    &gt;&gt;&gt; string1 = &apos;hello world&apos;
+                    &gt;&gt;&gt; for item in string1:
+                        print(item)
+                    h
+                    e
+                    l
+                    l
+                    o
+
+                    w
+                    o
+                    r
+                    l
+                    D
+
+                    横着打印：
+                    &gt;&gt;&gt; for item in string1:
+                        print(item,end=&apos; &apos;)    
+                    h e l l o   w o r l d 
+</code></pre><h5 id="第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。"><a href="#第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。" class="headerlink" title="第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。"></a>第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。</h5><pre><code>        for i in range（循环次数） 
+        代码
+
+说明：这种循环方式采用指定循环次数，对目标集合进行遍历。其做法主要是让循环与集合的下标同步，在循环次数时，一同取出集合指定下标的对应值。
+</code></pre><h3 id="（2）range-函数："><a href="#（2）range-函数：" class="headerlink" title="（2）range() 函数："></a>（2）range() 函数：</h3><pre><code>函数格式有两种：
+第一种：
+range(stop): 缺省情况下，表示从0开始，循环n次
+
+第二种：
+range([star,]stop[,step]) 其中，
+star：时循环开始的值
+stop：循环结束的值（循环次数）
+step：循环步长
+
+注意：此处循环，会根据stop规定循环的次数进行循环，循环都是从头（0）开始，但是显示的值是按照star的值开始的
+
+例如：
+            &gt;&gt;&gt; for i in range(0,10):
+                print(i,end=&apos; &apos;)
+            0 1 2 3 4 5 6 7 8 9 
+            &gt;&gt;&gt; for i in range(5,10):
+                print(i,end=&apos; &apos;)
+            5 6 7 8 9 
+</code></pre><h3 id="（3）for循环的常用方式：嵌套"><a href="#（3）for循环的常用方式：嵌套" class="headerlink" title="（3）for循环的常用方式：嵌套"></a>（3）for循环的常用方式：嵌套</h3><pre><code>for i in range(次数)：
+    for j in range(次数)：
+注意：这种嵌套表示的过程中，变量的位置尤为重要，通用原则为：如果变量的值需要通过外层循环来获取或生成，那么我们可以将其设为全局变量，即与外层循环for同等级的变量，如果变量需要在内层循环中生成或获取，我们通常会在外循环中声明，即与内循环同级。
+</code></pre><h4 id="例1、100以内数的和"><a href="#例1、100以内数的和" class="headerlink" title="例1、100以内数的和"></a>例1、100以内数的和</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num=0</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(1,101,):</span><br><span class="line">        num += i   </span><br><span class="line"><span class="built_in">print</span>(num)</span><br></pre></td></tr></table></figure>
+<h4 id="例2、求一个数的阶乘之和（嵌套循环）"><a href="#例2、求一个数的阶乘之和（嵌套循环）" class="headerlink" title="例2、求一个数的阶乘之和（嵌套循环）"></a>例2、求一个数的阶乘之和（嵌套循环）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">                    num = int(input(<span class="string">"请输入一个数字: "</span>))   <span class="comment">#获取一个数字</span></span><br><span class="line">                    sum = 0</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1,1):</span><br><span class="line">                        result = 1  <span class="comment">#此处的 result 要在此处初始化，为了保证每一次的内循环都是从 1 开始</span></span><br><span class="line">                        <span class="keyword">for</span> j <span class="keyword">in</span> range(1,i+1,1):  <span class="comment">#每个数的小阶乘</span></span><br><span class="line">                            result *= j</span><br><span class="line">                        sum += result  <span class="comment">#每个小阶乘的累加</span></span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"&#123;&#125;的阶乘和为&#123;&#125;!"</span>.format(num,sum))</span><br><span class="line">``` </span><br><span class="line"><span class="comment">#### 例3、5的阶乘之和(不是嵌套)</span></span><br><span class="line">``` bash</span><br><span class="line">                    sum1 = 0</span><br><span class="line">                    result = 1</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,5):</span><br><span class="line">                        result = result * i</span><br><span class="line">                        sum1 += result  </span><br><span class="line">                    <span class="built_in">print</span>(sum1)</span><br><span class="line">``` </span><br><span class="line"><span class="comment">#### 例4、求一个数的奇数的阶乘之和（嵌套循环）</span></span><br><span class="line">``` bash</span><br><span class="line">                    num = int(input(<span class="string">"请输入一个数字: "</span>))   <span class="comment">#获取一个数字</span></span><br><span class="line">                    sum1 = 0</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1):</span><br><span class="line">                        <span class="keyword">if</span> i % 2 != 0:    <span class="comment">#求奇数</span></span><br><span class="line">                            result = 1</span><br><span class="line">                            <span class="keyword">for</span> j <span class="keyword">in</span> range(1,i+1):  <span class="comment">#每个数的小阶乘</span></span><br><span class="line">                                result *= j</span><br><span class="line">                            sum1 += result  <span class="comment">#每个小阶乘的累加</span></span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"&#123;&#125;的奇数阶乘和为&#123;&#125;!"</span>.format(num,sum1))</span><br><span class="line">``` </span><br><span class="line"><span class="comment">#### 例5、break关键字</span></span><br><span class="line">``` bash</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> range(10):</span><br><span class="line">                        <span class="keyword">if</span> i==5:</span><br><span class="line">                            <span class="built_in">break</span> <span class="comment">#中断for这个循环，直接跳出来</span></span><br><span class="line">                        <span class="built_in">print</span>(i)</span><br><span class="line">                    <span class="built_in">print</span>()</span><br><span class="line">``` </span><br><span class="line"><span class="comment">#### 例6、continue关键字</span></span><br><span class="line">``` bash</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> range(10):</span><br><span class="line">                        <span class="keyword">if</span> i==5:</span><br><span class="line">                            <span class="built_in">continue</span> <span class="comment">#中断当前这次循环，进行下一次循环</span></span><br><span class="line">                        <span class="built_in">print</span>(i)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">'ok'</span>)</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### 2、while循环控制语句</span></span><br><span class="line"><span class="comment">#### （1）循环格式：</span></span><br><span class="line">           <span class="keyword">while</span> 条件：</span><br><span class="line">                代码</span><br><span class="line"><span class="comment">#### （2）break与continue</span></span><br><span class="line">        <span class="built_in">break</span>：当满足指定条件时，<span class="built_in">break</span>表示中断（中止）此循环，如果循环外部还有其他代码则继续向下执行。</span><br><span class="line">        <span class="built_in">continue</span>：当满足指定条件时，<span class="built_in">continue</span>表示结束本次循环，开始下一次循环。注意<span class="built_in">continue</span>并没有退出循环。</span><br><span class="line">       </span><br><span class="line">        同时，这两个关键字都是必须配合循环语句来使用，不能单独用在其他地方，比如：<span class="keyword">if</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#### 例1、#whle循环求偶数和</span></span><br><span class="line">``` bash</span><br><span class="line">i = 0</span><br><span class="line">sum1=0</span><br><span class="line"><span class="keyword">while</span> i &lt;= 5:</span><br><span class="line">    <span class="keyword">if</span> i % 2 ==0:</span><br><span class="line">        sum1 += i</span><br><span class="line">    i = i + 1</span><br><span class="line"><span class="built_in">print</span>(sum1)</span><br></pre></td></tr></table></figure>
+<h4 id="例2、三次登录不成功请重置密码"><a href="#例2、三次登录不成功请重置密码" class="headerlink" title="例2、三次登录不成功请重置密码"></a>例2、三次登录不成功请重置密码</h4><pre><code class="bash">count = 2
+<span class="keyword">while</span> count &gt;=0:
+    username = input(<span class="string">'请输入用户名：'</span>)
+    password = input(<span class="string">'请输入密码：'</span>) <span class="comment">#此处就是用字符串表示，不要用int转型</span>
+    <span class="keyword">if</span> username == <span class="string">'wdd'</span> and password == <span class="string">'123'</span>:
+        <span class="built_in">print</span>(<span class="string">'恭喜你，登陆成功！'</span>)
+        <span class="built_in">break</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> count &gt; 0:
+            <span class="built_in">print</span>(<span class="string">'用户名或密码不正确！你还有{}次机会！'</span>.format(count))
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'三次机会已使用完毕，请重置密码！'</span>)
+            <span class="built_in">break</span>
+    count = count-1
 </code></pre>
+<h4 id="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："><a href="#例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：" class="headerlink" title="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："></a>例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：</h4><h4 id="请输入你要发布的内容……-用in判断敏感词"><a href="#请输入你要发布的内容……-用in判断敏感词" class="headerlink" title="请输入你要发布的内容…….(用in判断敏感词)"></a>请输入你要发布的内容…….(用in判断敏感词)</h4><h4 id="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"><a href="#如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）" class="headerlink" title="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"></a>如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）</h4><h4 id="如果推出，请输出E：（出现-Bye-Bye）"><a href="#如果推出，请输出E：（出现-Bye-Bye）" class="headerlink" title="如果推出，请输出E：（出现 Bye Bye）"></a>如果推出，请输出E：（出现 Bye Bye）</h4><pre><code class="bash">words=<span class="string">'苍老师嘻哈'</span>
+<span class="keyword">while</span> True:
+    msg = input(<span class="string">'欢迎进入论坛，发帖请输入I；退出请输入E；您要输入的是：'</span>)
+    <span class="keyword">if</span> msg == <span class="string">'I'</span>:
+        content = input(<span class="string">'请输入帖子内容：'</span>)
+        <span class="keyword">for</span> item <span class="keyword">in</span> words:
+            <span class="keyword">if</span> item <span class="keyword">in</span> content:
+                content = <span class="string">'您输入的内容中，包含敏感词，请重新输入：'</span>
+                <span class="built_in">continue</span>
+        <span class="built_in">print</span>(content)
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'BYE-BYE'</span>)
+        <span class="built_in">break</span>
+</code></pre>
+<h4 id="例4、计算-1-2-3-…-99-中除了88以外所有数的总和"><a href="#例4、计算-1-2-3-…-99-中除了88以外所有数的总和" class="headerlink" title="例4、计算 1 - 2 + 3 … + 99 中除了88以外所有数的总和"></a>例4、计算 1 - 2 + 3 … + 99 中除了88以外所有数的总和</h4><pre><code class="bash">count = 1 <span class="comment">#初始值</span>
+sum = 0 <span class="comment">#用于存储结果</span>
+<span class="keyword">while</span> count &lt; 100 : <span class="comment">#如果&lt;100则进入while循环</span>
+    <span class="keyword">if</span> count % 2 != 0 : <span class="comment">#判断奇偶数 </span>
+        sum += count <span class="comment">#如果是奇数 按照规则相加</span>
+
+    <span class="keyword">if</span> count % 2 == 0 : <span class="comment">#判断奇偶数 </span>
+        <span class="keyword">if</span> count == 88 : <span class="comment">#判断每次循环的数字是否为88</span>
+            pass <span class="comment">#如果是88 直接跳过下面相减得过程</span>
+        <span class="keyword">else</span> :
+            sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
+
+    count += 1 <span class="comment">#count自+1</span>
+<span class="built_in">print</span>(sum)<span class="comment">#打印最后sum结果</span>
+</code></pre>
+<h4 id="例5、计算-1-2-3-…-99-所有数的总和"><a href="#例5、计算-1-2-3-…-99-所有数的总和" class="headerlink" title="例5、计算 1 - 2 + 3 … + 99 所有数的总和"></a>例5、计算 1 - 2 + 3 … + 99 所有数的总和</h4><pre><code class="bash">count = 1 <span class="comment">#初始值</span>
+sum = 0 <span class="comment">#用于存储结果</span>
+<span class="keyword">while</span> count &lt; 100 : <span class="comment">#如果&lt;100则进入while循环</span>
+    <span class="keyword">if</span> count % 2 != 0 : <span class="comment">#判断奇偶数 </span>
+        sum += count <span class="comment">#如果是奇数 按照规则相加</span>
+    <span class="keyword">else</span> :
+        sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
+
+    count += 1 <span class="comment">#count自+1</span>
+<span class="built_in">print</span>(sum)<span class="comment">#打印最后sum结果</span>
+</code></pre>
+
       
 
       
@@ -392,7 +368,7 @@ print(&apos;玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/12/condition-control-if/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/12/circulation-control-for-while/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -406,18 +382,9 @@ print(&apos;玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需�
   
 <nav id="article-nav">
   
-    <a href="/2018/07/12/circulation-control-for-while/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python-Day4
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/12/basic-data-type/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python-Day2</div>
+    <a href="/2018/07/12/condition-control-if/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python-Day3</div>
       <i class="icon-circle-right"></i>
     </a>
   
