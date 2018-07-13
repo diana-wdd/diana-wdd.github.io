@@ -293,22 +293,23 @@ del  list[star:end]   删除指定的列表片段，其中：star表示删除的
 如果设置了反转参数为True，那么将原列表中的元素按照降序排列
 
 注意：上面两种排序函数，其中第一个属于列表自身的排序方法，而第二种属于python内置的排序方法，也就是说第二种可以应用在包括列表在内多种集合排序。
-</code></pre><h4 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h4><blockquote>
-<blockquote>
-<blockquote>
-<p>list1<br>[‘h’, ‘e’, ‘l’, ‘l’, ‘o’, ‘ ‘, ‘w’, ‘o’, ‘r’, ‘l’, ‘d’]<br>list1.sort(reverse=True)<br>list1<br>[‘w’, ‘r’, ‘o’, ‘o’, ‘l’, ‘l’, ‘l’, ‘h’, ‘e’, ‘d’, ‘ ‘]<br>sorted(list1)<br>[‘ ‘, ‘d’, ‘e’, ‘h’, ‘l’, ‘l’, ‘l’, ‘o’, ‘o’, ‘r’, ‘w’]<br>sorted(list1,reverse=True)<br>[‘w’, ‘r’, ‘o’, ‘o’, ‘l’, ‘l’, ‘l’, ‘h’, ‘e’, ‘d’, ‘ ‘]</p>
-</blockquote>
-</blockquote>
-</blockquote>
+</code></pre><h4 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1
+[<span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>, <span class="string">' '</span>, <span class="string">'w'</span>, <span class="string">'o'</span>, <span class="string">'r'</span>, <span class="string">'l'</span>, <span class="string">'d'</span>]
+&gt;&gt;&gt; list1.sort(reverse=True)
+&gt;&gt;&gt; list1
+[<span class="string">'w'</span>, <span class="string">'r'</span>, <span class="string">'o'</span>, <span class="string">'o'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">' '</span>]
+&gt;&gt;&gt; sorted(list1)
+[<span class="string">' '</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>, <span class="string">'o'</span>, <span class="string">'r'</span>, <span class="string">'w'</span>]
+&gt;&gt;&gt; sorted(list1,reverse=True)
+[<span class="string">'w'</span>, <span class="string">'r'</span>, <span class="string">'o'</span>, <span class="string">'o'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">' '</span>]
+</code></pre>
 <h4 id="（10）reversed-逆序"><a href="#（10）reversed-逆序" class="headerlink" title="（10）reversed() 逆序"></a>（10）reversed() 逆序</h4><pre><code>函数格式：reversed(list)
 返回值：将原列表中元素按照逆顺序进行输出
-</code></pre><h4 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h4><blockquote>
-<blockquote>
-<blockquote>
-<p>list=[1,4,3,6,9,0,2]<br>for x in reversed(list):<br>            print x,<br>2 0 9 6 3 4 1</p>
-</blockquote>
-</blockquote>
-</blockquote>
+</code></pre><h4 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list=[1,4,3,6,9,0,2]
+&gt;&gt;&gt; <span class="keyword">for</span> x <span class="keyword">in</span> reversed(list):
+            <span class="built_in">print</span> x,
+2 0 9 6 3 4 1
+</code></pre>
 <h4 id="（11）Count-计数函数"><a href="#（11）Count-计数函数" class="headerlink" title="（11）Count() 计数函数"></a>（11）Count() 计数函数</h4><pre><code>函数格式：list.count(元素)
 返回值：返回指定元素在列表中出现的次数
 </code></pre><h4 id="（12）In-关键字"><a href="#（12）In-关键字" class="headerlink" title="（12）In 关键字"></a>（12）In 关键字</h4><pre><code>判断指定的元素是否在列表中存在，如果存在返回True,否则返回False
