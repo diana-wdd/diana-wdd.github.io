@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="基本数据类型1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整形、字符串类型是我们常用的。2、整型（1）我们根据计算机中数据编码格式，将整型分为二进制、八进制、十进制、十六进制四种类型。二进制数以0b引导，八进制数以0o引导，十六进制数以0x引导。 （2）进制间的转换：     A.二进制转十进制：bin(int)=&amp;gt; 将十进制转换为二进制；int(bin)=&amp;gt;将二进">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T03:14:05.381Z">
+<meta property="og:updated_time" content="2018-07-13T04:01:31.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python-Day2">
 <meta name="twitter:description" content="基本数据类型1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整形、字符串类型是我们常用的。2、整型（1）我们根据计算机中数据编码格式，将整型分为二进制、八进制、十进制、十六进制四种类型。二进制数以0b引导，八进制数以0o引导，十六进制数以0x引导。 （2）进制间的转换：     A.二进制转十进制：bin(int)=&amp;gt; 将十进制转换为二进制；int(bin)=&amp;gt;将二进">
@@ -327,14 +327,14 @@ tv pc notebook phone
 &gt;&gt;&gt; <span class="built_in">print</span>(string1)
 tv pc notebook phone
 </code></pre>
-<h3 id="指定字符："><a href="#指定字符：" class="headerlink" title="指定字符："></a>指定字符：</h3><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
+<h4 id="指定字符："><a href="#指定字符：" class="headerlink" title="指定字符："></a>指定字符：</h4><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
 &gt;&gt;&gt; string1.strip(<span class="string">'t'</span>)
 <span class="string">' tv pc notebook phone'</span>
 &gt;&gt;&gt; string1=<span class="string">'tv pc notebook phone'</span>
 &gt;&gt;&gt; string1.strip(<span class="string">'t'</span>)
 <span class="string">'v pc notebook phone'</span>注意：如果字符串前面有空格，不把空格包括在内当做被去除的字符时，单单是字符时是去不掉的。
-如果指定字符内容为一个字符序列，那么意味着使用strip()去除左右两端指定字符时，只要符合字符序列中的某一位，就进行去除。
-&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
+</code></pre>
+<h4 id="如果指定字符内容为一个字符序列，那么意味着使用strip-去除左右两端指定字符时，只要符合字符序列中的某一位，就进行去除。"><a href="#如果指定字符内容为一个字符序列，那么意味着使用strip-去除左右两端指定字符时，只要符合字符序列中的某一位，就进行去除。" class="headerlink" title="如果指定字符内容为一个字符序列，那么意味着使用strip()去除左右两端指定字符时，只要符合字符序列中的某一位，就进行去除。"></a>如果指定字符内容为一个字符序列，那么意味着使用strip()去除左右两端指定字符时，只要符合字符序列中的某一位，就进行去除。</h4><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
 &gt;&gt;&gt; string1.strip(<span class="string">'t'</span>)
 <span class="string">' tv pc notebook phone'</span>
 &gt;&gt;&gt; string1=<span class="string">'tv pc notebook phone'</span>
@@ -463,8 +463,8 @@ TypeError: <span class="string">'str'</span> object does not support item assign
 &gt;&gt;&gt; strings
 <span class="string">'sello'</span>
 </code></pre>
-<pre><code>（7）当一个变量名不用时，用del（）将其杀死，内存将会把其变量名清除。
-（8）例题：纪录人名
+<pre><code>（4）当一个变量名不用时，用del（）将其杀死，内存将会把其变量名清除。
+（5）例题：纪录人名
     将一个名字从“名，中间名，姓”的顺序变为“姓，名，中间名”的格式。例如&apos;John M. Cleese&apos;将变成&apos;Cleese,John M&apos;。
 </code></pre><h4 id="法一："><a href="#法一：" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">&gt;&gt;&gt; name=<span class="string">'Jhon M. Cleese'</span>
 
