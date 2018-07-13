@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Python-Day4 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。  例如（竖着打印）：">
+  <meta name="description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。 例如（竖着打印）：&amp;gt;&amp;gt;&amp;">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python-Day4">
 <meta property="og:url" content="http://yoursite.com/2018/07/12/circulation-control-for-while/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。  例如（竖着打印）：">
+<meta property="og:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。 例如（竖着打印）：&amp;gt;&amp;gt;&amp;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T02:37:14.476Z">
+<meta property="og:updated_time" content="2018-07-13T02:53:07.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python-Day4">
-<meta name="twitter:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。  例如（竖着打印）：">
+<meta name="twitter:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。 例如（竖着打印）：&amp;gt;&amp;gt;&amp;">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -185,28 +185,27 @@
 说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。
 
 注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。
+</code></pre><h4 id="例如（竖着打印）："><a href="#例如（竖着打印）：" class="headerlink" title="例如（竖着打印）："></a>例如（竖着打印）：</h4><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item)
+h
+e
+l
+l
+o
 
-例如（竖着打印）：
-                    &gt;&gt;&gt; string1 = &apos;hello world&apos;
-                    &gt;&gt;&gt; for item in string1:
-                        print(item)
-                    h
-                    e
-                    l
-                    l
-                    o
+w
+o
+r
+l
+D
 
-                    w
-                    o
-                    r
-                    l
-                    D
-
-                    横着打印：
-                    &gt;&gt;&gt; for item in string1:
-                        print(item,end=&apos; &apos;)    
-                    h e l l o   w o r l d 
-</code></pre><h5 id="第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。"><a href="#第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。" class="headerlink" title="第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。"></a>第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。</h5><pre><code>        for i in range（循环次数） 
+横着打印：
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item,end=<span class="string">' '</span>)    
+h e l l o   w o r l d 
+</code></pre>
+<h5 id="第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。"><a href="#第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。" class="headerlink" title="第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。"></a>第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。</h5><pre><code>        for i in range（循环次数） 
                代码
 
 说明：这种循环方式采用指定循环次数，对目标集合进行遍历。其做法主要是让循环与集合的下标同步，在循环次数时，一同取出集合指定下标的对应值。
@@ -221,15 +220,14 @@ stop：循环结束的值（循环次数）
 step：循环步长
 
 注意：此处循环，会根据stop规定循环的次数进行循环，循环都是从头（0）开始，但是显示的值是按照star的值开始的
-
-例如：
-            &gt;&gt;&gt; for i in range(0,10):
-                print(i,end=&apos; &apos;)
-            0 1 2 3 4 5 6 7 8 9 
-            &gt;&gt;&gt; for i in range(5,10):
-                print(i,end=&apos; &apos;)
-            5 6 7 8 9 
-</code></pre><h3 id="（3）for循环的常用方式：嵌套"><a href="#（3）for循环的常用方式：嵌套" class="headerlink" title="（3）for循环的常用方式：嵌套"></a>（3）for循环的常用方式：嵌套</h3><pre><code>for i in range(次数)：
+</code></pre><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(0,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+0 1 2 3 4 5 6 7 8 9 
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(5,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+5 6 7 8 9 
+</code></pre>
+<h3 id="（3）for循环的常用方式：嵌套"><a href="#（3）for循环的常用方式：嵌套" class="headerlink" title="（3）for循环的常用方式：嵌套"></a>（3）for循环的常用方式：嵌套</h3><pre><code>for i in range(次数)：
     for j in range(次数)：
 注意：这种嵌套表示的过程中，变量的位置尤为重要，通用原则为：如果变量的值需要通过外层循环来获取或生成，那么我们可以将其设为全局变量，即与外层循环for同等级的变量，如果变量需要在内层循环中生成或获取，我们通常会在外循环中声明，即与内循环同级。
 </code></pre><h4 id="例1、100以内数的和"><a href="#例1、100以内数的和" class="headerlink" title="例1、100以内数的和"></a>例1、100以内数的和</h4><pre><code class="bash">num=0

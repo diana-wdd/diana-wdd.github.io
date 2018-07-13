@@ -183,28 +183,27 @@
 说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。
 
 注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。
+</code></pre><h4 id="例如（竖着打印）："><a href="#例如（竖着打印）：" class="headerlink" title="例如（竖着打印）："></a>例如（竖着打印）：</h4><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item)
+h
+e
+l
+l
+o
 
-例如（竖着打印）：
-                    &gt;&gt;&gt; string1 = &apos;hello world&apos;
-                    &gt;&gt;&gt; for item in string1:
-                        print(item)
-                    h
-                    e
-                    l
-                    l
-                    o
+w
+o
+r
+l
+D
 
-                    w
-                    o
-                    r
-                    l
-                    D
-
-                    横着打印：
-                    &gt;&gt;&gt; for item in string1:
-                        print(item,end=&apos; &apos;)    
-                    h e l l o   w o r l d 
-</code></pre><h5 id="第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。"><a href="#第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。" class="headerlink" title="第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。"></a>第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。</h5><pre><code>        for i in range（循环次数） 
+横着打印：
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item,end=<span class="string">' '</span>)    
+h e l l o   w o r l d 
+</code></pre>
+<h5 id="第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。"><a href="#第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。" class="headerlink" title="第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。"></a>第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。</h5><pre><code>        for i in range（循环次数） 
                代码
 
 说明：这种循环方式采用指定循环次数，对目标集合进行遍历。其做法主要是让循环与集合的下标同步，在循环次数时，一同取出集合指定下标的对应值。
@@ -219,15 +218,14 @@ stop：循环结束的值（循环次数）
 step：循环步长
 
 注意：此处循环，会根据stop规定循环的次数进行循环，循环都是从头（0）开始，但是显示的值是按照star的值开始的
-
-例如：
-            &gt;&gt;&gt; for i in range(0,10):
-                print(i,end=&apos; &apos;)
-            0 1 2 3 4 5 6 7 8 9 
-            &gt;&gt;&gt; for i in range(5,10):
-                print(i,end=&apos; &apos;)
-            5 6 7 8 9 
-</code></pre><h3 id="（3）for循环的常用方式：嵌套"><a href="#（3）for循环的常用方式：嵌套" class="headerlink" title="（3）for循环的常用方式：嵌套"></a>（3）for循环的常用方式：嵌套</h3><pre><code>for i in range(次数)：
+</code></pre><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(0,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+0 1 2 3 4 5 6 7 8 9 
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(5,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+5 6 7 8 9 
+</code></pre>
+<h3 id="（3）for循环的常用方式：嵌套"><a href="#（3）for循环的常用方式：嵌套" class="headerlink" title="（3）for循环的常用方式：嵌套"></a>（3）for循环的常用方式：嵌套</h3><pre><code>for i in range(次数)：
     for j in range(次数)：
 注意：这种嵌套表示的过程中，变量的位置尤为重要，通用原则为：如果变量的值需要通过外层循环来获取或生成，那么我们可以将其设为全局变量，即与外层循环for同等级的变量，如果变量需要在内层循环中生成或获取，我们通常会在外循环中声明，即与内循环同级。
 </code></pre><h4 id="例1、100以内数的和"><a href="#例1、100以内数的和" class="headerlink" title="例1、100以内数的和"></a>例1、100以内数的和</h4><pre><code class="bash">num=0
@@ -404,50 +402,53 @@ sum = 0 <span class="comment">#用于存储结果</span>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="控制语句——条件（if）控制"><a href="#控制语句——条件（if）控制" class="headerlink" title="控制语句——条件（if）控制"></a>控制语句——条件（if）控制</h2><h3 id="1、格式如下："><a href="#1、格式如下：" class="headerlink" title="1、格式如下："></a>1、格式如下：</h3><pre><code>（1）单判断：
+        <h2 id="控制语句——条件（if）控制"><a href="#控制语句——条件（if）控制" class="headerlink" title="控制语句——条件（if）控制"></a>控制语句——条件（if）控制</h2><h3 id="1、格式如下："><a href="#1、格式如下：" class="headerlink" title="1、格式如下："></a>1、格式如下：</h3><pre><code class="bash">（1）单判断：
 If 条件：
 代码
 
 （2）双分支：
 If 条件：
 代码
-else：
+<span class="keyword">else</span>：
 代码
 
 （3）多分支：
 If 条件：
 代码
-elif 条件：
+<span class="keyword">elif</span> 条件：
 代码
-elif 条件：
+<span class="keyword">elif</span> 条件：
 代码
-elif 条件：
+<span class="keyword">elif</span> 条件：
 代码
 ......
-else：
+<span class="keyword">else</span>：
 代码
-</code></pre><h3 id="2、逻辑运算符：and、or、not"><a href="#2、逻辑运算符：and、or、not" class="headerlink" title="2、逻辑运算符：and、or、not"></a>2、逻辑运算符：and、or、not</h3><pre><code>（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果才为True；有一方为False时，其结果一定为False。
+</code></pre>
+<h3 id="2、逻辑运算符：and、or、not"><a href="#2、逻辑运算符：and、or、not" class="headerlink" title="2、逻辑运算符：and、or、not"></a>2、逻辑运算符：and、or、not</h3><pre><code>（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果才为True；有一方为False时，其结果一定为False。
 （2）or：左右两端都是布尔型，其结果也是布尔型。有一方为True时，其结果一就为True；只有当左右两端的值都为False时，其结果才为False。
 （3）not:属于单目运算，其结果也是布尔型。其作用就是求反，如果变量为True，结果就为False；如果变量为False，结果就为True。
 注：逻辑运算、比较运算常用在条件中使用。同时，这两种运算符配合使用。
-</code></pre><h3 id="3、举例："><a href="#3、举例：" class="headerlink" title="3、举例："></a>3、举例：</h3><h4 id="（1）两个数比大小，并输出最大者"><a href="#（1）两个数比大小，并输出最大者" class="headerlink" title="（1）两个数比大小，并输出最大者"></a>（1）两个数比大小，并输出最大者</h4><pre><code>a=10
+</code></pre><h3 id="3、举例："><a href="#3、举例：" class="headerlink" title="3、举例："></a>3、举例：</h3><h4 id="（1）两个数比大小，并输出最大者"><a href="#（1）两个数比大小，并输出最大者" class="headerlink" title="（1）两个数比大小，并输出最大者"></a>（1）两个数比大小，并输出最大者</h4><pre><code class="bash">a=10
 b=100
-if a&gt;b:
-    print(&apos;a is value %d&apos;%a)
-elif a&lt;b:
-    print(&apos;b is value %d&apos;%b)
-else:
-    print(&apos;%d is equal %d&apos;%(a,b))
-</code></pre><h4 id="（2）三个数比大小并输出最大值"><a href="#（2）三个数比大小并输出最大值" class="headerlink" title="（2）三个数比大小并输出最大值"></a>（2）三个数比大小并输出最大值</h4><pre><code>a=10
+<span class="keyword">if</span> a&gt;b:
+    <span class="built_in">print</span>(<span class="string">'a is value %d'</span>%a)
+<span class="keyword">elif</span> a&lt;b:
+    <span class="built_in">print</span>(<span class="string">'b is value %d'</span>%b)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'%d is equal %d'</span>%(a,b))
+</code></pre>
+<h4 id="（2）三个数比大小并输出最大值"><a href="#（2）三个数比大小并输出最大值" class="headerlink" title="（2）三个数比大小并输出最大值"></a>（2）三个数比大小并输出最大值</h4><pre><code class="bash">a=10
 b=100
 c=50
-if a&gt;b and a&gt;c:
-    print(&apos;a is biggist %d&apos;%a)
-elif b&gt;a and b&gt;c:
-    print(&apos;b is biggist %d&apos;%b)
-else:
-    print(&apos;c is biggist %d&apos;%c)
-</code></pre><h4 id="（3）快递运费计算"><a href="#（3）快递运费计算" class="headerlink" title="（3）快递运费计算"></a>（3）快递运费计算</h4><h4 id="1-5kg-10元-kg"><a href="#1-5kg-10元-kg" class="headerlink" title="1~5kg :10元/kg"></a>1~5kg :10元/kg</h4><h4 id="5-10kg-15元-kg"><a href="#5-10kg-15元-kg" class="headerlink" title="5~10kg :15元/kg"></a>5~10kg :15元/kg</h4><h4 id="10-20kg-25元-kg"><a href="#10-20kg-25元-kg" class="headerlink" title="10~20kg :25元/kg"></a>10~20kg :25元/kg</h4><h4 id="20kg-30元-kg"><a href="#20kg-30元-kg" class="headerlink" title="20kg~ :30元/kg"></a>20kg~ :30元/kg</h4><pre><code>goods_weight=int(input(&apos;请输入快递商品的重量：&apos;))
+<span class="keyword">if</span> a&gt;b and a&gt;c:
+    <span class="built_in">print</span>(<span class="string">'a is biggist %d'</span>%a)
+<span class="keyword">elif</span> b&gt;a and b&gt;c:
+    <span class="built_in">print</span>(<span class="string">'b is biggist %d'</span>%b)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'c is biggist %d'</span>%c)
+</code></pre>
+<h4 id="（3）快递运费计算"><a href="#（3）快递运费计算" class="headerlink" title="（3）快递运费计算"></a>（3）快递运费计算</h4><h4 id="1-5kg-10元-kg"><a href="#1-5kg-10元-kg" class="headerlink" title="1~5kg :10元/kg"></a>1~5kg :10元/kg</h4><h4 id="5-10kg-15元-kg"><a href="#5-10kg-15元-kg" class="headerlink" title="5~10kg :15元/kg"></a>5~10kg :15元/kg</h4><h4 id="10-20kg-25元-kg"><a href="#10-20kg-25元-kg" class="headerlink" title="10~20kg :25元/kg"></a>10~20kg :25元/kg</h4><h4 id="20kg-30元-kg"><a href="#20kg-30元-kg" class="headerlink" title="20kg~ :30元/kg"></a>20kg~ :30元/kg</h4><pre><code>goods_weight=int(input(&apos;请输入快递商品的重量：&apos;))
 if goods_weight &lt;= 0: #判断输入的值是否为正整数
     print(&apos;快递商品重量有错误，请重新输入！&apos;)
     exit()
@@ -462,83 +463,85 @@ elif  goods_weight &lt;= 20:
 else:
     goods_price = goods_weight*30
 print(msg.format(goods_price))
-</code></pre><h4 id="（4）商场购物"><a href="#（4）商场购物" class="headerlink" title="（4）商场购物"></a>（4）商场购物</h4><h4 id="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。"><a href="#会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。" class="headerlink" title="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。"></a>会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。</h4><h4 id="钻石：100元6个积分-8折"><a href="#钻石：100元6个积分-8折" class="headerlink" title="钻石：100元6个积分 8折"></a>钻石：100元6个积分 8折</h4><h4 id="金牌：100元5个积分-8-5折"><a href="#金牌：100元5个积分-8-5折" class="headerlink" title="金牌：100元5个积分 8.5折"></a>金牌：100元5个积分 8.5折</h4><h4 id="银牌：100元3个积分-9折"><a href="#银牌：100元3个积分-9折" class="headerlink" title="银牌：100元3个积分 9折"></a>银牌：100元3个积分 9折</h4><h4 id="铜牌：100元2个积分-95折"><a href="#铜牌：100元2个积分-95折" class="headerlink" title="铜牌：100元2个积分 95折"></a>铜牌：100元2个积分 95折</h4><pre><code>from decimal import Decimal   # 引入decimal包中的 Decimal 对象
-user_level=input(&apos;请输入用户等级：&apos;)
-goods_name = input(&apos;所要购买的物品是：&apos;)
-goods_price=float(input(&apos;请输入所购买物品的价格：&apos;))
-if goods_price &lt;=0:  #判断输入的价格是否合理
-    print(&apos;物品价格输入有误，请重新输入！&apos;)
-    exit()
-real_price = 0.0 #购买商品的实际价格
-need_score = 0  #积分
-if user_level == &apos;钻石&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.8)).quantize(Decimal(&apos;0.00&apos;)))
+</code></pre><h4 id="（4）商场购物"><a href="#（4）商场购物" class="headerlink" title="（4）商场购物"></a>（4）商场购物</h4><h4 id="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。"><a href="#会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。" class="headerlink" title="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。"></a>会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。</h4><h4 id="钻石：100元6个积分-8折"><a href="#钻石：100元6个积分-8折" class="headerlink" title="钻石：100元6个积分 8折"></a>钻石：100元6个积分 8折</h4><h4 id="金牌：100元5个积分-8-5折"><a href="#金牌：100元5个积分-8-5折" class="headerlink" title="金牌：100元5个积分 8.5折"></a>金牌：100元5个积分 8.5折</h4><h4 id="银牌：100元3个积分-9折"><a href="#银牌：100元3个积分-9折" class="headerlink" title="银牌：100元3个积分 9折"></a>银牌：100元3个积分 9折</h4><h4 id="铜牌：100元2个积分-95折"><a href="#铜牌：100元2个积分-95折" class="headerlink" title="铜牌：100元2个积分 95折"></a>铜牌：100元2个积分 95折</h4><pre><code class="bash">from decimal import Decimal   <span class="comment"># 引入decimal包中的 Decimal 对象</span>
+user_level=input(<span class="string">'请输入用户等级：'</span>)
+goods_name = input(<span class="string">'所要购买的物品是：'</span>)
+goods_price=<span class="built_in">float</span>(input(<span class="string">'请输入所购买物品的价格：'</span>))
+<span class="keyword">if</span> goods_price &lt;=0:  <span class="comment">#判断输入的价格是否合理</span>
+    <span class="built_in">print</span>(<span class="string">'物品价格输入有误，请重新输入！'</span>)
+    <span class="built_in">exit</span>()
+real_price = 0.0 <span class="comment">#购买商品的实际价格</span>
+need_score = 0  <span class="comment">#积分</span>
+<span class="keyword">if</span> user_level == <span class="string">'钻石'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.8)).quantize(Decimal(<span class="string">'0.00'</span>)))
     need_score = int(real_price/0.6)
-elif user_level == &apos;金牌&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.85)).quantize(Decimal(&apos;0.00&apos;)))
+<span class="keyword">elif</span> user_level == <span class="string">'金牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.85)).quantize(Decimal(<span class="string">'0.00'</span>)))
     need_score = int(real_price/0.5)
-elif user_level == &apos;银牌&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.9)).quantize(Decimal(&apos;0.00&apos;)))
+<span class="keyword">elif</span> user_level == <span class="string">'银牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.9)).quantize(Decimal(<span class="string">'0.00'</span>)))
     need_score = int(real_price/0.3)
-elif user_level == &apos;铜牌&apos;:
-    real_price=float((Decimal(goods_price) * Decimal(0.95)).quantize(Decimal(&apos;0.00&apos;)))
+<span class="keyword">elif</span> user_level == <span class="string">'铜牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.95)).quantize(Decimal(<span class="string">'0.00'</span>)))
     need_score = int(real_price/0.2)
-else:
-    print(&apos;请输入正确的用户等级&apos;)
-    exit()
-print(&apos;等级为{0}的顾客，购买的{1}所需要的实际价格为{2}，积分为{3}！&apos;.format(user_level,goods_name,real_price,need_score)) 
-</code></pre><h4 id="（5）英雄联盟角色"><a href="#（5）英雄联盟角色" class="headerlink" title="（5）英雄联盟角色"></a>（5）英雄联盟角色</h4><h4 id="角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50"><a href="#角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50" class="headerlink" title="角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50"></a>角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50</h4><h4 id="角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80"><a href="#角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80" class="headerlink" title="角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80"></a>角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80</h4><h4 id="角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100"><a href="#角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100" class="headerlink" title="角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100"></a>角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100</h4><pre><code>import math   # 引入math包
-play_user=input(&apos;请输入玩家角色：&apos;)
-kills_name = input(&apos;所要启用的技能名称是：&apos;)
-boss_live=10000   #Boss伤害值
-play_blood=0  #玩家技能值用完时所用的技能攻击掉的血
-defind_num=0  #打死Boss用的总次数
-simple_num=0  #技能值用完所用的技能攻击的次数
-boss_blood=0  #玩家技能值用完，boss剩余的血
-if play_user == &apos;赵云&apos;:
-    if kills_name == &apos;物理攻击&apos;:
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'请输入正确的用户等级'</span>)
+    <span class="built_in">exit</span>()
+<span class="built_in">print</span>(<span class="string">'等级为{0}的顾客，购买的{1}所需要的实际价格为{2}，积分为{3}！'</span>.format(user_level,goods_name,real_price,need_score)) 
+</code></pre>
+<h4 id="（5）英雄联盟角色"><a href="#（5）英雄联盟角色" class="headerlink" title="（5）英雄联盟角色"></a>（5）英雄联盟角色</h4><h4 id="角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50"><a href="#角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50" class="headerlink" title="角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50"></a>角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50</h4><h4 id="角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80"><a href="#角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80" class="headerlink" title="角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80"></a>角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80</h4><h4 id="角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100"><a href="#角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100" class="headerlink" title="角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100"></a>角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100</h4><pre><code class="bash">import math   <span class="comment"># 引入math包</span>
+play_user=input(<span class="string">'请输入玩家角色：'</span>)
+kills_name = input(<span class="string">'所要启用的技能名称是：'</span>)
+boss_live=10000   <span class="comment">#Boss伤害值</span>
+play_blood=0  <span class="comment">#玩家技能值用完时所用的技能攻击掉的血</span>
+defind_num=0  <span class="comment">#打死Boss用的总次数</span>
+simple_num=0  <span class="comment">#技能值用完所用的技能攻击的次数</span>
+boss_blood=0  <span class="comment">#玩家技能值用完，boss剩余的血</span>
+<span class="keyword">if</span> play_user == <span class="string">'赵云'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
         defind_num = math.ceil(boss_live/80)
-    elif kills_name == &apos;技能攻击&apos;:
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
         defind_num = math.ceil(boss_live/120)
-    elif kills_name == &apos;混合攻击&apos;:  
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>:  
         simple_num=math.floor(500/50)
         play_blood=120*simple_num
         boss_blood=boss_live-play_blood
         defind_num=math.ceil(boss_blood/80) + simple_num
-    else:
-        print(&apos;技能方式错误！&apos;)
-        exit()
-elif play_user == &apos;李白&apos;:
-    if kills_name == &apos;物理攻击&apos;:
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">elif</span> play_user == <span class="string">'李白'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
         defind_num = math.ceil(boss_live/30)
-    elif kills_name == &apos;技能攻击&apos;:
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
         defind_num = math.ceil(boss_live/100)
-    elif kills_name == &apos;混合攻击&apos;: 
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>: 
         simple_num=math.floor(350/80)
         play_blood=100*simple_num
         boss_blood=boss_live-play_blood
         defind_num=math.ceil(boss_blood/30) + simple_num
-    else:
-        print(&apos;技能方式错误！&apos;)
-        exit()
-elif play_user == &apos;刘备&apos;:
-    if kills_name == &apos;物理攻击&apos;:
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">elif</span> play_user == <span class="string">'刘备'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
         defind_num = math.ceil(boss_live/50)
-    elif kills_name == &apos;技能攻击&apos;:
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
         defind_num = math.ceil(boss_live/200)
-    elif kills_name == &apos;混合攻击&apos;: 
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>: 
         simple_num=math.floor(400/100)
         play_blood=200*simple_num
         boss_blood=boss_live-play_blood
         defind_num=math.ceil(boss_blood/50) + simple_num
-    else:
-        print(&apos;技能方式错误！&apos;)
-        exit()
-else:
-    print(&apos;请输入正确的玩家角色！&apos;)
-    exit()
-print(&apos;玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需要的次数为{2}！&apos;.format(play_user,kills_name,defind_num))
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'请输入正确的玩家角色！'</span>)
+    <span class="built_in">exit</span>()
+<span class="built_in">print</span>(<span class="string">'玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需要的次数为{2}！'</span>.format(play_user,kills_name,defind_num))
 </code></pre>
+
       
 
       
@@ -610,16 +613,18 @@ print(&apos;玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需�
         例如：&gt;&gt;&gt; hex(64)
         &apos;0x40&apos;
     D.将一个数字的字符串变换成一个整数，第二个参数用于指示变换后的数字的进制
-        例如：&gt;&gt;&gt; int(&apos;0100&apos;)
-        100
-        &gt;&gt;&gt; int(&apos;0100&apos;, 8)
-        64
-        &gt;&gt;&gt; int(&apos;0x40&apos;, 16)
-        64
-    E.用字符串格式表达式转换成八进制、十六进制的字符串
-        例如：&gt;&gt;&gt; &quot;%o %x %X&quot;%(64, 64, 255)
-        &apos;100 40 FF&apos;
-</code></pre><h3 id="3、运算符"><a href="#3、运算符" class="headerlink" title="3、运算符"></a>3、运算符</h3><pre><code>（1）算术运算符：+、—、*、/
+</code></pre><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; int(<span class="string">'0100'</span>)
+100
+&gt;&gt;&gt; int(<span class="string">'0100'</span>, 8)
+64
+&gt;&gt;&gt; int(<span class="string">'0x40'</span>, 16)
+64
+</code></pre>
+<pre><code>E.用字符串格式表达式转换成八进制、十六进制的字符串
+</code></pre><h4 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="string">"%o %x %X"</span>%(64, 64, 255)
+ <span class="string">'100 40 FF'</span>
+</code></pre>
+<h3 id="3、运算符"><a href="#3、运算符" class="headerlink" title="3、运算符"></a>3、运算符</h3><pre><code>（1）算术运算符：+、—、*、/
 （2）在Python中默认的数据类型是浮点型，因此在执行算术运算时5/2得到的结果是2.5，而不是2
 （3）%：两数进行求余运算，如果分子大于分母，得余数；如果分子小于分母，得分子。注意：只有分子除尽分母时，得0。
 
@@ -637,10 +642,13 @@ print(&apos;玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需�
         round(1.5) =&gt; 2
         round(1.2) =&gt;1
         round(1.4,1) =&gt; 1.4 意味着保留小数点后一位
-</code></pre><h5 id="2）求幂运算"><a href="#2）求幂运算" class="headerlink" title="2）求幂运算"></a>2）求幂运算</h5><pre><code>pow(2,3) =&gt; 8     等同于2**3
-</code></pre><h5 id="3）求绝对值"><a href="#3）求绝对值" class="headerlink" title="3）求绝对值"></a>3）求绝对值</h5><pre><code>Abs(-10) =&gt;10
-</code></pre><h5 id="4）求两数相除的商和余数"><a href="#4）求两数相除的商和余数" class="headerlink" title="4）求两数相除的商和余数"></a>4）求两数相除的商和余数</h5><pre><code>divmod(5,3) =&gt; (1,2)   类似5%3 =&gt; 2
-</code></pre><h5 id="5）运算符"><a href="#5）运算符" class="headerlink" title="5）运算符"></a>5）运算符</h5><pre><code>i = 10
+</code></pre><h5 id="2）求幂运算"><a href="#2）求幂运算" class="headerlink" title="2）求幂运算"></a>2）求幂运算</h5><pre><code class="bash">pow(2,3) =&gt; 8     等同于2**3
+</code></pre>
+<h5 id="3）求绝对值"><a href="#3）求绝对值" class="headerlink" title="3）求绝对值"></a>3）求绝对值</h5><pre><code class="bash">Abs(-10) =&gt;10
+</code></pre>
+<h5 id="4）求两数相除的商和余数"><a href="#4）求两数相除的商和余数" class="headerlink" title="4）求两数相除的商和余数"></a>4）求两数相除的商和余数</h5><pre><code class="bash">divmod(5,3) =&gt; (1,2)   类似5%3 =&gt; 2
+</code></pre>
+<h5 id="5）运算符"><a href="#5）运算符" class="headerlink" title="5）运算符"></a>5）运算符</h5><pre><code class="bash">i = 10
 i = i + 5   等同于   i += 5
 i = i - 5   等同于   i -= 5
 i = i * 5   等同于   i *= 5
@@ -648,13 +656,14 @@ i = i / 5   等同于   i /= 5
 i = i //5   等同于   i //= 5
 i = i **5   等同于   i **= 5
 i = i % 5   等同于   i %= 5
-</code></pre><h3 id="4、布尔型"><a href="#4、布尔型" class="headerlink" title="4、布尔型"></a>4、布尔型</h3><pre><code>（1）在python中，布尔型分为True和False两种，但是在实际操作中我们也可以将其与1和0等同。
+</code></pre>
+<h3 id="4、布尔型"><a href="#4、布尔型" class="headerlink" title="4、布尔型"></a>4、布尔型</h3><pre><code>（1）在python中，布尔型分为True和False两种，但是在实际操作中我们也可以将其与1和0等同。
 （2）布尔型常用于逻辑运算和判断条件中，作为结果来使用。但是也可以参与算术运算，当进行算术运算时，True当做“1”和False当做“0”参与运算。
-例如：
-        a = True   a + 1 =&gt; 2
-        b=False   b + 1 =&gt; 1
-        a + b =&gt; 1
-补充：
+</code></pre><h4 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">a = True   a + 1 =&gt; 2
+b=False   b + 1 =&gt; 1
+a + b =&gt; 1
+</code></pre>
+<pre><code>补充：
     布尔型求非：not
         not a =&gt; False
         not b =&gt; True
@@ -670,15 +679,15 @@ i = i % 5   等同于   i %= 5
 （a）可以传递给Decimal整型或者字符串参数，但不能是浮点数，因为浮点数本身就不准确。
 （b）要从浮点数转换为Decimal类型：                           Decimal.from_float(12.222)  
 （c）通过设定有效数字，限定结果样式：四舍五入，保留几位小数）
-例如：
-        from decimal import Decimal   # 引入decimal包中的 Decimal 对象
-        f1=15.5556
-        f2=5.5
-        #c=Decimal.from_float(f1)   # 将浮点数转换为Decimal对象，c和a的结果一样
-        a=Decimal(f1).quantize(Decimal(&apos;0.00&apos;))   # 将浮点数转换为Decimal对象，同时指定该数值的精度，保留小数点后两位，并自动完场四舍五入操作
-        b=Decimal(f2).quantize(Decimal(&apos;0.00&apos;))
-        print((a*b).quantize(Decimal(&apos;0&apos;)))
-</code></pre><h3 id="7、字符串"><a href="#7、字符串" class="headerlink" title="7、字符串"></a>7、字符串</h3><h4 id="1）字符串类型"><a href="#1）字符串类型" class="headerlink" title="1）字符串类型"></a>1）字符串类型</h4><pre><code>字符串是字符的序列 。 C语言中用字符数组表示，如char str[20] = “hello”。
+</code></pre><h4 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">from decimal import Decimal   <span class="comment"># 引入decimal包中的 Decimal 对象</span>
+f1=15.5556
+f2=5.5
+<span class="comment">#c=Decimal.from_float(f1)   # 将浮点数转换为Decimal对象，c和a的结果一样</span>
+a=Decimal(f1).quantize(Decimal(<span class="string">'0.00'</span>))   <span class="comment"># 将浮点数转换为Decimal对象，同时指定该数值的精度，保留小数点后两位，并自动完场四舍五入操作</span>
+b=Decimal(f2).quantize(Decimal(<span class="string">'0.00'</span>))
+<span class="built_in">print</span>((a*b).quantize(Decimal(<span class="string">'0'</span>)))
+</code></pre>
+<h3 id="7、字符串"><a href="#7、字符串" class="headerlink" title="7、字符串"></a>7、字符串</h3><h4 id="1）字符串类型"><a href="#1）字符串类型" class="headerlink" title="1）字符串类型"></a>1）字符串类型</h4><pre><code>字符串是字符的序列 。 C语言中用字符数组表示，如char str[20] = “hello”。
 Python中的字符串声明可以如下表示：
 （1）使用单引号（‘）：可以用单引号指示字符串，就如同’Quote me on this‘这样。所有的空白，即空格和制表符都照原样保留。 
 （2）使用双引号（“）：在双引号中的字符串与单引号中的字符串的使用完全相同，例如”What‘s your name?“。
@@ -697,211 +706,210 @@ Python中的字符串声明可以如下表示：
         Str1=’hello’
         Str1.find(‘ll’) =&gt; 2  该例中，‘ll’在字符串中出现了两次，但只会返回第一次出现的索引位置。
 注意2：如果所查找的内容中，有一个或者多个是字符串中所没有的或者不是字符串中连续的，则返回-1（因为在find操作中，会对字符串进行扫描，从字符串的索引位0开始，一直到字符串结尾，如果在字符串最后一位没有找到匹配的内容，将指向字符串结束符Eof，该值对应的是-1，所以找不到时，返回值为-1）
-例如：
-        str1=&apos;wangdandan&apos;
-        str1.find(&apos;az&apos;) =&gt; -1  该例中，‘az’中的‘z’在字符串中没有，则返回-1。
-更多例子：
-        string1 = &apos;apple,banana,apple,apple&apos;
-        &gt;&gt;&gt; string1.find(&apos;apple&apos;)
-        0
-        &gt;&gt;&gt; string1.find(&apos;apple&apos;,5)
-        13
-        &gt;&gt;&gt; string1.find(&apos;apple&apos;,7,20)
-        13
-        &gt;&gt;&gt; string1.find(&apos;apple&apos;,14,20)
-        -1
-        &gt;&gt;&gt; string1.find(&apos;apple&apos;,14,24)
-        19
-</code></pre><h5 id="（2）Index"><a href="#（2）Index" class="headerlink" title="（2）Index()"></a>（2）Index()</h5><pre><code>函数格式：str.index(子字符串[，开始索引位，结束索引位])
+</code></pre><h4 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">str1=<span class="string">'wangdandan'</span>
+str1.find(<span class="string">'az'</span>) =&gt; -1  该例中，‘az’中的‘z’在字符串中没有，则返回-1。
+</code></pre>
+<h4 id="更多例子："><a href="#更多例子：" class="headerlink" title="更多例子："></a>更多例子：</h4><pre><code class="bash">string1 = <span class="string">'apple,banana,apple,apple'</span>
+&gt;&gt;&gt; string1.find(<span class="string">'apple'</span>)
+0
+&gt;&gt;&gt; string1.find(<span class="string">'apple'</span>,5)
+13
+&gt;&gt;&gt; string1.find(<span class="string">'apple'</span>,7,20)
+13
+&gt;&gt;&gt; string1.find(<span class="string">'apple'</span>,14,20)
+-1
+&gt;&gt;&gt; string1.find(<span class="string">'apple'</span>,14,24)
+19
+</code></pre>
+<h5 id="（2）Index"><a href="#（2）Index" class="headerlink" title="（2）Index()"></a>（2）Index()</h5><pre><code>函数格式：str.index(子字符串[，开始索引位，结束索引位])
 返回值：如果查找成功，则返回所查找内容在字符串中的索引位置，如果没有找到，返回ValueError。
 </code></pre><h5 id="（3）Index-和find-的区别"><a href="#（3）Index-和find-的区别" class="headerlink" title="（3）Index() 和find()的区别"></a>（3）Index() 和find()的区别</h5><pre><code>第一，两者在执行结果时类似的，如果找到指定的字符就会返回索引位。
 第二，find()中，如果找不到指定的字符时，返回-1；而index()中，如果找不到指定的字符时，返回ValueError。
 第三，从效率上来讲，Index()的查找速度快于find()，因为在python中，对于像字符串这样的有序数据类型，会产生一个索引对象来自动维护其序列，find()函数不管是否有这样的序列，都需要在字符串本身进行逐一查找，而index()会通过这个索引对象的映射方式，来快速找到对应的索引位。
 </code></pre><h5 id="（4）split-拆分字符串"><a href="#（4）split-拆分字符串" class="headerlink" title="（4）split()  拆分字符串"></a>（4）split()  拆分字符串</h5><pre><code>函数格式：str.split([分隔符])
 返回值：根据指定的分隔符，对字符串进行拆分，返回一个列表；如果不指定分隔符，那么会将把整个字符串作为列表的一个元素，
-例如：
-        &gt;&gt;&gt; string1=&apos;tv,pc,notebook,phone&apos;
-        &gt;&gt;&gt; string1.split(&apos;,&apos;)
-        [&apos;tv&apos;, &apos;pc&apos;, &apos;notebook&apos;, &apos;phone&apos;]
-        &gt;&gt;&gt; string1.split()
-        [&apos;tv,pc,notebook,phone&apos;]
-注意：split中的分隔符，我们根据字符串中的实际情况而定，如果使用不正确的分隔符，str.split(‘错误分隔符)操作结果str.split()，会将整个字符串作为列表的一个元素输出。
-例如：
-        &gt;&gt;&gt; string1=&apos;tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1.split(&apos;,&apos;)
-        [&apos;tv pc notebook phone&apos;]
-</code></pre><h5 id="（5）strip-字符串左右两端去除指定字符（默认情况是去掉空格）"><a href="#（5）strip-字符串左右两端去除指定字符（默认情况是去掉空格）" class="headerlink" title="（5）strip() 字符串左右两端去除指定字符（默认情况是去掉空格）"></a>（5）strip() 字符串左右两端去除指定字符（默认情况是去掉空格）</h5><pre><code>函数格式：str.strip([指定字符])
+</code></pre><h4 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">'tv,pc,notebook,phone'</span>
+&gt;&gt;&gt; string1.split(<span class="string">','</span>)
+[<span class="string">'tv'</span>, <span class="string">'pc'</span>, <span class="string">'notebook'</span>, <span class="string">'phone'</span>]
+&gt;&gt;&gt; string1.split()
+[<span class="string">'tv,pc,notebook,phone'</span>]
+</code></pre>
+<pre><code>注意：split中的分隔符，我们根据字符串中的实际情况而定，如果使用不正确的分隔符，str.split(‘错误分隔符)操作结果str.split()，会将整个字符串作为列表的一个元素输出。
+</code></pre><h4 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">'tv pc notebook phone'</span>
+&gt;&gt;&gt; string1.split(<span class="string">','</span>)
+[<span class="string">'tv pc notebook phone'</span>]
+</code></pre>
+<h5 id="（5）strip-字符串左右两端去除指定字符（默认情况是去掉空格）"><a href="#（5）strip-字符串左右两端去除指定字符（默认情况是去掉空格）" class="headerlink" title="（5）strip() 字符串左右两端去除指定字符（默认情况是去掉空格）"></a>（5）strip() 字符串左右两端去除指定字符（默认情况是去掉空格）</h5><pre><code>函数格式：str.strip([指定字符])
 返回值：根据指定的字符，对字符串进行两端的去除其内容，返回一个新的字符串，如果字符串中间有空格或指定字符，strip()函数对中间空格或指定字符不起作用。如果指定的字符在字符串左右两端不存在，那么将返回字符串本身。原字符串不变。
-例如：缺省情况：
-        &gt;&gt;&gt; string1=&apos; tv pc notebook phone&apos;
-        &gt;&gt;&gt; print(string1)
-        tv pc notebook phone
-        &gt;&gt;&gt; len(string1)
-        21
-        &gt;&gt;&gt; string1.strip()
-        &apos;tv pc notebook phone&apos;
-        &gt;&gt;&gt; print(string1)
-        tv pc notebook phone
-
-指定字符：
-        &gt;&gt;&gt; string1=&apos; tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1.strip(&apos;t&apos;)
-        &apos; tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1=&apos;tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1.strip(&apos;t&apos;)
-        &apos;v pc notebook phone&apos;注意：如果字符串前面有空格，不把空格包括在内当做被去除的字符时，单单是字符时是去不掉的。
-        如果指定字符内容为一个字符序列，那么意味着使用strip()去除左右两端指定字符时，只要符合字符序列中的某一位，就进行去除。
-        &gt;&gt;&gt; string1=&apos; tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1.strip(&apos;t&apos;)
-        &apos; tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1=&apos;tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1.strip(&apos;t&apos;)
-        &apos;v pc notebook phone&apos;
-        &gt;&gt;&gt; string1=&apos; tv pc notebook phone&apos;
-        &gt;&gt;&gt; string1.strip(&apos; t&apos;)
-        &apos;v pc notebook phone&apos;
-        &gt;&gt;&gt; string1=&apos; tv pc notebook phonetb&apos;
-        &gt;&gt;&gt; string1.strip(&apos; tb&apos;)
-        &apos;v pc notebook phone&apos;
-注意：字符串类型，一旦被声明赋值后，其内容是不可以被改变的，如果需要改变原字符串变量的值，必须对其进行重新赋值。
+</code></pre><h4 id="例如：缺省情况："><a href="#例如：缺省情况：" class="headerlink" title="例如：缺省情况："></a>例如：缺省情况：</h4><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
+&gt;&gt;&gt; <span class="built_in">print</span>(string1)
+tv pc notebook phone
+&gt;&gt;&gt; len(string1)
+21
+&gt;&gt;&gt; string1.strip()
+<span class="string">'tv pc notebook phone'</span>
+&gt;&gt;&gt; <span class="built_in">print</span>(string1)
+tv pc notebook phone
+</code></pre>
+<h3 id="指定字符："><a href="#指定字符：" class="headerlink" title="指定字符："></a>指定字符：</h3><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
+&gt;&gt;&gt; string1.strip(<span class="string">'t'</span>)
+<span class="string">' tv pc notebook phone'</span>
+&gt;&gt;&gt; string1=<span class="string">'tv pc notebook phone'</span>
+&gt;&gt;&gt; string1.strip(<span class="string">'t'</span>)
+<span class="string">'v pc notebook phone'</span>注意：如果字符串前面有空格，不把空格包括在内当做被去除的字符时，单单是字符时是去不掉的。
+如果指定字符内容为一个字符序列，那么意味着使用strip()去除左右两端指定字符时，只要符合字符序列中的某一位，就进行去除。
+&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
+&gt;&gt;&gt; string1.strip(<span class="string">'t'</span>)
+<span class="string">' tv pc notebook phone'</span>
+&gt;&gt;&gt; string1=<span class="string">'tv pc notebook phone'</span>
+&gt;&gt;&gt; string1.strip(<span class="string">'t'</span>)
+<span class="string">'v pc notebook phone'</span>
+&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phone'</span>
+&gt;&gt;&gt; string1.strip(<span class="string">' t'</span>)
+<span class="string">'v pc notebook phone'</span>
+&gt;&gt;&gt; string1=<span class="string">' tv pc notebook phonetb'</span>
+&gt;&gt;&gt; string1.strip(<span class="string">' tb'</span>)
+<span class="string">'v pc notebook phone'</span>
+</code></pre>
+<pre><code>注意：字符串类型，一旦被声明赋值后，其内容是不可以被改变的，如果需要改变原字符串变量的值，必须对其进行重新赋值。
 </code></pre><h5 id="（6）replace-替换函数"><a href="#（6）replace-替换函数" class="headerlink" title="（6）replace() 替换函数"></a>（6）replace() 替换函数</h5><pre><code>函数格式：str.replace(old,new[,max])
 返回值：将指定字符串（old）替换为新字符串 （new），最大可以替换（max）次，替换完成后，返回一个新的字符串。
 注意：此处的max参数，主要用来指定替换的次数，如果缺省，表示替换里面所有符合条件的字符串。
-例如：
-        string1=&apos;tv phone pc phone notebook phone&apos;
-        &gt;&gt;&gt; old_str=&apos;phone&apos;
-        &gt;&gt;&gt; new_str=&apos;xiaomi&apos;
-        &gt;&gt;&gt; string1.replace(old_str,new_str)   #替换所有的phone
-        &apos;tv xiaomi pc xiaomi notebook xiaomi&apos;  
-        &gt;&gt;&gt; string1.replace(old_str,new_str,2)   #从左至右替换指定次数，即两处的phone
-        &apos;tv xiaomi pc xiaomi notebook phone&apos;
-</code></pre><h5 id="（7）isalnum-、isalpha-、isdigit-、"><a href="#（7）isalnum-、isalpha-、isdigit-、" class="headerlink" title="（7）isalnum()、isalpha()、isdigit()、"></a>（7）isalnum()、isalpha()、isdigit()、</h5><pre><code>函数格式：str.isalnum()  #判断字符串是否由字母或数字组成
+</code></pre><h4 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">string1=<span class="string">'tv phone pc phone notebook phone'</span>
+&gt;&gt;&gt; old_str=<span class="string">'phone'</span>
+&gt;&gt;&gt; new_str=<span class="string">'xiaomi'</span>
+&gt;&gt;&gt; string1.replace(old_str,new_str)   <span class="comment">#替换所有的phone</span>
+<span class="string">'tv xiaomi pc xiaomi notebook xiaomi'</span>  
+&gt;&gt;&gt; string1.replace(old_str,new_str,2)   <span class="comment">#从左至右替换指定次数，即两处的phone</span>
+<span class="string">'tv xiaomi pc xiaomi notebook phone'</span>
+</code></pre>
+<h5 id="（7）isalnum-、isalpha-、isdigit-、"><a href="#（7）isalnum-、isalpha-、isdigit-、" class="headerlink" title="（7）isalnum()、isalpha()、isdigit()、"></a>（7）isalnum()、isalpha()、isdigit()、</h5><pre><code>函数格式：str.isalnum()  #判断字符串是否由字母或数字组成
         str.isalpha()   #判断字符串是否由字母组成
         str.isdigit()   #判断字符串是否由数字组成
 返回值：如果符合条件，返回True，如果不符合，返回False.
-例如：
-        &gt;&gt;&gt; a=&apos;wangdandan&apos;
-        &gt;&gt;&gt; a.isalnum()
-        True
-        &gt;&gt;&gt; a.isalpha()
-        True
-        &gt;&gt;&gt; a.isdigit()
-        False
-</code></pre><h4 id="5）format的三种格式化输出："><a href="#5）format的三种格式化输出：" class="headerlink" title="5）format的三种格式化输出："></a>5）format的三种格式化输出：</h4><pre><code>（1）&gt;&gt;&gt;&quot;{} {}&quot;.format(&quot;hello&quot;, &quot;world&quot;)    # 不设置指定位置，按默认顺序
+</code></pre><h4 id="例如：-8"><a href="#例如：-8" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; a=<span class="string">'wangdandan'</span>
+&gt;&gt;&gt; a.isalnum()
+True
+&gt;&gt;&gt; a.isalpha()
+True
+&gt;&gt;&gt; a.isdigit()
+False
+</code></pre>
+<h4 id="5）format的三种格式化输出："><a href="#5）format的三种格式化输出：" class="headerlink" title="5）format的三种格式化输出："></a>5）format的三种格式化输出：</h4><pre><code>（1）&gt;&gt;&gt;&quot;{} {}&quot;.format(&quot;hello&quot;, &quot;world&quot;)    # 不设置指定位置，按默认顺序
 &apos;hello world&apos;
-例如：
-        &gt;&gt;&gt; print(&apos;欢迎，{}和{}同学，来到{}参加{}学习&apos;.format(&apos;王丹丹&apos;,&apos;王丹&apos;,&apos;beijing&apos;,&apos;Python&apos;))
-        欢迎，王丹丹和王丹同学，来到beijing参加Python学习
-
-（2）&gt;&gt;&gt; &quot;{0} {1}&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置
+</code></pre><h4 id="例如：-9"><a href="#例如：-9" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="built_in">print</span>(<span class="string">'欢迎，{}和{}同学，来到{}参加{}学习'</span>.format(<span class="string">'王丹丹'</span>,<span class="string">'王丹'</span>,<span class="string">'beijing'</span>,<span class="string">'Python'</span>))
+欢迎，王丹丹和王丹同学，来到beijing参加Python学习
+</code></pre>
+<pre><code>（2）&gt;&gt;&gt; &quot;{0} {1}&quot;.format(&quot;hello&quot;, &quot;world&quot;)  # 设置指定位置
 ‘hello world’
-例如：
-        &gt;&gt;&gt; print(&apos;欢迎，{0}和{1}同学，来到{2}参加{3}学习&apos;.format(&apos;王丹丹&apos;,&apos;王丹&apos;,&apos;beijing&apos;,&apos;Python&apos;))
-        欢迎，王丹丹和王丹同学，来到beijing参加Python学习
-
-（3）&gt;&gt;&gt;print(“网站名：{name}, 地址 {url}”.format(name=“python 课程&quot;, url=&quot;www.xinlanjian.com.cn&quot;))
+</code></pre><h4 id="例如：-10"><a href="#例如：-10" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="built_in">print</span>(<span class="string">'欢迎，{0}和{1}同学，来到{2}参加{3}学习'</span>.format(<span class="string">'王丹丹'</span>,<span class="string">'王丹'</span>,<span class="string">'beijing'</span>,<span class="string">'Python'</span>))
+欢迎，王丹丹和王丹同学，来到beijing参加Python学习
+</code></pre>
+<pre><code>（3）&gt;&gt;&gt;print(“网站名：{name}, 地址 {url}”.format(name=“python 课程&quot;, url=&quot;www.xinlanjian.com.cn&quot;))
 ‘python 课程 www.xinlanjian.com.cn’
-例如：
-        &gt;&gt;&gt; print(&apos;欢迎，{stu_name}同学，参加{major}学习&apos;.format(stu_name=&apos;wdd&apos;,major=&apos;Python&apos;))
-        欢迎，wdd同学，参加Python学习
+</code></pre><h4 id="例如：-11"><a href="#例如：-11" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="built_in">print</span>(<span class="string">'欢迎，{stu_name}同学，参加{major}学习'</span>.format(stu_name=<span class="string">'wdd'</span>,major=<span class="string">'Python'</span>))
+欢迎，wdd同学，参加Python学习
 
-        &gt;&gt;&gt; print(&apos;欢迎，{stu_name}同学，来到{place}参加{major}学习&apos;.format(stu_name=&apos;wdd&apos;,place=&apos;beijing&apos;,major=&apos;Python&apos;))
-        欢迎，wdd同学，来到beijing参加Python学习
+&gt;&gt;&gt; <span class="built_in">print</span>(<span class="string">'欢迎，{stu_name}同学，来到{place}参加{major}学习'</span>.format(stu_name=<span class="string">'wdd'</span>,place=<span class="string">'beijing'</span>,major=<span class="string">'Python'</span>))
+欢迎，wdd同学，来到beijing参加Python学习
 
-        &gt;&gt;&gt; print(&apos;欢迎，{stu_name1}和{stu_name2}同学，来到{place}参加{major}学习&apos;.format(stu_name1=&apos;王丹丹&apos;,stu_name2=&apos;王丹&apos;,place=&apos;beijing&apos;,major=&apos;Python&apos;))
-        欢迎，王丹丹和王丹同学，来到beijing参加Python学习
-</code></pre><h4 id="6）-字符串运算符"><a href="#6）-字符串运算符" class="headerlink" title="6）[ ] 字符串运算符"></a>6）[ ] 字符串运算符</h4><pre><code>使用方法：str[索引位] = &gt;返回指定索引位的字符
+&gt;&gt;&gt; <span class="built_in">print</span>(<span class="string">'欢迎，{stu_name1}和{stu_name2}同学，来到{place}参加{major}学习'</span>.format(stu_name1=<span class="string">'王丹丹'</span>,stu_name2=<span class="string">'王丹'</span>,place=<span class="string">'beijing'</span>,major=<span class="string">'Python'</span>))
+欢迎，王丹丹和王丹同学，来到beijing参加Python学习
+</code></pre>
+<h4 id="6）-字符串运算符"><a href="#6）-字符串运算符" class="headerlink" title="6）[ ] 字符串运算符"></a>6）[ ] 字符串运算符</h4><pre><code>使用方法：str[索引位] = &gt;返回指定索引位的字符
 索引位有两种表示方式：
-例如：
-        string1=’hello world&apos;
-        第一种：string[0]=&gt;h  到    string[10]=&gt;d
-        第二种：string[-1]=&gt;d  到    string[-11]=&gt;h
-</code></pre><h4 id="7）字符串切片操作"><a href="#7）字符串切片操作" class="headerlink" title="7）字符串切片操作"></a>7）字符串切片操作</h4><pre><code>格式：str[start,end,step]
+</code></pre><h4 id="例如：-12"><a href="#例如：-12" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">string1=’hello world<span class="string">'</span>
+<span class="string">第一种：string[0]=&gt;h  到    string[10]=&gt;d</span>
+<span class="string">第二种：string[-1]=&gt;d  到    string[-11]=&gt;h</span>
+</code></pre>
+<h4 id="7）字符串切片操作"><a href="#7）字符串切片操作" class="headerlink" title="7）字符串切片操作"></a>7）字符串切片操作</h4><pre><code>格式：str[start,end,step]
 Start：代表切片开始的索引位
 End：代表切片结束的索引位（但是不会输出该索引位的字符）
 Step：代表每隔几个字符个数截取
-        string1=’hello world&apos;
-        String1[0:3] =&gt; hel 从索引位0的字符开始，到索引位3结束，但不包括索引位3所指向的字符。
-        String1[2:4] =&gt; ll
-        String1[0:-1] =&gt; hello worl
-        String1[0:8:2] =&gt; hlow
-
-        str1[:]  =&gt; &apos;hello world&apos; 等于将字符串进行复制
-        str1[:5] =&gt; &apos;hello&apos;       如果没有标明开始索引位，默认从0开始
-        str1[::] =&gt; &apos;hello world&apos;  等同于str1[:]
-
-        使用步长，实现字符串反转：
-        String1[0::-1] =&gt; dlrow olleh 从索引位-1开始，一直到字符串结束，反向输出字符
-
-        但是下列操作会返回一个空字符串（不是空格，空格也是有ascii码值）：
-        String1[-1:4] =&gt; ‘ ’
-        String1[-1:-5] =&gt; ‘ ’
-        String1[-1:0] =&gt; ‘ ’
-</code></pre><h4 id="8）字符串的连接符和操作符"><a href="#8）字符串的连接符和操作符" class="headerlink" title="8）字符串的连接符和操作符"></a>8）字符串的连接符和操作符</h4><pre><code>+：连接符。+运算符需要两个字符串对象，连接起来返回一个新的字符串对象。
+</code></pre><pre><code class="bash">string1=’hello world<span class="string">'</span>
+<span class="string">String1[0:3] =&gt; hel 从索引位0的字符开始，到索引位3结束，但不包括索引位3所指向的字符。</span>
+<span class="string">String1[2:4] =&gt; ll</span>
+<span class="string">String1[0:-1] =&gt; hello worl</span>
+<span class="string">String1[0:8:2] =&gt; hlow</span>
+<span class="string"></span>
+<span class="string">str1[:]  =&gt; '</span>hello world<span class="string">' 等于将字符串进行复制</span>
+<span class="string">str1[:5] =&gt; '</span>hello<span class="string">'       如果没有标明开始索引位，默认从0开始</span>
+<span class="string">str1[::] =&gt; '</span>hello world<span class="string">'  等同于str1[:]</span>
+</code></pre>
+<h4 id="使用步长，实现字符串反转："><a href="#使用步长，实现字符串反转：" class="headerlink" title="使用步长，实现字符串反转："></a>使用步长，实现字符串反转：</h4><pre><code class="bash">String1[0::-1] =&gt; dlrow olleh 从索引位-1开始，一直到字符串结束，反向输出字符
+</code></pre>
+<h4 id="但是下列操作会返回一个空字符串（不是空格，空格也是有ascii码值）："><a href="#但是下列操作会返回一个空字符串（不是空格，空格也是有ascii码值）：" class="headerlink" title="但是下列操作会返回一个空字符串（不是空格，空格也是有ascii码值）："></a>但是下列操作会返回一个空字符串（不是空格，空格也是有ascii码值）：</h4><pre><code class="bash">String1[-1:4] =&gt; ‘ ’
+String1[-1:-5] =&gt; ‘ ’
+String1[-1:0] =&gt; ‘ ’
+</code></pre>
+<h4 id="8）字符串的连接符和操作符"><a href="#8）字符串的连接符和操作符" class="headerlink" title="8）字符串的连接符和操作符"></a>8）字符串的连接符和操作符</h4><pre><code>+：连接符。+运算符需要两个字符串对象，连接起来返回一个新的字符串对象。
 *：重复符。*运算符需要一个字符串对象和一个整数，新的字符串由原字符串复制而成，复制的次数为给出的整数值。
-        &gt;&gt;&gt; mystr=&quot;Hello&quot;
-        &gt;&gt;&gt; yourstr=&quot;Python&quot;
-        &gt;&gt;&gt; mystr+yourstr    
-        &apos;HelloPython&apos;
-        &gt;&gt;&gt;mystr*3              
-        &apos;HelloHelloHello&apos;
-        &gt;&gt;&gt;3*mystr             
-        &apos;HelloHelloHello&apos;
-        &gt;&gt;&gt; mystr               
-        &apos;Hello&apos;
-注意：
+</code></pre><pre><code class="bash">&gt;&gt;&gt; mystr=<span class="string">"Hello"</span>
+&gt;&gt;&gt; yourstr=<span class="string">"Python"</span>
+&gt;&gt;&gt; mystr+yourstr    
+<span class="string">'HelloPython'</span>
+&gt;&gt;&gt;mystr*3              
+<span class="string">'HelloHelloHello'</span>
+&gt;&gt;&gt;3*mystr             
+<span class="string">'HelloHelloHello'</span>
+&gt;&gt;&gt; mystr               
+<span class="string">'Hello'</span>
+</code></pre>
+<pre><code>注意：
 （1）+运算符和*运算符都产生了新的字符串对象，但都不会影响表达式中的字符串。
 （2）每个运算符所需要的操作对象的类型是特定的。
 对于连接操作，需要两个字符串对象。
 重复操作中，只必须遵循一个字符串和一个整数，如果数值不是正整数，其结果返回一个空字符串，如果不是数值类型，直接报错。
 </code></pre><h4 id="9）in运算符"><a href="#9）in运算符" class="headerlink" title="9）in运算符"></a>9）in运算符</h4><pre><code>用来检测指定的内容是否在字符串中，如果存在，返回True,如果不存在，返回False。
-例如：
-        &gt;&gt;&gt; string1=&apos;hello world&apos;      
-        &gt;&gt;&gt; substr=&apos;e&apos;      
-        &gt;&gt;&gt; substr in string1      
-        True
-        &gt;&gt;&gt; substr=&apos;wo&apos;      
-        &gt;&gt;&gt; substr in string1      
-        True
-        &gt;&gt;&gt; substr=&apos;wr&apos;      
-        &gt;&gt;&gt; substr in string1      
-        False
-</code></pre><h4 id="10）字符串不可变性"><a href="#10）字符串不可变性" class="headerlink" title="10）字符串不可变性"></a>10）字符串不可变性</h4><pre><code>（1）问题：字符串进行下述操作：换字符串中的某个特定字符。会出现以下情况：
-    &gt;&gt;&gt; strings=&apos;hello&apos;
-    &gt;&gt;&gt; strings[0]=&apos;a&apos;
-    Traceback (most recent call last):
-    File &quot;&lt;pyshell#1&gt;&quot;, line 1, in &lt;module&gt;
-    strings[0]=&apos;a&apos;
-    TypeError: &apos;str&apos; object does not support item assign
-（2）对象一旦创建，其内容就不能再修改。
+</code></pre><h4 id="例如：-13"><a href="#例如：-13" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; string1=<span class="string">'hello world'</span>      
+&gt;&gt;&gt; substr=<span class="string">'e'</span>      
+&gt;&gt;&gt; substr <span class="keyword">in</span> string1      
+True
+&gt;&gt;&gt; substr=<span class="string">'wo'</span>      
+&gt;&gt;&gt; substr <span class="keyword">in</span> string1      
+True
+&gt;&gt;&gt; substr=<span class="string">'wr'</span>      
+&gt;&gt;&gt; substr <span class="keyword">in</span> string1      
+False
+</code></pre>
+<h4 id="10）字符串不可变性"><a href="#10）字符串不可变性" class="headerlink" title="10）字符串不可变性"></a>10）字符串不可变性</h4><pre><code>（1）问题：字符串进行下述操作：换字符串中的某个特定字符。会出现以下情况：
+</code></pre><pre><code class="bash">&gt;&gt;&gt; strings=<span class="string">'hello'</span>
+&gt;&gt;&gt; strings[0]=<span class="string">'a'</span>
+Traceback (most recent call last):
+File <span class="string">"&lt;pyshell#1&gt;"</span>, line 1, <span class="keyword">in</span> &lt;module&gt;
+strings[0]=<span class="string">'a'</span>
+TypeError: <span class="string">'str'</span> object does not support item assign
+</code></pre>
+<pre><code>（2）对象一旦创建，其内容就不能再修改。
 （3）不能通过对字符串中内容进行修改，但是可以通过建立一个新的字符串并以同一个变量名对其进行重新赋值。 
-    &gt;&gt;&gt; strings=&apos;hello&apos;
-    &gt;&gt;&gt; strings=&apos;s&apos;+strings[1:]
-    &gt;&gt;&gt; strings
-    &apos;sello&apos;
-（7）当一个变量名不用时，用del（）将其杀死，内存将会把其变量名清除。
+</code></pre><pre><code class="bash">&gt;&gt;&gt; strings=<span class="string">'hello'</span>
+&gt;&gt;&gt; strings=<span class="string">'s'</span>+strings[1:]
+&gt;&gt;&gt; strings
+<span class="string">'sello'</span>
+</code></pre>
+<pre><code>（7）当一个变量名不用时，用del（）将其杀死，内存将会把其变量名清除。
 （8）例题：纪录人名
     将一个名字从“名，中间名，姓”的顺序变为“姓，名，中间名”的格式。例如&apos;John M. Cleese&apos;将变成&apos;Cleese,John M&apos;。
-    法一：
-        &gt;&gt;&gt; name=&apos;Jhon M. Cleese&apos;
+</code></pre><h4 id="法一："><a href="#法一：" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">&gt;&gt;&gt; name=<span class="string">'Jhon M. Cleese'</span>
 
-        &gt;&gt;&gt; name1=name[0:6]      
-        &gt;&gt;&gt; name2=name[8:]      
-        &gt;&gt;&gt; name3=name2+&apos;,&apos;+name1      
-        &gt;&gt;&gt; print(name3)      
-        Cleese,Jhon M
-    法二：
-        &gt;&gt;&gt; name=&apos;Jhon M. Cleese&apos;      
-        &gt;&gt;&gt; name1=name.split(&apos; &apos;)      
-        &gt;&gt;&gt; print(name1)      
-        [&apos;Jhon&apos;, &apos;M.&apos;, &apos;Cleese&apos;]
-        &gt;&gt;&gt; name2=name1[2]+&apos;,&apos;+name1[0]+name1[1][0:-1]      
-        &gt;&gt;&gt; print(name2)      
-        Cleese,JhonM
-        &gt;&gt;&gt; name2=name1[2]+&apos;,&apos;+name1[0]+&apos; &apos;+name1[1][0:-1]      
-        &gt;&gt;&gt; print(name2)      
-        Cleese,Jhon M
+&gt;&gt;&gt; name1=name[0:6]      
+&gt;&gt;&gt; name2=name[8:]      
+&gt;&gt;&gt; name3=name2+<span class="string">','</span>+name1      
+&gt;&gt;&gt; <span class="built_in">print</span>(name3)      
+Cleese,Jhon M
 </code></pre>
+<h4 id="法二："><a href="#法二：" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">&gt;&gt;&gt; name=<span class="string">'Jhon M. Cleese'</span>      
+&gt;&gt;&gt; name1=name.split(<span class="string">' '</span>)      
+&gt;&gt;&gt; <span class="built_in">print</span>(name1)      
+[<span class="string">'Jhon'</span>, <span class="string">'M.'</span>, <span class="string">'Cleese'</span>]
+&gt;&gt;&gt; name2=name1[2]+<span class="string">','</span>+name1[0]+name1[1][0:-1]      
+&gt;&gt;&gt; <span class="built_in">print</span>(name2)      
+Cleese,JhonM
+&gt;&gt;&gt; name2=name1[2]+<span class="string">','</span>+name1[0]+<span class="string">' '</span>+name1[1][0:-1]      
+&gt;&gt;&gt; <span class="built_in">print</span>(name2)      
+Cleese,Jhon M
+</code></pre>
+
       
 
       
