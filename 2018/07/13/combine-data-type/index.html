@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="组合数据类型1、List列表概念：（1）List数据，首先它可以存储各种数据类型，比如：数值、布尔型、字符串。 （2）其次，列表中的元素可以随时进行删除、修改、增加，其长度也随之变化。 （3）同时，列表也是有序的，我们同样可以使用循环对他们进行遍历。 2、声明与赋值（1）声明列表同时进行赋值举例子说明：List1=[1,2,3,4,5] List2=[‘one’,’two’,’three’,’4’">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T05:18:37.301Z">
+<meta property="og:updated_time" content="2018-07-13T05:24:09.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python-Day5">
 <meta name="twitter:description" content="组合数据类型1、List列表概念：（1）List数据，首先它可以存储各种数据类型，比如：数值、布尔型、字符串。 （2）其次，列表中的元素可以随时进行删除、修改、增加，其长度也随之变化。 （3）同时，列表也是有序的，我们同样可以使用循环对他们进行遍历。 2、声明与赋值（1）声明列表同时进行赋值举例子说明：List1=[1,2,3,4,5] List2=[‘one’,’two’,’three’,’4’">
@@ -195,14 +195,18 @@ List3=[1,’one’,3]
 </code></pre>
 <h4 id="（2）声明一个空列表，后续进行添加元素"><a href="#（2）声明一个空列表，后续进行添加元素" class="headerlink" title="（2）声明一个空列表，后续进行添加元素"></a>（2）声明一个空列表，后续进行添加元素</h4><pre><code>list1 = list()  此时，python会生成一个空列表，即：[]
 注意：生成的空列表中没有任何值，其长度为0
-</code></pre><h3 id="3、列表的操作（方法）"><a href="#3、列表的操作（方法）" class="headerlink" title="3、列表的操作（方法）"></a>3、列表的操作（方法）</h3><h4 id="（1）增加元素（4种方法）"><a href="#（1）增加元素（4种方法）" class="headerlink" title="（1）增加元素（4种方法）"></a>（1）增加元素（4种方法）</h4><h4 id="1-append-：在列表的尾部追加一个新元素"><a href="#1-append-：在列表的尾部追加一个新元素" class="headerlink" title="1) append()：在列表的尾部追加一个新元素"></a>1) append()：在列表的尾部追加一个新元素</h4><h4 id="函数格式：list-append-元素"><a href="#函数格式：list-append-元素" class="headerlink" title="函数格式：list.append(元素)"></a>函数格式：list.append(元素)</h4><h4 id="返回值：列表的长度-1"><a href="#返回值：列表的长度-1" class="headerlink" title="返回值：列表的长度+1"></a>返回值：列表的长度+1</h4><h4 id="用法举例："><a href="#用法举例：" class="headerlink" title="用法举例："></a>用法举例：</h4><pre><code class="bash">&gt;&gt;&gt;list1 = [1,2,3,4,5]
+</code></pre><h3 id="3、列表的操作（方法）"><a href="#3、列表的操作（方法）" class="headerlink" title="3、列表的操作（方法）"></a>3、列表的操作（方法）</h3><h4 id="（1）增加元素（4种方法）"><a href="#（1）增加元素（4种方法）" class="headerlink" title="（1）增加元素（4种方法）"></a>（1）增加元素（4种方法）</h4><h4 id="1-append-：在列表的尾部追加一个新元素"><a href="#1-append-：在列表的尾部追加一个新元素" class="headerlink" title="1) append()：在列表的尾部追加一个新元素"></a>1) append()：在列表的尾部追加一个新元素</h4><pre><code>函数格式：list.append(元素)
+返回值：列表的长度+1
+</code></pre><h4 id="用法举例："><a href="#用法举例：" class="headerlink" title="用法举例："></a>用法举例：</h4><pre><code class="bash">&gt;&gt;&gt;list1 = [1,2,3,4,5]
 [1, 2, 3, 4, 5]
 &gt;&gt;&gt;list1.append(6)
 &gt;&gt;&gt; list1
 [1, 2, 3, 4, 5, 6]
 </code></pre>
 <pre><code>注意：该方法添加元素都是在列表尾部。
-</code></pre><h4 id="2）extend-：在列表的尾部，追加一个子列表内容"><a href="#2）extend-：在列表的尾部，追加一个子列表内容" class="headerlink" title="2）extend()：在列表的尾部，追加一个子列表内容"></a>2）extend()：在列表的尾部，追加一个子列表内容</h4><h4 id="函数格式：list-exteng-子列表"><a href="#函数格式：list-exteng-子列表" class="headerlink" title="函数格式：list.exteng(子列表)"></a>函数格式：list.exteng(子列表)</h4><h4 id="返回值：列表的长度-n"><a href="#返回值：列表的长度-n" class="headerlink" title="返回值：列表的长度+n"></a>返回值：列表的长度+n</h4><h4 id="用法举例：-1"><a href="#用法举例：-1" class="headerlink" title="用法举例："></a>用法举例：</h4><pre><code class="bash">&gt;&gt;&gt;list1 = [1,2,3,4,5,6]
+</code></pre><h4 id="2）extend-：在列表的尾部，追加一个子列表内容"><a href="#2）extend-：在列表的尾部，追加一个子列表内容" class="headerlink" title="2）extend()：在列表的尾部，追加一个子列表内容"></a>2）extend()：在列表的尾部，追加一个子列表内容</h4><pre><code>函数格式：list.exteng(子列表)
+返回值：列表的长度+n
+</code></pre><h4 id="用法举例：-1"><a href="#用法举例：-1" class="headerlink" title="用法举例："></a>用法举例：</h4><pre><code class="bash">&gt;&gt;&gt;list1 = [1,2,3,4,5,6]
 [1, 2, 3, 4, 5,6]
 &gt;&gt;&gt; sublist = [7,8,9]
 &gt;&gt;&gt; list1.extend(sublist)
@@ -221,7 +225,9 @@ List3=[1,’one’,3]
 &gt;&gt;&gt; sublist
 [7, 8, 9]
 </code></pre>
-<h4 id="4）insert（）：对列表指定位置进行插入操作"><a href="#4）insert（）：对列表指定位置进行插入操作" class="headerlink" title="4）insert（）：对列表指定位置进行插入操作"></a>4）insert（）：对列表指定位置进行插入操作</h4><h4 id="函数格式-list-insert-idx-元素-其中idx代表要插入的索引位"><a href="#函数格式-list-insert-idx-元素-其中idx代表要插入的索引位" class="headerlink" title="函数格式:list.insert(idx,元素)  其中idx代表要插入的索引位"></a>函数格式:list.insert(idx,元素)  其中idx代表要插入的索引位</h4><h4 id="返回值：列表长度-1"><a href="#返回值：列表长度-1" class="headerlink" title="返回值：列表长度 +1"></a>返回值：列表长度 +1</h4><h4 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1
+<h4 id="4）insert（）：对列表指定位置进行插入操作"><a href="#4）insert（）：对列表指定位置进行插入操作" class="headerlink" title="4）insert（）：对列表指定位置进行插入操作"></a>4）insert（）：对列表指定位置进行插入操作</h4><pre><code>函数格式:list.insert(idx,元素)  其中idx代表要插入的索引位
+返回值：列表长度 +1
+</code></pre><h4 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1
 [1, 2, 3, 4, 5, 6, 7, 8, 9]
 &gt;&gt;&gt; list1.insert(4,<span class="string">'four'</span>)
 &gt;&gt;&gt; list1
@@ -237,7 +243,9 @@ List3=[1,’one’,3]
 &gt;&gt;&gt; list1
 [1, 2, 5]
 </code></pre>
-<h4 id="（3）删除元素（两种方法）"><a href="#（3）删除元素（两种方法）" class="headerlink" title="（3）删除元素（两种方法）"></a>（3）删除元素（两种方法）</h4><h4 id="1）remove-移除在列表中指定的元素"><a href="#1）remove-移除在列表中指定的元素" class="headerlink" title="1）remove() 移除在列表中指定的元素"></a>1）remove() 移除在列表中指定的元素</h4><h4 id="函数格式-list-remove-元素"><a href="#函数格式-list-remove-元素" class="headerlink" title="函数格式:list.remove(元素)"></a>函数格式:list.remove(元素)</h4><h4 id="返回值：移除元素后的列表，列表长度-1"><a href="#返回值：移除元素后的列表，列表长度-1" class="headerlink" title="返回值：移除元素后的列表，列表长度 -1"></a>返回值：移除元素后的列表，列表长度 -1</h4><h4 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3]
+<h4 id="（3）删除元素（两种方法）"><a href="#（3）删除元素（两种方法）" class="headerlink" title="（3）删除元素（两种方法）"></a>（3）删除元素（两种方法）</h4><h4 id="1）remove-移除在列表中指定的元素"><a href="#1）remove-移除在列表中指定的元素" class="headerlink" title="1）remove() 移除在列表中指定的元素"></a>1）remove() 移除在列表中指定的元素</h4><pre><code>函数格式:list.remove(元素)  
+返回值：移除元素后的列表，列表长度 -1
+</code></pre><h4 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3]
 &gt;&gt;&gt; list1
 [1, 2, 3]
 &gt;&gt;&gt; list1[2] = 5
@@ -256,9 +264,14 @@ List3=[1,’one’,3]
 &gt;&gt;&gt; len(list1)
 0
 </code></pre>
-<h4 id="2）pop-有两种使用模式"><a href="#2）pop-有两种使用模式" class="headerlink" title="2）pop() 有两种使用模式"></a>2）pop() 有两种使用模式</h4><h4 id="第一种："><a href="#第一种：" class="headerlink" title="第一种："></a>第一种：</h4><h4 id="函数格式：list-pop-默认模式，从列表的尾部弹出一个元素"><a href="#函数格式：list-pop-默认模式，从列表的尾部弹出一个元素" class="headerlink" title="函数格式：list.pop()   默认模式，从列表的尾部弹出一个元素"></a>函数格式：list.pop()   默认模式，从列表的尾部弹出一个元素</h4><h4 id="返回值：返回所弹出的元素本身。如果列表已经为空，执行pop-程序会报错提示：列表为空"><a href="#返回值：返回所弹出的元素本身。如果列表已经为空，执行pop-程序会报错提示：列表为空" class="headerlink" title="返回值：返回所弹出的元素本身。如果列表已经为空，执行pop()程序会报错提示：列表为空"></a>返回值：返回所弹出的元素本身。如果列表已经为空，执行pop()程序会报错提示：列表为空</h4><h4 id="第二种："><a href="#第二种：" class="headerlink" title="第二种："></a>第二种：</h4><h4 id="List-pop-idx-：idx指定的下表索引位置"><a href="#List-pop-idx-：idx指定的下表索引位置" class="headerlink" title="List.pop(idx)：idx指定的下表索引位置"></a>List.pop(idx)：idx指定的下表索引位置</h4><pre><code>注意：此处pop()和remove()类似，但是区别在于pop()会将移除的元素返回。
-</code></pre><h4 id="3）使用del删除指定的列表片段或列表本身"><a href="#3）使用del删除指定的列表片段或列表本身" class="headerlink" title="3）使用del删除指定的列表片段或列表本身"></a>3）使用del删除指定的列表片段或列表本身</h4><h4 id="del-list-idx-删除指定索引位对应的元素"><a href="#del-list-idx-删除指定索引位对应的元素" class="headerlink" title="del  list(idx)  删除指定索引位对应的元素"></a>del  list(idx)  删除指定索引位对应的元素</h4><h4 id="del-list-直接删除列表list，不再存在，并释放该列表所占用的内存空间"><a href="#del-list-直接删除列表list，不再存在，并释放该列表所占用的内存空间" class="headerlink" title="del  list   直接删除列表list，不再存在，并释放该列表所占用的内存空间"></a>del  list   直接删除列表list，不再存在，并释放该列表所占用的内存空间</h4><h4 id="del-list-star-end-删除指定的列表片段，其中：star表示删除的开始索引位对应的元素，end-表示删除的结束索引位对应的元素，但不包括该下标的元素，即包头不包尾。"><a href="#del-list-star-end-删除指定的列表片段，其中：star表示删除的开始索引位对应的元素，end-表示删除的结束索引位对应的元素，但不包括该下标的元素，即包头不包尾。" class="headerlink" title="del  list[star:end]   删除指定的列表片段，其中：star表示删除的开始索引位对应的元素，end 表示删除的结束索引位对应的元素，但不包括该下标的元素，即包头不包尾。"></a>del  list[star:end]   删除指定的列表片段，其中：star表示删除的开始索引位对应的元素，end 表示删除的结束索引位对应的元素，但不包括该下标的元素，即包头不包尾。</h4><pre><code>注意：del 不属于list的方法，只是一个关键字，不是方法函数。
-</code></pre>
+<h4 id="2）pop-有两种使用模式"><a href="#2）pop-有两种使用模式" class="headerlink" title="2）pop() 有两种使用模式"></a>2）pop() 有两种使用模式</h4><h4 id="第一种："><a href="#第一种：" class="headerlink" title="第一种："></a>第一种：</h4><pre><code>函数格式：list.pop()   默认模式，从列表的尾部弹出一个元素
+返回值：返回所弹出的元素本身。如果列表已经为空，执行pop()程序会报错提示：列表为空
+</code></pre><h4 id="第二种："><a href="#第二种：" class="headerlink" title="第二种："></a>第二种：</h4><pre><code>List.pop(idx)：idx指定的下表索引位置
+注意：此处pop()和remove()类似，但是区别在于pop()会将移除的元素返回。
+</code></pre><h4 id="3）使用del删除指定的列表片段或列表本身"><a href="#3）使用del删除指定的列表片段或列表本身" class="headerlink" title="3）使用del删除指定的列表片段或列表本身"></a>3）使用del删除指定的列表片段或列表本身</h4><pre><code>del  list(idx)  删除指定索引位对应的元素
+del  list   直接删除列表list，不再存在，并释放该列表所占用的内存空间
+del  list[star:end]   删除指定的列表片段，其中：star表示删除的开始索引位对应的元素，end 表示删除的结束索引位对应的元素，但不包括该下标的元素，即包头不包尾。 
+</code></pre><h5 id="注意：del-不属于list的方法，只是一个关键字，不是方法函数。"><a href="#注意：del-不属于list的方法，只是一个关键字，不是方法函数。" class="headerlink" title="注意：del 不属于list的方法，只是一个关键字，不是方法函数。"></a>注意：del 不属于list的方法，只是一个关键字，不是方法函数。</h5>
       
 
       
