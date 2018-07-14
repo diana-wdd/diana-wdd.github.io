@@ -284,7 +284,7 @@ del  list[star:end]   删除指定的列表片段，其中：star表示删除的
 注意：该函数在使用时，必须要求所统计的列表中的元素的数据类型要一致。不支持多数据类型。
 数值型根据数值本身的大小取值，字符串类型根据字母的ASCII码值进行比较取值，布尔类型根据True是1，False是0进行大小取值。
 </code></pre><h3 id="（7）Sum"><a href="#（7）Sum" class="headerlink" title="（7）Sum()"></a>（7）Sum()</h3><pre><code>函数格式：sum(list)
-返回值：将列表中所用的数值进行求和运算，返回结果。注意，该函数只能用于数值型列表。
+返回值：将列表中所有的数值进行求和运算，返回结果。注意，该函数只能用于数值型列表。
 </code></pre><h4 id="（8）sort-排序"><a href="#（8）sort-排序" class="headerlink" title="（8）sort() 排序"></a>（8）sort() 排序</h4><pre><code>函数格式：list.sort()    list.sort(reverse=True)
 返回值：默认情况下，将原列表中元素按照升序进行排列
 
@@ -307,9 +307,9 @@ del  list[star:end]   删除指定的列表片段，其中：star表示删除的
 </code></pre>
 <h4 id="（10）reversed-逆序"><a href="#（10）reversed-逆序" class="headerlink" title="（10）reversed() 逆序"></a>（10）reversed() 逆序</h4><pre><code>函数格式：reversed(list)
 返回值：将原列表中元素按照逆顺序进行输出
-</code></pre><h4 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list=[1,4,3,6,9,0,2]
-&gt;&gt;&gt; <span class="keyword">for</span> x <span class="keyword">in</span> reversed(list):
-            <span class="built_in">print</span> x,
+</code></pre><h4 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">list=[1,4,3,6,9,0,2]
+<span class="keyword">for</span> x <span class="keyword">in</span> reversed(list):
+    <span class="built_in">print</span> (x,end=<span class="string">' '</span>)
 2 0 9 6 3 4 1
 </code></pre>
 <h4 id="（11）Count-计数函数"><a href="#（11）Count-计数函数" class="headerlink" title="（11）Count() 计数函数"></a>（11）Count() 计数函数</h4><pre><code>函数格式：list.count(元素)
@@ -519,7 +519,7 @@ step：循环步长
     for j in range(次数)：
 注意：这种嵌套表示的过程中，变量的位置尤为重要，通用原则为：如果变量的值需要通过外层循环来获取或生成，那么我们可以将其设为全局变量，即与外层循环for同等级的变量，如果变量需要在内层循环中生成或获取，我们通常会在外循环中声明，即与内循环同级。
 </code></pre><h4 id="例1、100以内数的和"><a href="#例1、100以内数的和" class="headerlink" title="例1、100以内数的和"></a>例1、100以内数的和</h4><pre><code class="bash">num=0
-<span class="keyword">for</span> i <span class="keyword">in</span> range(1,101,):
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,101):
         num += i   
 <span class="built_in">print</span>(num)
 </code></pre>
@@ -567,7 +567,7 @@ sum1 = 0
 continue：当满足指定条件时，continue表示结束本次循环，开始下一次循环。注意continue并没有退出循环。
 
 同时，这两个关键字都是必须配合循环语句来使用，不能单独用在其他地方，比如：if
-</code></pre><h4 id="例1、-whle循环求偶数和"><a href="#例1、-whle循环求偶数和" class="headerlink" title="例1、#whle循环求偶数和"></a>例1、#whle循环求偶数和</h4><pre><code class="bash">i = 0
+</code></pre><h4 id="例1、whle循环求偶数和"><a href="#例1、whle循环求偶数和" class="headerlink" title="例1、whle循环求偶数和"></a>例1、whle循环求偶数和</h4><pre><code class="bash">i = 0
 sum1=0
 <span class="keyword">while</span> i &lt;= 5:
     <span class="keyword">if</span> i % 2 ==0:
@@ -590,7 +590,7 @@ sum1=0
             <span class="built_in">break</span>
     count = count-1
 </code></pre>
-<h4 id="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："><a href="#例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：" class="headerlink" title="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："></a>例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：</h4><h4 id="请输入你要发布的内容……-用in判断敏感词"><a href="#请输入你要发布的内容……-用in判断敏感词" class="headerlink" title="请输入你要发布的内容…….(用in判断敏感词)"></a>请输入你要发布的内容…….(用in判断敏感词)</h4><h4 id="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"><a href="#如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）" class="headerlink" title="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"></a>如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）</h4><h4 id="如果推出，请输出E：（出现-Bye-Bye）"><a href="#如果推出，请输出E：（出现-Bye-Bye）" class="headerlink" title="如果推出，请输出E：（出现 Bye Bye）"></a>如果推出，请输出E：（出现 Bye Bye）</h4><pre><code class="bash">words=<span class="string">'苍老师嘻哈'</span>
+<h4 id="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："><a href="#例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：" class="headerlink" title="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："></a>例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：</h4><h4 id="请输入你要发布的内容……-用in判断敏感词"><a href="#请输入你要发布的内容……-用in判断敏感词" class="headerlink" title="请输入你要发布的内容…….(用in判断敏感词)"></a>请输入你要发布的内容…….(用in判断敏感词)</h4><h4 id="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"><a href="#如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）" class="headerlink" title="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"></a>如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）</h4><h4 id="如果退出，请输入E：（出现-Bye-Bye）"><a href="#如果退出，请输入E：（出现-Bye-Bye）" class="headerlink" title="如果退出，请输入E：（出现 Bye Bye）"></a>如果退出，请输入E：（出现 Bye Bye）</h4><pre><code class="bash">words=<span class="string">'苍老师嘻哈'</span>
 <span class="keyword">while</span> True:
     msg = input(<span class="string">'欢迎进入论坛，发帖请输入I；退出请输入E；您要输入的是：'</span>)
     <span class="keyword">if</span> msg == <span class="string">'I'</span>:
@@ -612,7 +612,7 @@ sum = 0 <span class="comment">#用于存储结果</span>
 
     <span class="keyword">if</span> count % 2 == 0 : <span class="comment">#判断奇偶数 </span>
         <span class="keyword">if</span> count == 88 : <span class="comment">#判断每次循环的数字是否为88</span>
-            pass <span class="comment">#如果是88 直接跳过下面相减得过程</span>
+            <span class="built_in">continue</span> <span class="comment">#如果是88 直接跳过下面相减得过程</span>
         <span class="keyword">else</span> :
             sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
 
@@ -894,13 +894,13 @@ boss_blood=0  <span class="comment">#玩家技能值用完，boss剩余的血</s
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><h3 id="1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整形、字符串类型是我们常用的。"><a href="#1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整形、字符串类型是我们常用的。" class="headerlink" title="1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整形、字符串类型是我们常用的。"></a>1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整形、字符串类型是我们常用的。</h3><h3 id="2、整型"><a href="#2、整型" class="headerlink" title="2、整型"></a>2、整型</h3><pre><code>（1）我们根据计算机中数据编码格式，将整型分为二进制、八进制、十进制、十六进制四种类型。二进制数以0b引导，八进制数以0o引导，十六进制数以0x引导。
+        <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><h3 id="1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整型、字符串类型是我们常用的。"><a href="#1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整型、字符串类型是我们常用的。" class="headerlink" title="1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整型、字符串类型是我们常用的。"></a>1、常见的数据类型：整型、浮点型、布尔型、复数型、字符串类型，其中整型、字符串类型是我们常用的。</h3><h3 id="2、整型"><a href="#2、整型" class="headerlink" title="2、整型"></a>2、整型</h3><pre><code>（1）我们根据计算机中数据编码格式，将整型分为二进制、八进制、十进制、十六进制四种类型。二进制数以0b引导，八进制数以0o引导，十六进制数以0x引导。
 （2）进制间的转换：
-    A.二进制转十进制：bin(int)=&gt; 将十进制转换为二进制；int(bin)=&gt;将二进制转换为十进制。
-    B.八进制转十进制：oct(int)=&gt; 将十进制转换为八进制；int(oct)=&gt;将八进制转换为十进制。
+    A.二进制与十进制的互转：bin(int)=&gt; 将十进制转换为二进制；int(bin)=&gt;将二进制转换为十进制。
+    B.八进制与十进制的互转：oct(int)=&gt; 将十进制转换为八进制；int(oct)=&gt;将八进制转换为十进制。
         例如：&gt;&gt;&gt; oct(64)
         &apos;0100&apos;
-    C.十六进制转十进制：hex(int)=&gt; 将十进制转换为十六进制；int(hex)=&gt;将十六进制转换为十进制。
+    C.十六进制与十进制的互转：hex(int)=&gt; 将十进制转换为十六进制；int(hex)=&gt;将十六进制转换为十进制。
         例如：&gt;&gt;&gt; hex(64)
         &apos;0x40&apos;
     D.将一个数字的字符串变换成一个整数，第二个参数用于指示变换后的数字的进制
@@ -1367,7 +1367,7 @@ Code的终端输入exit()退出即可）
 （4）‘r’用来取消字符串中的转义字符，将其作为普通字符直接输出。
 例如：
     print(r’hello \n world’) =&gt; hello \n world
-    print(r’hello \n world’) =&gt;     hello
+    print(’hello \n world’) =&gt;     hello
                                     world
 （5）‘\’转义字符，且只能用在字符串里才算是转义字符。
 例如：输出i&apos;m “ok”：print(‘i\’m ‘’’ok’’’)  

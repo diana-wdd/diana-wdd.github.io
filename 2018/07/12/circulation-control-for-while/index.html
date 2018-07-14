@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。 例如（竖着打印）：&amp;gt;&amp;gt;&amp;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T05:48:28.092Z">
+<meta property="og:updated_time" content="2018-07-14T01:06:14.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python_Day4~circulation-control-for-while">
 <meta name="twitter:description" content="控制语句——循环（for 和 while）控制1、for循环控制语句（1）for循环格式（两种）：第一种格式（推荐使用）：            for 变量 in 集合:                  代码  说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。  注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。 例如（竖着打印）：&amp;gt;&amp;gt;&amp;">
@@ -231,7 +231,7 @@ step：循环步长
     for j in range(次数)：
 注意：这种嵌套表示的过程中，变量的位置尤为重要，通用原则为：如果变量的值需要通过外层循环来获取或生成，那么我们可以将其设为全局变量，即与外层循环for同等级的变量，如果变量需要在内层循环中生成或获取，我们通常会在外循环中声明，即与内循环同级。
 </code></pre><h4 id="例1、100以内数的和"><a href="#例1、100以内数的和" class="headerlink" title="例1、100以内数的和"></a>例1、100以内数的和</h4><pre><code class="bash">num=0
-<span class="keyword">for</span> i <span class="keyword">in</span> range(1,101,):
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,101):
         num += i   
 <span class="built_in">print</span>(num)
 </code></pre>
@@ -279,7 +279,7 @@ sum1 = 0
 continue：当满足指定条件时，continue表示结束本次循环，开始下一次循环。注意continue并没有退出循环。
 
 同时，这两个关键字都是必须配合循环语句来使用，不能单独用在其他地方，比如：if
-</code></pre><h4 id="例1、-whle循环求偶数和"><a href="#例1、-whle循环求偶数和" class="headerlink" title="例1、#whle循环求偶数和"></a>例1、#whle循环求偶数和</h4><pre><code class="bash">i = 0
+</code></pre><h4 id="例1、whle循环求偶数和"><a href="#例1、whle循环求偶数和" class="headerlink" title="例1、whle循环求偶数和"></a>例1、whle循环求偶数和</h4><pre><code class="bash">i = 0
 sum1=0
 <span class="keyword">while</span> i &lt;= 5:
     <span class="keyword">if</span> i % 2 ==0:
@@ -302,7 +302,7 @@ sum1=0
             <span class="built_in">break</span>
     count = count-1
 </code></pre>
-<h4 id="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："><a href="#例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：" class="headerlink" title="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："></a>例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：</h4><h4 id="请输入你要发布的内容……-用in判断敏感词"><a href="#请输入你要发布的内容……-用in判断敏感词" class="headerlink" title="请输入你要发布的内容…….(用in判断敏感词)"></a>请输入你要发布的内容…….(用in判断敏感词)</h4><h4 id="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"><a href="#如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）" class="headerlink" title="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"></a>如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）</h4><h4 id="如果推出，请输出E：（出现-Bye-Bye）"><a href="#如果推出，请输出E：（出现-Bye-Bye）" class="headerlink" title="如果推出，请输出E：（出现 Bye Bye）"></a>如果推出，请输出E：（出现 Bye Bye）</h4><pre><code class="bash">words=<span class="string">'苍老师嘻哈'</span>
+<h4 id="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："><a href="#例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：" class="headerlink" title="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："></a>例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：</h4><h4 id="请输入你要发布的内容……-用in判断敏感词"><a href="#请输入你要发布的内容……-用in判断敏感词" class="headerlink" title="请输入你要发布的内容…….(用in判断敏感词)"></a>请输入你要发布的内容…….(用in判断敏感词)</h4><h4 id="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"><a href="#如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）" class="headerlink" title="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"></a>如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）</h4><h4 id="如果退出，请输入E：（出现-Bye-Bye）"><a href="#如果退出，请输入E：（出现-Bye-Bye）" class="headerlink" title="如果退出，请输入E：（出现 Bye Bye）"></a>如果退出，请输入E：（出现 Bye Bye）</h4><pre><code class="bash">words=<span class="string">'苍老师嘻哈'</span>
 <span class="keyword">while</span> True:
     msg = input(<span class="string">'欢迎进入论坛，发帖请输入I；退出请输入E；您要输入的是：'</span>)
     <span class="keyword">if</span> msg == <span class="string">'I'</span>:
@@ -324,7 +324,7 @@ sum = 0 <span class="comment">#用于存储结果</span>
 
     <span class="keyword">if</span> count % 2 == 0 : <span class="comment">#判断奇偶数 </span>
         <span class="keyword">if</span> count == 88 : <span class="comment">#判断每次循环的数字是否为88</span>
-            pass <span class="comment">#如果是88 直接跳过下面相减得过程</span>
+            <span class="built_in">continue</span> <span class="comment">#如果是88 直接跳过下面相减得过程</span>
         <span class="keyword">else</span> :
             sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
 
