@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Python_Day1~basic~grammar | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础语法1、编码在开发过程中，对应不同的语言使用不同的字符编码。 （1）英文：ISO-8859-1 （2）中文：简体：GBK或者GB2312          繁体：B:g5 （3）目前Python中为了统一编码格式，在3.0以上的版本使用：UTF-8编码 2、print()函数语法格式：print(value,…,sep=’ ‘,end=’\n’) 解释如下：（1）value代表我们要输出的内容">
+  <meta name="description" content="基础语法1、编码在开发过程中，对应不同的语言使用不同的字符编码。 （1）英文：ISO-8859-1 （2）中文：简体：GBK或者GB2312          繁体：B:g5 （3）目前Python中为了统一编码格式，在3.0以上的版本使用：UTF-8编码 补充：描述unicode,utf-8,gbk等编码之间的关系？（1）unicode编码是计算机所能识别的字节编码格式，所有格式的编码都需要最终">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python_Day1~basic~grammar">
 <meta property="og:url" content="http://yoursite.com/2018/07/12/basic-grammar/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="基础语法1、编码在开发过程中，对应不同的语言使用不同的字符编码。 （1）英文：ISO-8859-1 （2）中文：简体：GBK或者GB2312          繁体：B:g5 （3）目前Python中为了统一编码格式，在3.0以上的版本使用：UTF-8编码 2、print()函数语法格式：print(value,…,sep=’ ‘,end=’\n’) 解释如下：（1）value代表我们要输出的内容">
+<meta property="og:description" content="基础语法1、编码在开发过程中，对应不同的语言使用不同的字符编码。 （1）英文：ISO-8859-1 （2）中文：简体：GBK或者GB2312          繁体：B:g5 （3）目前Python中为了统一编码格式，在3.0以上的版本使用：UTF-8编码 补充：描述unicode,utf-8,gbk等编码之间的关系？（1）unicode编码是计算机所能识别的字节编码格式，所有格式的编码都需要最终">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-14T02:51:38.974Z">
+<meta property="og:updated_time" content="2018-07-17T00:58:18.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python_Day1~basic~grammar">
-<meta name="twitter:description" content="基础语法1、编码在开发过程中，对应不同的语言使用不同的字符编码。 （1）英文：ISO-8859-1 （2）中文：简体：GBK或者GB2312          繁体：B:g5 （3）目前Python中为了统一编码格式，在3.0以上的版本使用：UTF-8编码 2、print()函数语法格式：print(value,…,sep=’ ‘,end=’\n’) 解释如下：（1）value代表我们要输出的内容">
+<meta name="twitter:description" content="基础语法1、编码在开发过程中，对应不同的语言使用不同的字符编码。 （1）英文：ISO-8859-1 （2）中文：简体：GBK或者GB2312          繁体：B:g5 （3）目前Python中为了统一编码格式，在3.0以上的版本使用：UTF-8编码 补充：描述unicode,utf-8,gbk等编码之间的关系？（1）unicode编码是计算机所能识别的字节编码格式，所有格式的编码都需要最终">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -184,7 +184,8 @@
 （2）中文：简体：GBK或者GB2312
          繁体：B:g5
 （3）目前Python中为了统一编码格式，在3.0以上的版本使用：UTF-8编码
-</code></pre><h3 id="2、print-函数"><a href="#2、print-函数" class="headerlink" title="2、print()函数"></a>2、print()函数</h3><h4 id="语法格式：print-value-…-sep-’-‘-end-’-n’-解释如下："><a href="#语法格式：print-value-…-sep-’-‘-end-’-n’-解释如下：" class="headerlink" title="语法格式：print(value,…,sep=’ ‘,end=’\n’) 解释如下："></a>语法格式：print(value,…,sep=’ ‘,end=’\n’) 解释如下：</h4><pre><code>（1）value代表我们要输出的内容，可以是字符串，可以是数值等内容
+</code></pre><h3 id="补充：描述unicode-utf-8-gbk等编码之间的关系？"><a href="#补充：描述unicode-utf-8-gbk等编码之间的关系？" class="headerlink" title="补充：描述unicode,utf-8,gbk等编码之间的关系？"></a>补充：描述unicode,utf-8,gbk等编码之间的关系？</h3><p>（1）unicode编码是计算机所能识别的字节编码格式，所有格式的编码都需要最终转换为unicode编码，然后被计算机所执行。<br>（2）gbk编码是中文编码，主要用来在中文操作系统上正确显示中文内容的编码集。<br>（3）UTF-8编码是目前互联网进行数据传输、内容展现的通用编码格式，它解决了因为操作系统编码格式不同的问题，导致在不同系统无法正确显示内容的情况。<br>    它们三者都是编码格式，其中UTF-8和gbk最终都要解释成unicode编码后，进行执行。同时，在现在的互联网应用中，为了统一编码格式，进行正确的内容展现，我们通常对文件的编码使用UTF-8来代替gbk，这样解决了跨操作系统出现乱码的情况。</p>
+<h3 id="2、print-函数"><a href="#2、print-函数" class="headerlink" title="2、print()函数"></a>2、print()函数</h3><h4 id="语法格式：print-value-…-sep-’-‘-end-’-n’-解释如下："><a href="#语法格式：print-value-…-sep-’-‘-end-’-n’-解释如下：" class="headerlink" title="语法格式：print(value,…,sep=’ ‘,end=’\n’) 解释如下："></a>语法格式：print(value,…,sep=’ ‘,end=’\n’) 解释如下：</h4><pre><code>（1）value代表我们要输出的内容，可以是字符串，可以是数值等内容
 （2）sep代表输出多个值之间的间隔符，默认使用空格隔开。我们可以重新定义间隔符，比如采用：#、，等.
 </code></pre><h4 id="例：输出1-2-3"><a href="#例：输出1-2-3" class="headerlink" title="例：输出1.2.3"></a>例：输出1.2.3</h4><pre><code class="bash"><span class="built_in">print</span>(1,2,3,sep=<span class="string">'.'</span>)
 </code></pre>
