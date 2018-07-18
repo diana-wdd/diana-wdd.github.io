@@ -157,6 +157,205 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-practice-combine-data-type-dict" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/18/practice-combine-data-type-dict/">practice-combine-data-type-dict</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/18/practice-combine-data-type-dict/" class="archive-article-date">
+  	<time datetime="2018-07-18T10:57:39.730Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="组合数据类型——dict字典-作业练习"><a href="#组合数据类型——dict字典-作业练习" class="headerlink" title="组合数据类型——dict字典 作业练习"></a>组合数据类型——dict字典 作业练习</h2><h3 id="1、有如下变量（tu是个元组），请实现要求的功能"><a href="#1、有如下变量（tu是个元组），请实现要求的功能" class="headerlink" title="1、有如下变量（tu是个元组），请实现要求的功能"></a>1、有如下变量（tu是个元组），请实现要求的功能</h3><h3 id="tu-“alex”-11-22-“k1”-‘v1’-“k2”-“age”-“name”-“k3”-11-22-33-44"><a href="#tu-“alex”-11-22-“k1”-‘v1’-“k2”-“age”-“name”-“k3”-11-22-33-44" class="headerlink" title="tu = (“alex”, [11, 22, {“k1”: ‘v1’, “k2”: [“age”, “name”], “k3”: (11, 22, 33)}, 44])"></a>tu = (“alex”, [11, 22, {“k1”: ‘v1’, “k2”: [“age”, “name”], “k3”: (11, 22, 33)}, 44])</h3><h3 id="（1）讲述元组的特性"><a href="#（1）讲述元组的特性" class="headerlink" title="（1）讲述元组的特性"></a>（1）讲述元组的特性</h3><pre><code>1）元组一旦被定义，其值是不可被改变的
+2）元组是定长的
+3）有序的，元素都是允许重复的
+</code></pre><p>####（2）请问tu变量中的第一个元素 “alex” 是否可被修改？<br>        不可以，因为元组内的元素是不可以被改变的</p>
+<h3 id="（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”"><a href="#（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”" class="headerlink" title="（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”"></a>（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”</h3><pre><code>对应着list类型，列表类型是可以被改变的。
+代码：
+</code></pre><pre><code class="bash">tuple1 = (<span class="string">"alex"</span>, [11, 22, {<span class="string">"k1"</span>: <span class="string">'v1'</span>, <span class="string">"k2"</span>: [<span class="string">"age"</span>, <span class="string">"name"</span>], <span class="string">"k3"</span>: (11, 22, 33)}, 44])
+list1 = list(tuple1)
+list1[1][2][<span class="string">'k2'</span>].append(<span class="string">'seven'</span>)
+tuple1 = tuple(list1)
+<span class="built_in">print</span>(tuple1)
+结果：
+(<span class="string">'alex'</span>, [11, 22, {<span class="string">'k1'</span>: <span class="string">'v1'</span>, <span class="string">'k2'</span>: [<span class="string">'age'</span>, <span class="string">'name'</span>, <span class="string">'seven'</span>], <span class="string">'k3'</span>: (11, 22, 33)}, 44])
+</code></pre>
+<h3 id="（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”"><a href="#（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”" class="headerlink" title="（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”"></a>（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”</h3><pre><code>对应着元组类型，元组内的值是不可以被改变的，但可以重新赋值。
+代码：
+</code></pre><pre><code class="bash">tu = (<span class="string">"alex"</span>, [11, 22, {<span class="string">"k1"</span>: <span class="string">'v1'</span>, <span class="string">"k2"</span>: [<span class="string">"age"</span>, <span class="string">"name"</span>], <span class="string">"k3"</span>: (11, 22, 33)}, 44])
+list1 = list(tu)
+list1[1][2][<span class="string">'k3'</span>] = (11,22,33,<span class="string">'seven'</span>)
+tu = tuple(list1)
+<span class="built_in">print</span>(tu)
+结果：
+(<span class="string">'alex'</span>, [11, 22, {<span class="string">'k1'</span>: <span class="string">'v1'</span>, <span class="string">'k2'</span>: [<span class="string">'age'</span>, <span class="string">'name'</span>], <span class="string">'k3'</span>: (11, 22, 33, <span class="string">'seven'</span>)}, 44])
+</code></pre>
+<h3 id="2、-字典-dic-‘k1’-“v1”-“k2”-“v2”-“k3”-11-22-33"><a href="#2、-字典-dic-‘k1’-“v1”-“k2”-“v2”-“k3”-11-22-33" class="headerlink" title="2、 字典 dic = {‘k1’: “v1”, “k2”: “v2”, “k3”: [11,22,33]}"></a>2、 字典 dic = {‘k1’: “v1”, “k2”: “v2”, “k3”: [11,22,33]}</h3><h3 id="（1）请循环输出所有的key"><a href="#（1）请循环输出所有的key" class="headerlink" title="（1）请循环输出所有的key"></a>（1）请循环输出所有的key</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
+<span class="keyword">for</span> k <span class="keyword">in</span> dic.keys():
+    <span class="built_in">print</span>(k)
+</code></pre>
+<h3 id="（2）请循环输出所有的value"><a href="#（2）请循环输出所有的value" class="headerlink" title="（2）请循环输出所有的value"></a>（2）请循环输出所有的value</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
+<span class="keyword">for</span> k <span class="keyword">in</span> dic.values():
+    <span class="built_in">print</span>(k)
+</code></pre>
+<h3 id="（3）请循环输出所有的key和value"><a href="#（3）请循环输出所有的key和value" class="headerlink" title="（3）请循环输出所有的key和value"></a>（3）请循环输出所有的key和value</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
+<span class="keyword">for</span> k <span class="keyword">in</span> dic.keys():
+    <span class="built_in">print</span>(k,dic[k])
+</code></pre>
+<h3 id="（4）请在字典中添加一个键值对，”k4”-“v4”，输出添加后的字典"><a href="#（4）请在字典中添加一个键值对，”k4”-“v4”，输出添加后的字典" class="headerlink" title="（4）请在字典中添加一个键值对，”k4”: “v4”，输出添加后的字典"></a>（4）请在字典中添加一个键值对，”k4”: “v4”，输出添加后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>: <span class="string">"v1"</span>, <span class="string">"k2"</span>: <span class="string">"v2"</span>, <span class="string">"k3"</span>: [11,22,33]}
+dic[<span class="string">"k4"</span>] = <span class="string">"v4"</span>
+<span class="built_in">print</span>(dic)
+</code></pre>
+<h3 id="（5）请在修改字典中-“k1”-对应的值为-“alex”，输出修改后的字典"><a href="#（5）请在修改字典中-“k1”-对应的值为-“alex”，输出修改后的字典" class="headerlink" title="（5）请在修改字典中 “k1” 对应的值为 “alex”，输出修改后的字典"></a>（5）请在修改字典中 “k1” 对应的值为 “alex”，输出修改后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>: <span class="string">"v1"</span>, <span class="string">"k2"</span>: <span class="string">"v2"</span>, <span class="string">"k3"</span>: [11,22,33]}
+dic[<span class="string">"k1"</span>] = <span class="string">"alex"</span>
+<span class="built_in">print</span>(dic)
+</code></pre>
+<h3 id="（6）请在k3对应的值中追加一个元素-44，输出修改后的字典"><a href="#（6）请在k3对应的值中追加一个元素-44，输出修改后的字典" class="headerlink" title="（6）请在k3对应的值中追加一个元素 44，输出修改后的字典"></a>（6）请在k3对应的值中追加一个元素 44，输出修改后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
+dic[<span class="string">'k3'</span>].append(<span class="string">'44'</span>)
+<span class="built_in">print</span>(dic)
+</code></pre>
+<h3 id="（7）请在k3对应的值的第-1-个位置插入个元素-18，输出修改后的字典"><a href="#（7）请在k3对应的值的第-1-个位置插入个元素-18，输出修改后的字典" class="headerlink" title="（7）请在k3对应的值的第 1 个位置插入个元素 18，输出修改后的字典"></a>（7）请在k3对应的值的第 1 个位置插入个元素 18，输出修改后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
+dic[<span class="string">'k3'</span>].insert(0,<span class="string">'18'</span>)
+<span class="built_in">print</span>(dic)
+</code></pre>
+<h3 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h3><pre><code class="bash">catalog = {
+    <span class="string">"欧美"</span>:{
+        <span class="string">"www.Facebook.com"</span>: [<span class="string">"很多免费的,世界最大的"</span>,<span class="string">"质量一般"</span>],
+        <span class="string">"www.Twitter.com"</span>: [<span class="string">"很多免费的,也很大"</span>,<span class="string">"质量比Facebook高点"</span>],
+        <span class="string">"www.linkin.com"</span>: [<span class="string">"多是白领,信息很多"</span>,<span class="string">"资源不多,更新慢"</span>],
+    },
+    <span class="string">"日韩"</span>:{
+        <span class="string">"www.Ameba.com"</span>:[<span class="string">"质量怎样不清楚,个人已经不喜欢日韩范了"</span>,<span class="string">"verygood"</span>]
+    },
+    <span class="string">"大陆"</span>:{
+    <span class="string">"www.weibo.com"</span>:[<span class="string">"全部免费,真好,好人一生平安"</span>,<span class="string">"服务器在国外"</span>]
+    }
+}
+</code></pre>
+<h3 id="（1）给此-“很多免费的-世界最大的”-”质量一般”-列表第二个位置插入一个元素：’量很大’。"><a href="#（1）给此-“很多免费的-世界最大的”-”质量一般”-列表第二个位置插入一个元素：’量很大’。" class="headerlink" title="（1）给此 [“很多免费的,世界最大的”,”质量一般”]列表第二个位置插入一个元素：’量很大’。"></a>（1）给此 [“很多免费的,世界最大的”,”质量一般”]列表第二个位置插入一个元素：’量很大’。</h3><pre><code class="bash">catalog[<span class="string">"欧美"</span>][<span class="string">"www.Facebook.com"</span>].insert(1,<span class="string">"量很大"</span>)
+</code></pre>
+<h3 id="（2）将-“很多免费的-也很大”-”质量比Facebook高点”-列表的-“质量比Facebook高点”-删除。"><a href="#（2）将-“很多免费的-也很大”-”质量比Facebook高点”-列表的-“质量比Facebook高点”-删除。" class="headerlink" title="（2）将 [“很多免费的,也很大”,”质量比Facebook高点”],列表的 “质量比Facebook高点”]删除。"></a>（2）将 [“很多免费的,也很大”,”质量比Facebook高点”],列表的 “质量比Facebook高点”]删除。</h3><pre><code class="bash">catalog[<span class="string">"欧美"</span>][<span class="string">"www.Twitter.com"</span>].pop()
+</code></pre>
+<h3 id="（3）将此-“质量怎样不清楚-个人已经不喜欢日韩范了”-”verygood”-列表的-“verygood”全部变成大写。"><a href="#（3）将此-“质量怎样不清楚-个人已经不喜欢日韩范了”-”verygood”-列表的-“verygood”全部变成大写。" class="headerlink" title="（3）将此[“质量怎样不清楚,个人已经不喜欢日韩范了”,”verygood”]列表的 “verygood”全部变成大写。"></a>（3）将此[“质量怎样不清楚,个人已经不喜欢日韩范了”,”verygood”]列表的 “verygood”全部变成大写。</h3><pre><code class="bash">catalog[<span class="string">"日韩"</span>][<span class="string">"www.Ameba.com"</span>][1] = catalog[<span class="string">"日韩"</span>][<span class="string">"www.Ameba.com"</span>][1].upper()
+</code></pre>
+<h3 id="（4）给-‘大陆’-对应的字典添加一个键值对-‘www-momo-com’-‘交友神器’"><a href="#（4）给-‘大陆’-对应的字典添加一个键值对-‘www-momo-com’-‘交友神器’" class="headerlink" title="（4）给 ‘大陆’ 对应的字典添加一个键值对 ‘www.momo.com’ :[‘交友神器’]"></a>（4）给 ‘大陆’ 对应的字典添加一个键值对 ‘<a href="http://www.momo.com’" target="_blank" rel="noopener">www.momo.com’</a> :[‘交友神器’]</h3><pre><code class="bash">catalog.setdefault(<span class="string">"www.momo.com"</span>,[<span class="string">"交友神器"</span>])
+</code></pre>
+<h3 id="（5）删除此“www-linkin-com”-“多是白领-信息很多”-”资源不多-更新慢”-键值对。"><a href="#（5）删除此“www-linkin-com”-“多是白领-信息很多”-”资源不多-更新慢”-键值对。" class="headerlink" title="（5）删除此“www.linkin.com”: [“多是白领,信息很多”,”资源不多,更新慢”]键值对。"></a>（5）删除此“<a href="http://www.linkin.com”" target="_blank" rel="noopener">www.linkin.com”</a>: [“多是白领,信息很多”,”资源不多,更新慢”]键值对。</h3><pre><code class="bash">catalog[<span class="string">"欧美"</span>].popitem()
+</code></pre>
+<h3 id="（6）给此-“全部免费-真好-好人一生平安”-“服务器在国外”-列表的第一个元素，加上一句话：‘可以抓取数据’"><a href="#（6）给此-“全部免费-真好-好人一生平安”-“服务器在国外”-列表的第一个元素，加上一句话：‘可以抓取数据’" class="headerlink" title="（6）给此[“全部免费,真好,好人一生平安”,“服务器在国外”]列表的第一个元素，加上一句话：‘可以抓取数据’"></a>（6）给此[“全部免费,真好,好人一生平安”,“服务器在国外”]列表的第一个元素，加上一句话：‘可以抓取数据’</h3><pre><code class="bash">catalog[<span class="string">"大陆"</span>][<span class="string">"www.weibo.com"</span>].insert(0,<span class="string">"可以抓取数据"</span>)
+</code></pre>
+<h3 id="4、有字符串”k-1-k1-2-k2-3-k3-4”-处理成字典-‘k’-1-’k1’-2…"><a href="#4、有字符串”k-1-k1-2-k2-3-k3-4”-处理成字典-‘k’-1-’k1’-2…" class="headerlink" title="4、有字符串”k:1|k1:2|k2:3|k3:4” 处理成字典 {‘k’:1,’k1’:2….}"></a>4、有字符串”k:1|k1:2|k2:3|k3:4” 处理成字典 {‘k’:1,’k1’:2….}</h3><pre><code class="bash">str1 = <span class="string">"k:1|k1:2|k2:3|k3:4"</span>
+dic = {}
+list1 = str1.split(<span class="string">'|'</span>)
+list2 = list()
+<span class="built_in">print</span>(list1)
+<span class="string">''</span><span class="string">'</span>
+<span class="string"># for 循环</span>
+<span class="string">list2 = list()</span>
+<span class="string">for x in list1:</span>
+<span class="string">list2 = x.split('</span>:<span class="string">')</span>
+<span class="string">dic[list2[0]] = int(list2[1])</span>
+<span class="string">'</span><span class="string">''</span>
+<span class="comment">#推导式</span>
+dic = {x.split(<span class="string">':'</span>)[0]:int(x.split(<span class="string">':'</span>)[1]) <span class="keyword">for</span> x <span class="keyword">in</span> list1}
+<span class="built_in">print</span>(dic)
+</code></pre>
+<h3 id="5、元素分类有如下值li-11-22-33-44-55-66-77-88-99-90-，将所有大于-66-的值保存至字典的第一个key中，将小于-66-的值保存至第二个key的值中。即：-‘k1’-大于66的所有值列表-‘k2’-小于66的所有值列表"><a href="#5、元素分类有如下值li-11-22-33-44-55-66-77-88-99-90-，将所有大于-66-的值保存至字典的第一个key中，将小于-66-的值保存至第二个key的值中。即：-‘k1’-大于66的所有值列表-‘k2’-小于66的所有值列表" class="headerlink" title="5、元素分类有如下值li= [11,22,33,44,55,66,77,88,99,90]，将所有大于 66 的值保存至字典的第一个key中，将小于 66 的值保存至第二个key的值中。即： {‘k1’: 大于66的所有值列表, ‘k2’: 小于66的所有值列表}"></a>5、元素分类有如下值li= [11,22,33,44,55,66,77,88,99,90]，将所有大于 66 的值保存至字典的第一个key中，将小于 66 的值保存至第二个key的值中。即： {‘k1’: 大于66的所有值列表, ‘k2’: 小于66的所有值列表}</h3><pre><code class="bash">li=[11,22,33,44,55,66,77,88,99,90]
+dic={<span class="string">'k1'</span>:[ ],<span class="string">'k2'</span>:[ ]}
+<span class="keyword">for</span> i <span class="keyword">in</span> li:
+    <span class="keyword">if</span> i &gt;70:
+        dic[<span class="string">'k1'</span>].append(i)
+    <span class="keyword">else</span>:
+        dic[<span class="string">'k2'</span>].append(i)
+<span class="built_in">print</span>(dic)
+<span class="comment">### 或者：</span>
+li=[11,22,33,44,55,66,77,88,99,90]
+dic=dict()
+ls1 = list()
+ls2 = list()
+<span class="keyword">for</span> i <span class="keyword">in</span> li:
+    <span class="keyword">if</span> i &gt;70:
+        ls1.append(i)
+        dic[<span class="string">'k1'</span>]=ls1
+    <span class="keyword">else</span>:
+        ls2.append(i)
+        dic[<span class="string">'k2'</span>]=ls2
+<span class="built_in">print</span>(dic)
+</code></pre>
+<h3 id="6、输出商品列表，用户输入序号，显示用户选中的商品"><a href="#6、输出商品列表，用户输入序号，显示用户选中的商品" class="headerlink" title="6、输出商品列表，用户输入序号，显示用户选中的商品"></a>6、输出商品列表，用户输入序号，显示用户选中的商品</h3><pre><code>商品 li = [&quot;手机&quot;, &quot;电脑&quot;, &apos;鼠标垫&apos;, &apos;游艇&apos;]
+</code></pre><p> 要求：（1）页面显示 序号 + 商品名称，如：<br>            1 手机<br>            2 电脑<br>              …<br>      （2） 用户输入选择的商品序号，然后打印商品名称<br>      （3）如果用户输入的商品序号有误，则提示输入有误，并重新输入。<br>      （4）用户输入Q或者q，退出程序。</p>
+<pre><code class="bash">dic = dict(zip((1,2,3,4),(<span class="string">'手机'</span>, <span class="string">'电脑'</span>, <span class="string">'鼠标垫'</span>, <span class="string">'游艇'</span>)))
+dic = {
+<span class="string">'1'</span> : <span class="string">'电视机'</span>,
+<span class="string">'2'</span> : <span class="string">'洗衣机'</span>,
+<span class="string">'3'</span> : <span class="string">'电饭煲'</span>,
+<span class="string">'4'</span> : <span class="string">'电磁炉'</span>
+}
+<span class="keyword">while</span> True:
+    msg = input(<span class="string">'请输入商品编号，退出请输入Q或者q，您的选择是：'</span>)
+    <span class="keyword">if</span> msg == <span class="string">'Q'</span> or msg ==<span class="string">'q'</span>:
+        <span class="built_in">break</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> msg <span class="keyword">in</span> dic.keys():
+            <span class="built_in">print</span>(<span class="string">'序号 商品名称'</span>)
+            <span class="built_in">print</span>(<span class="string">'{} {}'</span>.format(msg,dic[msg]))
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
+</code></pre>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果:"></a>结果:</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson7.py<br>请输入商品编号，退出请输入Q或者q，您的选择是：2<br>序号        商品名称<br>2            洗衣机<br>请输入商品编号，退出请输入Q或者q，您的选择是：5<br>请输入正确的商品编号！<br>请输入商品编号，退出请输入Q或者q，您的选择是：q<br>PS D:\pythoncode&gt;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/18/practice-combine-data-type-dict/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-combine-data-type-dict" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -693,19 +892,19 @@ a = tuple(b)
 
 
   
-    <article id="post-practice-combine-data-type" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-practice-combine-data-type-list" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/practice-combine-data-type/">practice-combine-data-type</a>
+      <a class="article-title" href="/2018/07/16/practice-combine-data-type-list/">practice-combine-data-type-list</a>
     </h1>
   
 
         
-        <a href="/2018/07/16/practice-combine-data-type/" class="archive-article-date">
+        <a href="/2018/07/16/practice-combine-data-type-list/" class="archive-article-date">
   	<time datetime="2018-07-16T02:52:36.862Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
 </a>
         
@@ -713,7 +912,7 @@ a = tuple(b)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="组合数据类型作业练习"><a href="#组合数据类型作业练习" class="headerlink" title="组合数据类型作业练习"></a>组合数据类型作业练习</h2><h3 id="一、按照要求实现每一个功能，写出对应代码："><a href="#一、按照要求实现每一个功能，写出对应代码：" class="headerlink" title="一、按照要求实现每一个功能，写出对应代码："></a>一、按照要求实现每一个功能，写出对应代码：</h3><h3 id="li-‘zhangsan’-’lisi’-’wangwu’-’liliu’-’zhuqi’"><a href="#li-‘zhangsan’-’lisi’-’wangwu’-’liliu’-’zhuqi’" class="headerlink" title="li = [‘zhangsan’,’lisi’,’wangwu’,’liliu’,’zhuqi’]"></a>li = [‘zhangsan’,’lisi’,’wangwu’,’liliu’,’zhuqi’]</h3><h4 id="1、计算列表的长度并输出"><a href="#1、计算列表的长度并输出" class="headerlink" title="1、计算列表的长度并输出"></a>1、计算列表的长度并输出</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+        <h2 id="组合数据类型——list-作业练习"><a href="#组合数据类型——list-作业练习" class="headerlink" title="组合数据类型——list 作业练习"></a>组合数据类型——list 作业练习</h2><h3 id="一、按照要求实现每一个功能，写出对应代码："><a href="#一、按照要求实现每一个功能，写出对应代码：" class="headerlink" title="一、按照要求实现每一个功能，写出对应代码："></a>一、按照要求实现每一个功能，写出对应代码：</h3><h3 id="li-‘zhangsan’-’lisi’-’wangwu’-’liliu’-’zhuqi’"><a href="#li-‘zhangsan’-’lisi’-’wangwu’-’liliu’-’zhuqi’" class="headerlink" title="li = [‘zhangsan’,’lisi’,’wangwu’,’liliu’,’zhuqi’]"></a>li = [‘zhangsan’,’lisi’,’wangwu’,’liliu’,’zhuqi’]</h3><h4 id="1、计算列表的长度并输出"><a href="#1、计算列表的长度并输出" class="headerlink" title="1、计算列表的长度并输出"></a>1、计算列表的长度并输出</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
 <span class="built_in">print</span>(len(li))
 </code></pre>
 <h4 id="2、列表中追加元素’wangba’-并输出添加后的列表"><a href="#2、列表中追加元素’wangba’-并输出添加后的列表" class="headerlink" title="2、列表中追加元素’wangba’,并输出添加后的列表"></a>2、列表中追加元素’wangba’,并输出添加后的列表</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
@@ -880,7 +1079,7 @@ str1 = <span class="string">'_'</span>.join(li)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/16/practice-combine-data-type/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/07/16/practice-combine-data-type-list/">展开全文 >></a>
         </p>
       
 
@@ -2206,77 +2405,10 @@ Code的终端输入exit()退出即可）
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/09/hello-world/" class="archive-article-date">
-  	<time datetime="2018-07-09T12:22:49.483Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/09/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
