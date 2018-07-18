@@ -164,7 +164,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/combine-data-type-set/">Day1-combine-data-type-set</a>
+      <a class="article-title" href="/2018/07/18/combine-data-type-set/">组合数据类型——集合</a>
     </h1>
   
 
@@ -177,7 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="数据组合类型——集合set"><a href="#数据组合类型——集合set" class="headerlink" title="数据组合类型——集合set"></a>数据组合类型——集合set</h2><h3 id="1、集合的概念："><a href="#1、集合的概念：" class="headerlink" title="1、集合的概念："></a>1、集合的概念：</h3><p>集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。</p>
+        <h2 id="组合数据类型——集合set"><a href="#组合数据类型——集合set" class="headerlink" title="组合数据类型——集合set"></a>组合数据类型——集合set</h2><h3 id="1、集合的概念："><a href="#1、集合的概念：" class="headerlink" title="1、集合的概念："></a>1、集合的概念：</h3><p>集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。</p>
 <h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。</p>
 <h3 id="2、集合的声明与赋值"><a href="#2、集合的声明与赋值" class="headerlink" title="2、集合的声明与赋值"></a>2、集合的声明与赋值</h3><p>（1）set1 = {1,2,3}  生成一个集合<br>（2）set1 = set ({1,2,3})<br>（3）set1 = set()   生成一个空集合，只有这一种方式生成空集合，即集合只能通过set()函数来生成空集合，而不能通过set = {}，这个表达式生成一个字典。</p>
 <h3 id="3、数据类型转换"><a href="#3、数据类型转换" class="headerlink" title="3、数据类型转换"></a>3、数据类型转换</h3><h3 id="（1）字符串转集合"><a href="#（1）字符串转集合" class="headerlink" title="（1）字符串转集合"></a>（1）字符串转集合</h3><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello'</span>
@@ -249,7 +249,31 @@
 <h3 id="（4）对称差集运算-或-函数方法：symmetric-difference"><a href="#（4）对称差集运算-或-函数方法：symmetric-difference" class="headerlink" title="（4）对称差集运算 ^ 或 函数方法：symmetric_difference()"></a>（4）对称差集运算 ^ 或 函数方法：symmetric_difference()</h3><p>两个集合进行对称差集运算，即两个集合中除去相同元素，其他所有元素归并到一个新的集合中。</p>
 <h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">
 </code></pre>
-<h3 id="（5）子集与超集（父集）"><a href="#（5）子集与超集（父集）" class="headerlink" title="（5）子集与超集（父集）"></a>（5）子集与超集（父集）</h3>
+<h3 id="（5）子集与超集（父集）"><a href="#（5）子集与超集（父集）" class="headerlink" title="（5）子集与超集（父集）"></a>（5）子集与超集（父集）</h3><h3 id="随机产生2组各个数字的列表，如下要求："><a href="#随机产生2组各个数字的列表，如下要求：" class="headerlink" title="随机产生2组各个数字的列表，如下要求："></a>随机产生2组各个数字的列表，如下要求：</h3><p>（1）每个数字取值范围[10,20]<br>（2）统计20个数字中，一共有多少个不同的数字？<br>（3）2组中，不重复的数字有几个？分别是什么？<br>（4）2组中，重复的数字有几个？分别是什么？<br>提示：采用random对象的randrange()方法，实现一定范围内容的随机数字产生</p>
+<pre><code class="bash">import random
+list1 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
+list2 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
+<span class="built_in">print</span>(<span class="string">'列表1的20个随机数：{}'</span>.format(list1))
+<span class="built_in">print</span>(<span class="string">'列表2的20个随机数：{}'</span>.format(list2))
+set1 = <span class="built_in">set</span>(list1)
+set2 = <span class="built_in">set</span>(list2)
+<span class="built_in">print</span>(<span class="string">'列表1转为集合：{}'</span>.format(set1))
+<span class="built_in">print</span>(<span class="string">'列表2转为集合：{}'</span>.format(set2))
+a_sum = len(set1)
+b_sum = len(set2)
+<span class="built_in">print</span>(<span class="string">'列表1中不同的数有：{}个'</span>.format(a_sum))
+<span class="built_in">print</span>(<span class="string">'列表2中不同的数有：{}个'</span>.format(b_sum))
+set3 = set1.intersection(set2)
+c_sum = len(set3)
+<span class="built_in">print</span>(<span class="string">'列表1和2中相同的数有：{0}个，分别是：{1}'</span>.format(c_sum,set3))
+set4 = set1.difference(set2)
+set5 = set2.difference(set1)
+set6 = set1 ^set2
+d_sum = len(set6)
+<span class="built_in">print</span>(<span class="string">'列表1和2中不同的数有：{}个，列表1中的有：{}，列表2中的有：{}'</span>.format(d_sum,set4,set5))
+</code></pre>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson7.py<br>列表1的20个随机数：[17, 16, 11, 14, 13, 14, 12, 14, 14, 14, 16, 12, 10, 17, 15, 15, 13, 15, 15, 17]<br>列表2的20个随机数：[15, 15, 14, 11, 15, 15, 15, 16, 13, 11, 12, 17, 15, 12, 10, 14, 14, 14, 11, 18]<br>列表1转为集合：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表2转为集合：{10, 11, 12, 13, 14, 15, 16, 17, 18}<br>列表1中不同的数有：8个<br>列表2中不同的数有：9个<br>列表1和2中相同的数有：8个，分别是：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表1和2中不同的数有：1个，列表1中的有：set()，列表2中的有：{18}<br>PS D:\pythoncode&gt;</p>
+
       
 
       
@@ -298,7 +322,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/practice-combine-data-type-dict/">practice-combine-data-type-dict</a>
+      <a class="article-title" href="/2018/07/18/practice-combine-data-type-dict/">作业练习——组合数据类型——dict字典</a>
     </h1>
   
 
@@ -497,7 +521,7 @@ dic = {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/17/combine-data-type-dict/">Day1-combine-data-type-dict</a>
+      <a class="article-title" href="/2018/07/17/combine-data-type-dict/">组合数据类型——字典</a>
     </h1>
   
 
@@ -510,7 +534,7 @@ dic = {
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="数据组合类型——字典dict"><a href="#数据组合类型——字典dict" class="headerlink" title="数据组合类型——字典dict"></a>数据组合类型——字典dict</h2><h3 id="1、字典类型的基本概念"><a href="#1、字典类型的基本概念" class="headerlink" title="1、字典类型的基本概念"></a>1、字典类型的基本概念</h3><p>字典数据类型，由key：value结构构成的，也就是说字典类型中的每个元素都有两部分构成的，中间使用：连接。其中，key和value可以是任意数据类型的内容。</p>
+        <h2 id="组合数据类型——字典dict"><a href="#组合数据类型——字典dict" class="headerlink" title="组合数据类型——字典dict"></a>组合数据类型——字典dict</h2><h3 id="1、字典类型的基本概念"><a href="#1、字典类型的基本概念" class="headerlink" title="1、字典类型的基本概念"></a>1、字典类型的基本概念</h3><p>字典数据类型，由key：value结构构成的，也就是说字典类型中的每个元素都有两部分构成的，中间使用：连接。其中，key和value可以是任意数据类型的内容。</p>
 <h3 id="2、字典对象的生成（4种）"><a href="#2、字典对象的生成（4种）" class="headerlink" title="2、字典对象的生成（4种）"></a>2、字典对象的生成（4种）</h3><p>（1）dic = {1:’hello’,2:’world’,3:’welcome’}，两边使用一对{ }来界定。<br>（2）dic = dict() 生成一个空字典<br>（3）dic = dict({1:’hello’,2:’world’,3:’welcome’})<br>（4）使用zip（）函数生成字典<br>        函数格式：zip(iter1,iter2…)<br>        返回值：返回一个zip对象</p>
 <pre><code>我们通过zip函数，指定对应的元组，分别来作为字典的key和value，生成zip对象转成字典数据。
 </code></pre><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dict(zip((<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'city'</span>),(<span class="string">'01'</span>,<span class="string">'wdd'</span>,<span class="string">'beijing '</span>)))
@@ -735,7 +759,7 @@ a = dic3.fromkeys([1,2,3],[<span class="string">'a'</span>,<span class="string">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/practice-triangel/">triangel-practice</a>
+      <a class="article-title" href="/2018/07/16/practice-triangel/">练习——直角三角形在不同的方位</a>
     </h1>
   
 
@@ -864,7 +888,7 @@ a = dic3.fromkeys([1,2,3],[<span class="string">'a'</span>,<span class="string">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/comprehensive-practice-day1-5/">comprehensive-practice-day1-5</a>
+      <a class="article-title" href="/2018/07/16/comprehensive-practice-day1-5/">综合练习1</a>
     </h1>
   
 
@@ -1033,7 +1057,7 @@ a = tuple(b)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/practice-combine-data-type-list/">practice-combine-data-type-list</a>
+      <a class="article-title" href="/2018/07/16/practice-combine-data-type-list/">作业练习——组合数据类型——列表</a>
     </h1>
   
 
@@ -1250,7 +1274,7 @@ str1 = <span class="string">'_'</span>.join(li)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/13/combine-data-type-list-tuple/">Python_Day5~combine-data-type-list-tuple</a>
+      <a class="article-title" href="/2018/07/13/combine-data-type-list-tuple/">组合数据类型——list和tuple</a>
     </h1>
   
 
@@ -1545,7 +1569,7 @@ tuple1 = tuple(list1)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/12/circulation-control-for-while/">Python_Day4~circulation-control-for-while</a>
+      <a class="article-title" href="/2018/07/12/circulation-control-for-while/">循环控制语句（for和while）</a>
     </h1>
   
 
@@ -1770,7 +1794,7 @@ sum = 0 <span class="comment">#用于存储结果</span>
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/12/condition-control-if/">Python_Day3~condition-control-if</a>
+      <a class="article-title" href="/2018/07/12/condition-control-if/">条件控制语句——if</a>
     </h1>
   
 
@@ -1990,7 +2014,7 @@ boss_blood=0  <span class="comment">#玩家技能值用完，boss剩余的血</s
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/12/basic-data-type/">Python_Day2~basic-data-type</a>
+      <a class="article-title" href="/2018/07/12/basic-data-type/">基本数据类型</a>
     </h1>
   
 
