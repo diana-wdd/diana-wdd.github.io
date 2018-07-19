@@ -34,7 +34,11 @@
   
 
 </head>
-
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<span id="busuanzi_container_site_pv">
+本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -241,15 +245,52 @@
 {1, 2, 3, <span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'two'</span>, <span class="string">'hello'</span>}
 </code></pre>
 <h3 id="（2）交集运算-amp-或-函数方法：intersection"><a href="#（2）交集运算-amp-或-函数方法：intersection" class="headerlink" title="（2）交集运算 &amp; 或 函数方法：intersection()"></a>（2）交集运算 &amp; 或 函数方法：intersection()</h3><p>两个集合进行交集运算，即将两个集合中相同的的元素合并到一个新的集合中</p>
-<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">
+<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
+set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
+set1 &amp; set2 =&gt; {<span class="string">'en'</span>}
+</code></pre>
+<h3 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.intersection(set2)
 </code></pre>
 <h3 id="（3）差集运算-–-或-函数方法：difference"><a href="#（3）差集运算-–-或-函数方法：difference" class="headerlink" title="（3）差集运算 – 或 函数方法：difference()"></a>（3）差集运算 – 或 函数方法：difference()</h3><p>两个集合进行差集运算，即运算符左边的集合与右边的集合进行差运算，相当于使左边集合去除与右边集合相同的元素，剩下来的元素</p>
-<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">
+<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
+set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
+set1 - set2 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>}
+</code></pre>
+<h3 id="或者-1"><a href="#或者-1" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.difference(set2)
+set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
+set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
+set2 - set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>}
+</code></pre>
+<h3 id="或者-2"><a href="#或者-2" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set2.difference(set1)
 </code></pre>
 <h3 id="（4）对称差集运算-或-函数方法：symmetric-difference"><a href="#（4）对称差集运算-或-函数方法：symmetric-difference" class="headerlink" title="（4）对称差集运算 ^ 或 函数方法：symmetric_difference()"></a>（4）对称差集运算 ^ 或 函数方法：symmetric_difference()</h3><p>两个集合进行对称差集运算，即两个集合中除去相同元素，其他所有元素归并到一个新的集合中。</p>
-<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">
+<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
+set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
+set2 ^ set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>,<span class="string">'jp'</span>, <span class="string">'fr'</span>}
 </code></pre>
-<h3 id="（5）子集与超集（父集）"><a href="#（5）子集与超集（父集）" class="headerlink" title="（5）子集与超集（父集）"></a>（5）子集与超集（父集）</h3><h3 id="随机产生2组各个数字的列表，如下要求："><a href="#随机产生2组各个数字的列表，如下要求：" class="headerlink" title="随机产生2组各个数字的列表，如下要求："></a>随机产生2组各个数字的列表，如下要求：</h3><p>（1）每个数字取值范围[10,20]<br>（2）统计20个数字中，一共有多少个不同的数字？<br>（3）2组中，不重复的数字有几个？分别是什么？<br>（4）2组中，重复的数字有几个？分别是什么？<br>提示：采用random对象的randrange()方法，实现一定范围内容的随机数字产生</p>
+<h3 id="或者-3"><a href="#或者-3" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.symmetric_difference(set2)
+</code></pre>
+<h3 id="（5）子集与超集（父集）"><a href="#（5）子集与超集（父集）" class="headerlink" title="（5）子集与超集（父集）"></a>（5）子集与超集（父集）</h3><p>set1 =&gt; {‘zh’, ‘tw’, ‘en’}<br>subset =&gt; {‘zh’, ‘tw’}<br>我们通过观察可以看到，subset中的内容，属于set1的一部分。因此，<br>subset.issubset(set1) =&gt; True<br>表示，subset是set1集合的一个子集合</p>
+<p>同理，我们也可以说，set1是subset的父集合：<br>set1.issuperset(subset) =&gt; True</p>
+<h3 id="6、集合常用函数"><a href="#6、集合常用函数" class="headerlink" title="6、集合常用函数"></a>6、集合常用函数</h3><h3 id="（1）update"><a href="#（1）update" class="headerlink" title="（1）update()"></a>（1）update()</h3><p>函数格式：set1.update(set2)<br>返回值：无<br>结果：我们将set2中的元素，添加到set1中，如果有相同的元素只保留一个。同时，该操作会修改set1的元素数量。</p>
+<h3 id="例如：-8"><a href="#例如：-8" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
+set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
+set1.update(set2)
+set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'tw'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'en'</span>}
+</code></pre>
+<h3 id="（2）intersection-update"><a href="#（2）intersection-update" class="headerlink" title="（2）intersection_update()"></a>（2）intersection_update()</h3><p>函数格式：set1.intersection_update(set2)<br>返回值：无<br>结果：我们使用set2中的元素，添加到set1中，其中，保留两个集合中相同的元素。其中，set1、set2中其他的元素被舍弃。</p>
+<h3 id="例如：-9"><a href="#例如：-9" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
+set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
+set1.intersection_update(set2)
+set1 =&gt; {<span class="string">'en'</span>}
+</code></pre>
+<h3 id="（3）symmetric-difference-update"><a href="#（3）symmetric-difference-update" class="headerlink" title="（3）symmetric_difference_update()"></a>（3）symmetric_difference_update()</h3><p>函数格式：symmetric_difference_update()<br>返回值：无<br>结果：我们使用set1与set2进行运算，只保留两者除去相同元素之外的元素。</p>
+<h3 id="例如：-10"><a href="#例如：-10" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
+set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
+set1.symmetric_difference_update(set2)
+set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'tw'</span>}
+</code></pre>
+<h3 id="随机产生2组各个数字的列表，如下要求："><a href="#随机产生2组各个数字的列表，如下要求：" class="headerlink" title="随机产生2组各个数字的列表，如下要求："></a>随机产生2组各个数字的列表，如下要求：</h3><p>（1）每个数字取值范围[10,20]<br>（2）统计20个数字中，一共有多少个不同的数字？<br>（3）2组中，不重复的数字有几个？分别是什么？<br>（4）2组中，重复的数字有几个？分别是什么？<br>提示：采用random对象的randrange()方法，实现一定范围内容的随机数字产生</p>
 <pre><code class="bash">import random
 list1 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
 list2 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
@@ -2392,6 +2433,9 @@ Cleese,Jhon M
     </div>
   </div>
 </footer>
+<span id="busuanzi_container_page_pv">
+本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
     </div>
     <script>
 	var yiliaConfig = {
