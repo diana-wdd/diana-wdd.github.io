@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>组合数据类型（集合） | diana</title>
+  <title>购物小案例 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="组合数据类型——集合set1、集合的概念：集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。 注意：set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。 2、集合的声明与赋值（1">
+  <meta name="description" content="商品菜单:1、查看商品详情（编号，名称，单价，产地，库存，品牌）2、购买商品（编号，名称，数量，总价）3、添加商品4、修改商品（单价，数量）5、删除商品 goods_dic = {     &apos;goods_no&apos;:[&apos;101&apos;,&apos;102&apos;,&apos;103&apos;,&apos;104&apos;,&apos;105&apos;],     &apos;101&apos;:{             &apos;id&apos;:&apos;101&apos;,             &apos;name&apos;:&apos;电磁炉&apos;,">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组合数据类型（集合）">
-<meta property="og:url" content="http://yoursite.com/2018/07/18/combine-data-type-set/index.html">
+<meta property="og:title" content="购物小案例">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/shopping/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="组合数据类型——集合set1、集合的概念：集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。 注意：set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。 2、集合的声明与赋值（1">
+<meta property="og:description" content="商品菜单:1、查看商品详情（编号，名称，单价，产地，库存，品牌）2、购买商品（编号，名称，数量，总价）3、添加商品4、修改商品（单价，数量）5、删除商品 goods_dic = {     &apos;goods_no&apos;:[&apos;101&apos;,&apos;102&apos;,&apos;103&apos;,&apos;104&apos;,&apos;105&apos;],     &apos;101&apos;:{             &apos;id&apos;:&apos;101&apos;,             &apos;name&apos;:&apos;电磁炉&apos;,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-19T00:30:05.614Z">
+<meta property="og:updated_time" content="2018-07-19T10:46:31.829Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组合数据类型（集合）">
-<meta name="twitter:description" content="组合数据类型——集合set1、集合的概念：集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。 注意：set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。 2、集合的声明与赋值（1">
+<meta name="twitter:title" content="购物小案例">
+<meta name="twitter:description" content="商品菜单:1、查看商品详情（编号，名称，单价，产地，库存，品牌）2、购买商品（编号，名称，数量，总价）3、添加商品4、修改商品（单价，数量）5、删除商品 goods_dic = {     &apos;goods_no&apos;:[&apos;101&apos;,&apos;102&apos;,&apos;103&apos;,&apos;104&apos;,&apos;105&apos;],     &apos;101&apos;:{             &apos;id&apos;:&apos;101&apos;,             &apos;name&apos;:&apos;电磁炉&apos;,">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,159 +163,147 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-combine-data-type-set" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-shopping" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      组合数据类型（集合）
+      购物小案例
     </h1>
   
 
         
-        <a href="/2018/07/18/combine-data-type-set/" class="archive-article-date">
-  	<time datetime="2018-07-18T11:25:55.471Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
+        <a href="/2018/07/19/shopping/" class="archive-article-date">
+  	<time datetime="2018-07-19T10:39:48.832Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="组合数据类型——集合set"><a href="#组合数据类型——集合set" class="headerlink" title="组合数据类型——集合set"></a>组合数据类型——集合set</h2><h3 id="1、集合的概念："><a href="#1、集合的概念：" class="headerlink" title="1、集合的概念："></a>1、集合的概念：</h3><p>集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。</p>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。</p>
-<h3 id="2、集合的声明与赋值"><a href="#2、集合的声明与赋值" class="headerlink" title="2、集合的声明与赋值"></a>2、集合的声明与赋值</h3><p>（1）set1 = {1,2,3}  生成一个集合<br>（2）set1 = set ({1,2,3})<br>（3）set1 = set()   生成一个空集合，只有这一种方式生成空集合，即集合只能通过set()函数来生成空集合，而不能通过set = {}，这个表达式生成一个字典。</p>
-<h3 id="3、数据类型转换"><a href="#3、数据类型转换" class="headerlink" title="3、数据类型转换"></a>3、数据类型转换</h3><h3 id="（1）字符串转集合"><a href="#（1）字符串转集合" class="headerlink" title="（1）字符串转集合"></a>（1）字符串转集合</h3><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello'</span>
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(string1)
-&gt;&gt;&gt; set1
-{<span class="string">'l'</span>, <span class="string">'e'</span>, <span class="string">'o'</span>, <span class="string">'h'</span>}
+        <h2 id="商品菜单"><a href="#商品菜单" class="headerlink" title="商品菜单:"></a>商品菜单:</h2><p>1、查看商品详情（编号，名称，单价，产地，库存，品牌）<br>2、购买商品（编号，名称，数量，总价）<br>3、添加商品<br>4、修改商品（单价，数量）<br>5、删除商品</p>
+<pre><code class="bash">goods_dic = {
+    <span class="string">'goods_no'</span>:[<span class="string">'101'</span>,<span class="string">'102'</span>,<span class="string">'103'</span>,<span class="string">'104'</span>,<span class="string">'105'</span>],
+    <span class="string">'101'</span>:{
+            <span class="string">'id'</span>:<span class="string">'101'</span>,
+            <span class="string">'name'</span>:<span class="string">'电磁炉'</span>,
+            <span class="string">'price'</span>:4000,
+            <span class="string">'address'</span>:<span class="string">'上海'</span>,
+            <span class="string">'num'</span>:100,
+            <span class="string">'brand'</span>:<span class="string">'华硕'</span>
+            },
+    <span class="string">'102'</span>:{
+            <span class="string">'id'</span>:<span class="string">'102'</span>,
+            <span class="string">'name'</span>:<span class="string">'电视机'</span>,
+            <span class="string">'price'</span>:8000,
+            <span class="string">'address'</span>:<span class="string">'北京'</span>,
+            <span class="string">'num'</span>:230,
+            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
+            },
+    <span class="string">'103'</span>:{
+            <span class="string">'id'</span>:<span class="string">'103'</span>,
+            <span class="string">'name'</span>:<span class="string">'电冰箱'</span>,
+            <span class="string">'price'</span>:2000,
+            <span class="string">'address'</span>:<span class="string">'广州'</span>,
+            <span class="string">'num'</span>:280,
+            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
+            },
+    <span class="string">'104'</span>:{
+            <span class="string">'id'</span>:<span class="string">'104'</span>,
+            <span class="string">'name'</span>:<span class="string">'电饭煲'</span>,
+            <span class="string">'price'</span>:5000,
+            <span class="string">'address'</span>:<span class="string">'郑州'</span>,
+            <span class="string">'num'</span>:500,
+            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
+           },
+    <span class="string">'105'</span>:{
+            <span class="string">'id'</span>:<span class="string">'105'</span>,
+            <span class="string">'name'</span>:<span class="string">'电热毯'</span>,
+            <span class="string">'price'</span>:1000,
+            <span class="string">'address'</span>:<span class="string">'南京'</span>,
+            <span class="string">'num'</span>:530,
+            <span class="string">'brand'</span>:<span class="string">'南极人'</span>
+            }
+}
+<span class="built_in">print</span>(<span class="string">'*'</span>*20)
+<span class="built_in">print</span>(<span class="string">'1、查看商品详情'</span>)
+<span class="built_in">print</span>(<span class="string">'2、购买商品'</span>)
+<span class="built_in">print</span>(<span class="string">'3、添加商品'</span>)
+<span class="built_in">print</span>(<span class="string">'4、修改商品'</span>)
+<span class="built_in">print</span>(<span class="string">'5、删除商品'</span>)
+<span class="built_in">print</span>(<span class="string">'6、退出'</span>)
+<span class="built_in">print</span>(<span class="string">'*'</span>*20)
+<span class="keyword">while</span> True:
+    msg = int(input(<span class="string">'请输入菜单选项：'</span>))
+    <span class="keyword">if</span> 1 == msg:  
+        <span class="built_in">print</span>(<span class="string">'编号      名称        单价        产地         库存        品牌'</span>)
+        <span class="keyword">for</span> key <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:
+            <span class="built_in">print</span>(<span class="string">'{}      {}       {}        {}         {}         {}'</span>.format(goods_dic[key][<span class="string">'id'</span>],goods_dic[key][<span class="string">'name'</span>],goods_dic[key][<span class="string">'price'</span>],goods_dic[key][<span class="string">'address'</span>],goods_dic[key][<span class="string">'num'</span>],goods_dic[key][<span class="string">'brand'</span>]))
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> 2 == msg:
+            key1 = input(<span class="string">'请输入购买商品编号：'</span>)
+            <span class="keyword">if</span> key1 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:
+                nums=int(input(<span class="string">'请输入购买商品的数量：'</span>))
+                <span class="keyword">if</span> nums &lt; goods_dic[key1][<span class="string">'num'</span>]:
+                    total = nums * goods_dic[key1][<span class="string">'price'</span>]
+                    <span class="built_in">print</span>(<span class="string">'编号    名称     单价    数量    总价'</span>)
+                    <span class="built_in">print</span>(<span class="string">'{}    {}    {}    {}       {}'</span>.format(goods_dic[key1][<span class="string">'id'</span>],goods_dic[key1][<span class="string">'name'</span>],goods_dic[key1][<span class="string">'price'</span>],nums,total))
+                <span class="keyword">else</span>:
+                    <span class="built_in">print</span>(<span class="string">'购买数量已超出库存！'</span>)
+                    <span class="built_in">continue</span>
+            <span class="keyword">else</span>:
+                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
+
+        <span class="keyword">elif</span> 3 == msg:
+            key2 = input(<span class="string">'请输入添加商品编号：'</span>)
+            <span class="keyword">if</span> key2 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:              
+                <span class="built_in">print</span>(<span class="string">'输入商品编号有误，请重新输入'</span>)
+                <span class="built_in">continue</span>
+            <span class="keyword">else</span>:
+                goods_id = input(<span class="string">'请输入商品编号：'</span>)
+                goods_name = input(<span class="string">'请输入商品名称：'</span>)
+                goods_price = input(<span class="string">'请输入商品价格：'</span>)
+                goods_address = input(<span class="string">'请输入商品产地：'</span>)
+                goods_num = input(<span class="string">'请输入商品数量：'</span>)
+                goods_grand = input(<span class="string">'请输入商品商标：'</span>)
+                goods_dic[<span class="string">'goods_no'</span>].append(goods_id)
+                goods_dic[goods_id] = {
+                    <span class="string">'id'</span> : goods_id,
+                    <span class="string">'name'</span> : goods_name,
+                    <span class="string">'price'</span> : goods_price,
+                    <span class="string">'address'</span> : goods_address,
+                    <span class="string">'num'</span> : goods_num,
+                    <span class="string">'brand'</span> : goods_grand
+                }
+                <span class="built_in">print</span>(<span class="string">'商品添加成功！'</span>)
+        <span class="keyword">elif</span> 4 == msg:
+            key3 = input(<span class="string">'请输入修改商品编号：'</span>)
+            <span class="keyword">if</span> key3 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:     
+                goods_dic[key3][<span class="string">'price'</span>] = input(<span class="string">'请修改商品价格：'</span>)
+                goods_dic[key3][<span class="string">'num'</span>] = input(<span class="string">'请修改商品库存：'</span>)
+                <span class="built_in">print</span>(<span class="string">'商品信息修改成功！'</span>)
+            <span class="keyword">else</span>:
+                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
+        <span class="keyword">elif</span> 5 == msg:
+            key4 = input(<span class="string">'请输入删除的商品编号：'</span>)
+            <span class="keyword">if</span> key4 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]: 
+                goods_dic[<span class="string">'goods_no'</span>].remove(key4)
+                goods_dic.pop(key4)
+                <span class="built_in">print</span>(<span class="string">'商品信息删除成功！'</span>)
+            <span class="keyword">else</span>:
+                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
+        <span class="keyword">elif</span> 6 == msg:
+            <span class="built_in">exit</span>()
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'你输入的商品序号有误，请重新输入！'</span>)
 </code></pre>
-<h3 id="（2）列表转集合"><a href="#（2）列表转集合" class="headerlink" title="（2）列表转集合"></a>（2）列表转集合</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3]
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(list1)
-&gt;&gt;&gt; set1
-{1, 2, 3}
-</code></pre>
-<h3 id="（3）元组转集合"><a href="#（3）元组转集合" class="headerlink" title="（3）元组转集合"></a>（3）元组转集合</h3><pre><code class="bash">&gt;&gt;&gt; tup = (1,2,3)
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(tup)
-&gt;&gt;&gt; set1
-{1, 2, 3}
-</code></pre>
-<h3 id="4、集合的操作"><a href="#4、集合的操作" class="headerlink" title="4、集合的操作"></a>4、集合的操作</h3><h3 id="（1）元素的增加-add"><a href="#（1）元素的增加-add" class="headerlink" title="（1）元素的增加 add()"></a>（1）元素的增加 add()</h3><p>函数格式：set.add(元素)<br>返回值：无返回值<br>结果：集合元素增加一个</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1 = <span class="built_in">set</span>([1,2,3])
-&gt;&gt;&gt; set1.add(4)
-&gt;&gt;&gt; set1
-{1, 2, 3, 4}
-</code></pre>
-<h3 id="（2）元素的删除"><a href="#（2）元素的删除" class="headerlink" title="（2）元素的删除"></a>（2）元素的删除</h3><h3 id="1）remove"><a href="#1）remove" class="headerlink" title="1）remove()"></a>1）remove()</h3><p>函数格式：set.remove(元素)<br>返回值：无返回值<br>结果：集合指定的元素被删除</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3, 4}
-&gt;&gt;&gt; set1.remove(4)
-&gt;&gt;&gt; set1
-{1, 2, 3}
-</code></pre>
-<h3 id="2）discard"><a href="#2）discard" class="headerlink" title="2）discard()"></a>2）discard()</h3><p>函数格式：set.discard()<br>返回值：无返回值<br>结果：集合指定的元素被删除<br>注意：上面两个方法，如果删除一个不存在的元素，其中remove()会报错，discard()<br>无反应</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3}
-&gt;&gt;&gt; set1.discard(3)
-&gt;&gt;&gt; set1
-{1, 2}
-</code></pre>
-<h3 id="3）clear-清空集合中所有的元素"><a href="#3）clear-清空集合中所有的元素" class="headerlink" title="3）clear() 清空集合中所有的元素"></a>3）clear() 清空集合中所有的元素</h3><p>函数格式：set.clear()<br>返回值：无返回值<br>结果：清空集合中所有的元素</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2}
-&gt;&gt;&gt; set1.clear()
-&gt;&gt;&gt; set1
-<span class="built_in">set</span>()
-</code></pre>
-<h3 id="4）del命令-删除集合，并释放其所占内存资源"><a href="#4）del命令-删除集合，并释放其所占内存资源" class="headerlink" title="4）del命令    删除集合，并释放其所占内存资源"></a>4）del命令    删除集合，并释放其所占内存资源</h3><p>函数格式：del set<br>注意：因为集合是无序的，所以用del命令，只能删除整个集合</p>
-<h3 id="5、集合运算："><a href="#5、集合运算：" class="headerlink" title="5、集合运算："></a>5、集合运算：</h3><h3 id="（1）并集运算：-或-函数方法：union"><a href="#（1）并集运算：-或-函数方法：union" class="headerlink" title="（1）并集运算：| 或 函数方法：union()"></a>（1）并集运算：| 或 函数方法：union()</h3><p>两个集合进行并集运算，即将两个集合中的元素合并到一个新的集合中，重复的元素只出现一次，原来集合中的元素不变</p>
-<h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1 = {1,2,3,<span class="string">'one'</span>,<span class="string">'hello'</span>}
-&gt;&gt;&gt; set2 = {1,<span class="string">'two'</span>,<span class="string">'world'</span>}
-&gt;&gt;&gt; set1 | set2
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'two'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set1
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set2
-{<span class="string">'two'</span>, 1, <span class="string">'world'</span>}
-</code></pre>
-<h3 id="或者："><a href="#或者：" class="headerlink" title="或者："></a>或者：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set2
-{<span class="string">'two'</span>, 1, <span class="string">'world'</span>}
-&gt;&gt;&gt; set1.union(set2)
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'two'</span>, <span class="string">'hello'</span>}
-</code></pre>
-<h3 id="（2）交集运算-amp-或-函数方法：intersection"><a href="#（2）交集运算-amp-或-函数方法：intersection" class="headerlink" title="（2）交集运算 &amp; 或 函数方法：intersection()"></a>（2）交集运算 &amp; 或 函数方法：intersection()</h3><p>两个集合进行交集运算，即将两个集合中相同的的元素合并到一个新的集合中</p>
-<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1 &amp; set2 =&gt; {<span class="string">'en'</span>}
-</code></pre>
-<h3 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.intersection(set2)
-</code></pre>
-<h3 id="（3）差集运算-–-或-函数方法：difference"><a href="#（3）差集运算-–-或-函数方法：difference" class="headerlink" title="（3）差集运算 – 或 函数方法：difference()"></a>（3）差集运算 – 或 函数方法：difference()</h3><p>两个集合进行差集运算，即运算符左边的集合与右边的集合进行差运算，相当于使左边集合去除与右边集合相同的元素，剩下来的元素</p>
-<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1 - set2 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>}
-</code></pre>
-<h3 id="或者-1"><a href="#或者-1" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.difference(set2)
-set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set2 - set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>}
-</code></pre>
-<h3 id="或者-2"><a href="#或者-2" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set2.difference(set1)
-</code></pre>
-<h3 id="（4）对称差集运算-或-函数方法：symmetric-difference"><a href="#（4）对称差集运算-或-函数方法：symmetric-difference" class="headerlink" title="（4）对称差集运算 ^ 或 函数方法：symmetric_difference()"></a>（4）对称差集运算 ^ 或 函数方法：symmetric_difference()</h3><p>两个集合进行对称差集运算，即两个集合中除去相同元素，其他所有元素归并到一个新的集合中。</p>
-<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set2 ^ set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>,<span class="string">'jp'</span>, <span class="string">'fr'</span>}
-</code></pre>
-<h3 id="或者-3"><a href="#或者-3" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.symmetric_difference(set2)
-</code></pre>
-<h3 id="（5）子集与超集（父集）"><a href="#（5）子集与超集（父集）" class="headerlink" title="（5）子集与超集（父集）"></a>（5）子集与超集（父集）</h3><p>set1 =&gt; {‘zh’, ‘tw’, ‘en’}<br>subset =&gt; {‘zh’, ‘tw’}<br>我们通过观察可以看到，subset中的内容，属于set1的一部分。因此，<br>subset.issubset(set1) =&gt; True<br>表示，subset是set1集合的一个子集合</p>
-<p>同理，我们也可以说，set1是subset的父集合：<br>set1.issuperset(subset) =&gt; True</p>
-<h3 id="6、集合常用函数"><a href="#6、集合常用函数" class="headerlink" title="6、集合常用函数"></a>6、集合常用函数</h3><h3 id="（1）update"><a href="#（1）update" class="headerlink" title="（1）update()"></a>（1）update()</h3><p>函数格式：set1.update(set2)<br>返回值：无<br>结果：我们将set2中的元素，添加到set1中，如果有相同的元素只保留一个。同时，该操作会修改set1的元素数量。</p>
-<h3 id="例如：-8"><a href="#例如：-8" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.update(set2)
-set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'tw'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'en'</span>}
-</code></pre>
-<h3 id="（2）intersection-update"><a href="#（2）intersection-update" class="headerlink" title="（2）intersection_update()"></a>（2）intersection_update()</h3><p>函数格式：set1.intersection_update(set2)<br>返回值：无<br>结果：我们使用set2中的元素，添加到set1中，其中，保留两个集合中相同的元素。其中，set1、set2中其他的元素被舍弃。</p>
-<h3 id="例如：-9"><a href="#例如：-9" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.intersection_update(set2)
-set1 =&gt; {<span class="string">'en'</span>}
-</code></pre>
-<h3 id="（3）symmetric-difference-update"><a href="#（3）symmetric-difference-update" class="headerlink" title="（3）symmetric_difference_update()"></a>（3）symmetric_difference_update()</h3><p>函数格式：symmetric_difference_update()<br>返回值：无<br>结果：我们使用set1与set2进行运算，只保留两者除去相同元素之外的元素。</p>
-<h3 id="例如：-10"><a href="#例如：-10" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.symmetric_difference_update(set2)
-set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'tw'</span>}
-</code></pre>
-<h3 id="随机产生2组各个数字的列表，如下要求："><a href="#随机产生2组各个数字的列表，如下要求：" class="headerlink" title="随机产生2组各个数字的列表，如下要求："></a>随机产生2组各个数字的列表，如下要求：</h3><p>（1）每个数字取值范围[10,20]<br>（2）统计20个数字中，一共有多少个不同的数字？<br>（3）2组中，不重复的数字有几个？分别是什么？<br>（4）2组中，重复的数字有几个？分别是什么？<br>提示：采用random对象的randrange()方法，实现一定范围内容的随机数字产生</p>
-<pre><code class="bash">import random
-list1 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
-list2 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
-<span class="built_in">print</span>(<span class="string">'列表1的20个随机数：{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'列表2的20个随机数：{}'</span>.format(list2))
-set1 = <span class="built_in">set</span>(list1)
-set2 = <span class="built_in">set</span>(list2)
-<span class="built_in">print</span>(<span class="string">'列表1转为集合：{}'</span>.format(set1))
-<span class="built_in">print</span>(<span class="string">'列表2转为集合：{}'</span>.format(set2))
-a_sum = len(set1)
-b_sum = len(set2)
-<span class="built_in">print</span>(<span class="string">'列表1中不同的数有：{}个'</span>.format(a_sum))
-<span class="built_in">print</span>(<span class="string">'列表2中不同的数有：{}个'</span>.format(b_sum))
-set3 = set1.intersection(set2)
-c_sum = len(set3)
-<span class="built_in">print</span>(<span class="string">'列表1和2中相同的数有：{0}个，分别是：{1}'</span>.format(c_sum,set3))
-set4 = set1.difference(set2)
-set5 = set2.difference(set1)
-set6 = set1 ^set2
-d_sum = len(set6)
-<span class="built_in">print</span>(<span class="string">'列表1和2中不同的数有：{}个，列表1中的有：{}，列表2中的有：{}'</span>.format(d_sum,set4,set5))
-</code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson7.py<br>列表1的20个随机数：[17, 16, 11, 14, 13, 14, 12, 14, 14, 14, 16, 12, 10, 17, 15, 15, 13, 15, 15, 17]<br>列表2的20个随机数：[15, 15, 14, 11, 15, 15, 15, 16, 13, 11, 12, 17, 15, 12, 10, 14, 14, 14, 11, 18]<br>列表1转为集合：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表2转为集合：{10, 11, 12, 13, 14, 15, 16, 17, 18}<br>列表1中不同的数有：8个<br>列表2中不同的数有：9个<br>列表1和2中相同的数有：8个，分别是：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表1和2中不同的数有：1个，列表1中的有：set()，列表2中的有：{18}<br>PS D:\pythoncode&gt;</p>
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson8.py</p>
+<hr>
+<p>1、查看商品详情<br>2、购买商品<br>3、添加商品<br>4、修改商品<br>5、删除商品<br>6、退出</p>
+<hr>
+<p>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       8000        北京         230         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>请输入菜单选项：2<br>请输入购买商品编号：101<br>请输入购买商品的数量：8<br>编号    名称     单价    数量    总价<br>101    电磁炉    4000    8       32000<br>请输入菜单选项：3<br>请输入添加商品编号：106<br>请输入商品编号：106<br>请输入商品名称：电子秤<br>请输入商品价格：1005<br>请输入商品产地：郑州<br>请输入商品数量：106<br>请输入商品商标：华泰<br>商品添加成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       8000        北京         230         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：4<br>请输入修改商品编号：102<br>请修改商品价格：5236<br>请修改商品库存：563<br>商品信息修改成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       5236        北京         563         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：5<br>请输入删除的商品编号：105<br>商品信息删除成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       5236        北京         563         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：6<br>PS D:\pythoncode&gt;</p>
 
       
 
@@ -395,7 +383,7 @@ d_sum = len(set6)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/18/combine-data-type-set/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/19/shopping/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -409,18 +397,9 @@ d_sum = len(set6)
   
 <nav id="article-nav">
   
-    <a href="/2018/07/19/combine-data-type-promote/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          组合数据类型（高级特性或提升）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/18/practice-combine-data-type-dict/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">作业练习——组合数据类型（字典）</div>
+    <a href="/2018/07/19/combine-data-type-promote/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">组合数据类型（高级特性或提升）</div>
       <i class="icon-circle-right"></i>
     </a>
   

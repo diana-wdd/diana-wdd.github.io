@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>组合数据类型（集合） | diana</title>
+  <title>组合数据类型（高级特性或提升） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="组合数据类型——集合set1、集合的概念：集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。 注意：set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。 2、集合的声明与赋值（1">
+  <meta name="description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组合数据类型（集合）">
-<meta property="og:url" content="http://yoursite.com/2018/07/18/combine-data-type-set/index.html">
+<meta property="og:title" content="组合数据类型（高级特性或提升）">
+<meta property="og:url" content="http://yoursite.com/2018/07/19/combine-data-type-promote/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="组合数据类型——集合set1、集合的概念：集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。 注意：set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。 2、集合的声明与赋值（1">
+<meta property="og:description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-19T00:30:05.614Z">
+<meta property="og:updated_time" content="2018-07-19T10:39:36.773Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组合数据类型（集合）">
-<meta name="twitter:description" content="组合数据类型——集合set1、集合的概念：集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。 注意：set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。 2、集合的声明与赋值（1">
+<meta name="twitter:title" content="组合数据类型（高级特性或提升）">
+<meta name="twitter:description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,159 +163,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-combine-data-type-set" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-combine-data-type-promote" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      组合数据类型（集合）
+      组合数据类型（高级特性或提升）
     </h1>
   
 
         
-        <a href="/2018/07/18/combine-data-type-set/" class="archive-article-date">
-  	<time datetime="2018-07-18T11:25:55.471Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
+        <a href="/2018/07/19/combine-data-type-promote/" class="archive-article-date">
+  	<time datetime="2018-07-19T09:45:40.892Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="组合数据类型——集合set"><a href="#组合数据类型——集合set" class="headerlink" title="组合数据类型——集合set"></a>组合数据类型——集合set</h2><h3 id="1、集合的概念："><a href="#1、集合的概念：" class="headerlink" title="1、集合的概念："></a>1、集合的概念：</h3><p>集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。</p>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。</p>
-<h3 id="2、集合的声明与赋值"><a href="#2、集合的声明与赋值" class="headerlink" title="2、集合的声明与赋值"></a>2、集合的声明与赋值</h3><p>（1）set1 = {1,2,3}  生成一个集合<br>（2）set1 = set ({1,2,3})<br>（3）set1 = set()   生成一个空集合，只有这一种方式生成空集合，即集合只能通过set()函数来生成空集合，而不能通过set = {}，这个表达式生成一个字典。</p>
-<h3 id="3、数据类型转换"><a href="#3、数据类型转换" class="headerlink" title="3、数据类型转换"></a>3、数据类型转换</h3><h3 id="（1）字符串转集合"><a href="#（1）字符串转集合" class="headerlink" title="（1）字符串转集合"></a>（1）字符串转集合</h3><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello'</span>
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(string1)
-&gt;&gt;&gt; set1
-{<span class="string">'l'</span>, <span class="string">'e'</span>, <span class="string">'o'</span>, <span class="string">'h'</span>}
+        <h2 id="拓展了迭代器、生成器"><a href="#拓展了迭代器、生成器" class="headerlink" title="拓展了迭代器、生成器"></a>拓展了迭代器、生成器</h2><h3 id="1、range"><a href="#1、range" class="headerlink" title="1、range()"></a>1、range()</h3><p>Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。</p>
+<h3 id="2、列表推导式生成"><a href="#2、列表推导式生成" class="headerlink" title="2、列表推导式生成"></a>2、列表推导式生成</h3><p>格式：[表达式或函数 for x in 序列]<br>含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。</p>
+<h3 id="3、迭代器（Iterator）"><a href="#3、迭代器（Iterator）" class="headerlink" title="3、迭代器（Iterator）"></a>3、迭代器（Iterator）</h3><h3 id="（1）概念："><a href="#（1）概念：" class="headerlink" title="（1）概念："></a>（1）概念：</h3><p>迭代器访问元素，是从第一个元素开始，依次访问后续元素直到结束，其中迭代器只能向前，不能回退。其包含两个方法：iter()和next()<br>Iter()用来创建迭代器，next()用来访问下一个元素。<br>目前我们所学的字符串、列表、元组都可以用来创建迭代器，它们都是可迭代化的对象。</p>
+<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3,4]
+&gt;&gt;&gt; list1_iter = iter(list1)
+&gt;&gt;&gt; next(list1_iter)
+1
+&gt;&gt;&gt; next(list1_iter)
+2
+&gt;&gt;&gt; next(list1_iter)
+3
+&gt;&gt;&gt; next(list1_iter)
+4
 </code></pre>
-<h3 id="（2）列表转集合"><a href="#（2）列表转集合" class="headerlink" title="（2）列表转集合"></a>（2）列表转集合</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3]
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(list1)
-&gt;&gt;&gt; set1
-{1, 2, 3}
+<h3 id="或者（循环）："><a href="#或者（循环）：" class="headerlink" title="或者（循环）："></a>或者（循环）：</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3,4]
+&gt;&gt;&gt; list1_iter = iter(list1)
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> list1_iter:
+    <span class="built_in">print</span>(i) 
+1
+2
+3
+4
 </code></pre>
-<h3 id="（3）元组转集合"><a href="#（3）元组转集合" class="headerlink" title="（3）元组转集合"></a>（3）元组转集合</h3><pre><code class="bash">&gt;&gt;&gt; tup = (1,2,3)
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(tup)
-&gt;&gt;&gt; set1
-{1, 2, 3}
+<h3 id="（2）迭代器两个步骤："><a href="#（2）迭代器两个步骤：" class="headerlink" title="（2）迭代器两个步骤："></a>（2）迭代器两个步骤：</h3><pre><code>一、当调用next()函数，会将迭代器当前位置状态进行改变
+二、会将下一个元素进行返回
+</code></pre><h3 id="（3）迭代器的延迟作用："><a href="#（3）迭代器的延迟作用：" class="headerlink" title="（3）迭代器的延迟作用："></a>（3）迭代器的延迟作用：</h3><p>1）迭代器生成的元素并不是在迭代器声明时就准备好了的，通常是在调用迭代器需要提供该元素时生成的，也就是说，只有我们需要的时候，迭代器才产生相关元素，不需要时并不会主动地生成相关元素。<br>2）我们可以把迭代器看成一个容器，到我们需要时使用next()方法返回容器中的下一个值。<br>3）迭代器实现了工厂模式的对象，它在你每次访问下一个值的时候给你返回。</p>
+<h3 id="（4）可迭代化："><a href="#（4）可迭代化：" class="headerlink" title="（4）可迭代化："></a>（4）可迭代化：</h3><p>表明相关的对象可以创建迭代器对象，同时，他们自身都是可以进行for数据遍历的。同时可以使用isinstance()来判断对象是否为可迭代化。</p>
+<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from collections import Iterable
+string = <span class="string">'wdd'</span>
+<span class="built_in">print</span>(isinstance(string,Iterable))
+结果：
+True
 </code></pre>
-<h3 id="4、集合的操作"><a href="#4、集合的操作" class="headerlink" title="4、集合的操作"></a>4、集合的操作</h3><h3 id="（1）元素的增加-add"><a href="#（1）元素的增加-add" class="headerlink" title="（1）元素的增加 add()"></a>（1）元素的增加 add()</h3><p>函数格式：set.add(元素)<br>返回值：无返回值<br>结果：集合元素增加一个</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1 = <span class="built_in">set</span>([1,2,3])
-&gt;&gt;&gt; set1.add(4)
-&gt;&gt;&gt; set1
-{1, 2, 3, 4}
+<h3 id="（5）isinstance"><a href="#（5）isinstance" class="headerlink" title="（5）isinstance()"></a>（5）isinstance()</h3><p>函数格式：isinstance（对象，类型）<br>返回值：布尔值<br>结果：如果指定的对象属于指定的类型，那么返回True，否则返回False</p>
+<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from collections import Iterable
+string = <span class="string">'wdd'</span>
+<span class="built_in">print</span>(isinstance(string,Iterable))
 </code></pre>
-<h3 id="（2）元素的删除"><a href="#（2）元素的删除" class="headerlink" title="（2）元素的删除"></a>（2）元素的删除</h3><h3 id="1）remove"><a href="#1）remove" class="headerlink" title="1）remove()"></a>1）remove()</h3><p>函数格式：set.remove(元素)<br>返回值：无返回值<br>结果：集合指定的元素被删除</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3, 4}
-&gt;&gt;&gt; set1.remove(4)
-&gt;&gt;&gt; set1
-{1, 2, 3}
+<h3 id="（6）enumerate"><a href="#（6）enumerate" class="headerlink" title="（6）enumerate()"></a>（6）enumerate()</h3><p>函数格式：enumerate(iterable)<br>返回值：生成一个枚举对象</p>
+<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; lis = [1,2,3,4,5,6]
+&gt;&gt;&gt; <span class="keyword">for</span> i,value <span class="keyword">in</span> enumerate(lis):
+    <span class="built_in">print</span>(i,value)   
+0 1
+1 2
+2 3
+3 4
+4 5
+5 6
+或者：
+&gt;&gt;&gt; lis = [1,2,3,4,5,6]
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> enumerate(lis):
+    <span class="built_in">print</span>(i)
+(0, 1)
+(1, 2)
+(2, 3)
+(3, 4)
+(4, 5)
+(5, 6)
+或者：
+&gt;&gt;&gt; enu = enumerate([1,2,3,4,5,6])
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> enu:
+    <span class="built_in">print</span>(i)
+(0, 1)
+(1, 2)
+(2, 3)
+(3, 4)
+(4, 5)
+(5, 6)
 </code></pre>
-<h3 id="2）discard"><a href="#2）discard" class="headerlink" title="2）discard()"></a>2）discard()</h3><p>函数格式：set.discard()<br>返回值：无返回值<br>结果：集合指定的元素被删除<br>注意：上面两个方法，如果删除一个不存在的元素，其中remove()会报错，discard()<br>无反应</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3}
-&gt;&gt;&gt; set1.discard(3)
-&gt;&gt;&gt; set1
-{1, 2}
+<h3 id="4、生成器"><a href="#4、生成器" class="headerlink" title="4、生成器"></a>4、生成器</h3><h3 id="（1）创建方式"><a href="#（1）创建方式" class="headerlink" title="（1）创建方式"></a>（1）创建方式</h3><pre><code>一、使用列表推导式，将[ ]改为（），生成一个generator对象
+二、使用函数方式，采用yield关键字来实现
+</code></pre><h3 id="（2）使用"><a href="#（2）使用" class="headerlink" title="（2）使用"></a>（2）使用</h3><p>生成器我们通常可以认为一种特殊的迭代器，但是它不需要像迭代器一样去实现。<br><strong>iter</strong>,<strong>next</strong>方法，只需要使用yield关键字，该关键字可以在每次调用生成器函数时起到暂停作用，并将其值进行返回。同时还会记录当前运行值的状态。</p>
+<h3 id="5、总结：迭代器和生成器的区别"><a href="#5、总结：迭代器和生成器的区别" class="headerlink" title="5、总结：迭代器和生成器的区别"></a>5、总结：迭代器和生成器的区别</h3><p>（1）容器是一系列的元素集合，str、list、set、dict对象都可以看作是容器，容器都可以进行迭代（即用在while或for循环），凡是这样的容器我们都称为可迭代化对象（Iterable）。<br>（2）可迭代化对象都实现了<strong>iter</strong>方法，该方法返回一个迭代器对象。<br>（3）迭代器都拥有一个状态字段，用于记录下次迭代返回值。它实现了<strong>next</strong>和<strong>iter</strong>方法，迭代器不会一次性把所有的元素都加载到内存中，而是在需要的时候才生成返回结果。<br>（4）生成器是一种特殊的迭代器，它的返回值不是通过return来返回的，而是通过yield来返回的。</p>
+<h3 id="小程序：用生成器做医院挂号程序"><a href="#小程序：用生成器做医院挂号程序" class="headerlink" title="小程序：用生成器做医院挂号程序"></a>小程序：用生成器做医院挂号程序</h3><pre><code class="bash">def gene(n):
+    i = 1000
+    <span class="keyword">while</span> True:
+        <span class="keyword">if</span> <span class="string">'A'</span> ==n:
+            num = <span class="string">'A'</span>+str(i)   
+            yield num
+            i +=1
+        <span class="keyword">elif</span> <span class="string">'B'</span> ==n:
+            num = <span class="string">'B'</span>+str(i)
+            yield num
+            i +=1
+        <span class="keyword">elif</span> <span class="string">'C'</span> ==n:
+            num = <span class="string">'C'</span>+str(i)
+            yield num
+            i +=1
+
+a = gene(<span class="string">'A'</span>)
+b = gene(<span class="string">'B'</span>)
+c = gene(<span class="string">'C'</span>)
+<span class="keyword">while</span> True:
+    <span class="built_in">print</span>(<span class="string">'*'</span>*15)
+    <span class="built_in">print</span>(<span class="string">'A:精神科'</span>)
+    <span class="built_in">print</span>(<span class="string">'B:外科'</span>)
+    <span class="built_in">print</span>(<span class="string">'C:内科'</span>)
+    <span class="built_in">print</span>(<span class="string">'*'</span>*15)
+    msg = input(<span class="string">'请输入就诊科室：'</span>)
+    custmer = input(<span class="string">'请取号就诊，输入你的一卡通姓名：'</span>)
+    <span class="keyword">if</span> <span class="string">'A'</span> ==msg:
+        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(a),msg))
+    <span class="keyword">elif</span> <span class="string">'B'</span> ==msg:    
+        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(b),msg))
+    <span class="keyword">elif</span> <span class="string">'C'</span> ==msg:
+        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(c),msg))
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'请输入正确的科室！'</span>)
 </code></pre>
-<h3 id="3）clear-清空集合中所有的元素"><a href="#3）clear-清空集合中所有的元素" class="headerlink" title="3）clear() 清空集合中所有的元素"></a>3）clear() 清空集合中所有的元素</h3><p>函数格式：set.clear()<br>返回值：无返回值<br>结果：清空集合中所有的元素</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2}
-&gt;&gt;&gt; set1.clear()
-&gt;&gt;&gt; set1
-<span class="built_in">set</span>()
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson10.py</p>
+<hr>
+<p>A:精神科<br>B:外科<br>C:内科</p>
+<hr>
+<p>请输入就诊科室：A<br>请取号就诊，输入你的一卡通姓名：曹猛<br>患者姓名是曹猛，就诊号为A1000的患者请到A就诊</p>
+<hr>
+<p>A:精神科<br>B:外科<br>C:内科</p>
+<hr>
+<p>请输入就诊科室：</p>
+<h3 id="输出-0-1-2-3-4-5-6-7-8-9"><a href="#输出-0-1-2-3-4-5-6-7-8-9" class="headerlink" title="输出 0 1 2 3 4 5 6 7 8 9"></a>输出 0 1 2 3 4 5 6 7 8 9</h3><pre><code class="bash">def getList(n):
+    result = []
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):
+        result.append(i)
+    <span class="built_in">return</span> result
+<span class="keyword">for</span> i <span class="keyword">in</span> getList(10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+生成器做法：
+def iter_gene(n):
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(10):
+        yield i
+<span class="keyword">for</span> i <span class="keyword">in</span> iter_gene(10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>) 
+
+f = iter_gene()
+<span class="keyword">for</span> i <span class="keyword">in</span> range(10):
+    <span class="built_in">print</span>(next(f))
 </code></pre>
-<h3 id="4）del命令-删除集合，并释放其所占内存资源"><a href="#4）del命令-删除集合，并释放其所占内存资源" class="headerlink" title="4）del命令    删除集合，并释放其所占内存资源"></a>4）del命令    删除集合，并释放其所占内存资源</h3><p>函数格式：del set<br>注意：因为集合是无序的，所以用del命令，只能删除整个集合</p>
-<h3 id="5、集合运算："><a href="#5、集合运算：" class="headerlink" title="5、集合运算："></a>5、集合运算：</h3><h3 id="（1）并集运算：-或-函数方法：union"><a href="#（1）并集运算：-或-函数方法：union" class="headerlink" title="（1）并集运算：| 或 函数方法：union()"></a>（1）并集运算：| 或 函数方法：union()</h3><p>两个集合进行并集运算，即将两个集合中的元素合并到一个新的集合中，重复的元素只出现一次，原来集合中的元素不变</p>
-<h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1 = {1,2,3,<span class="string">'one'</span>,<span class="string">'hello'</span>}
-&gt;&gt;&gt; set2 = {1,<span class="string">'two'</span>,<span class="string">'world'</span>}
-&gt;&gt;&gt; set1 | set2
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'two'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set1
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set2
-{<span class="string">'two'</span>, 1, <span class="string">'world'</span>}
-</code></pre>
-<h3 id="或者："><a href="#或者：" class="headerlink" title="或者："></a>或者：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set2
-{<span class="string">'two'</span>, 1, <span class="string">'world'</span>}
-&gt;&gt;&gt; set1.union(set2)
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'two'</span>, <span class="string">'hello'</span>}
-</code></pre>
-<h3 id="（2）交集运算-amp-或-函数方法：intersection"><a href="#（2）交集运算-amp-或-函数方法：intersection" class="headerlink" title="（2）交集运算 &amp; 或 函数方法：intersection()"></a>（2）交集运算 &amp; 或 函数方法：intersection()</h3><p>两个集合进行交集运算，即将两个集合中相同的的元素合并到一个新的集合中</p>
-<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1 &amp; set2 =&gt; {<span class="string">'en'</span>}
-</code></pre>
-<h3 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.intersection(set2)
-</code></pre>
-<h3 id="（3）差集运算-–-或-函数方法：difference"><a href="#（3）差集运算-–-或-函数方法：difference" class="headerlink" title="（3）差集运算 – 或 函数方法：difference()"></a>（3）差集运算 – 或 函数方法：difference()</h3><p>两个集合进行差集运算，即运算符左边的集合与右边的集合进行差运算，相当于使左边集合去除与右边集合相同的元素，剩下来的元素</p>
-<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1 - set2 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>}
-</code></pre>
-<h3 id="或者-1"><a href="#或者-1" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.difference(set2)
-set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set2 - set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>}
-</code></pre>
-<h3 id="或者-2"><a href="#或者-2" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set2.difference(set1)
-</code></pre>
-<h3 id="（4）对称差集运算-或-函数方法：symmetric-difference"><a href="#（4）对称差集运算-或-函数方法：symmetric-difference" class="headerlink" title="（4）对称差集运算 ^ 或 函数方法：symmetric_difference()"></a>（4）对称差集运算 ^ 或 函数方法：symmetric_difference()</h3><p>两个集合进行对称差集运算，即两个集合中除去相同元素，其他所有元素归并到一个新的集合中。</p>
-<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set2 ^ set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>,<span class="string">'jp'</span>, <span class="string">'fr'</span>}
-</code></pre>
-<h3 id="或者-3"><a href="#或者-3" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.symmetric_difference(set2)
-</code></pre>
-<h3 id="（5）子集与超集（父集）"><a href="#（5）子集与超集（父集）" class="headerlink" title="（5）子集与超集（父集）"></a>（5）子集与超集（父集）</h3><p>set1 =&gt; {‘zh’, ‘tw’, ‘en’}<br>subset =&gt; {‘zh’, ‘tw’}<br>我们通过观察可以看到，subset中的内容，属于set1的一部分。因此，<br>subset.issubset(set1) =&gt; True<br>表示，subset是set1集合的一个子集合</p>
-<p>同理，我们也可以说，set1是subset的父集合：<br>set1.issuperset(subset) =&gt; True</p>
-<h3 id="6、集合常用函数"><a href="#6、集合常用函数" class="headerlink" title="6、集合常用函数"></a>6、集合常用函数</h3><h3 id="（1）update"><a href="#（1）update" class="headerlink" title="（1）update()"></a>（1）update()</h3><p>函数格式：set1.update(set2)<br>返回值：无<br>结果：我们将set2中的元素，添加到set1中，如果有相同的元素只保留一个。同时，该操作会修改set1的元素数量。</p>
-<h3 id="例如：-8"><a href="#例如：-8" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.update(set2)
-set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'tw'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'en'</span>}
-</code></pre>
-<h3 id="（2）intersection-update"><a href="#（2）intersection-update" class="headerlink" title="（2）intersection_update()"></a>（2）intersection_update()</h3><p>函数格式：set1.intersection_update(set2)<br>返回值：无<br>结果：我们使用set2中的元素，添加到set1中，其中，保留两个集合中相同的元素。其中，set1、set2中其他的元素被舍弃。</p>
-<h3 id="例如：-9"><a href="#例如：-9" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.intersection_update(set2)
-set1 =&gt; {<span class="string">'en'</span>}
-</code></pre>
-<h3 id="（3）symmetric-difference-update"><a href="#（3）symmetric-difference-update" class="headerlink" title="（3）symmetric_difference_update()"></a>（3）symmetric_difference_update()</h3><p>函数格式：symmetric_difference_update()<br>返回值：无<br>结果：我们使用set1与set2进行运算，只保留两者除去相同元素之外的元素。</p>
-<h3 id="例如：-10"><a href="#例如：-10" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.symmetric_difference_update(set2)
-set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'tw'</span>}
-</code></pre>
-<h3 id="随机产生2组各个数字的列表，如下要求："><a href="#随机产生2组各个数字的列表，如下要求：" class="headerlink" title="随机产生2组各个数字的列表，如下要求："></a>随机产生2组各个数字的列表，如下要求：</h3><p>（1）每个数字取值范围[10,20]<br>（2）统计20个数字中，一共有多少个不同的数字？<br>（3）2组中，不重复的数字有几个？分别是什么？<br>（4）2组中，重复的数字有几个？分别是什么？<br>提示：采用random对象的randrange()方法，实现一定范围内容的随机数字产生</p>
-<pre><code class="bash">import random
-list1 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
-list2 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
-<span class="built_in">print</span>(<span class="string">'列表1的20个随机数：{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'列表2的20个随机数：{}'</span>.format(list2))
-set1 = <span class="built_in">set</span>(list1)
-set2 = <span class="built_in">set</span>(list2)
-<span class="built_in">print</span>(<span class="string">'列表1转为集合：{}'</span>.format(set1))
-<span class="built_in">print</span>(<span class="string">'列表2转为集合：{}'</span>.format(set2))
-a_sum = len(set1)
-b_sum = len(set2)
-<span class="built_in">print</span>(<span class="string">'列表1中不同的数有：{}个'</span>.format(a_sum))
-<span class="built_in">print</span>(<span class="string">'列表2中不同的数有：{}个'</span>.format(b_sum))
-set3 = set1.intersection(set2)
-c_sum = len(set3)
-<span class="built_in">print</span>(<span class="string">'列表1和2中相同的数有：{0}个，分别是：{1}'</span>.format(c_sum,set3))
-set4 = set1.difference(set2)
-set5 = set2.difference(set1)
-set6 = set1 ^set2
-d_sum = len(set6)
-<span class="built_in">print</span>(<span class="string">'列表1和2中不同的数有：{}个，列表1中的有：{}，列表2中的有：{}'</span>.format(d_sum,set4,set5))
-</code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson7.py<br>列表1的20个随机数：[17, 16, 11, 14, 13, 14, 12, 14, 14, 14, 16, 12, 10, 17, 15, 15, 13, 15, 15, 17]<br>列表2的20个随机数：[15, 15, 14, 11, 15, 15, 15, 16, 13, 11, 12, 17, 15, 12, 10, 14, 14, 14, 11, 18]<br>列表1转为集合：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表2转为集合：{10, 11, 12, 13, 14, 15, 16, 17, 18}<br>列表1中不同的数有：8个<br>列表2中不同的数有：9个<br>列表1和2中相同的数有：8个，分别是：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表1和2中不同的数有：1个，列表1中的有：set()，列表2中的有：{18}<br>PS D:\pythoncode&gt;</p>
 
       
 
@@ -395,7 +398,7 @@ d_sum = len(set6)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/18/combine-data-type-set/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/19/combine-data-type-promote/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -409,18 +412,18 @@ d_sum = len(set6)
   
 <nav id="article-nav">
   
-    <a href="/2018/07/19/combine-data-type-promote/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/07/19/shopping/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          组合数据类型（高级特性或提升）
+          购物小案例
         
       </div>
     </a>
   
   
-    <a href="/2018/07/18/practice-combine-data-type-dict/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">作业练习——组合数据类型（字典）</div>
+    <a href="/2018/07/18/combine-data-type-set/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">组合数据类型（集合）</div>
       <i class="icon-circle-right"></i>
     </a>
   
