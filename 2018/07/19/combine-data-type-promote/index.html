@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-19T10:39:36.773Z">
+<meta property="og:updated_time" content="2018-07-21T00:23:32.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组合数据类型（高级特性或提升）">
 <meta name="twitter:description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
@@ -314,11 +314,36 @@ def iter_gene(n):
         yield i
 <span class="keyword">for</span> i <span class="keyword">in</span> iter_gene(10):
     <span class="built_in">print</span>(i,end=<span class="string">' '</span>) 
-
-f = iter_gene()
-<span class="keyword">for</span> i <span class="keyword">in</span> range(10):
-    <span class="built_in">print</span>(next(f))
 </code></pre>
+<h3 id="6、copy-（浅拷贝）-和-deepcopy-（深拷贝）"><a href="#6、copy-（浅拷贝）-和-deepcopy-（深拷贝）" class="headerlink" title="6、copy()（浅拷贝） 和 deepcopy()（深拷贝）"></a>6、copy()（浅拷贝） 和 deepcopy()（深拷贝）</h3><h3 id="（1）浅拷贝：我们使用copy-函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。"><a href="#（1）浅拷贝：我们使用copy-函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。" class="headerlink" title="（1）浅拷贝：我们使用copy()函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。"></a>（1）浅拷贝：我们使用copy()函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。</h3><h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">list1 = [1,2,3,4,5]
+list2 = list1.copy()  <span class="comment">#经list1中的元素赋值给list2，此时他们的值相等</span>
+<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
+<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
+list1[3] = 6  <span class="comment">#此时，对list1中索引位3的值进行修改，变为6</span>
+<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
+<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
+</code></pre>
+<h3 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, 4, 5]<br>初始化list2的内容[1, 2, 3, 4, 5]<br>改变后list1的内容[1, 2, 3, 6, 5]<br>改变后list2的内容[1, 2, 3, 4, 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表改变，但是list2的列表值没有改变</p>
+<h3 id="一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy-对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。"><a href="#一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy-对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。" class="headerlink" title="一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy()对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。"></a>一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy()对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。</h3><h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">list1 = [1,2,3,[<span class="string">'one'</span>,<span class="string">'four'</span>]],5]
+list2 = list1.copy()
+<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
+<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
+list1[3][0] = <span class="string">'two'</span>
+<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
+<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
+</code></pre>
+<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3><p>SyntaxError: invalid syntax<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>初始化list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>改变后list1的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>改变后list2的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表值改变，list2也随之改变。</p>
+<h3 id="总结：这种现象我们成为浅拷贝，copy-函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。"><a href="#总结：这种现象我们成为浅拷贝，copy-函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。" class="headerlink" title="总结：这种现象我们成为浅拷贝，copy()函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。"></a>总结：这种现象我们成为浅拷贝，copy()函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。</h3><h3 id="（2）深拷贝：我们需要一如copy这个模块，调用deepcopy-函数，写法如下："><a href="#（2）深拷贝：我们需要一如copy这个模块，调用deepcopy-函数，写法如下：" class="headerlink" title="（2）深拷贝：我们需要一如copy这个模块，调用deepcopy()函数，写法如下："></a>（2）深拷贝：我们需要一如copy这个模块，调用deepcopy()函数，写法如下：</h3><h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">import copy
+list1 = [1,2,3,[<span class="string">'one'</span>,<span class="string">'four'</span>],5]
+list2 = copy.deepcopy(list1)
+<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
+<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
+list1[3][0] = <span class="string">'two'</span>
+<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
+<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
+</code></pre>
+<h3 id="结果：-3"><a href="#结果：-3" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>初始化list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>改变后list1的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>改变后list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表值改变，list2并没有随之改变，那么也就意味着，deepcopy()将list1中内容，包括嵌套里的元素都进行了副本赋值给list2，因此，它们是值相同，并没有指向同一个内存地址。</p>
+<h3 id="2、sort（）与sorted（）"><a href="#2、sort（）与sorted（）" class="headerlink" title="2、sort（）与sorted（）"></a>2、sort（）与sorted（）</h3><p>（1）sort（）函数提供排序功能，同时该排序是实现了永久性排序，即会改变原有列表的元素位置。（list.sort（））<br>（2）sorted（）函数提供排序功能，同时该排序是实现了临时性排序，即只是产生一个有序结果，并不会真正改变原列表中元素的位置。（sorted（list））</p>
 
       
 
