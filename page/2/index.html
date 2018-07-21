@@ -161,6 +161,231 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-circulation-control-for-while" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/12/circulation-control-for-while/">循环控制语句（for和while）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/12/circulation-control-for-while/" class="archive-article-date">
+  	<time datetime="2018-07-12T13:59:26.855Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="控制语句——循环（for-和-while）控制"><a href="#控制语句——循环（for-和-while）控制" class="headerlink" title="控制语句——循环（for 和 while）控制"></a>控制语句——循环（for 和 while）控制</h2><h3 id="1、for循环控制语句"><a href="#1、for循环控制语句" class="headerlink" title="1、for循环控制语句"></a>1、for循环控制语句</h3><h4 id="（1）for循环格式（两种）："><a href="#（1）for循环格式（两种）：" class="headerlink" title="（1）for循环格式（两种）："></a>（1）for循环格式（两种）：</h4><h5 id="第一种格式（推荐使用）："><a href="#第一种格式（推荐使用）：" class="headerlink" title="第一种格式（推荐使用）："></a>第一种格式（推荐使用）：</h5><pre><code>            for 变量 in 集合:
+                 代码
+
+说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。
+
+注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。
+</code></pre><h4 id="例如（竖着打印）："><a href="#例如（竖着打印）：" class="headerlink" title="例如（竖着打印）："></a>例如（竖着打印）：</h4><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item)
+h
+e
+l
+l
+o
+
+w
+o
+r
+l
+D
+
+横着打印：
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item,end=<span class="string">' '</span>)    
+h e l l o   w o r l d 
+</code></pre>
+<h5 id="第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。"><a href="#第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。" class="headerlink" title="第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。"></a>第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。</h5><pre><code>        for i in range（循环次数） 
+               代码
+
+说明：这种循环方式采用指定循环次数，对目标集合进行遍历。其做法主要是让循环与集合的下标同步，在循环次数时，一同取出集合指定下标的对应值。
+</code></pre><h3 id="（2）range-函数："><a href="#（2）range-函数：" class="headerlink" title="（2）range() 函数："></a>（2）range() 函数：</h3><pre><code>函数格式有两种：
+第一种：
+range(stop): 缺省情况下，表示从0开始，循环n次
+
+第二种：
+range([star,]stop[,step]) 其中，
+star：时循环开始的值
+stop：循环结束的值（循环次数）
+step：循环步长
+
+注意：此处循环，会根据stop规定循环的次数进行循环，循环都是从头（0）开始，但是显示的值是按照star的值开始的
+</code></pre><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(0,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+0 1 2 3 4 5 6 7 8 9 
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(5,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+5 6 7 8 9 
+</code></pre>
+<h3 id="（3）for循环的常用方式：嵌套"><a href="#（3）for循环的常用方式：嵌套" class="headerlink" title="（3）for循环的常用方式：嵌套"></a>（3）for循环的常用方式：嵌套</h3><pre><code>for i in range(次数)：
+    for j in range(次数)：
+注意：这种嵌套表示的过程中，变量的位置尤为重要，通用原则为：如果变量的值需要通过外层循环来获取或生成，那么我们可以将其设为全局变量，即与外层循环for同等级的变量，如果变量需要在内层循环中生成或获取，我们通常会在外循环中声明，即与内循环同级。
+</code></pre><h4 id="例1、100以内数的和"><a href="#例1、100以内数的和" class="headerlink" title="例1、100以内数的和"></a>例1、100以内数的和</h4><pre><code class="bash">num=0
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,101):
+        num += i   
+<span class="built_in">print</span>(num)
+</code></pre>
+<h4 id="例2、求一个数的阶乘之和（嵌套循环）"><a href="#例2、求一个数的阶乘之和（嵌套循环）" class="headerlink" title="例2、求一个数的阶乘之和（嵌套循环）"></a>例2、求一个数的阶乘之和（嵌套循环）</h4><pre><code class="bash">num = int(input(<span class="string">"请输入一个数字: "</span>))   <span class="comment">#获取一个数字</span>
+sum = 0
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1,1):
+    result = 1  <span class="comment">#此处的 result 要在此处初始化，为了保证每一次的内循环都是从 1 开始</span>
+    <span class="keyword">for</span> j <span class="keyword">in</span> range(1,i+1,1):  <span class="comment">#每个数的小阶乘</span>
+        result *= j
+    sum += result  <span class="comment">#每个小阶乘的累加</span>
+<span class="built_in">print</span>(<span class="string">"{}的阶乘和为{}!"</span>.format(num,sum))
+</code></pre>
+<h4 id="例3、5的阶乘之和-不是嵌套"><a href="#例3、5的阶乘之和-不是嵌套" class="headerlink" title="例3、5的阶乘之和(不是嵌套)"></a>例3、5的阶乘之和(不是嵌套)</h4><pre><code class="bash">sum1 = 0
+result = 1
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,5):
+    result = result * i
+    sum1 += result  
+<span class="built_in">print</span>(sum1)
+</code></pre>
+<h4 id="例4、求一个数的奇数的阶乘之和（嵌套循环）"><a href="#例4、求一个数的奇数的阶乘之和（嵌套循环）" class="headerlink" title="例4、求一个数的奇数的阶乘之和（嵌套循环）"></a>例4、求一个数的奇数的阶乘之和（嵌套循环）</h4><pre><code class="bash">num = int(input(<span class="string">"请输入一个数字: "</span>))   <span class="comment">#获取一个数字</span>
+sum1 = 0
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1):
+    <span class="keyword">if</span> i % 2 != 0:    <span class="comment">#求奇数</span>
+        result = 1
+        <span class="keyword">for</span> j <span class="keyword">in</span> range(1,i+1):  <span class="comment">#每个数的小阶乘</span>
+            result *= j
+        sum1 += result  <span class="comment">#每个小阶乘的累加</span>
+<span class="built_in">print</span>(<span class="string">"{}的奇数阶乘和为{}!"</span>.format(num,sum1))
+</code></pre>
+<h4 id="例5、break关键字"><a href="#例5、break关键字" class="headerlink" title="例5、break关键字"></a>例5、break关键字</h4><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(10):
+    <span class="keyword">if</span> i==5:
+        <span class="built_in">break</span> <span class="comment">#中断for这个循环，直接跳出来</span>
+    <span class="built_in">print</span>(i)
+<span class="built_in">print</span>()
+</code></pre>
+<h4 id="例6、continue关键字"><a href="#例6、continue关键字" class="headerlink" title="例6、continue关键字"></a>例6、continue关键字</h4><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(10):
+    <span class="keyword">if</span> i==5:
+        <span class="built_in">continue</span> <span class="comment">#中断当前这次循环，进行下一次循环</span>
+    <span class="built_in">print</span>(i)
+<span class="built_in">print</span>(<span class="string">'ok'</span>)
+</code></pre>
+<h3 id="2、while循环控制语句"><a href="#2、while循环控制语句" class="headerlink" title="2、while循环控制语句"></a>2、while循环控制语句</h3><h4 id="（1）循环格式："><a href="#（1）循环格式：" class="headerlink" title="（1）循环格式："></a>（1）循环格式：</h4><pre><code>while 条件：
+     代码
+</code></pre><h4 id="（2）break与continue"><a href="#（2）break与continue" class="headerlink" title="（2）break与continue"></a>（2）break与continue</h4><pre><code>break：当满足指定条件时，break表示中断（中止）此循环，如果循环外部还有其他代码则继续向下执行。
+continue：当满足指定条件时，continue表示结束本次循环，开始下一次循环。注意continue并没有退出循环。
+
+同时，这两个关键字都是必须配合循环语句来使用，不能单独用在其他地方，比如：if
+</code></pre><h4 id="例1、whle循环求偶数和"><a href="#例1、whle循环求偶数和" class="headerlink" title="例1、whle循环求偶数和"></a>例1、whle循环求偶数和</h4><pre><code class="bash">i = 0
+sum1=0
+<span class="keyword">while</span> i &lt;= 5:
+    <span class="keyword">if</span> i % 2 ==0:
+        sum1 += i
+    i = i + 1
+<span class="built_in">print</span>(sum1)
+</code></pre>
+<h4 id="例2、三次登录不成功请重置密码"><a href="#例2、三次登录不成功请重置密码" class="headerlink" title="例2、三次登录不成功请重置密码"></a>例2、三次登录不成功请重置密码</h4><pre><code class="bash">count = 2
+<span class="keyword">while</span> count &gt;=0:
+    username = input(<span class="string">'请输入用户名：'</span>)
+    password = input(<span class="string">'请输入密码：'</span>) <span class="comment">#此处就是用字符串表示，不要用int转型</span>
+    <span class="keyword">if</span> username == <span class="string">'wdd'</span> and password == <span class="string">'123'</span>:
+        <span class="built_in">print</span>(<span class="string">'恭喜你，登陆成功！'</span>)
+        <span class="built_in">break</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> count &gt; 0:
+            <span class="built_in">print</span>(<span class="string">'用户名或密码不正确！你还有{}次机会！'</span>.format(count))
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'三次机会已使用完毕，请重置密码！'</span>)
+            <span class="built_in">break</span>
+    count = count-1
+</code></pre>
+<h4 id="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："><a href="#例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：" class="headerlink" title="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："></a>例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：</h4><h4 id="请输入你要发布的内容……-用in判断敏感词"><a href="#请输入你要发布的内容……-用in判断敏感词" class="headerlink" title="请输入你要发布的内容…….(用in判断敏感词)"></a>请输入你要发布的内容…….(用in判断敏感词)</h4><h4 id="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"><a href="#如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）" class="headerlink" title="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"></a>如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）</h4><h4 id="如果退出，请输入E：（出现-Bye-Bye）"><a href="#如果退出，请输入E：（出现-Bye-Bye）" class="headerlink" title="如果退出，请输入E：（出现 Bye Bye）"></a>如果退出，请输入E：（出现 Bye Bye）</h4><pre><code class="bash">words=<span class="string">'苍老师嘻哈'</span>
+<span class="keyword">while</span> True:
+    msg = input(<span class="string">'欢迎进入论坛，发帖请输入I；退出请输入E；您要输入的是：'</span>)
+    <span class="keyword">if</span> msg == <span class="string">'I'</span>:
+        content = input(<span class="string">'请输入帖子内容：'</span>)
+        <span class="keyword">for</span> item <span class="keyword">in</span> words:
+            <span class="keyword">if</span> item <span class="keyword">in</span> content:
+                content = <span class="string">'您输入的内容中，包含敏感词，请重新输入：'</span>
+                <span class="built_in">continue</span>
+        <span class="built_in">print</span>(content)
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'BYE-BYE'</span>)
+        <span class="built_in">break</span>
+</code></pre>
+<h4 id="例4、计算-1-2-3-…-99-中除了88以外所有数的总和"><a href="#例4、计算-1-2-3-…-99-中除了88以外所有数的总和" class="headerlink" title="例4、计算 1 - 2 + 3 … + 99 中除了88以外所有数的总和"></a>例4、计算 1 - 2 + 3 … + 99 中除了88以外所有数的总和</h4><pre><code class="bash">count = 1 <span class="comment">#初始值</span>
+sum = 0 <span class="comment">#用于存储结果</span>
+<span class="keyword">while</span> count &lt; 100 : <span class="comment">#如果&lt;100则进入while循环</span>
+    <span class="keyword">if</span> count % 2 != 0 : <span class="comment">#判断奇偶数 </span>
+        sum += count <span class="comment">#如果是奇数 按照规则相加</span>
+
+    <span class="keyword">if</span> count % 2 == 0 : <span class="comment">#判断奇偶数 </span>
+        <span class="keyword">if</span> count == 88 : <span class="comment">#判断每次循环的数字是否为88</span>
+            <span class="built_in">continue</span> <span class="comment">#如果是88 直接跳过下面相减得过程</span>
+        <span class="keyword">else</span> :
+            sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
+
+    count += 1 <span class="comment">#count自+1</span>
+<span class="built_in">print</span>(sum)<span class="comment">#打印最后sum结果</span>
+</code></pre>
+<h4 id="例5、计算-1-2-3-…-99-所有数的总和"><a href="#例5、计算-1-2-3-…-99-所有数的总和" class="headerlink" title="例5、计算 1 - 2 + 3 … + 99 所有数的总和"></a>例5、计算 1 - 2 + 3 … + 99 所有数的总和</h4><pre><code class="bash">count = 1 <span class="comment">#初始值</span>
+sum = 0 <span class="comment">#用于存储结果</span>
+<span class="keyword">while</span> count &lt; 100 : <span class="comment">#如果&lt;100则进入while循环</span>
+    <span class="keyword">if</span> count % 2 != 0 : <span class="comment">#判断奇偶数 </span>
+        sum += count <span class="comment">#如果是奇数 按照规则相加</span>
+    <span class="keyword">else</span> :
+        sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
+
+    count += 1 <span class="comment">#count自+1</span>
+<span class="built_in">print</span>(sum)<span class="comment">#打印最后sum结果</span>
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/12/circulation-control-for-while/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-condition-control-if" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
