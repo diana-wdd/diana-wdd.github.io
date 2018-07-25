@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>访问博客园小案例 | diana</title>
+  <title>关于函数的全局变量与局部变量 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目要求如下：启动程序，首页面应该显示成如下格式：    欢迎来到博客园首页    1:请登录    2:请注册    3:文章页面    4:日记页面    5:评论页面    6:收藏页面    7:注销    8:退出程序2)，用户输入选项，3~6选项必须在用户登录成功之后，才能访问成功。3)，用户选择登录，用户名密码从字典中读取验证，三次机会，没成功则结束整个程  序运行，成功之后，可以选">
+  <meta name="description" content="1、局部变量与全局变量（1）python中，函数在调用的时候，python才会给函数一个内存地址，用来执行函数内部的相关代码。（2）python程序在运行时，首先会将程序最外部的变量载入内存，并将其分配相关的内存空间，这种变量为全局变量。（3）函数中声明的变量，只有在函数被执行时，才会被分配内存空间进行执行。这种变量为局部变量。（4）python程序执行的过程中，执行函数时首先会检查其函数内部的局">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="访问博客园小案例">
-<meta property="og:url" content="http://yoursite.com/2018/07/21/fangwen-bo-ke-yuan/index.html">
+<meta property="og:title" content="关于函数的全局变量与局部变量">
+<meta property="og:url" content="http://yoursite.com/2018/07/25/def-variables/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="题目要求如下：启动程序，首页面应该显示成如下格式：    欢迎来到博客园首页    1:请登录    2:请注册    3:文章页面    4:日记页面    5:评论页面    6:收藏页面    7:注销    8:退出程序2)，用户输入选项，3~6选项必须在用户登录成功之后，才能访问成功。3)，用户选择登录，用户名密码从字典中读取验证，三次机会，没成功则结束整个程  序运行，成功之后，可以选">
+<meta property="og:description" content="1、局部变量与全局变量（1）python中，函数在调用的时候，python才会给函数一个内存地址，用来执行函数内部的相关代码。（2）python程序在运行时，首先会将程序最外部的变量载入内存，并将其分配相关的内存空间，这种变量为全局变量。（3）函数中声明的变量，只有在函数被执行时，才会被分配内存空间进行执行。这种变量为局部变量。（4）python程序执行的过程中，执行函数时首先会检查其函数内部的局">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-21T04:16:35.312Z">
+<meta property="og:updated_time" content="2018-07-25T04:52:49.785Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="访问博客园小案例">
-<meta name="twitter:description" content="题目要求如下：启动程序，首页面应该显示成如下格式：    欢迎来到博客园首页    1:请登录    2:请注册    3:文章页面    4:日记页面    5:评论页面    6:收藏页面    7:注销    8:退出程序2)，用户输入选项，3~6选项必须在用户登录成功之后，才能访问成功。3)，用户选择登录，用户名密码从字典中读取验证，三次机会，没成功则结束整个程  序运行，成功之后，可以选">
+<meta name="twitter:title" content="关于函数的全局变量与局部变量">
+<meta name="twitter:description" content="1、局部变量与全局变量（1）python中，函数在调用的时候，python才会给函数一个内存地址，用来执行函数内部的相关代码。（2）python程序在运行时，首先会将程序最外部的变量载入内存，并将其分配相关的内存空间，这种变量为全局变量。（3）函数中声明的变量，只有在函数被执行时，才会被分配内存空间进行执行。这种变量为局部变量。（4）python程序执行的过程中，执行函数时首先会检查其函数内部的局">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,147 +163,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-fangwen-bo-ke-yuan" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-def-variables" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      访问博客园小案例
+      关于函数的全局变量与局部变量
     </h1>
   
 
         
-        <a href="/2018/07/21/fangwen-bo-ke-yuan/" class="archive-article-date">
-  	<time datetime="2018-07-21T04:07:44.106Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        <a href="/2018/07/25/def-variables/" class="archive-article-date">
+  	<time datetime="2018-07-25T04:48:46.222Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目要求如下："><a href="#题目要求如下：" class="headerlink" title="题目要求如下："></a>题目要求如下：</h2><p>启动程序，首页面应该显示成如下格式：<br>    欢迎来到博客园首页<br>    1:请登录<br>    2:请注册<br>    3:文章页面<br>    4:日记页面<br>    5:评论页面<br>    6:收藏页面<br>    7:注销<br>    8:退出程序<br>2)，用户输入选项，3~6选项必须在用户登录成功之后，才能访问成功。<br>3)，用户选择登录，用户名密码从字典中读取验证，三次机会，没成功则结束整个程  序运行，成功之后，可以选择访问3~6项，访问页面之前，必须要在打印信息，  格式为–&gt;用户:xx 在xx年xx月xx日 执行了 %s操作，访问页面时，页面内容为：欢  迎xx用户访问评论（文章，日记，收藏）页面<br>4)，如果用户没有注册，则可以选择注册，注册成功之后，可以自动完成登录（完成自动登录+5分），然后进入首页选择。<br>5)，注销用户是指注销用户的登录状态，使其在访问任何页面时，必须重新登录。<br>6)，退出程序为结束整个程序运行。</p>
-<pre><code class="bash">import time
-<span class="comment">#import os </span>
-<span class="comment">#print(time.strftime('%Y-%m-%d',time.localtime()))</span>
-<span class="comment">#os.system('cls')</span>
-user_status = {<span class="string">'username'</span>: None,<span class="string">'status'</span>: False}
-login_dic = {
-    <span class="string">'user_name'</span> : [<span class="string">'rose'</span>,<span class="string">'jack'</span>,<span class="string">'wdd'</span>],
-    <span class="string">'rose'</span> : {
-        <span class="string">'name'</span> : <span class="string">'rose'</span>,
-        <span class="string">'pass_word'</span> : <span class="string">'123'</span>,
-    },
-    <span class="string">'jack'</span> : {
-        <span class="string">'name'</span> : <span class="string">'jack'</span>,
-        <span class="string">'pass_word'</span> : <span class="string">'456'</span>,
-    },
-    <span class="string">'wdd'</span> : {
-        <span class="string">'name'</span> : <span class="string">'wdd'</span>,
-        <span class="string">'pass_word'</span> : <span class="string">'789'</span>,
-    }
-}
-dic1 = {
-    1: <span class="string">'请登录'</span>,
-    2: <span class="string">'请注册'</span>,
-    3: <span class="string">'文章页面'</span>,
-    4: <span class="string">'日记页面'</span>,
-    5: <span class="string">'评论页面'</span>,
-    6: <span class="string">'收藏页面'</span>,
-    8: <span class="string">'退出程序'</span>
-}
-<span class="built_in">print</span>(<span class="string">'欢迎您来到博客园首页！'</span>)
-<span class="built_in">print</span>(<span class="string">'*'</span>*15)
-<span class="keyword">for</span> x,y <span class="keyword">in</span> dic1.items():
-    <span class="built_in">print</span>(x,y) 
-<span class="built_in">print</span>(<span class="string">'*'</span>*15)
-<span class="built_in">print</span>(<span class="string">'温馨提示：如果您没注册，请注册并登录！如果您已经登录，请选择3~8操作！'</span>)
-<span class="keyword">while</span> True: 
-    msg =int(input(<span class="string">'您的选择是：'</span>)) 
-    <span class="keyword">if</span> 1 == msg:
-        count = 2
-        <span class="keyword">while</span> count &gt;= 0: 
-            userName = input(<span class="string">'请输入您的用户名：'</span>).strip()
-            <span class="keyword">if</span> userName <span class="keyword">in</span> login_dic[<span class="string">'user_name'</span>]:
-                userPass = input(<span class="string">'请输入您的用户密码：'</span>).strip()
-                <span class="keyword">if</span> userPass == login_dic[userName][<span class="string">'pass_word'</span>]:
-                    user_status[<span class="string">'username'</span>] = userName
-                    user_status[<span class="string">'status'</span>] = True
-                    <span class="built_in">print</span>(<span class="string">'恭喜用户{}成功登录！'</span>.format(userName))
-                    <span class="built_in">print</span>(<span class="string">'请选择您所要继续进行的操作：'</span>)                  
-                    <span class="built_in">break</span>
-                <span class="keyword">else</span>:
-                    <span class="keyword">if</span> count &gt; 0:
-                        <span class="built_in">print</span>(<span class="string">'密码不正确！你还有{}次机会！'</span>.format(count))
-                    <span class="keyword">else</span>:
-                        <span class="built_in">print</span>(<span class="string">'三次机会已使用完毕，请重置密码！'</span>)
-                        <span class="built_in">break</span>
-                count = count-1
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'抱歉，该用户不存在，请检查是否注册或输入错误！'</span>)        
-    <span class="keyword">elif</span> 2 == msg:
-        <span class="keyword">while</span> True:
-            <span class="built_in">print</span>(<span class="string">'欢迎进入注册页面！'</span>)
-            userName = input(<span class="string">'请输入您的用户名：'</span>).strip()
-            <span class="keyword">if</span> userName <span class="keyword">in</span> login_dic[<span class="string">'user_name'</span>]:
-                <span class="built_in">print</span>(<span class="string">'此用户已经存在，请重新输入您的用户名！'</span>)
-            <span class="keyword">else</span>:
-                userPass = input(<span class="string">'请输入您的用户密码：'</span>).strip()
-                login_dic[<span class="string">'user_name'</span>].append(userName)
-                login_dic[userName] = {
-                    <span class="string">'name'</span> : userName,
-                    <span class="string">'pass_word'</span> : userPass
-                }
-                <span class="built_in">print</span>(<span class="string">'恭喜用户{}注册成功，请登录！'</span>.format(userName))
-                <span class="built_in">break</span>          
-    <span class="keyword">elif</span> 3 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 4 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 5 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 6 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 7 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            del user_status[<span class="string">'username'</span>]
-            user_status[<span class="string">'status'</span>]=False
-            <span class="built_in">print</span>(<span class="string">'您已注销成功'</span>)
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 8 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'感谢您的来访！'</span>)
-            <span class="built_in">exit</span>()
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'请选择正确选项！'</span>)
-</code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson13.py<br>欢迎您来到博客园首页！</p>
-<hr>
-<p>1 请登录<br>2 请注册<br>3 文章页面<br>4 日记页面<br>5 评论页面<br>6 收藏页面<br>7 注销<br>8 退出程序</p>
-<hr>
-<p>温馨提示：如果您没注册，请注册并登录！如果您已经登录，请选择3~8操作！<br>您的选择是：1<br>请输入您的用户名：wdd<br>请输入您的用户密码：789<br>恭喜用户wdd成功登录！<br>请选择您所要继续进行的操作：<br>您的选择是：3<br>用户wdd在2018-07-21执行了文章页面操作！<br>欢迎用户wdd访问文章页面<br>您的选择是：4<br>用户wdd在2018-07-21执行了日记页面操作！<br>欢迎用户wdd访问日记页面<br>您的选择是：5<br>用户wdd在2018-07-21执行了评论页面操作！<br>欢迎用户wdd访问评论页面<br>您的选择是：6<br>用户wdd在2018-07-21执行了收藏页面操作！<br>欢迎用户wdd访问收藏页面<br>您的选择是：7<br>用户wdd在2018-07-21执行了注销操作！<br>您已注销成功<br>您的选择是：5<br>用户wdd在2018-07-21执行了评论页面操作！<br>请登录后再操作！<br>您的选择是：2<br>欢迎进入注册页面！<br>请输入您的用户名：cm<br>请输入您的用户密码：147<br>恭喜用户cm注册成功，请登录！<br>您的选择是：8<br>用户cm在2018-07-21执行了退出程序操作！<br>请登录后再操作</p>
+        <h3 id="1、局部变量与全局变量"><a href="#1、局部变量与全局变量" class="headerlink" title="1、局部变量与全局变量"></a>1、局部变量与全局变量</h3><p>（1）python中，函数在调用的时候，python才会给函数一个内存地址，用来执行函数内部的相关代码。<br>（2）python程序在运行时，首先会将程序最外部的变量载入内存，并将其分配相关的内存空间，这种变量为全局变量。<br>（3）函数中声明的变量，只有在函数被执行时，才会被分配内存空间进行执行。这种变量为局部变量。<br>（4）python程序执行的过程中，执行函数时首先会检查其函数内部的局部变量是否存在，如果存在就调用它，如果不存在，就从外部全局变量中进行调用，如果仍然没有发现相关内容，则报错。</p>
+<h3 id="2、全局作用域globals-与-局部作用域locals"><a href="#2、全局作用域globals-与-局部作用域locals" class="headerlink" title="2、全局作用域globals() 与 局部作用域locals()"></a>2、全局作用域globals() 与 局部作用域locals()</h3><p>（1）在python中，通过globals()观察全局作用域中内容，包括：内置函数、自定义函数、全局变量。<br>（2）通过locals()观察局部作用域中的内容，包括：局部变量、嵌套函数（内部函数）inner</p>
+<h3 id="3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。"><a href="#3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。" class="headerlink" title="3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。"></a>3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。</h3><h3 id="4、global与nonlocal"><a href="#4、global与nonlocal" class="headerlink" title="4、global与nonlocal"></a>4、global与nonlocal</h3><p>（1）global用来修饰局部变量时，表示该变量将作为全局变量来使用。即不仅在函数中可以被调用，同时在文件最外部也可以被调用。<br>（2）nonlocal用来修饰嵌套函数内部的变量，对父级作用域（外层函数）中的变量进行引用和修改，那么从该层(包括父级)以下都将调用该变量的值。注意，该关键字只能影响其直接父级函数。<br>（3）两者区别：<br>使用global关键字修饰的变量之前可以并不存在<br>而使用nonlocal关键字修饰的变量在嵌套作用域中必须已经存在。</p>
+<h3 id="5、总结："><a href="#5、总结：" class="headerlink" title="5、总结："></a>5、总结：</h3><p>（1）在函数中定义的变量，我们称为局部变量。包括在函数内部定义的变量、作为参数传递进来的变量。局部变量起作用的范围，我们称为局部作用域。因为Python在调用局部变量时，需要给它分配内存地址，我们称为这个地址为局部命名空间。<br>（2）在文件最外层定义的变量，我们称为全局变量，可以在文件中的任意位置进行调用。全局变量起作用的范围，我们称为全局作用域。Python在载入文件时，就需要给全局变量分配内存地址，这个地址我们称为全局命名空间。</p>
+<h3 id="6、Python运行时处理变量的步骤："><a href="#6、Python运行时处理变量的步骤：" class="headerlink" title="6、Python运行时处理变量的步骤："></a>6、Python运行时处理变量的步骤：</h3><p>（1）从Python解释器开始执行之后，就在内存中开辟里一个空间，每当遇到一个变量的时候，就把变量名和值之间对应的关系记录下来，但是当遇到函数定义的时候，解释器只是象征性的将函数名读入内存，表示知道这个函数存在了，至于函数内部的变量和逻辑，解释器根本不关心。<br>（2）函数执行时，函数中的变量会储存在新开辟出来的内存中，函数中的变量只能在函数内部使用，并且会随着函数执行完毕，这块内存中的所有内容也会被清空</p>
 
       
 
@@ -383,7 +267,7 @@ dic1 = {
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/21/fangwen-bo-ke-yuan/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/25/def-variables/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -397,18 +281,9 @@ dic1 = {
   
 <nav id="article-nav">
   
-    <a href="/2018/07/25/def-definition/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          函数的定义
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/19/shopping/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">购物小案例</div>
+    <a href="/2018/07/25/def-definition/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">函数的定义</div>
       <i class="icon-circle-right"></i>
     </a>
   
