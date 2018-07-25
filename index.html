@@ -161,6 +161,971 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-def-higher-function" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/25/def-higher-function/">高阶函数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/25/def-higher-function/" class="archive-article-date">
+  	<time datetime="2018-07-25T13:29:44.677Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、匿名函数"><a href="#1、匿名函数" class="headerlink" title="1、匿名函数"></a>1、匿名函数</h2><p>使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：<br>lambda 参数：表达式（返回值）<br>注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/25/def-higher-function/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-def-nest-clouser" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/25/def-nest-clouser/">函数的嵌套、闭包</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/25/def-nest-clouser/" class="archive-article-date">
+  	<time datetime="2018-07-25T13:24:52.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、函数嵌套"><a href="#1、函数嵌套" class="headerlink" title="1、函数嵌套"></a>1、函数嵌套</h2><p>根据python中，对函数的载入和调用的特点，我们可以清楚看到，当python运行相关文件时，如果遇到函数时，会先将其名字载入到内存中（即为函数名指定一个内存地址）。因此我们在使用函数名时，可以有以下三种情况：</p>
+<h3 id="（1）将函数名赋值给变量"><a href="#（1）将函数名赋值给变量" class="headerlink" title="（1）将函数名赋值给变量"></a>（1）将函数名赋值给变量</h3><p>例如：</p>
+<pre><code class="bash">def f1():
+   <span class="built_in">print</span>(<span class="string">'ok'</span>)
+a = f1
+</code></pre>
+<p>这是变量a中的值就是f1()函数名的内存地址。</p>
+<h3 id="（2）将函数名作为容器的元素"><a href="#（2）将函数名作为容器的元素" class="headerlink" title="（2）将函数名作为容器的元素"></a>（2）将函数名作为容器的元素</h3><p>例如：</p>
+<pre><code class="bash">def f1():
+   <span class="built_in">print</span>(<span class="string">'ok'</span>)
+ls = [1,2,f1]
+</code></pre>
+<p>注意，此时存入到列表ls中的f1，它的值仍然是该函数名对应的内存地址</p>
+<h3 id="（3）将函数名作为另外一个函数的参数进行传递"><a href="#（3）将函数名作为另外一个函数的参数进行传递" class="headerlink" title="（3）将函数名作为另外一个函数的参数进行传递"></a>（3）将函数名作为另外一个函数的参数进行传递</h3><p>例如：</p>
+<pre><code class="bash">def f1():
+   <span class="built_in">print</span>(<span class="string">'ok'</span>)
+def f2(x):
+   x()
+f2(f1)
+</code></pre>
+<p>其执行结果为OK，这种方式类似与函数的普通嵌套,代码如下：</p>
+<pre><code class="bash">def f2():
+   def f1():
+      <span class="built_in">print</span>(<span class="string">'ok'</span>)
+   f1()
+f2()
+</code></pre>
+<h2 id="2、函数闭包"><a href="#2、函数闭包" class="headerlink" title="2、函数闭包"></a>2、函数闭包</h2><h3 id="1）闭包格式"><a href="#1）闭包格式" class="headerlink" title="1）闭包格式"></a>1）闭包格式</h3><p>def outer():<br>    print(‘我是外部函数’)<br>    def inner():<br>        print(‘我是闭包函数’)<br>    return inner<br>f = outer()<br>f()</p>
+<h3 id="通过对例子的观察，我们发现闭包函数的写法有如下特点："><a href="#通过对例子的观察，我们发现闭包函数的写法有如下特点：" class="headerlink" title="通过对例子的观察，我们发现闭包函数的写法有如下特点："></a>通过对例子的观察，我们发现闭包函数的写法有如下特点：</h3><p>（1）闭包函数作为内部函数，嵌套在外部函数中<br>（2）闭包函数会作为外部函数的返回值，进行返回。返回闭包函数时，只返回函数名，不带括号。<br>（3）外部调用时，首先要执行外部函数，然后将结果赋值给一个变量，此时该变量对应了闭包函数。<br>（4）我们可以通过<strong>closure</strong>内部函数可以观察到，闭包函数的存在。前提是，闭包函数要与外部函数进行数据传递或调用。<br>总结：闭包使用的数据，必须是本身定义或外部函数中定义的相关变量，通常需要调用外部函数的数据，形成一个封闭的函数结构。不能与外部数据（全局变量）发生交流。</p>
+<h3 id="2）闭包的应用—装饰器"><a href="#2）闭包的应用—装饰器" class="headerlink" title="2）闭包的应用—装饰器"></a>2）闭包的应用—装饰器</h3><p>（1）概念：装饰器本身仍然是一个函数。是我们队闭包应用的一种具体实现。<br>（2）作用：装饰器可以在不改变函数本身功能的情况下，为函数添加额外的功能。诸如：日志、测试、性能检测等。装饰器同样也是返回一个函数对象。<br>（3）用法：<br>使用格式：@+装饰器名称</p>
+<pre><code class="bash">import time
+
+def outer(f):
+    def inner(*var):
+        start_time = time.time()
+        f(*var)
+        time.sleep(0.3)
+        end_time = time.time()
+        <span class="built_in">print</span>(<span class="string">'此函数执行时间为{0}'</span>.format(str(end_time-start_time)))
+    <span class="built_in">return</span> inner
+
+@outer      <span class="comment"># 此处就是装饰器的声明，这种方法我们成为语法糖</span>
+def func1():
+    <span class="built_in">print</span>(<span class="string">'hello world'</span>)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/25/def-nest-clouser/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-log-template" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/25/log-template/">日志格式模板</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/25/log-template/" class="archive-article-date">
+  	<time datetime="2018-07-25T13:11:41.607Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code class="bash">import logging
+def <span class="built_in">log</span>(msg):
+    <span class="comment">#创建一个日志对象,并设置日志级别</span>
+    logger = logging.getLogger(<span class="string">'pythonlogger'</span>)
+    logger.setLevel(logging.INFO)
+
+    <span class="comment">#创建一个handler,用来将日志内容存入文件中</span>
+    file = logging.FileHandler(<span class="string">'test.log'</span>)
+    file.setLevel(logging.INFO)
+
+    <span class="comment">#创建一个handler,用来将日志输出到控制台</span>
+    console = logging.StreamHandler()
+    console.setLevel(logging.INFO)
+
+    <span class="comment">#定义日志输出格式</span>
+    formatter = logging.Formatter(<span class="string">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>)
+    file.setFormatter(formatter)
+    console.setFormatter(formatter)
+
+    <span class="comment">#将logger添加到handler</span>
+    logger.addHandler(file)
+    logger.addHandler(console)
+
+    logger.info(msg)
+
+    <span class="comment">#清除已经生成的日志显示信息，以防重复出现</span>
+    logger.removeHandler(file)
+    logger.removeHandler(console)
+</code></pre>
+<h3 id="注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def-log-msg-”删掉，以及将“logger-info-msg-”中的msg改为你想要显示的内容"><a href="#注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def-log-msg-”删掉，以及将“logger-info-msg-”中的msg改为你想要显示的内容" class="headerlink" title="注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def log(msg):”删掉，以及将“logger.info(msg)”中的msg改为你想要显示的内容"></a>注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def log(msg):”删掉，以及将“logger.info(msg)”中的msg改为你想要显示的内容</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/25/log-template/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-case-medicine-def-log-@" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/25/case-medicine-def-log-@/">药品进销存小案例（结合：函数、语法糖、日志）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/25/case-medicine-def-log-@/" class="archive-article-date">
+  	<time datetime="2018-07-25T13:03:52.334Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><p>1、写一个药品进货记录字典，有药品编号、药品名称、药品分类、药品单价、进货时间、进货数量、进货人属性。<br>2、写一个药品销售销售字典，有药品编号、药品名称、药品分类、药品单价、药品总价、销售时间、销售数量、销售人属性<br>3、写一个药品库存记录字典，有药品编号、药品名称、药品分类、药品单价、入库时间、库存数量、库存管理人属性<br>4、写一个用户权限字典，有用户名、密码、身份<br>操作：<br>1、登陆药品进销存模块<br>2、药品购入（对进货记录、库存记录进行添加）<br>3、销售药品（对销售记录、库存记录进行添加和修改）<br>4、药品入库（对库存记录进行添加或修改）<br>5、药品统计<br>（1）通过输入药品名称，得到下列内容：<br> 药品名称  药品购入数量 购入人  药品销售数量 销售人 药品库存数量 保管人</p>
+<p>（2）统计所有库存药品的销售情况（按照销售数量，进行降序）<br>药品名称  药品销售数量   药品总价  药品销售比例</p>
+<pre><code class="bash">import logging
+def <span class="built_in">log</span>(msg):
+    <span class="comment">#创建一个日志对象,并设置日志级别</span>
+    logger = logging.getLogger(<span class="string">'pythonlogger'</span>)
+    logger.setLevel(logging.INFO)
+
+    <span class="comment">#创建一个handler,用来将日志内容存入文件中</span>
+    file = logging.FileHandler(<span class="string">'test.log'</span>)
+    file.setLevel(logging.INFO)
+
+    <span class="comment">#创建一个handler,用来将日志输出到控制台</span>
+    console = logging.StreamHandler()
+    console.setLevel(logging.INFO)
+
+    <span class="comment">#定义日志输出格式</span>
+    formatter = logging.Formatter(<span class="string">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>)
+    file.setFormatter(formatter)
+    console.setFormatter(formatter)
+
+    <span class="comment">#将logger添加到handler</span>
+    logger.addHandler(file)
+    logger.addHandler(console)
+
+    logger.info(msg)
+
+    logger.removeHandler(file)
+    logger.removeHandler(console)
+
+
+
+buy_dic = {}  <span class="comment">#药品采购字典</span>
+
+stock_dic = {}  <span class="comment">#药品入库字典</span>
+
+sale_dic = {}  <span class="comment">#药品销售字典</span>
+
+count_dic = {}  <span class="comment">#药品统计字典</span>
+
+<span class="comment">#用户身份字典，用来存放用户名和密码</span>
+user = {
+    <span class="string">'tom'</span>:<span class="string">'123'</span>,
+    <span class="string">'smith'</span>:<span class="string">'123456'</span>
+}
+
+
+def mylogger(f):
+    def inner(*var,**kw):
+        <span class="keyword">if</span> f(*var,**kw):          
+            <span class="built_in">log</span>(f.__name__+<span class="string">'操作成功'</span>)
+        <span class="keyword">else</span>:
+            <span class="built_in">log</span>(f.__name__+<span class="string">'操作失败'</span>)
+    <span class="built_in">return</span> inner
+
+<span class="comment">#菜单项，供程序运行调用</span>
+def menu():
+    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
+    <span class="built_in">print</span>(<span class="string">'1、登录药品采购平台'</span>)
+    <span class="built_in">print</span>(<span class="string">'2、采购药品'</span>)
+    <span class="built_in">print</span>(<span class="string">'3、药品入库'</span>)
+    <span class="built_in">print</span>(<span class="string">'4、药品销售'</span>)
+    <span class="built_in">print</span>(<span class="string">'5、药品统计'</span>)
+    <span class="built_in">print</span>(<span class="string">'6、退出'</span>)
+    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：登录功能</span>
+<span class="string">    parameter：username（用户名）、password（密码）</span>
+<span class="string">    return：True or False</span>
+<span class="string">    description：传递参数：用户名与密码；验证用户名与密码是否正确：如果正确返回True，反之返回False</span>
+<span class="string">'</span><span class="string">''</span>
+@mylogger
+def login(username,password):
+    flag = False
+    <span class="comment">#if username in user.keys():</span>
+        <span class="comment">#flag = (password == user[username])</span>
+    <span class="keyword">if</span> password == user[username]:
+        flag = True
+    <span class="keyword">else</span>:
+        flag = False
+    <span class="built_in">return</span> flag
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：查询指定字典内容</span>
+<span class="string">    parameter：dic</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的字典参数，对其进行遍历</span>
+<span class="string">'</span><span class="string">''</span>
+@mylogger
+def findAll(dic):
+    <span class="built_in">print</span>(dic)
+    <span class="built_in">return</span> True
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：采购药品功能</span>
+<span class="string">    parameter：buy_time, m_name, m_no, price, buyer, catalog, num</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的药品参数，存入指定的药品采购字典中 </span>
+<span class="string">'</span><span class="string">''</span>
+@mylogger
+def buy(buy_time,**kw):
+    buy_dic[buy_time] = kw
+    <span class="built_in">return</span> True
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：药品入库功能</span>
+<span class="string">    parameter：stock_time, m_name, m_no, price, stocker, catalog, num, buy_time</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的采购时间，进行查询采购字典中是否有对应记录，如果存在则进行入库操作</span>
+<span class="string">'</span><span class="string">''</span>
+@mylogger
+def stock(buy_time,stocker,stock_time,**kw):
+    flag = False
+    <span class="keyword">if</span> buy_time <span class="keyword">in</span> buy_dic.keys():
+        kw = buy_dic[buy_time].copy()
+        del kw[<span class="string">'buyer'</span>]
+        kw[<span class="string">'stocker'</span>] = stocker
+        kw[<span class="string">'stock_time'</span>] = stock_time
+        stock_dic[stock_time] = kw
+        flag = True
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'输入采购时间有误！'</span>)
+        flag = False
+    <span class="built_in">return</span> flag
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：药品销售功能</span>
+<span class="string">    parameter：sale_time, m_name, m_no, price, saler, catalog, num, total, stock_time</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的入库时间，进行查询库存字典中是否有对应记录，如果存在则进行销售操作</span>
+<span class="string">'</span><span class="string">''</span>
+@mylogger
+def sale(stock_time,saler,sale_time,num,**kw):
+    flag = False
+    <span class="keyword">if</span> stock_time <span class="keyword">in</span> stock_dic.keys():
+        <span class="keyword">if</span> num &lt;= stock_dic[stock_time][<span class="string">'num'</span>]:
+            kw = stock_dic[stock_time].copy()
+            del kw[<span class="string">'stocker'</span>]
+            del kw[<span class="string">'num'</span>]
+            kw[<span class="string">'saler'</span>] = saler
+            kw[<span class="string">'sale_time'</span>] = sale_time
+            kw[<span class="string">'num'</span>] = num
+            kw[<span class="string">'total'</span>] = stock_dic[stock_time][<span class="string">'price'</span>] * num
+            sale_dic[sale_time] = kw
+            stock_dic[stock_time][<span class="string">'num'</span>] = stock_dic[stock_time][<span class="string">'num'</span>] - num
+            flag = True
+        <span class="keyword">else</span> :
+            <span class="built_in">print</span>(<span class="string">'药品数量不足！'</span>)
+            flag = False
+
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'输入的入库时间有误！'</span>)
+        flag = False
+    <span class="built_in">return</span> flag
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：药品统计功能</span>
+<span class="string">    parameter：</span>
+<span class="string">    return：none</span>
+<span class="string">    description：将三个字典中的信息进行统计</span>
+<span class="string">'</span><span class="string">''</span>
+@mylogger
+def count(m_name):
+    count_dic[m_name] = {}
+    <span class="keyword">for</span> key <span class="keyword">in</span> buy_dic.keys():
+        <span class="keyword">if</span> m_name == buy_dic[key][<span class="string">'m_name'</span>]:
+            count_dic[m_name][<span class="string">'buyer'</span>] = buy_dic[key][<span class="string">'buyer'</span>]
+            count_dic[m_name][<span class="string">'buy_num'</span>] = buy_dic[key][<span class="string">'num'</span>]
+    <span class="keyword">for</span> key <span class="keyword">in</span> stock_dic.keys():
+        <span class="keyword">if</span> m_name == stock_dic[key][<span class="string">'m_name'</span>]:
+            count_dic[m_name][<span class="string">'stocker'</span>] = stock_dic[key][<span class="string">'stocker'</span>]
+            count_dic[m_name][<span class="string">'stock_num'</span>] = stock_dic[key][<span class="string">'num'</span>]
+    <span class="keyword">for</span> key <span class="keyword">in</span> sale_dic.keys():
+        <span class="keyword">if</span> m_name == sale_dic[key][<span class="string">'m_name'</span>]:
+            count_dic[m_name][<span class="string">'saler'</span>] = sale_dic[key][<span class="string">'saler'</span>]
+            count_dic[m_name][<span class="string">'sale_num'</span>] = sale_dic[key][<span class="string">'num'</span>]
+    <span class="built_in">return</span> True
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：退出功能</span>
+<span class="string">    parameter：none</span>
+<span class="string">    return：none</span>
+<span class="string">    description：退出整个应用程序</span>
+<span class="string">'</span><span class="string">''</span>
+@mylogger
+def quit():
+    flag = False
+    <span class="keyword">if</span> <span class="string">'Q'</span> == mes or <span class="string">'q'</span> == mes:
+        <span class="built_in">exit</span>()
+        flag = True
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'按键错误，请重新选择！'</span>)
+        flag = False
+    <span class="built_in">return</span> flag
+
+<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:
+    <span class="keyword">while</span> True:
+        menu()
+        msg = int(input(<span class="string">'请输入菜单编号：'</span>))
+        <span class="keyword">if</span> 1 == msg:
+            username = input(<span class="string">'请输入用户名：'</span>)
+            password = input(<span class="string">'请输入密码：'</span>)
+            login(username,password)
+        <span class="keyword">elif</span> 2 == msg:
+            buy_time= input(<span class="string">'请输入药品采购日期，按照YYYYMMDD格式输入：'</span>)
+            m_name = input(<span class="string">'请输入药品名：'</span>)
+            m_no= input(<span class="string">'请输入药品编号：'</span>)
+            price= <span class="built_in">float</span>(input(<span class="string">'请输入药品单价：'</span>))
+            buyer= input(<span class="string">'请输入采购人姓名：'</span>)
+            catalog= input(<span class="string">'请输入药品分类：'</span>)  
+            num = int(input(<span class="string">'请输入采购药品的数量：'</span>))            
+            buy(buy_time,m_name=m_name,m_no=m_no,price=price,buyer=buyer,catalog=catalog,num=num)
+            findAll(buy_dic)
+        <span class="keyword">elif</span> 3 == msg:
+            buy_time= input(<span class="string">'请输入药品采购日期，按照YYYYMMDD格式输入：'</span>)
+            stocker = input(<span class="string">'请输入库管人员姓名：'</span>)
+            stock_time = input(<span class="string">'请输入药品入库日期，按照YYYYMMDD格式输入：'</span>)
+            stock(buy_time,stocker,stock_time)
+            findAll(stock_dic)
+        <span class="keyword">elif</span> 4 == msg:
+            stock_time = input(<span class="string">'请输入入库日期，按照（YYYYMMDD）格式输入：'</span>)
+            saler = input(<span class="string">'请输入销售人姓名：'</span>)
+            sale_time = input(<span class="string">'请输入销售日期，按照（YYYYMMDD）格式输入：'</span>)
+            num = int(input(<span class="string">'请输入销售药品的数量：'</span>))
+            sale(stock_time,saler,sale_time,num)
+            findAll(sale_dic)
+        <span class="keyword">elif</span> 5 == msg:
+            m_name = input(<span class="string">'请输入要查询的药品名字：'</span>)
+            count(m_name)
+            findAll(count_dic)
+        <span class="keyword">else</span>:
+            mes = input(<span class="string">'确定要退出吗？退出请按Q：'</span>)
+            quit()
+</code></pre>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/def-log-@-medicine.py</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：1<br>请输入用户名：tom<br>请输入密码：123<br>2018-07-25 21:07:03,389 - pythonlogger - INFO - login操作成功</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：2<br>请输入药品采购日期，按照YYYYMMDD格式输入：20180102<br>请输入药品名：维生素<br>请输入药品编号：1001<br>请输入药品单价：56<br>请输入采购人姓名：丹丹<br>请输入药品分类：非处方<br>请输入采购药品的数量：100<br>2018-07-25 21:07:38,573 - pythonlogger - INFO - buy操作成功<br>{‘20180102’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 56.0, ‘buyer’: ‘丹丹’, ‘catalog’: ‘非处方’, ‘num’: 100}}<br>2018-07-25 21:07:38,574 - pythonlogger - INFO - findAll操作成功</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：3<br>请输入药品采购日期，按照YYYYMMDD格式输入：20180102<br>请输入库管人员姓名：蚱蜢<br>请输入药品入库日期，按照YYYYMMDD格式输入：20180103<br>2018-07-25 21:07:59,356 - pythonlogger - INFO - stock操作成功<br>{‘20180103’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 56.0, ‘catalog’: ‘非处方’, ‘num’: 100, ‘stocker’: ‘蚱蜢’, ‘stock_time’: ‘20180103’}}<br>2018-07-25 21:07:59,357 - pythonlogger - INFO - findAll操作成功</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：4<br>请输入入库日期，按照（YYYYMMDD）格式输入：20180103<br>请输入销售人姓名：大头柯<br>请输入销售日期，按照（YYYYMMDD）格式输入：20180104<br>请输入销售药品的数量：20<br>2018-07-25 21:08:20,512 - pythonlogger - INFO - sale操作成功<br>{‘20180104’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 56.0, ‘catalog’: ‘非处方’, ‘stock_time’: ‘20180103’, ‘saler’: ‘大头柯’, ‘sale_time’: ‘20180104’, ‘num’: 20, ‘total’: 1120.0}}<br>2018-07-25 21:08:20,513 - pythonlogger - INFO - findAll操作成功</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：5<br>请输入要查询的药品名字：维生素<br>2018-07-25 21:08:34,298 - pythonlogger - INFO - count操作成功<br>{‘维生素’: {‘buyer’: ‘丹丹’, ‘buy_num’: 100, ‘stocker’: ‘蚱蜢’, ‘stock_num’: 80, ‘saler’: ‘大头柯’, ‘sale_num’: 20}}<br>2018-07-25 21:08:34,299 - pythonlogger - INFO - findAll操作成功</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：6<br>确定要退出吗？退出请按Q：q<br>PS D:\pythoncode&gt;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/25/case-medicine-def-log-@/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-case-medicine-def" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/25/case-medicine-def/">药品进销存小案例（函数写法）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/25/case-medicine-def/" class="archive-article-date">
+  	<time datetime="2018-07-25T12:56:54.239Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><p>1、写一个药品进货记录字典，有药品编号、药品名称、药品分类、药品单价、进货时间、进货数量、进货人属性。<br>2、写一个药品销售销售字典，有药品编号、药品名称、药品分类、药品单价、药品总价、销售时间、销售数量、销售人属性<br>3、写一个药品库存记录字典，有药品编号、药品名称、药品分类、药品单价、入库时间、库存数量、库存管理人属性<br>4、写一个用户权限字典，有用户名、密码、身份<br>操作：<br>1、登陆药品进销存模块<br>2、药品购入（对进货记录、库存记录进行添加）<br>3、销售药品（对销售记录、库存记录进行添加和修改）<br>4、药品入库（对库存记录进行添加或修改）<br>5、药品统计<br>（1）通过输入药品名称，得到下列内容：<br> 药品名称  药品购入数量 购入人  药品销售数量 销售人 药品库存数量 保管人</p>
+<p>（2）统计所有库存药品的销售情况（按照销售数量，进行降序）<br>药品名称  药品销售数量   药品总价  药品销售比例</p>
+<pre><code class="bash">buy_dic = {}  <span class="comment">#药品采购字典</span>
+
+stock_dic = {}  <span class="comment">#药品入库字典</span>
+
+sale_dic = {}  <span class="comment">#药品销售字典</span>
+
+count_dic = {}  <span class="comment">#药品统计字典</span>
+
+<span class="comment">#用户身份字典，用来存放用户名和密码</span>
+user = {
+    <span class="string">'tom'</span>:<span class="string">'123'</span>,
+    <span class="string">'smith'</span>:<span class="string">'123456'</span>
+}
+
+<span class="comment">#菜单项，供程序运行调用</span>
+def menu():
+    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
+    <span class="built_in">print</span>(<span class="string">'1、登录药品采购平台'</span>)
+    <span class="built_in">print</span>(<span class="string">'2、采购药品'</span>)
+    <span class="built_in">print</span>(<span class="string">'3、药品入库'</span>)
+    <span class="built_in">print</span>(<span class="string">'4、药品销售'</span>)
+    <span class="built_in">print</span>(<span class="string">'5、药品统计'</span>)
+    <span class="built_in">print</span>(<span class="string">'6、退出'</span>)
+    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：登录功能</span>
+<span class="string">    parameter：username（用户名）、password（密码）</span>
+<span class="string">    return：True or False</span>
+<span class="string">    description：传递参数：用户名与密码；验证用户名与密码是否正确：如果正确返回True，反之返回False</span>
+<span class="string">'</span><span class="string">''</span>
+def login(username,password):
+    flag = False
+    <span class="comment">#if username in user.keys():</span>
+        <span class="comment">#flag = (password == user[username])</span>
+    <span class="keyword">if</span> password == user[username]:
+        flag = True
+    <span class="keyword">else</span>:
+        flag = False
+    <span class="built_in">return</span> flag
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：查询指定字典内容</span>
+<span class="string">    parameter：dic</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的字典参数，对其进行遍历</span>
+<span class="string">'</span><span class="string">''</span>
+def findAll(dic):
+    <span class="built_in">print</span>(dic)
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：采购药品功能</span>
+<span class="string">    parameter：buy_time, m_name, m_no, price, buyer, catalog, num</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的药品参数，存入指定的药品采购字典中 </span>
+<span class="string">'</span><span class="string">''</span>
+def buy(buy_time,**kw):
+    buy_dic[buy_time] = kw
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：药品入库功能</span>
+<span class="string">    parameter：stock_time, m_name, m_no, price, stocker, catalog, num, buy_time</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的采购时间，进行查询采购字典中是否有对应记录，如果存在则进行入库操作</span>
+<span class="string">'</span><span class="string">''</span>
+def stock(buy_time,stocker,stock_time,**kw):
+    <span class="keyword">if</span> buy_time <span class="keyword">in</span> buy_dic.keys():
+        kw = buy_dic[buy_time].copy()
+        del kw[<span class="string">'buyer'</span>]
+        kw[<span class="string">'stocker'</span>] = stocker
+        kw[<span class="string">'stock_time'</span>] = stock_time
+        stock_dic[stock_time] = kw
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'输入采购时间有误！'</span>)
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：药品销售功能</span>
+<span class="string">    parameter：sale_time, m_name, m_no, price, saler, catalog, num, total, stock_time</span>
+<span class="string">    return：none</span>
+<span class="string">    description：根据传入的入库时间，进行查询库存字典中是否有对应记录，如果存在则进行销售操作</span>
+<span class="string">'</span><span class="string">''</span>
+def sale(stock_time,saler,sale_time,num,**kw):
+    <span class="keyword">if</span> stock_time <span class="keyword">in</span> stock_dic.keys():
+        <span class="keyword">if</span> num &lt;= stock_dic[stock_time][<span class="string">'num'</span>]:
+            kw = stock_dic[stock_time].copy()
+            del kw[<span class="string">'stocker'</span>]
+            del kw[<span class="string">'num'</span>]
+            kw[<span class="string">'saler'</span>] = saler
+            kw[<span class="string">'sale_time'</span>] = sale_time
+            kw[<span class="string">'num'</span>] = num
+            kw[<span class="string">'total'</span>] = stock_dic[stock_time][<span class="string">'price'</span>] * num
+            sale_dic[sale_time] = kw
+            stock_dic[stock_time][<span class="string">'num'</span>] = stock_dic[stock_time][<span class="string">'num'</span>] - num
+        <span class="keyword">else</span> :
+            <span class="built_in">print</span>(<span class="string">'药品数量不足！'</span>)
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'输入的入库时间有误！'</span>)
+
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：药品统计功能</span>
+<span class="string">    parameter：</span>
+<span class="string">    return：none</span>
+<span class="string">    description：将三个字典中的信息进行统计</span>
+<span class="string">'</span><span class="string">''</span>
+def count(m_name):
+    count_dic[m_name] = {}
+    <span class="keyword">for</span> key <span class="keyword">in</span> buy_dic.keys():
+        <span class="keyword">if</span> m_name == buy_dic[key][<span class="string">'m_name'</span>]:
+            count_dic[m_name][<span class="string">'buyer'</span>] = buy_dic[key][<span class="string">'buyer'</span>]
+            count_dic[m_name][<span class="string">'buy_num'</span>] = buy_dic[key][<span class="string">'num'</span>]
+    <span class="keyword">for</span> key <span class="keyword">in</span> stock_dic.keys():
+        <span class="keyword">if</span> m_name == stock_dic[key][<span class="string">'m_name'</span>]:
+            count_dic[m_name][<span class="string">'stocker'</span>] = stock_dic[key][<span class="string">'stocker'</span>]
+            count_dic[m_name][<span class="string">'stock_num'</span>] = stock_dic[key][<span class="string">'num'</span>]
+    <span class="keyword">for</span> key <span class="keyword">in</span> sale_dic.keys():
+        <span class="keyword">if</span> m_name == sale_dic[key][<span class="string">'m_name'</span>]:
+            count_dic[m_name][<span class="string">'saler'</span>] = sale_dic[key][<span class="string">'saler'</span>]
+            count_dic[m_name][<span class="string">'sale_num'</span>] = sale_dic[key][<span class="string">'num'</span>]
+<span class="string">''</span><span class="string">'</span>
+<span class="string">    function：退出功能</span>
+<span class="string">    parameter：none</span>
+<span class="string">    return：none</span>
+<span class="string">    description：退出整个应用程序</span>
+<span class="string">'</span><span class="string">''</span>
+def quit():
+    <span class="keyword">if</span> <span class="string">'Q'</span> == msg or <span class="string">'q'</span> == msg:
+        <span class="built_in">exit</span>()
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'按键错误，请重新选择！'</span>)
+
+<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:
+    <span class="keyword">while</span> True:
+        menu()
+        num = int(input(<span class="string">'请输入菜单编号：'</span>))
+        <span class="keyword">if</span> 1 == num:
+            username = input(<span class="string">'请输入用户名：'</span>)
+            password = input(<span class="string">'请输入密码：'</span>)
+            flag = login(username,password)
+            <span class="keyword">if</span> flag:
+                <span class="built_in">print</span>(<span class="string">'登录成功，请继续选择其他操作！'</span>)               
+            <span class="keyword">else</span>:
+                <span class="built_in">print</span>(<span class="string">'用户名或密码不正确，请重新登录！'</span>)
+        <span class="keyword">elif</span> 2 == num:
+            buy_time= input(<span class="string">'请输入药品采购日期，按照YYYYMMDD格式输入：'</span>)
+            m_name = input(<span class="string">'请输入药品名：'</span>)
+            m_no= input(<span class="string">'请输入药品编号：'</span>)
+            price= <span class="built_in">float</span>(input(<span class="string">'请输入药品单价：'</span>))
+            buyer= input(<span class="string">'请输入采购人姓名：'</span>)
+            catalog= input(<span class="string">'请输入药品分类：'</span>)  
+            num = int(input(<span class="string">'请输入采购药品的数量：'</span>))            
+            buy(buy_time,m_name=m_name,m_no=m_no,price=price,buyer=buyer,catalog=catalog,num=num)
+            findAll(buy_dic)
+        <span class="keyword">elif</span> 3 == num:
+            buy_time= input(<span class="string">'请输入药品采购日期，按照YYYYMMDD格式输入：'</span>)
+            stocker = input(<span class="string">'请输入库管人员姓名：'</span>)
+            stock_time = input(<span class="string">'请输入药品入库日期，按照YYYYMMDD格式输入：'</span>)
+            stock(buy_time,stocker,stock_time)
+            findAll(stock_dic)
+        <span class="keyword">elif</span> 4 == num:
+            stock_time = input(<span class="string">'请输入入库日期，按照（YYYYMMDD）格式输入：'</span>)
+            saler = input(<span class="string">'请输入销售人姓名：'</span>)
+            sale_time = input(<span class="string">'请输入销售日期，按照（YYYYMMDD）格式输入：'</span>)
+            num = int(input(<span class="string">'请输入销售药品的数量：'</span>))
+            sale(stock_time,saler,sale_time,num)
+            findAll(sale_dic)
+        <span class="keyword">elif</span> 5 == num:
+            m_name = input(<span class="string">'请输入要查询的药品名字：'</span>)
+            count(m_name)
+            findAll(count_dic)
+        <span class="keyword">else</span>:
+            msg = input(<span class="string">'确定要退出吗？退出请按Q：'</span>)
+            quit()
+</code></pre>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/def-medicine-case.py</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：1<br>请输入用户名：tom<br>请输入密码：123<br>登录成功，请继续选择其他操作！</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：2<br>请输入药品采购日期，按照YYYYMMDD格式输入：20180102<br>请输入药品名：维生素<br>请输入药品编号：1001<br>请输入药品单价：59<br>请输入采购人姓名：丹丹<br>请输入药品分类：非处方<br>请输入采购药品的数量：100<br>{‘20180102’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 59.0, ‘buyer’: ‘丹丹’, ‘catalog’: ‘非处方’, ‘num’: 100}}</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：3<br>请输入药品采购日期，按照YYYYMMDD格式输入：20180102<br>请输入库管人员姓名：蚱蜢<br>请输入药品入库日期，按照YYYYMMDD格式输入：20180103<br>{‘20180103’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 59.0, ‘catalog’: ‘非处方’, ‘num’: 100, ‘stocker’: ‘蚱蜢’, ‘stock_time’: ‘20180103’}}</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：4<br>请输入入库日期，按照（YYYYMMDD）格式输入：20180103<br>请输入销售人姓名：大头柯<br>请输入销售日期，按照（YYYYMMDD）格式输入：20180104<br>请输入销售药品的数量：50<br>{‘20180104’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 59.0, ‘catalog’: ‘非处方’, ‘stock_time’: ‘20180103’, ‘saler’: ‘大头柯’, ‘sale_time’: ‘20180104’, ‘num’: 50, ‘total’: 2950.0}}</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：5<br>请输入要查询的药品名字：维生素<br>{‘维生素’: {‘buyer’: ‘丹丹’, ‘buy_num’: 100, ‘stocker’: ‘蚱蜢’, ‘stock_num’: 50, ‘saler’: ‘大头柯’, ‘sale_num’: 50}}</p>
+<hr>
+<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
+<hr>
+<p>请输入菜单编号：6<br>确定要退出吗？退出请按Q：q<br>PS D:\pythoncode&gt;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/25/case-medicine-def/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-case-shopping-def" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/25/case-shopping-def/">购物小案例（函数改写）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/25/case-shopping-def/" class="archive-article-date">
+  	<time datetime="2018-07-25T12:54:14.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="商品菜单"><a href="#商品菜单" class="headerlink" title="商品菜单:"></a>商品菜单:</h2><p>1、查看商品详情（编号，名称，单价，产地，库存，品牌）<br>2、购买商品（编号，名称，数量，总价）<br>3、添加商品<br>4、修改商品（单价，数量）<br>5、删除商品</p>
+<pre><code class="bash">def displayAll(dic):  <span class="comment"># 查询所有的商品信息</span>
+    <span class="built_in">print</span>(<span class="string">'序号      商品名称'</span>)
+    <span class="keyword">for</span> key <span class="keyword">in</span> goods_dic:
+        <span class="built_in">print</span>(<span class="string">'{0}       {1}'</span>.format(key, goods_dic[key]))
+def menu():
+    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
+    <span class="built_in">print</span>(<span class="string">'1、输入商品序号，查询商品信息'</span>)
+    <span class="built_in">print</span>(<span class="string">'2、添加商品信息'</span>)
+    <span class="built_in">print</span>(<span class="string">'3、下架商品'</span>)
+    <span class="built_in">print</span>(<span class="string">'4、修改商品信息'</span>)
+    <span class="built_in">print</span>(<span class="string">'5、退出'</span>)
+    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
+def addGoods(g_name, g_no):  <span class="comment"># 添加商品，传入商品编号与名称</span>
+    goods_dic[g_no] = g_name
+def removeGoods(g_no):  <span class="comment"># 下架商品，根据商品编号，在商品字典中删除该商品信息</span>
+    <span class="comment">#del goods_dic[g_no]</span>
+    <span class="built_in">return</span> goods_dic.pop(g_no)
+def updateGoods(g_no, g_name): <span class="comment"># 修改商品信息，根据商品编号进行商品名称的修改</span>
+    goods_dic[g_no] = g_name
+def exitApp(): <span class="comment"># 退出程序</span>
+    <span class="built_in">exit</span>()
+def findById(g_no):
+    <span class="built_in">return</span> goods_dic[g_no]
+def main(dic):
+    displayAll(dic)
+    <span class="keyword">while</span> True:
+        menu()
+        msg = int(input(<span class="string">'请输入你所需要购买的商品序号：'</span>))
+        <span class="keyword">if</span> 1 == msg:
+            key = input(<span class="string">'请输入商品序号：'</span>)
+            <span class="built_in">print</span>(<span class="string">'序号      商品名称'</span>)
+            <span class="built_in">print</span>(<span class="string">'{0}       {1}'</span>.format(key, findById(key)))
+        <span class="keyword">elif</span> 2 == msg:
+            gno = input(<span class="string">'请输入商品序号：'</span>)
+            gname = input(<span class="string">'请输入商品名称：'</span>)
+            addGoods(gname, gno)
+        <span class="keyword">elif</span> 3 == msg:
+            key = input(<span class="string">'请输入商品序号：'</span>)
+            item = removeGoods(key)
+            <span class="built_in">print</span>(<span class="string">'{0}商品已被下架'</span>.format(item))
+        <span class="keyword">elif</span> 4 == msg:
+            gno = input(<span class="string">'请输入商品序号：'</span>)
+            gname = input(<span class="string">'请输入商品名称：'</span>)
+            updateGoods(gno, gname)
+        <span class="keyword">elif</span> 5 == msg:
+            exitApp()
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'你输入的商品序号有误，请重新输入！'</span>)
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    goods_dic = {
+        <span class="string">'10001'</span> : <span class="string">'电视机'</span>,
+        <span class="string">'10002'</span> : <span class="string">'手机'</span>,
+        <span class="string">'10003'</span> : <span class="string">'洗衣机'</span>,
+        <span class="string">'10004'</span> : <span class="string">'冰箱'</span>,
+        <span class="string">'10005'</span> : <span class="string">'空调'</span>
+    }
+    main(goods_dic)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/25/case-shopping-def/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-def-variables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -527,19 +1492,19 @@ dic1 = {
 
 
   
-    <article id="post-shopping" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-case-shopping" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/19/shopping/">购物小案例</a>
+      <a class="article-title" href="/2018/07/19/case-shopping/">购物小案例</a>
     </h1>
   
 
         
-        <a href="/2018/07/19/shopping/" class="archive-article-date">
+        <a href="/2018/07/19/case-shopping/" class="archive-article-date">
   	<time datetime="2018-07-19T10:39:48.832Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
 </a>
         
@@ -680,1160 +1645,7 @@ dic1 = {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/19/shopping/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-combine-data-type-promote" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/19/combine-data-type-promote/">组合数据类型（高级特性或提升）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/19/combine-data-type-promote/" class="archive-article-date">
-  	<time datetime="2018-07-19T09:45:40.892Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="拓展了迭代器、生成器"><a href="#拓展了迭代器、生成器" class="headerlink" title="拓展了迭代器、生成器"></a>拓展了迭代器、生成器</h2><h3 id="1、range"><a href="#1、range" class="headerlink" title="1、range()"></a>1、range()</h3><p>Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。</p>
-<h3 id="2、列表推导式生成"><a href="#2、列表推导式生成" class="headerlink" title="2、列表推导式生成"></a>2、列表推导式生成</h3><p>格式：[表达式或函数 for x in 序列]<br>含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。</p>
-<h3 id="3、迭代器（Iterator）"><a href="#3、迭代器（Iterator）" class="headerlink" title="3、迭代器（Iterator）"></a>3、迭代器（Iterator）</h3><h3 id="（1）概念："><a href="#（1）概念：" class="headerlink" title="（1）概念："></a>（1）概念：</h3><p>迭代器访问元素，是从第一个元素开始，依次访问后续元素直到结束，其中迭代器只能向前，不能回退。其包含两个方法：iter()和next()<br>Iter()用来创建迭代器，next()用来访问下一个元素。<br>目前我们所学的字符串、列表、元组都可以用来创建迭代器，它们都是可迭代化的对象。</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3,4]
-&gt;&gt;&gt; list1_iter = iter(list1)
-&gt;&gt;&gt; next(list1_iter)
-1
-&gt;&gt;&gt; next(list1_iter)
-2
-&gt;&gt;&gt; next(list1_iter)
-3
-&gt;&gt;&gt; next(list1_iter)
-4
-</code></pre>
-<h3 id="或者（循环）："><a href="#或者（循环）：" class="headerlink" title="或者（循环）："></a>或者（循环）：</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3,4]
-&gt;&gt;&gt; list1_iter = iter(list1)
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> list1_iter:
-    <span class="built_in">print</span>(i) 
-1
-2
-3
-4
-</code></pre>
-<h3 id="（2）迭代器两个步骤："><a href="#（2）迭代器两个步骤：" class="headerlink" title="（2）迭代器两个步骤："></a>（2）迭代器两个步骤：</h3><pre><code>一、当调用next()函数，会将迭代器当前位置状态进行改变
-二、会将下一个元素进行返回
-</code></pre><h3 id="（3）迭代器的延迟作用："><a href="#（3）迭代器的延迟作用：" class="headerlink" title="（3）迭代器的延迟作用："></a>（3）迭代器的延迟作用：</h3><p>1）迭代器生成的元素并不是在迭代器声明时就准备好了的，通常是在调用迭代器需要提供该元素时生成的，也就是说，只有我们需要的时候，迭代器才产生相关元素，不需要时并不会主动地生成相关元素。<br>2）我们可以把迭代器看成一个容器，到我们需要时使用next()方法返回容器中的下一个值。<br>3）迭代器实现了工厂模式的对象，它在你每次访问下一个值的时候给你返回。</p>
-<h3 id="（4）可迭代化："><a href="#（4）可迭代化：" class="headerlink" title="（4）可迭代化："></a>（4）可迭代化：</h3><p>表明相关的对象可以创建迭代器对象，同时，他们自身都是可以进行for数据遍历的。同时可以使用isinstance()来判断对象是否为可迭代化。</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from collections import Iterable
-string = <span class="string">'wdd'</span>
-<span class="built_in">print</span>(isinstance(string,Iterable))
-结果：
-True
-</code></pre>
-<h3 id="（5）isinstance"><a href="#（5）isinstance" class="headerlink" title="（5）isinstance()"></a>（5）isinstance()</h3><p>函数格式：isinstance（对象，类型）<br>返回值：布尔值<br>结果：如果指定的对象属于指定的类型，那么返回True，否则返回False</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from collections import Iterable
-string = <span class="string">'wdd'</span>
-<span class="built_in">print</span>(isinstance(string,Iterable))
-</code></pre>
-<h3 id="（6）enumerate"><a href="#（6）enumerate" class="headerlink" title="（6）enumerate()"></a>（6）enumerate()</h3><p>函数格式：enumerate(iterable)<br>返回值：生成一个枚举对象</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; lis = [1,2,3,4,5,6]
-&gt;&gt;&gt; <span class="keyword">for</span> i,value <span class="keyword">in</span> enumerate(lis):
-    <span class="built_in">print</span>(i,value)   
-0 1
-1 2
-2 3
-3 4
-4 5
-5 6
-或者：
-&gt;&gt;&gt; lis = [1,2,3,4,5,6]
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> enumerate(lis):
-    <span class="built_in">print</span>(i)
-(0, 1)
-(1, 2)
-(2, 3)
-(3, 4)
-(4, 5)
-(5, 6)
-或者：
-&gt;&gt;&gt; enu = enumerate([1,2,3,4,5,6])
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> enu:
-    <span class="built_in">print</span>(i)
-(0, 1)
-(1, 2)
-(2, 3)
-(3, 4)
-(4, 5)
-(5, 6)
-</code></pre>
-<h3 id="4、生成器"><a href="#4、生成器" class="headerlink" title="4、生成器"></a>4、生成器</h3><h3 id="（1）创建方式"><a href="#（1）创建方式" class="headerlink" title="（1）创建方式"></a>（1）创建方式</h3><pre><code>一、使用列表推导式，将[ ]改为（），生成一个generator对象
-二、使用函数方式，采用yield关键字来实现
-</code></pre><h3 id="（2）使用"><a href="#（2）使用" class="headerlink" title="（2）使用"></a>（2）使用</h3><p>生成器我们通常可以认为一种特殊的迭代器，但是它不需要像迭代器一样去实现。<br><strong>iter</strong>,<strong>next</strong>方法，只需要使用yield关键字，该关键字可以在每次调用生成器函数时起到暂停作用，并将其值进行返回。同时还会记录当前运行值的状态。</p>
-<h3 id="5、总结：迭代器和生成器的区别"><a href="#5、总结：迭代器和生成器的区别" class="headerlink" title="5、总结：迭代器和生成器的区别"></a>5、总结：迭代器和生成器的区别</h3><p>（1）容器是一系列的元素集合，str、list、set、dict对象都可以看作是容器，容器都可以进行迭代（即用在while或for循环），凡是这样的容器我们都称为可迭代化对象（Iterable）。<br>（2）可迭代化对象都实现了<strong>iter</strong>方法，该方法返回一个迭代器对象。<br>（3）迭代器都拥有一个状态字段，用于记录下次迭代返回值。它实现了<strong>next</strong>和<strong>iter</strong>方法，迭代器不会一次性把所有的元素都加载到内存中，而是在需要的时候才生成返回结果。<br>（4）生成器是一种特殊的迭代器，它的返回值不是通过return来返回的，而是通过yield来返回的。</p>
-<h3 id="小程序：用生成器做医院挂号程序"><a href="#小程序：用生成器做医院挂号程序" class="headerlink" title="小程序：用生成器做医院挂号程序"></a>小程序：用生成器做医院挂号程序</h3><pre><code class="bash">def gene(n):
-    i = 1000
-    <span class="keyword">while</span> True:
-        <span class="keyword">if</span> <span class="string">'A'</span> ==n:
-            num = <span class="string">'A'</span>+str(i)   
-            yield num
-            i +=1
-        <span class="keyword">elif</span> <span class="string">'B'</span> ==n:
-            num = <span class="string">'B'</span>+str(i)
-            yield num
-            i +=1
-        <span class="keyword">elif</span> <span class="string">'C'</span> ==n:
-            num = <span class="string">'C'</span>+str(i)
-            yield num
-            i +=1
-
-a = gene(<span class="string">'A'</span>)
-b = gene(<span class="string">'B'</span>)
-c = gene(<span class="string">'C'</span>)
-<span class="keyword">while</span> True:
-    <span class="built_in">print</span>(<span class="string">'*'</span>*15)
-    <span class="built_in">print</span>(<span class="string">'A:精神科'</span>)
-    <span class="built_in">print</span>(<span class="string">'B:外科'</span>)
-    <span class="built_in">print</span>(<span class="string">'C:内科'</span>)
-    <span class="built_in">print</span>(<span class="string">'*'</span>*15)
-    msg = input(<span class="string">'请输入就诊科室：'</span>)
-    custmer = input(<span class="string">'请取号就诊，输入你的一卡通姓名：'</span>)
-    <span class="keyword">if</span> <span class="string">'A'</span> ==msg:
-        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(a),msg))
-    <span class="keyword">elif</span> <span class="string">'B'</span> ==msg:    
-        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(b),msg))
-    <span class="keyword">elif</span> <span class="string">'C'</span> ==msg:
-        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(c),msg))
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'请输入正确的科室！'</span>)
-</code></pre>
-<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson10.py</p>
-<hr>
-<p>A:精神科<br>B:外科<br>C:内科</p>
-<hr>
-<p>请输入就诊科室：A<br>请取号就诊，输入你的一卡通姓名：曹猛<br>患者姓名是曹猛，就诊号为A1000的患者请到A就诊</p>
-<hr>
-<p>A:精神科<br>B:外科<br>C:内科</p>
-<hr>
-<p>请输入就诊科室：</p>
-<h3 id="输出-0-1-2-3-4-5-6-7-8-9"><a href="#输出-0-1-2-3-4-5-6-7-8-9" class="headerlink" title="输出 0 1 2 3 4 5 6 7 8 9"></a>输出 0 1 2 3 4 5 6 7 8 9</h3><pre><code class="bash">def getList(n):
-    result = []
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):
-        result.append(i)
-    <span class="built_in">return</span> result
-<span class="keyword">for</span> i <span class="keyword">in</span> getList(10):
-    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
-生成器做法：
-def iter_gene(n):
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(10):
-        yield i
-<span class="keyword">for</span> i <span class="keyword">in</span> iter_gene(10):
-    <span class="built_in">print</span>(i,end=<span class="string">' '</span>) 
-</code></pre>
-<h3 id="6、copy-（浅拷贝）-和-deepcopy-（深拷贝）"><a href="#6、copy-（浅拷贝）-和-deepcopy-（深拷贝）" class="headerlink" title="6、copy()（浅拷贝） 和 deepcopy()（深拷贝）"></a>6、copy()（浅拷贝） 和 deepcopy()（深拷贝）</h3><h3 id="（1）浅拷贝：我们使用copy-函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。"><a href="#（1）浅拷贝：我们使用copy-函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。" class="headerlink" title="（1）浅拷贝：我们使用copy()函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。"></a>（1）浅拷贝：我们使用copy()函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。</h3><h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">list1 = [1,2,3,4,5]
-list2 = list1.copy()  <span class="comment">#经list1中的元素赋值给list2，此时他们的值相等</span>
-<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
-list1[3] = 6  <span class="comment">#此时，对list1中索引位3的值进行修改，变为6</span>
-<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
-</code></pre>
-<h3 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, 4, 5]<br>初始化list2的内容[1, 2, 3, 4, 5]<br>改变后list1的内容[1, 2, 3, 6, 5]<br>改变后list2的内容[1, 2, 3, 4, 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表改变，但是list2的列表值没有改变</p>
-<h3 id="一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy-对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。"><a href="#一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy-对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。" class="headerlink" title="一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy()对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。"></a>一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy()对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。</h3><h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">list1 = [1,2,3,[<span class="string">'one'</span>,<span class="string">'four'</span>]],5]
-list2 = list1.copy()
-<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
-list1[3][0] = <span class="string">'two'</span>
-<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
-</code></pre>
-<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3><p>SyntaxError: invalid syntax<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>初始化list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>改变后list1的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>改变后list2的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表值改变，list2也随之改变。</p>
-<h3 id="总结：这种现象我们成为浅拷贝，copy-函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。"><a href="#总结：这种现象我们成为浅拷贝，copy-函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。" class="headerlink" title="总结：这种现象我们成为浅拷贝，copy()函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。"></a>总结：这种现象我们成为浅拷贝，copy()函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。</h3><h3 id="（2）深拷贝：我们需要一如copy这个模块，调用deepcopy-函数，写法如下："><a href="#（2）深拷贝：我们需要一如copy这个模块，调用deepcopy-函数，写法如下：" class="headerlink" title="（2）深拷贝：我们需要一如copy这个模块，调用deepcopy()函数，写法如下："></a>（2）深拷贝：我们需要一如copy这个模块，调用deepcopy()函数，写法如下：</h3><h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">import copy
-list1 = [1,2,3,[<span class="string">'one'</span>,<span class="string">'four'</span>],5]
-list2 = copy.deepcopy(list1)
-<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
-list1[3][0] = <span class="string">'two'</span>
-<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
-</code></pre>
-<h3 id="结果：-3"><a href="#结果：-3" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>初始化list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>改变后list1的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>改变后list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表值改变，list2并没有随之改变，那么也就意味着，deepcopy()将list1中内容，包括嵌套里的元素都进行了副本赋值给list2，因此，它们是值相同，并没有指向同一个内存地址。</p>
-<h3 id="2、sort（）与sorted（）"><a href="#2、sort（）与sorted（）" class="headerlink" title="2、sort（）与sorted（）"></a>2、sort（）与sorted（）</h3><p>（1）sort（）函数提供排序功能，同时该排序是实现了永久性排序，即会改变原有列表的元素位置。（list.sort（））<br>（2）sorted（）函数提供排序功能，同时该排序是实现了临时性排序，即只是产生一个有序结果，并不会真正改变原列表中元素的位置。（sorted（list））</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/19/combine-data-type-promote/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-combine-data-type-set" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/combine-data-type-set/">组合数据类型（集合）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/18/combine-data-type-set/" class="archive-article-date">
-  	<time datetime="2018-07-18T11:25:55.471Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="组合数据类型——集合set"><a href="#组合数据类型——集合set" class="headerlink" title="组合数据类型——集合set"></a>组合数据类型——集合set</h2><h3 id="1、集合的概念："><a href="#1、集合的概念：" class="headerlink" title="1、集合的概念："></a>1、集合的概念：</h3><p>集合set是一个无序的数据集合，可以存储各种数据类型的元素，同时可以对集合中的元素进行新增、删除等操作，因此集合的长度是可变的。并且集合是不允许有重复元素，如果出现重复元素，除去第一个元素之外，都会被集合所忽略。</p>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>set是无序的，即存储元素到set的顺序与这些元素输出的顺序无关。set仍然采用哈希存储，对这些元素进行存储的。</p>
-<h3 id="2、集合的声明与赋值"><a href="#2、集合的声明与赋值" class="headerlink" title="2、集合的声明与赋值"></a>2、集合的声明与赋值</h3><p>（1）set1 = {1,2,3}  生成一个集合<br>（2）set1 = set ({1,2,3})<br>（3）set1 = set()   生成一个空集合，只有这一种方式生成空集合，即集合只能通过set()函数来生成空集合，而不能通过set = {}，这个表达式生成一个字典。</p>
-<h3 id="3、数据类型转换"><a href="#3、数据类型转换" class="headerlink" title="3、数据类型转换"></a>3、数据类型转换</h3><h3 id="（1）字符串转集合"><a href="#（1）字符串转集合" class="headerlink" title="（1）字符串转集合"></a>（1）字符串转集合</h3><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello'</span>
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(string1)
-&gt;&gt;&gt; set1
-{<span class="string">'l'</span>, <span class="string">'e'</span>, <span class="string">'o'</span>, <span class="string">'h'</span>}
-</code></pre>
-<h3 id="（2）列表转集合"><a href="#（2）列表转集合" class="headerlink" title="（2）列表转集合"></a>（2）列表转集合</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3]
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(list1)
-&gt;&gt;&gt; set1
-{1, 2, 3}
-</code></pre>
-<h3 id="（3）元组转集合"><a href="#（3）元组转集合" class="headerlink" title="（3）元组转集合"></a>（3）元组转集合</h3><pre><code class="bash">&gt;&gt;&gt; tup = (1,2,3)
-&gt;&gt;&gt; set1 = <span class="built_in">set</span>(tup)
-&gt;&gt;&gt; set1
-{1, 2, 3}
-</code></pre>
-<h3 id="4、集合的操作"><a href="#4、集合的操作" class="headerlink" title="4、集合的操作"></a>4、集合的操作</h3><h3 id="（1）元素的增加-add"><a href="#（1）元素的增加-add" class="headerlink" title="（1）元素的增加 add()"></a>（1）元素的增加 add()</h3><p>函数格式：set.add(元素)<br>返回值：无返回值<br>结果：集合元素增加一个</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1 = <span class="built_in">set</span>([1,2,3])
-&gt;&gt;&gt; set1.add(4)
-&gt;&gt;&gt; set1
-{1, 2, 3, 4}
-</code></pre>
-<h3 id="（2）元素的删除"><a href="#（2）元素的删除" class="headerlink" title="（2）元素的删除"></a>（2）元素的删除</h3><h3 id="1）remove"><a href="#1）remove" class="headerlink" title="1）remove()"></a>1）remove()</h3><p>函数格式：set.remove(元素)<br>返回值：无返回值<br>结果：集合指定的元素被删除</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3, 4}
-&gt;&gt;&gt; set1.remove(4)
-&gt;&gt;&gt; set1
-{1, 2, 3}
-</code></pre>
-<h3 id="2）discard"><a href="#2）discard" class="headerlink" title="2）discard()"></a>2）discard()</h3><p>函数格式：set.discard()<br>返回值：无返回值<br>结果：集合指定的元素被删除<br>注意：上面两个方法，如果删除一个不存在的元素，其中remove()会报错，discard()<br>无反应</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3}
-&gt;&gt;&gt; set1.discard(3)
-&gt;&gt;&gt; set1
-{1, 2}
-</code></pre>
-<h3 id="3）clear-清空集合中所有的元素"><a href="#3）clear-清空集合中所有的元素" class="headerlink" title="3）clear() 清空集合中所有的元素"></a>3）clear() 清空集合中所有的元素</h3><p>函数格式：set.clear()<br>返回值：无返回值<br>结果：清空集合中所有的元素</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2}
-&gt;&gt;&gt; set1.clear()
-&gt;&gt;&gt; set1
-<span class="built_in">set</span>()
-</code></pre>
-<h3 id="4）del命令-删除集合，并释放其所占内存资源"><a href="#4）del命令-删除集合，并释放其所占内存资源" class="headerlink" title="4）del命令    删除集合，并释放其所占内存资源"></a>4）del命令    删除集合，并释放其所占内存资源</h3><p>函数格式：del set<br>注意：因为集合是无序的，所以用del命令，只能删除整个集合</p>
-<h3 id="5、集合运算："><a href="#5、集合运算：" class="headerlink" title="5、集合运算："></a>5、集合运算：</h3><h3 id="（1）并集运算：-或-函数方法：union"><a href="#（1）并集运算：-或-函数方法：union" class="headerlink" title="（1）并集运算：| 或 函数方法：union()"></a>（1）并集运算：| 或 函数方法：union()</h3><p>两个集合进行并集运算，即将两个集合中的元素合并到一个新的集合中，重复的元素只出现一次，原来集合中的元素不变</p>
-<h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; set1 = {1,2,3,<span class="string">'one'</span>,<span class="string">'hello'</span>}
-&gt;&gt;&gt; set2 = {1,<span class="string">'two'</span>,<span class="string">'world'</span>}
-&gt;&gt;&gt; set1 | set2
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'two'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set1
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set2
-{<span class="string">'two'</span>, 1, <span class="string">'world'</span>}
-</code></pre>
-<h3 id="或者："><a href="#或者：" class="headerlink" title="或者："></a>或者：</h3><pre><code class="bash">&gt;&gt;&gt; set1
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'hello'</span>}
-&gt;&gt;&gt; set2
-{<span class="string">'two'</span>, 1, <span class="string">'world'</span>}
-&gt;&gt;&gt; set1.union(set2)
-{1, 2, 3, <span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'two'</span>, <span class="string">'hello'</span>}
-</code></pre>
-<h3 id="（2）交集运算-amp-或-函数方法：intersection"><a href="#（2）交集运算-amp-或-函数方法：intersection" class="headerlink" title="（2）交集运算 &amp; 或 函数方法：intersection()"></a>（2）交集运算 &amp; 或 函数方法：intersection()</h3><p>两个集合进行交集运算，即将两个集合中相同的的元素合并到一个新的集合中</p>
-<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1 &amp; set2 =&gt; {<span class="string">'en'</span>}
-</code></pre>
-<h3 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.intersection(set2)
-</code></pre>
-<h3 id="（3）差集运算-–-或-函数方法：difference"><a href="#（3）差集运算-–-或-函数方法：difference" class="headerlink" title="（3）差集运算 – 或 函数方法：difference()"></a>（3）差集运算 – 或 函数方法：difference()</h3><p>两个集合进行差集运算，即运算符左边的集合与右边的集合进行差运算，相当于使左边集合去除与右边集合相同的元素，剩下来的元素</p>
-<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1 - set2 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>}
-</code></pre>
-<h3 id="或者-1"><a href="#或者-1" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.difference(set2)
-set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set2 - set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>}
-</code></pre>
-<h3 id="或者-2"><a href="#或者-2" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set2.difference(set1)
-</code></pre>
-<h3 id="（4）对称差集运算-或-函数方法：symmetric-difference"><a href="#（4）对称差集运算-或-函数方法：symmetric-difference" class="headerlink" title="（4）对称差集运算 ^ 或 函数方法：symmetric_difference()"></a>（4）对称差集运算 ^ 或 函数方法：symmetric_difference()</h3><p>两个集合进行对称差集运算，即两个集合中除去相同元素，其他所有元素归并到一个新的集合中。</p>
-<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set2 ^ set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>,<span class="string">'jp'</span>, <span class="string">'fr'</span>}
-</code></pre>
-<h3 id="或者-3"><a href="#或者-3" class="headerlink" title="或者"></a>或者</h3><pre><code class="bash">set1.symmetric_difference(set2)
-</code></pre>
-<h3 id="（5）子集与超集（父集）"><a href="#（5）子集与超集（父集）" class="headerlink" title="（5）子集与超集（父集）"></a>（5）子集与超集（父集）</h3><p>set1 =&gt; {‘zh’, ‘tw’, ‘en’}<br>subset =&gt; {‘zh’, ‘tw’}<br>我们通过观察可以看到，subset中的内容，属于set1的一部分。因此，<br>subset.issubset(set1) =&gt; True<br>表示，subset是set1集合的一个子集合</p>
-<p>同理，我们也可以说，set1是subset的父集合：<br>set1.issuperset(subset) =&gt; True</p>
-<h3 id="6、集合常用函数"><a href="#6、集合常用函数" class="headerlink" title="6、集合常用函数"></a>6、集合常用函数</h3><h3 id="（1）update"><a href="#（1）update" class="headerlink" title="（1）update()"></a>（1）update()</h3><p>函数格式：set1.update(set2)<br>返回值：无<br>结果：我们将set2中的元素，添加到set1中，如果有相同的元素只保留一个。同时，该操作会修改set1的元素数量。</p>
-<h3 id="例如：-8"><a href="#例如：-8" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.update(set2)
-set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'tw'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'en'</span>}
-</code></pre>
-<h3 id="（2）intersection-update"><a href="#（2）intersection-update" class="headerlink" title="（2）intersection_update()"></a>（2）intersection_update()</h3><p>函数格式：set1.intersection_update(set2)<br>返回值：无<br>结果：我们使用set2中的元素，添加到set1中，其中，保留两个集合中相同的元素。其中，set1、set2中其他的元素被舍弃。</p>
-<h3 id="例如：-9"><a href="#例如：-9" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.intersection_update(set2)
-set1 =&gt; {<span class="string">'en'</span>}
-</code></pre>
-<h3 id="（3）symmetric-difference-update"><a href="#（3）symmetric-difference-update" class="headerlink" title="（3）symmetric_difference_update()"></a>（3）symmetric_difference_update()</h3><p>函数格式：symmetric_difference_update()<br>返回值：无<br>结果：我们使用set1与set2进行运算，只保留两者除去相同元素之外的元素。</p>
-<h3 id="例如：-10"><a href="#例如：-10" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 =&gt; {<span class="string">'zh'</span>, <span class="string">'tw'</span>, <span class="string">'en'</span>}
-set2 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'en'</span>}
-set1.symmetric_difference_update(set2)
-set1 =&gt; {<span class="string">'jp'</span>, <span class="string">'fr'</span>, <span class="string">'zh'</span>, <span class="string">'tw'</span>}
-</code></pre>
-<h3 id="随机产生2组各个数字的列表，如下要求："><a href="#随机产生2组各个数字的列表，如下要求：" class="headerlink" title="随机产生2组各个数字的列表，如下要求："></a>随机产生2组各个数字的列表，如下要求：</h3><p>（1）每个数字取值范围[10,20]<br>（2）统计20个数字中，一共有多少个不同的数字？<br>（3）2组中，不重复的数字有几个？分别是什么？<br>（4）2组中，重复的数字有几个？分别是什么？<br>提示：采用random对象的randrange()方法，实现一定范围内容的随机数字产生</p>
-<pre><code class="bash">import random
-list1 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
-list2 = [random.randrange(10,20) <span class="keyword">for</span> x <span class="keyword">in</span> range(20)]
-<span class="built_in">print</span>(<span class="string">'列表1的20个随机数：{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'列表2的20个随机数：{}'</span>.format(list2))
-set1 = <span class="built_in">set</span>(list1)
-set2 = <span class="built_in">set</span>(list2)
-<span class="built_in">print</span>(<span class="string">'列表1转为集合：{}'</span>.format(set1))
-<span class="built_in">print</span>(<span class="string">'列表2转为集合：{}'</span>.format(set2))
-a_sum = len(set1)
-b_sum = len(set2)
-<span class="built_in">print</span>(<span class="string">'列表1中不同的数有：{}个'</span>.format(a_sum))
-<span class="built_in">print</span>(<span class="string">'列表2中不同的数有：{}个'</span>.format(b_sum))
-set3 = set1.intersection(set2)
-c_sum = len(set3)
-<span class="built_in">print</span>(<span class="string">'列表1和2中相同的数有：{0}个，分别是：{1}'</span>.format(c_sum,set3))
-set4 = set1.difference(set2)
-set5 = set2.difference(set1)
-set6 = set1 ^set2
-d_sum = len(set6)
-<span class="built_in">print</span>(<span class="string">'列表1和2中不同的数有：{}个，列表1中的有：{}，列表2中的有：{}'</span>.format(d_sum,set4,set5))
-</code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson7.py<br>列表1的20个随机数：[17, 16, 11, 14, 13, 14, 12, 14, 14, 14, 16, 12, 10, 17, 15, 15, 13, 15, 15, 17]<br>列表2的20个随机数：[15, 15, 14, 11, 15, 15, 15, 16, 13, 11, 12, 17, 15, 12, 10, 14, 14, 14, 11, 18]<br>列表1转为集合：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表2转为集合：{10, 11, 12, 13, 14, 15, 16, 17, 18}<br>列表1中不同的数有：8个<br>列表2中不同的数有：9个<br>列表1和2中相同的数有：8个，分别是：{10, 11, 12, 13, 14, 15, 16, 17}<br>列表1和2中不同的数有：1个，列表1中的有：set()，列表2中的有：{18}<br>PS D:\pythoncode&gt;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/18/combine-data-type-set/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-practice-combine-data-type-dict" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/practice-combine-data-type-dict/">作业练习——组合数据类型（字典）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/18/practice-combine-data-type-dict/" class="archive-article-date">
-  	<time datetime="2018-07-18T10:57:39.730Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="组合数据类型——dict字典-作业练习"><a href="#组合数据类型——dict字典-作业练习" class="headerlink" title="组合数据类型——dict字典 作业练习"></a>组合数据类型——dict字典 作业练习</h2><h3 id="1、有如下变量（tu是个元组），请实现要求的功能"><a href="#1、有如下变量（tu是个元组），请实现要求的功能" class="headerlink" title="1、有如下变量（tu是个元组），请实现要求的功能"></a>1、有如下变量（tu是个元组），请实现要求的功能</h3><h3 id="tu-“alex”-11-22-“k1”-‘v1’-“k2”-“age”-“name”-“k3”-11-22-33-44"><a href="#tu-“alex”-11-22-“k1”-‘v1’-“k2”-“age”-“name”-“k3”-11-22-33-44" class="headerlink" title="tu = (“alex”, [11, 22, {“k1”: ‘v1’, “k2”: [“age”, “name”], “k3”: (11, 22, 33)}, 44])"></a>tu = (“alex”, [11, 22, {“k1”: ‘v1’, “k2”: [“age”, “name”], “k3”: (11, 22, 33)}, 44])</h3><h3 id="（1）讲述元组的特性"><a href="#（1）讲述元组的特性" class="headerlink" title="（1）讲述元组的特性"></a>（1）讲述元组的特性</h3><pre><code>1）元组一旦被定义，其值是不可被改变的
-2）元组是定长的
-3）有序的，元素都是允许重复的
-</code></pre><h3 id="（2）请问tu变量中的第一个元素-“alex”-是否可被修改？"><a href="#（2）请问tu变量中的第一个元素-“alex”-是否可被修改？" class="headerlink" title="（2）请问tu变量中的第一个元素 “alex” 是否可被修改？"></a>（2）请问tu变量中的第一个元素 “alex” 是否可被修改？</h3><pre><code>不可以，因为元组内的元素是不可以被改变的
-</code></pre><h3 id="（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”"><a href="#（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”" class="headerlink" title="（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”"></a>（3）请问tu变量中的”k2”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”</h3><pre><code>对应着list类型，列表类型是可以被改变的。
-代码：
-</code></pre><pre><code class="bash">tuple1 = (<span class="string">"alex"</span>, [11, 22, {<span class="string">"k1"</span>: <span class="string">'v1'</span>, <span class="string">"k2"</span>: [<span class="string">"age"</span>, <span class="string">"name"</span>], <span class="string">"k3"</span>: (11, 22, 33)}, 44])
-list1 = list(tuple1)
-list1[1][2][<span class="string">'k2'</span>].append(<span class="string">'seven'</span>)
-tuple1 = tuple(list1)
-<span class="built_in">print</span>(tuple1)
-结果：
-(<span class="string">'alex'</span>, [11, 22, {<span class="string">'k1'</span>: <span class="string">'v1'</span>, <span class="string">'k2'</span>: [<span class="string">'age'</span>, <span class="string">'name'</span>, <span class="string">'seven'</span>], <span class="string">'k3'</span>: (11, 22, 33)}, 44])
-</code></pre>
-<h3 id="（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”"><a href="#（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素-“Seven”" class="headerlink" title="（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”"></a>（3）请问tu变量中的”k3”对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素 “Seven”</h3><pre><code>对应着元组类型，元组内的值是不可以被改变的，但可以重新赋值。
-代码：
-</code></pre><pre><code class="bash">tu = (<span class="string">"alex"</span>, [11, 22, {<span class="string">"k1"</span>: <span class="string">'v1'</span>, <span class="string">"k2"</span>: [<span class="string">"age"</span>, <span class="string">"name"</span>], <span class="string">"k3"</span>: (11, 22, 33)}, 44])
-list1 = list(tu)
-list1[1][2][<span class="string">'k3'</span>] = (11,22,33,<span class="string">'seven'</span>)
-tu = tuple(list1)
-<span class="built_in">print</span>(tu)
-结果：
-(<span class="string">'alex'</span>, [11, 22, {<span class="string">'k1'</span>: <span class="string">'v1'</span>, <span class="string">'k2'</span>: [<span class="string">'age'</span>, <span class="string">'name'</span>], <span class="string">'k3'</span>: (11, 22, 33, <span class="string">'seven'</span>)}, 44])
-</code></pre>
-<h3 id="2、-字典-dic-‘k1’-“v1”-“k2”-“v2”-“k3”-11-22-33"><a href="#2、-字典-dic-‘k1’-“v1”-“k2”-“v2”-“k3”-11-22-33" class="headerlink" title="2、 字典 dic = {‘k1’: “v1”, “k2”: “v2”, “k3”: [11,22,33]}"></a>2、 字典 dic = {‘k1’: “v1”, “k2”: “v2”, “k3”: [11,22,33]}</h3><h3 id="（1）请循环输出所有的key"><a href="#（1）请循环输出所有的key" class="headerlink" title="（1）请循环输出所有的key"></a>（1）请循环输出所有的key</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
-<span class="keyword">for</span> k <span class="keyword">in</span> dic.keys():
-    <span class="built_in">print</span>(k)
-</code></pre>
-<h3 id="（2）请循环输出所有的value"><a href="#（2）请循环输出所有的value" class="headerlink" title="（2）请循环输出所有的value"></a>（2）请循环输出所有的value</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
-<span class="keyword">for</span> k <span class="keyword">in</span> dic.values():
-    <span class="built_in">print</span>(k)
-</code></pre>
-<h3 id="（3）请循环输出所有的key和value"><a href="#（3）请循环输出所有的key和value" class="headerlink" title="（3）请循环输出所有的key和value"></a>（3）请循环输出所有的key和value</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
-<span class="keyword">for</span> k <span class="keyword">in</span> dic.keys():
-    <span class="built_in">print</span>(k,dic[k])
-</code></pre>
-<h3 id="（4）请在字典中添加一个键值对，”k4”-“v4”，输出添加后的字典"><a href="#（4）请在字典中添加一个键值对，”k4”-“v4”，输出添加后的字典" class="headerlink" title="（4）请在字典中添加一个键值对，”k4”: “v4”，输出添加后的字典"></a>（4）请在字典中添加一个键值对，”k4”: “v4”，输出添加后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>: <span class="string">"v1"</span>, <span class="string">"k2"</span>: <span class="string">"v2"</span>, <span class="string">"k3"</span>: [11,22,33]}
-dic[<span class="string">"k4"</span>] = <span class="string">"v4"</span>
-<span class="built_in">print</span>(dic)
-</code></pre>
-<h3 id="（5）请在修改字典中-“k1”-对应的值为-“alex”，输出修改后的字典"><a href="#（5）请在修改字典中-“k1”-对应的值为-“alex”，输出修改后的字典" class="headerlink" title="（5）请在修改字典中 “k1” 对应的值为 “alex”，输出修改后的字典"></a>（5）请在修改字典中 “k1” 对应的值为 “alex”，输出修改后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>: <span class="string">"v1"</span>, <span class="string">"k2"</span>: <span class="string">"v2"</span>, <span class="string">"k3"</span>: [11,22,33]}
-dic[<span class="string">"k1"</span>] = <span class="string">"alex"</span>
-<span class="built_in">print</span>(dic)
-</code></pre>
-<h3 id="（6）请在k3对应的值中追加一个元素-44，输出修改后的字典"><a href="#（6）请在k3对应的值中追加一个元素-44，输出修改后的字典" class="headerlink" title="（6）请在k3对应的值中追加一个元素 44，输出修改后的字典"></a>（6）请在k3对应的值中追加一个元素 44，输出修改后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
-dic[<span class="string">'k3'</span>].append(<span class="string">'44'</span>)
-<span class="built_in">print</span>(dic)
-</code></pre>
-<h3 id="（7）请在k3对应的值的第-1-个位置插入个元素-18，输出修改后的字典"><a href="#（7）请在k3对应的值的第-1-个位置插入个元素-18，输出修改后的字典" class="headerlink" title="（7）请在k3对应的值的第 1 个位置插入个元素 18，输出修改后的字典"></a>（7）请在k3对应的值的第 1 个位置插入个元素 18，输出修改后的字典</h3><pre><code class="bash">dic = {<span class="string">'k1'</span>:<span class="string">'v1'</span>,<span class="string">'k2'</span>:<span class="string">'v2'</span>,<span class="string">'k3'</span>:[11,22,33]}
-dic[<span class="string">'k3'</span>].insert(0,<span class="string">'18'</span>)
-<span class="built_in">print</span>(dic)
-</code></pre>
-<h3 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h3><pre><code class="bash">catalog = {
-    <span class="string">"欧美"</span>:{
-        <span class="string">"www.Facebook.com"</span>: [<span class="string">"很多免费的,世界最大的"</span>,<span class="string">"质量一般"</span>],
-        <span class="string">"www.Twitter.com"</span>: [<span class="string">"很多免费的,也很大"</span>,<span class="string">"质量比Facebook高点"</span>],
-        <span class="string">"www.linkin.com"</span>: [<span class="string">"多是白领,信息很多"</span>,<span class="string">"资源不多,更新慢"</span>],
-    },
-    <span class="string">"日韩"</span>:{
-        <span class="string">"www.Ameba.com"</span>:[<span class="string">"质量怎样不清楚,个人已经不喜欢日韩范了"</span>,<span class="string">"verygood"</span>]
-    },
-    <span class="string">"大陆"</span>:{
-    <span class="string">"www.weibo.com"</span>:[<span class="string">"全部免费,真好,好人一生平安"</span>,<span class="string">"服务器在国外"</span>]
-    }
-}
-</code></pre>
-<h3 id="（1）给此-“很多免费的-世界最大的”-”质量一般”-列表第二个位置插入一个元素：’量很大’。"><a href="#（1）给此-“很多免费的-世界最大的”-”质量一般”-列表第二个位置插入一个元素：’量很大’。" class="headerlink" title="（1）给此 [“很多免费的,世界最大的”,”质量一般”]列表第二个位置插入一个元素：’量很大’。"></a>（1）给此 [“很多免费的,世界最大的”,”质量一般”]列表第二个位置插入一个元素：’量很大’。</h3><pre><code class="bash">catalog[<span class="string">"欧美"</span>][<span class="string">"www.Facebook.com"</span>].insert(1,<span class="string">"量很大"</span>)
-</code></pre>
-<h3 id="（2）将-“很多免费的-也很大”-”质量比Facebook高点”-列表的-“质量比Facebook高点”-删除。"><a href="#（2）将-“很多免费的-也很大”-”质量比Facebook高点”-列表的-“质量比Facebook高点”-删除。" class="headerlink" title="（2）将 [“很多免费的,也很大”,”质量比Facebook高点”],列表的 “质量比Facebook高点”]删除。"></a>（2）将 [“很多免费的,也很大”,”质量比Facebook高点”],列表的 “质量比Facebook高点”]删除。</h3><pre><code class="bash">catalog[<span class="string">"欧美"</span>][<span class="string">"www.Twitter.com"</span>].pop()
-</code></pre>
-<h3 id="（3）将此-“质量怎样不清楚-个人已经不喜欢日韩范了”-”verygood”-列表的-“verygood”全部变成大写。"><a href="#（3）将此-“质量怎样不清楚-个人已经不喜欢日韩范了”-”verygood”-列表的-“verygood”全部变成大写。" class="headerlink" title="（3）将此[“质量怎样不清楚,个人已经不喜欢日韩范了”,”verygood”]列表的 “verygood”全部变成大写。"></a>（3）将此[“质量怎样不清楚,个人已经不喜欢日韩范了”,”verygood”]列表的 “verygood”全部变成大写。</h3><pre><code class="bash">catalog[<span class="string">"日韩"</span>][<span class="string">"www.Ameba.com"</span>][1] = catalog[<span class="string">"日韩"</span>][<span class="string">"www.Ameba.com"</span>][1].upper()
-</code></pre>
-<h3 id="（4）给-‘大陆’-对应的字典添加一个键值对-‘www-momo-com’-‘交友神器’"><a href="#（4）给-‘大陆’-对应的字典添加一个键值对-‘www-momo-com’-‘交友神器’" class="headerlink" title="（4）给 ‘大陆’ 对应的字典添加一个键值对 ‘www.momo.com’ :[‘交友神器’]"></a>（4）给 ‘大陆’ 对应的字典添加一个键值对 ‘<a href="http://www.momo.com’" target="_blank" rel="noopener">www.momo.com’</a> :[‘交友神器’]</h3><pre><code class="bash">catalog.setdefault(<span class="string">"www.momo.com"</span>,[<span class="string">"交友神器"</span>])
-</code></pre>
-<h3 id="（5）删除此“www-linkin-com”-“多是白领-信息很多”-”资源不多-更新慢”-键值对。"><a href="#（5）删除此“www-linkin-com”-“多是白领-信息很多”-”资源不多-更新慢”-键值对。" class="headerlink" title="（5）删除此“www.linkin.com”: [“多是白领,信息很多”,”资源不多,更新慢”]键值对。"></a>（5）删除此“<a href="http://www.linkin.com”" target="_blank" rel="noopener">www.linkin.com”</a>: [“多是白领,信息很多”,”资源不多,更新慢”]键值对。</h3><pre><code class="bash">catalog[<span class="string">"欧美"</span>].popitem()
-</code></pre>
-<h3 id="（6）给此-“全部免费-真好-好人一生平安”-“服务器在国外”-列表的第一个元素，加上一句话：‘可以抓取数据’"><a href="#（6）给此-“全部免费-真好-好人一生平安”-“服务器在国外”-列表的第一个元素，加上一句话：‘可以抓取数据’" class="headerlink" title="（6）给此[“全部免费,真好,好人一生平安”,“服务器在国外”]列表的第一个元素，加上一句话：‘可以抓取数据’"></a>（6）给此[“全部免费,真好,好人一生平安”,“服务器在国外”]列表的第一个元素，加上一句话：‘可以抓取数据’</h3><pre><code class="bash">catalog[<span class="string">"大陆"</span>][<span class="string">"www.weibo.com"</span>].insert(0,<span class="string">"可以抓取数据"</span>)
-</code></pre>
-<h3 id="4、有字符串”k-1-k1-2-k2-3-k3-4”-处理成字典-‘k’-1-’k1’-2…"><a href="#4、有字符串”k-1-k1-2-k2-3-k3-4”-处理成字典-‘k’-1-’k1’-2…" class="headerlink" title="4、有字符串”k:1|k1:2|k2:3|k3:4” 处理成字典 {‘k’:1,’k1’:2….}"></a>4、有字符串”k:1|k1:2|k2:3|k3:4” 处理成字典 {‘k’:1,’k1’:2….}</h3><pre><code class="bash">str1 = <span class="string">"k:1|k1:2|k2:3|k3:4"</span>
-dic = {}
-list1 = str1.split(<span class="string">'|'</span>)
-list2 = list()
-<span class="built_in">print</span>(list1)
-<span class="string">''</span><span class="string">'</span>
-<span class="string"># for 循环</span>
-<span class="string">list2 = list()</span>
-<span class="string">for x in list1:</span>
-<span class="string">list2 = x.split('</span>:<span class="string">')</span>
-<span class="string">dic[list2[0]] = int(list2[1])</span>
-<span class="string">'</span><span class="string">''</span>
-<span class="comment">#推导式</span>
-dic = {x.split(<span class="string">':'</span>)[0]:int(x.split(<span class="string">':'</span>)[1]) <span class="keyword">for</span> x <span class="keyword">in</span> list1}
-<span class="built_in">print</span>(dic)
-</code></pre>
-<h3 id="5、元素分类有如下值li-11-22-33-44-55-66-77-88-99-90-，将所有大于-66-的值保存至字典的第一个key中，将小于-66-的值保存至第二个key的值中。即：-‘k1’-大于66的所有值列表-‘k2’-小于66的所有值列表"><a href="#5、元素分类有如下值li-11-22-33-44-55-66-77-88-99-90-，将所有大于-66-的值保存至字典的第一个key中，将小于-66-的值保存至第二个key的值中。即：-‘k1’-大于66的所有值列表-‘k2’-小于66的所有值列表" class="headerlink" title="5、元素分类有如下值li= [11,22,33,44,55,66,77,88,99,90]，将所有大于 66 的值保存至字典的第一个key中，将小于 66 的值保存至第二个key的值中。即： {‘k1’: 大于66的所有值列表, ‘k2’: 小于66的所有值列表}"></a>5、元素分类有如下值li= [11,22,33,44,55,66,77,88,99,90]，将所有大于 66 的值保存至字典的第一个key中，将小于 66 的值保存至第二个key的值中。即： {‘k1’: 大于66的所有值列表, ‘k2’: 小于66的所有值列表}</h3><pre><code class="bash">li=[11,22,33,44,55,66,77,88,99,90]
-dic={<span class="string">'k1'</span>:[ ],<span class="string">'k2'</span>:[ ]}
-<span class="keyword">for</span> i <span class="keyword">in</span> li:
-    <span class="keyword">if</span> i &gt;70:
-        dic[<span class="string">'k1'</span>].append(i)
-    <span class="keyword">else</span>:
-        dic[<span class="string">'k2'</span>].append(i)
-<span class="built_in">print</span>(dic)
-<span class="comment">### 或者：</span>
-li=[11,22,33,44,55,66,77,88,99,90]
-dic=dict()
-ls1 = list()
-ls2 = list()
-<span class="keyword">for</span> i <span class="keyword">in</span> li:
-    <span class="keyword">if</span> i &gt;70:
-        ls1.append(i)
-        dic[<span class="string">'k1'</span>]=ls1
-    <span class="keyword">else</span>:
-        ls2.append(i)
-        dic[<span class="string">'k2'</span>]=ls2
-<span class="built_in">print</span>(dic)
-</code></pre>
-<h3 id="6、输出商品列表，用户输入序号，显示用户选中的商品"><a href="#6、输出商品列表，用户输入序号，显示用户选中的商品" class="headerlink" title="6、输出商品列表，用户输入序号，显示用户选中的商品"></a>6、输出商品列表，用户输入序号，显示用户选中的商品</h3><pre><code>商品 li = [&quot;手机&quot;, &quot;电脑&quot;, &apos;鼠标垫&apos;, &apos;游艇&apos;]
-</code></pre><p> 要求：（1）页面显示 序号 + 商品名称，如：<br>            1 手机<br>            2 电脑<br>              …<br>      （2） 用户输入选择的商品序号，然后打印商品名称<br>      （3）如果用户输入的商品序号有误，则提示输入有误，并重新输入。<br>      （4）用户输入Q或者q，退出程序。</p>
-<pre><code class="bash">dic = dict(zip((1,2,3,4),(<span class="string">'手机'</span>, <span class="string">'电脑'</span>, <span class="string">'鼠标垫'</span>, <span class="string">'游艇'</span>)))
-dic = {
-<span class="string">'1'</span> : <span class="string">'电视机'</span>,
-<span class="string">'2'</span> : <span class="string">'洗衣机'</span>,
-<span class="string">'3'</span> : <span class="string">'电饭煲'</span>,
-<span class="string">'4'</span> : <span class="string">'电磁炉'</span>
-}
-<span class="keyword">while</span> True:
-    msg = input(<span class="string">'请输入商品编号，退出请输入Q或者q，您的选择是：'</span>)
-    <span class="keyword">if</span> msg == <span class="string">'Q'</span> or msg ==<span class="string">'q'</span>:
-        <span class="built_in">break</span>
-    <span class="keyword">else</span>:
-        <span class="keyword">if</span> msg <span class="keyword">in</span> dic.keys():
-            <span class="built_in">print</span>(<span class="string">'序号 商品名称'</span>)
-            <span class="built_in">print</span>(<span class="string">'{} {}'</span>.format(msg,dic[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
-</code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果:"></a>结果:</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson7.py<br>请输入商品编号，退出请输入Q或者q，您的选择是：2<br>序号        商品名称<br>2            洗衣机<br>请输入商品编号，退出请输入Q或者q，您的选择是：5<br>请输入正确的商品编号！<br>请输入商品编号，退出请输入Q或者q，您的选择是：q<br>PS D:\pythoncode&gt;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/18/practice-combine-data-type-dict/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-combine-data-type-dict" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/17/combine-data-type-dict/">组合数据类型（字典）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/17/combine-data-type-dict/" class="archive-article-date">
-  	<time datetime="2018-07-17T00:46:00.346Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="组合数据类型——字典dict"><a href="#组合数据类型——字典dict" class="headerlink" title="组合数据类型——字典dict"></a>组合数据类型——字典dict</h2><h3 id="1、字典类型的基本概念"><a href="#1、字典类型的基本概念" class="headerlink" title="1、字典类型的基本概念"></a>1、字典类型的基本概念</h3><p>字典数据类型，由key：value结构构成的，也就是说字典类型中的每个元素都有两部分构成的，中间使用：连接。其中，key和value可以是任意数据类型的内容。</p>
-<h3 id="2、字典对象的生成（4种）"><a href="#2、字典对象的生成（4种）" class="headerlink" title="2、字典对象的生成（4种）"></a>2、字典对象的生成（4种）</h3><p>（1）dic = {1:’hello’,2:’world’,3:’welcome’}，两边使用一对{ }来界定。<br>（2）dic = dict() 生成一个空字典<br>（3）dic = dict({1:’hello’,2:’world’,3:’welcome’})<br>（4）使用zip（）函数生成字典<br>        函数格式：zip(iter1,iter2…)<br>        返回值：返回一个zip对象</p>
-<pre><code>我们通过zip函数，指定对应的元组，分别来作为字典的key和value，生成zip对象转成字典数据。
-</code></pre><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dict(zip((<span class="string">'id'</span>,<span class="string">'name'</span>,<span class="string">'city'</span>),(<span class="string">'01'</span>,<span class="string">'wdd'</span>,<span class="string">'beijing '</span>)))
-{<span class="string">'id'</span>: <span class="string">'01'</span>, <span class="string">'name'</span>: <span class="string">'wdd'</span>, <span class="string">'city'</span>: <span class="string">'beijing '</span>}
-</code></pre>
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><pre><code>字典中的key是唯一的，如果在生成时命名了多个同名的key，那么实际上字典会使用最后一次命名的key来覆盖前面的同名内容。同时，字典在赋值时，允许其value或key 为空。
-</code></pre><h4 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>, False: <span class="string">'six'</span>, 3: <span class="string">'live'</span>}
-&gt;&gt;&gt; dic
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'live'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>, False: <span class="string">'six'</span>}
-&gt;&gt;&gt; dic1 = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>, False: <span class="string">'six'</span>, 6: <span class="string">'none'</span>,<span class="string">''</span>:<span class="string">'ok'</span>}
-&gt;&gt;&gt; dic1
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>, False: <span class="string">'six'</span>, 6: <span class="string">'none'</span>, <span class="string">''</span>: <span class="string">'ok'</span>}
-</code></pre>
-<h3 id="3、字典的特性"><a href="#3、字典的特性" class="headerlink" title="3、字典的特性"></a>3、字典的特性</h3><p>（1）字典中的元素是根据每对键值对中的key来决定的，通过相应的哈希算法来决定它们对应的value的存储地址，因此字典是无序的。<br>（2）字典中的key，可以是数值、字符串、元组等构成，注意这些内容都是不可改变的。其中字典中的key都是唯一的。<br>（3）字典中的value需要通过key来获取。</p>
-<h3 id="4、字典的常用操作"><a href="#4、字典的常用操作" class="headerlink" title="4、字典的常用操作"></a>4、字典的常用操作</h3><h4 id="（1）字典的新增和修改"><a href="#（1）字典的新增和修改" class="headerlink" title="（1）字典的新增和修改"></a>（1）字典的新增和修改</h4><h4 id="1）新增：如果字典中不存在指定的key，则对该字典实现元素的新增。"><a href="#1）新增：如果字典中不存在指定的key，则对该字典实现元素的新增。" class="headerlink" title="1）新增：如果字典中不存在指定的key，则对该字典实现元素的新增。"></a>1）新增：如果字典中不存在指定的key，则对该字典实现元素的新增。</h4><h4 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1:<span class="string">'hello'</span>,2:<span class="string">'world'</span>,3:<span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic
-{1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic[4] = <span class="string">'live'</span>
-&gt;&gt;&gt; dic
-{1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>}
-</code></pre>
-<h4 id="2）修改：如果字典中存在指定的key，那么对key对应的value进行修改。"><a href="#2）修改：如果字典中存在指定的key，那么对key对应的value进行修改。" class="headerlink" title="2）修改：如果字典中存在指定的key，那么对key对应的value进行修改。"></a>2）修改：如果字典中存在指定的key，那么对key对应的value进行修改。</h4><pre><code class="bash">&gt;&gt;&gt;dic = {1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'like'</span>}
-&gt;&gt;&gt; dic
-{1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>,4: <span class="string">'live'</span>, 5: <span class="string">'like'</span>}
-&gt;&gt;&gt; dic[5] = <span class="string">'likes'</span>
-&gt;&gt;&gt; dic
-{1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>}
-</code></pre>
-<h4 id="（2）字典的删除"><a href="#（2）字典的删除" class="headerlink" title="（2）字典的删除"></a>（2）字典的删除</h4><h4 id="1）使用del-进行字典内容的删除"><a href="#1）使用del-进行字典内容的删除" class="headerlink" title="1）使用del 进行字典内容的删除"></a>1）使用del 进行字典内容的删除</h4><p>del dic[key] 删除指定可以对应的value内容<br>del dic  删除整个字典，并释放内存</p>
-<h4 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; del dic[3]
-&gt;&gt;&gt; dic
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>}
-&gt;&gt;&gt; del dic
-&gt;&gt;&gt; dic
-Traceback (most recent call last):
-  File <span class="string">"&lt;pyshell#58&gt;"</span>, line 1, <span class="keyword">in</span> &lt;module&gt;
-    dic
-NameError: name <span class="string">'dic'</span> is not defined
-</code></pre>
-<h4 id="2）使用pop-函数，删除指定key对应的value内容"><a href="#2）使用pop-函数，删除指定key对应的value内容" class="headerlink" title="2）使用pop()函数，删除指定key对应的value内容"></a>2）使用pop()函数，删除指定key对应的value内容</h4><p>函数格式：dict.pop(key)，起哄参数为字典中key的值<br>返回值：返回所删除key对应的value内容</p>
-<h4 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.pop()
-Traceback (most recent call last):
-  File <span class="string">"&lt;pyshell#61&gt;"</span>, line 1, <span class="keyword">in</span> &lt;module&gt;
-    dic.pop()
-TypeError: pop expected at least 1 arguments, got 0
-&gt;&gt;&gt; dic.pop(1)
-<span class="string">'one'</span>
-&gt;&gt;&gt; dic
-{2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-</code></pre>
-<p>注意：字典中使用pop()与列表list的使用有所不同，字典中必须要有参数，参数为键的值。</p>
-<h4 id="3）使用clear-函数，清空字典中所有内容"><a href="#3）使用clear-函数，清空字典中所有内容" class="headerlink" title="3）使用clear()函数，清空字典中所有内容"></a>3）使用clear()函数，清空字典中所有内容</h4><p>函数格式：dict.clear()<br>返回值：清空字典中所有内容，返回一个空字典</p>
-<h4 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.clear()
-&gt;&gt;&gt; dic
-{}
-</code></pre>
-<h4 id="4）popitem-，删除字典中的键值对"><a href="#4）popitem-，删除字典中的键值对" class="headerlink" title="4）popitem()，删除字典中的键值对"></a>4）popitem()，删除字典中的键值对</h4><p>函数格式：dict.popitem()<br>返回值：会在字典尾部，弹出键值对并删除，将删除的键值对按照元组类型返回</p>
-<h4 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.popitem()
-(3, <span class="string">'welcome'</span>)
-</code></pre>
-<h4 id="（3）检索字典"><a href="#（3）检索字典" class="headerlink" title="（3）检索字典"></a>（3）检索字典</h4><h4 id="1）查询指定的value，通过指定的key找到对应的value，"><a href="#1）查询指定的value，通过指定的key找到对应的value，" class="headerlink" title="1）查询指定的value，通过指定的key找到对应的value，"></a>1）查询指定的value，通过指定的key找到对应的value，</h4><h4 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic[1]
-<span class="string">'hello'</span>
-</code></pre>
-<h4 id="2）通过for-in-进行遍历"><a href="#2）通过for-in-进行遍历" class="headerlink" title="2）通过for  in  进行遍历"></a>2）通过for  in  进行遍历</h4><pre><code class="bash">&gt;&gt;&gt;dic = {1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>}
-&gt;&gt;&gt; <span class="keyword">for</span> key <span class="keyword">in</span> dic:
-    dic[key]
-<span class="string">'hello'</span>
-<span class="string">'world'</span>
-<span class="string">'welcome'</span>
-<span class="string">'live'</span>
-<span class="string">'likes'</span>
-</code></pre>
-<h4 id="（4）字典与列表、元组的转换"><a href="#（4）字典与列表、元组的转换" class="headerlink" title="（4）字典与列表、元组的转换"></a>（4）字典与列表、元组的转换</h4><h4 id="1）列表转成字典："><a href="#1）列表转成字典：" class="headerlink" title="1）列表转成字典："></a>1）列表转成字典：</h4><pre><code class="bash">&gt;&gt;&gt; list1 = [[1, <span class="string">'hello], [2, '</span>world], [3, <span class="string">'welcome'</span>], [4, <span class="string">'live'</span>], [5, <span class="string">'likes'</span>]]
-</code></pre>
-<h4 id="或者（-和-在此时是可以互用的，因为1-2-3-4-5都是确定的）："><a href="#或者（-和-在此时是可以互用的，因为1-2-3-4-5都是确定的）：" class="headerlink" title="或者（()和[ ]在此时是可以互用的，因为1,2,3,4,5都是确定的）："></a>或者（()和[ ]在此时是可以互用的，因为1,2,3,4,5都是确定的）：</h4><pre><code class="bash">&gt;&gt;&gt; list1 = [(1, <span class="string">'hello'</span>), (2, <span class="string">'world'</span>), (3, <span class="string">'welcome'</span>), (4, <span class="string">'live'</span>), (5, <span class="string">'likes'</span>)]
-&gt;&gt;&gt; list1
-[(1, <span class="string">'hello'</span>), (2, <span class="string">'world'</span>), (3, <span class="string">'welcome'</span>), (4, <span class="string">'live'</span>), (5, <span class="string">'likes'</span>)]
-&gt;&gt;&gt; dic = dict(list1)
-&gt;&gt;&gt; dic
-{1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>}
-</code></pre>
-<h4 id="2）元组转成字典："><a href="#2）元组转成字典：" class="headerlink" title="2）元组转成字典："></a>2）元组转成字典：</h4><pre><code class="bash">&gt;&gt;&gt; tup = ((1, <span class="string">'hello'</span>), (2, <span class="string">'world'</span>), (3, <span class="string">'welcome'</span>), (4, <span class="string">'live'</span>), (5, <span class="string">'likes'</span>))
-&gt;&gt;&gt; tup
-((1, <span class="string">'hello'</span>), (2, <span class="string">'world'</span>), (3, <span class="string">'welcome'</span>), (4, <span class="string">'live'</span>), (5, <span class="string">'likes'</span>))
-&gt;&gt;&gt; dic = dict(tup)
-&gt;&gt;&gt; dic
-{1: <span class="string">'hello'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'live'</span>, 5: <span class="string">'likes'</span>}
-</code></pre>
-<h4 id="注意：-1"><a href="#注意：-1" class="headerlink" title="注意："></a>注意：</h4><p>（1）不管是列表还是元组，作为key的那个值必须是不可变的数据类型。<br>（2）我们对字典进行新增和修改时，其key可以使用True或False，但是要注意在使用它们时，字典会首先对已有的key进行比对，如果有重复的则进行修改（True==1,False==0）</p>
-<h4 id="（5）常用函数"><a href="#（5）常用函数" class="headerlink" title="（5）常用函数"></a>（5）常用函数</h4><h4 id="1）Keys-，获得字典所有的key值集合"><a href="#1）Keys-，获得字典所有的key值集合" class="headerlink" title="1）Keys()，获得字典所有的key值集合"></a>1）Keys()，获得字典所有的key值集合</h4><p>函数格式：dict.keys()<br>返回值：dict_keys 类型，实际内容为一个list列表</p>
-<h4 id="例如：-8"><a href="#例如：-8" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; <span class="keyword">for</span> key <span class="keyword">in</span> dic.keys():
-    <span class="built_in">print</span>(key,dic[key])
-1 one
-2 world
-3 welcome
-</code></pre>
-<h4 id="2）values-，获得字典中所有的values值的集合"><a href="#2）values-，获得字典中所有的values值的集合" class="headerlink" title="2）values()，获得字典中所有的values值的集合"></a>2）values()，获得字典中所有的values值的集合</h4><p>函数格式：dict.values()<br>返回值：dict_values类型，实际内容为一个list列表</p>
-<h4 id="例如：-9"><a href="#例如：-9" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.keys()
-dict_keys([1, 2, 3])
-或者：
-&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.values()
-dict_values([<span class="string">'one'</span>, <span class="string">'world'</span>, <span class="string">'welcome'</span>])
-</code></pre>
-<h4 id="3）items-，获得字典中所有key-value键值对的集合"><a href="#3）items-，获得字典中所有key-value键值对的集合" class="headerlink" title="3）items()，获得字典中所有key=value键值对的集合"></a>3）items()，获得字典中所有key=value键值对的集合</h4><p>函数格式：dict.items()<br>返回值：dict_items类型，实际内容为一个包含元组的列表</p>
-<h4 id="例如：-10"><a href="#例如：-10" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.items()
-dict_items([(1, <span class="string">'one'</span>), (2, <span class="string">'world'</span>), (3, <span class="string">'welcome'</span>)])
-</code></pre>
-<h4 id="4）get-，获得字典中指定key对应的value内容"><a href="#4）get-，获得字典中指定key对应的value内容" class="headerlink" title="4）get()，获得字典中指定key对应的value内容"></a>4）get()，获得字典中指定key对应的value内容</h4><p>函数格式：dict.get(key)<br>返回值：返回指定key对应的value，如果没有找到则不返回任何内容即返回None。</p>
-<h4 id="例如：-11"><a href="#例如：-11" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic[2]
-<span class="string">'world'</span>
-&gt;&gt;&gt; dic.get(2)
-<span class="string">'world'</span>
-&gt;&gt;&gt; dic[4]
-Traceback (most recent call last):
-  File <span class="string">"&lt;pyshell#75&gt;"</span>, line 1, <span class="keyword">in</span> &lt;module&gt;
-    dic[4]
-KeyError: 4
-&gt;&gt;&gt; dic.get(4)
-&gt;&gt;&gt; dic.get(4) == <span class="string">''</span>
-False
-&gt;&gt;&gt; dic.get(5)==None
-True
-</code></pre>
-<h4 id="5）setdefault-，返回指定key对应的内容，如果key不存在，则进行新增"><a href="#5）setdefault-，返回指定key对应的内容，如果key不存在，则进行新增" class="headerlink" title="5）setdefault()，返回指定key对应的内容，如果key不存在，则进行新增"></a>5）setdefault()，返回指定key对应的内容，如果key不存在，则进行新增</h4><p>函数格式：dic.setdefault(key[,value]),其中key为键值，如果该key在字典中已经存在，那么不需要填写value 参数，如果该key在字典中不存在，需要value参数<br>返回值：如果key值存在，返回该key对应的value内容；如果key不存在，则进行新增返回新增的value内容。</p>
-<h4 id="例如：-12"><a href="#例如：-12" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.setdefault(4,<span class="string">'two'</span>)
-<span class="string">'two'</span>
-&gt;&gt;&gt; dic
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: <span class="string">'two'</span>}
-&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.setdefault(1,<span class="string">'three'</span>)
-<span class="string">'one'</span>
-&gt;&gt;&gt; dic
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.setdefault(2)
-<span class="string">'world'</span>
-&gt;&gt;&gt; dic = {1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>}
-&gt;&gt;&gt; dic.setdefault(4)
-&gt;&gt;&gt; dic
-{1: <span class="string">'one'</span>, 2: <span class="string">'world'</span>, 3: <span class="string">'welcome'</span>, 4: None}
-</code></pre>
-<h4 id="6）update-，将新字典中的key-value内容，添加到原有字典尾部，如果新字典内容中有key值与原字典的key值相同，那么就覆盖key值对应的原有value。"><a href="#6）update-，将新字典中的key-value内容，添加到原有字典尾部，如果新字典内容中有key值与原字典的key值相同，那么就覆盖key值对应的原有value。" class="headerlink" title="6）update()，将新字典中的key=value内容，添加到原有字典尾部，如果新字典内容中有key值与原字典的key值相同，那么就覆盖key值对应的原有value。"></a>6）update()，将新字典中的key=value内容，添加到原有字典尾部，如果新字典内容中有key值与原字典的key值相同，那么就覆盖key值对应的原有value。</h4><p>函数格式：old_dict.update(new_dict)<br>返回值：将新字典中的内容，添加到原有字典的尾部。</p>
-<h4 id="例如：-13"><a href="#例如：-13" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">dic1 = {1:<span class="string">'麻辣烫'</span>,2:<span class="string">'米线'</span>,3:<span class="string">'凉皮'</span>,4:<span class="string">'烩面'</span>}
-dic2 = {<span class="string">'one'</span>:<span class="string">'大米'</span>,<span class="string">'two'</span>:<span class="string">'小米'</span>,<span class="string">'three'</span>:<span class="string">'黑米'</span>,<span class="string">'four'</span>:<span class="string">'红米'</span>,4:<span class="string">'盖浇面'</span>}
-dic1.update(dic2)
-<span class="built_in">print</span>(dic1)
-结果：
-{1: <span class="string">'麻辣烫'</span>, 2: <span class="string">'米线'</span>, 3: <span class="string">'凉皮'</span>, 4: <span class="string">'盖浇面'</span>, <span class="string">'one'</span>: <span class="string">'大米'</span>, <span class="string">'two'</span>: <span class="string">'小米'</span>, <span class="string">'three'</span>: <span class="string">'黑米'</span>, <span class="string">'four'</span>: <span class="string">'红米'</span>}
-</code></pre>
-<h4 id="7）fromkeys-，通过指定的key集合，生成一个新字典，其value值缺省为None"><a href="#7）fromkeys-，通过指定的key集合，生成一个新字典，其value值缺省为None" class="headerlink" title="7）fromkeys()，通过指定的key集合，生成一个新字典，其value值缺省为None"></a>7）fromkeys()，通过指定的key集合，生成一个新字典，其value值缺省为None</h4><p>函数格式：dict.fromkeys(iter1[,value])   其中iter1为可迭代化集合，比如：列表、元组；value可以是任意数据类型。<br>返回值：返回一个新字典，其中key为我们在参数中使用的iter1集合，值都为None或者指定的value。</p>
-<h4 id="例如：-14"><a href="#例如：-14" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">dic3 = dict()
-a = dic3.fromkeys([1,2,3])
-<span class="built_in">print</span>(a)
-结果：
-{1: None, 2: None, 3: None}
-dic3 = dict()
-a = dic3.fromkeys([1,2,3],[<span class="string">'a'</span>,<span class="string">'b'</span>])
-<span class="built_in">print</span>(a)
-结果：
-{1: [<span class="string">'a'</span>, <span class="string">'b'</span>], 2: [<span class="string">'a'</span>, <span class="string">'b'</span>], 3: [<span class="string">'a'</span>, <span class="string">'b'</span>]}
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/17/combine-data-type-dict/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-practice-triangel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/practice-triangel/">作业练习——直角三角形在不同的方位</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/16/practice-triangel/" class="archive-article-date">
-  	<time datetime="2018-07-16T12:59:43.958Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="嵌套循环练习——三角形"><a href="#嵌套循环练习——三角形" class="headerlink" title="嵌套循环练习——三角形"></a>嵌套循环练习——三角形</h2><h3 id="1、左直三角形"><a href="#1、左直三角形" class="headerlink" title="1、左直三角形"></a>1、左直三角形</h3><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(0,5):
-    <span class="keyword">for</span> j <span class="keyword">in</span> range(0,i+1):
-        <span class="built_in">print</span>(<span class="string">'*'</span>,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>()
-</code></pre>
-<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><pre><code>*
-* *
-* * *
-* * * *
-* * * * *
-</code></pre><h3 id="2、右直三角形"><a href="#2、右直三角形" class="headerlink" title="2、右直三角形"></a>2、右直三角形</h3><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(0,5):
-    <span class="keyword">for</span> k <span class="keyword">in</span> range(0,5-(i+1)):
-        <span class="built_in">print</span>(<span class="string">' '</span>,end = <span class="string">' '</span>)
-    <span class="keyword">for</span> j <span class="keyword">in</span> range(0,i+1):
-        <span class="built_in">print</span>(<span class="string">'*'</span>,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>()
-</code></pre>
-<h3 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h3><pre><code>        *
-      * *
-    * * *
-  * * * *
-* * * * *
-</code></pre><h3 id="3、右直三角形"><a href="#3、右直三角形" class="headerlink" title="3、右直三角形"></a>3、右直三角形</h3><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(0,5):
-    <span class="built_in">print</span>(<span class="string">' '</span>*(4-i),end = <span class="string">' '</span>)
-    <span class="built_in">print</span>(<span class="string">'*'</span>*(i+1),end = <span class="string">' '</span>)
-    <span class="built_in">print</span>()
-</code></pre>
-<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3><pre><code>        *
-      * *
-    * * *
-  * * * *
-* * * * *      
-</code></pre><h3 id="4、左上直三角形"><a href="#4、左上直三角形" class="headerlink" title="4、左上直三角形"></a>4、左上直三角形</h3><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(0,5):
-    <span class="keyword">for</span> j <span class="keyword">in</span> range(0,5-i)：
-        <span class="built_in">print</span>(<span class="string">'*'</span>,end = <span class="string">'  '</span>)
-    <span class="built_in">print</span>()
-</code></pre>
-<h3 id="结果：-3"><a href="#结果：-3" class="headerlink" title="结果："></a>结果：</h3><pre><code>*  *  *  *  *
-*  *  *  *
-*  *  *
-*  *
-*
-</code></pre><h3 id="5、右上直三角形"><a href="#5、右上直三角形" class="headerlink" title="5、右上直三角形"></a>5、右上直三角形</h3><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(0,5):
-    <span class="keyword">for</span> j <span class="keyword">in</span> range(0,i):
-        <span class="built_in">print</span>(<span class="string">' '</span>,end = <span class="string">' '</span>)
-    <span class="keyword">for</span> k <span class="keyword">in</span> range(0,5-i):
-        <span class="built_in">print</span>(<span class="string">'*'</span>,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>()
-</code></pre>
-<h3 id="结果：-4"><a href="#结果：-4" class="headerlink" title="结果："></a>结果：</h3><pre><code>* * * * *
-  * * * *
-    * * *
-      * *
-        *
-</code></pre><h3 id="6、等腰三角形"><a href="#6、等腰三角形" class="headerlink" title="6、等腰三角形"></a>6、等腰三角形</h3><pre><code class="bash">m = int(input(<span class="string">'请输入一个数字，求其等腰三角：'</span>))
-<span class="keyword">for</span> i <span class="keyword">in</span> range(0,m):
-    <span class="keyword">for</span> j <span class="keyword">in</span> range(0,m-(i+1)):
-        <span class="built_in">print</span>(<span class="string">''</span>,end = <span class="string">' '</span>)
-    <span class="keyword">for</span> k <span class="keyword">in</span> range(m-(i+1),m):
-        <span class="built_in">print</span>(<span class="string">'*'</span>,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>()
-</code></pre>
-<h3 id="结果：输入5"><a href="#结果：输入5" class="headerlink" title="结果：输入5"></a>结果：输入5</h3><pre><code>    *
-   * *
-  * * * 
- * * * *
-* * * * *
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/16/practice-triangel/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-practice-comprehensive-day1-5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/practice-comprehensive-day1-5/">综合练习1</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/16/practice-comprehensive-day1-5/" class="archive-article-date">
-  	<time datetime="2018-07-16T12:13:34.636Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="day5之前知识的小综合作业"><a href="#day5之前知识的小综合作业" class="headerlink" title="day5之前知识的小综合作业"></a>day5之前知识的小综合作业</h2><h3 id="一、选择题"><a href="#一、选择题" class="headerlink" title="一、选择题"></a>一、选择题</h3><p>1、python不支持的数据类型有    （A）<br>A、char          B、int           C、float          D、list</p>
-<p>2、 x =”foo”<br>y = 2<br>print(x+y)   结果为  （E）<br>A.foo    B.foofoo      C.foo2     D.2      E.TypeError</p>
-<h4 id="原因：不同数据类型不可以相加，但是字符串可以与数字相乘"><a href="#原因：不同数据类型不可以相加，但是字符串可以与数字相乘" class="headerlink" title="原因：不同数据类型不可以相加，但是字符串可以与数字相乘"></a>原因：不同数据类型不可以相加，但是字符串可以与数字相乘</h4><p>3、关于字符串下列说法错误的是    （A）<br>A、字符串应该视为长度为1的字符串<br>B、字符串可以转化成数字<br>C、既可以用单引号，也可以用双引号创建字符串<br>D、在三引号字符串中可以包含换行回车等特殊字符</p>
-<h4 id="原因：字符应该视为长度为1的字符串，而不是字符串"><a href="#原因：字符应该视为长度为1的字符串，而不是字符串" class="headerlink" title="原因：字符应该视为长度为1的字符串，而不是字符串"></a>原因：字符应该视为长度为1的字符串，而不是字符串</h4><p>4、已知x=43，ch=’A’，y = 1，则表达式(x&gt;=y and ch &lt;’b’ and y)的值是(面试题)  （B）<br>A、0           B、1           C、出错           D、True</p>
-<h4 id="原因：结果与y值（1）相同。如果表达式改为：-x-gt-y-and-ch-lt-‘b’-and-y-gt-0-时，则结果为：True，因为不再是值。"><a href="#原因：结果与y值（1）相同。如果表达式改为：-x-gt-y-and-ch-lt-‘b’-and-y-gt-0-时，则结果为：True，因为不再是值。" class="headerlink" title="原因：结果与y值（1）相同。如果表达式改为：(x&gt;=y and ch&lt;‘b’ and y&gt;0)时，则结果为：True，因为不再是值。"></a>原因：结果与y值（1）相同。如果表达式改为：(x&gt;=y and ch&lt;‘b’ and y&gt;0)时，则结果为：True，因为不再是值。</h4><h4 id="and-和-or-的运算结果比较："><a href="#and-和-or-的运算结果比较：" class="headerlink" title="and 和 or 的运算结果比较："></a>and 和 or 的运算结果比较：</h4><p>（1）在Python，我们使用True、False进行逻辑运算的元素，但是根据Python的原理，认为已经赋值存在的内容与True进行逻辑运算，其结果都为该内容本身，特殊的情况0，在Python2.7版本中，他被认为是False。因此，y=1  True and y =&gt; 1  y=0 True and y =&gt;0<br>（2）逻辑运算，通常是从做往右进行计算，因此你的Python解析器会根据最后读入的运算元素作为最终输出结果的类型，导致：<br>y=1   y and True =&gt;True</p>
-<p>5、下列Python语句正确的事（多选） （AD）<br>A、min = x if x &lt; y else y  # 如果x &lt; y得x，否则得y（python的三元表达式）<br>B、max = x &gt; y ? x : y<br>C、if(x&gt;y) print(x)<br>D、while True:pass</p>
-<h4 id="原因：B项出现在C语言中，属于三元符号，python中没见；C项少："><a href="#原因：B项出现在C语言中，属于三元符号，python中没见；C项少：" class="headerlink" title="原因：B项出现在C语言中，属于三元符号，python中没见；C项少："></a>原因：B项出现在C语言中，属于三元符号，python中没见；C项少：</h4><p>6、若k为整形，下述while循环执 的次数为：(python3上执行了10次，此题应该是py2上的题目)     （B）<br>                        k=1000<br>                        while k&gt;1:<br>                        print(k)<br>                        k=k/2<br>A.9             B.10           C.11           D.100</p>
-<p>7、以下叙述正确的是：（B）<br>A、continue语句的作用是结束整个循环的执行(本次)<br>B、只能在循环体内使用break语句<br>C、在循环体内使用break语句或continue语句的作用相同（前者整个循环，后者本次循环）<br>D、从多层循环嵌套中退出时，只能使用goto语句（exit）</p>
-<p>8、下面的语句哪个会无限循环下去： （B）<br>                    A、for a in range(10):<br>                    time.sleep(10)<br>                    B、while 1&lt;10:<br>                    time.sleep(10)<br>                    C、while True:<br>                    break<br>                    D、a = [3,-1,’,’]<br>                    for i in a[:]:<br>                        if not a: break</p>
-<p>9、下列说法正确的是(多选,选错不得分)：（BC）<br>                    A、<br>                    a = [1,2,3]<br>                    b = [1,2,3]<br>                    a与b指向同一个内存地址。<br>                    B、<br>                    i1 = 356<br>                    I2 = 356<br>                    i1 与 i2是同一个内存地址。<br>                    C、<br>                    s1 =’laonanhai’<br>                    s2 =’laonanhai’<br>                    s1 与 s2 是同一个内存地址。<br>                    D、tu = (1) tu是元组类型。 # 题中就是一个整型，加逗号即可：tu = (1,)</p>
-<p>10、下面的代码，哪些是输出1,2,3三个数字(多选,选错不得分):(面试题)（BD）<br>                    A、<br>                    for i in range(3):<br>                       print(i)<br>                       print(i+1) 结果：0 1 1 2 2 3<br>                    B、<br>                    aList = [0,1,2]<br>                    for i in aList:<br>                       print(i+1)<br>                    C、<br>                    i = 1<br>                    while i &lt; 3:<br>                       print(i)<br>                       i+=1       结果： 1 2<br>                    D、<br>                    for i in range(3):<br>                       print(i+1)</p>
-<p>11、下面的代码：<br>myList=[]<br>for i in range(0,6,2):<br>    for k in range(4):<br>        myList.append(i+k)</p>
-<p>print(i)                    #Line 1<br>print(k)                     #Line 2<br>print(myList)                    #Line 3<br>（a）标号为1的行输出什么？<br>4<br>（b）标号为2的行输出什么？<br>3<br>（c）标号为3的行输出什么？<br>[0, 1, 2, 3, 2, 3, 4, 5, 4, 5, 6, 7]</p>
-<h3 id="二、简答题"><a href="#二、简答题" class="headerlink" title="二、简答题"></a>二、简答题</h3><h4 id="1、Python-如何实现tuple和list的转换"><a href="#1、Python-如何实现tuple和list的转换" class="headerlink" title="1、Python 如何实现tuple和list的转换"></a>1、Python 如何实现tuple和list的转换</h4><p>元组转为列表：list1 = list(tuple1)<br>列表转为元组：tuple1 = tuple(list1)</p>
-<h4 id="2、list和tuple有什么不同"><a href="#2、list和tuple有什么不同" class="headerlink" title="2、list和tuple有什么不同"></a>2、list和tuple有什么不同</h4><p>（1）list为可变数据类型,而tuple为不可变数据类型<br>（2）前者的长度是可变的，后者是定长的<br>（3）两者都是有序的</p>
-<h4 id="3、请描述unicode-utf-8-gbk等编码之间的关系？"><a href="#3、请描述unicode-utf-8-gbk等编码之间的关系？" class="headerlink" title="3、请描述unicode,utf-8,gbk等编码之间的关系？"></a>3、请描述unicode,utf-8,gbk等编码之间的关系？</h4><p>（1）unicode编码是计算机所能识别的字节编码格式，所有格式的编码都需要最终转换为unicode编码，然后被计算机所执行。<br>（2）gbk编码是中文编码，主要用来在中文操作系统上正确显示中文内容的编码集。<br>（3）UTF-8编码是目前互联网进行数据传输、内容展现的通用编码格式，它解决了因为操作系统编码格式不同的问题，导致在不同系统无法正确显示内容的情况。<br>（4）它们三者都是编码格式，其中UTF-8和gbk最终都要解释成unicode编码后，进行执行。同时，在现在的互联网应用中，为了统一编码格式，进行正确的内容展现，我们通常对文件的编码使用UTF-8来代替gbk，这样解决了跨操作系统出现乱码的情况。</p>
-<h4 id="4、li-1-1-2-2-3-4-5-5-6-6-7-8-将此列表去重。"><a href="#4、li-1-1-2-2-3-4-5-5-6-6-7-8-将此列表去重。" class="headerlink" title="4、li = [1,1,2,2,3,4,5,5,6,6,7,8]将此列表去重。"></a>4、li = [1,1,2,2,3,4,5,5,6,6,7,8]将此列表去重。</h4><h4 id="法一："><a href="#法一：" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">li = [1,1,2,2,3,4,5,5,6,6,7,8]
-<span class="keyword">for</span> i <span class="keyword">in</span> range(len(li)):
-    <span class="keyword">for</span> j <span class="keyword">in</span> range(i+1,len(li)-1):
-        <span class="keyword">if</span> li[i]==li[j]:
-        li.pop(i)
-<span class="built_in">print</span>(li)
-</code></pre>
-<h4 id="法二："><a href="#法二：" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">li = [1,1,2,2,3,4,5,5,6,6,7,8]
-l2 = list()
-<span class="keyword">for</span> i <span class="keyword">in</span> li:
-    <span class="keyword">if</span> i not <span class="keyword">in</span> l2:
-        l2.append(i)
-<span class="built_in">print</span>(l2)
-</code></pre>
-<h4 id="法三：推导式"><a href="#法三：推导式" class="headerlink" title="法三：推导式"></a>法三：推导式</h4><pre><code class="bash">li = [1,1,2,2,3,4,5,5,6,6,7,8]
-l2=list()
-[l2.append(x) <span class="keyword">for</span> x <span class="keyword">in</span> li <span class="keyword">if</span> not x <span class="keyword">in</span> l2]
-<span class="built_in">print</span>(l2)
-</code></pre>
-<h4 id="5、有如下代码，说出l1与l2的关系？"><a href="#5、有如下代码，说出l1与l2的关系？" class="headerlink" title="5、有如下代码，说出l1与l2的关系？"></a>5、有如下代码，说出l1与l2的关系？</h4><h4 id="l1-1-2-3-4-5"><a href="#l1-1-2-3-4-5" class="headerlink" title="l1 = [1,2,3,4,5]"></a>l1 = [1,2,3,4,5]</h4><h4 id="l2-l1"><a href="#l2-l1" class="headerlink" title="l2 = l1[:]"></a>l2 = l1[:]</h4><p>（1）该题中，l1通过切片方式，生成了一个新的列表l2，此时l2与l1他们的列表中的值相同<br>（2）但是他们不是同一个列表即l1与l2分别指向了不同的内存区域</p>
-<h4 id="6、’1-2-3’如何变成-‘1’-’2’-’3’-？-‘1’-’2’-’3’-如何变成-1-2-3-（写具体代码）"><a href="#6、’1-2-3’如何变成-‘1’-’2’-’3’-？-‘1’-’2’-’3’-如何变成-1-2-3-（写具体代码）" class="headerlink" title="6、’1,2,3’如何变成[‘1’,’2’,’3’]？ [‘1’,’2’,’3’]如何变成[1,2,3]?（写具体代码）"></a>6、’1,2,3’如何变成[‘1’,’2’,’3’]？ [‘1’,’2’,’3’]如何变成[1,2,3]?（写具体代码）</h4><h4 id="（1）’1-2-3’如何变成-‘1’-’2’-’3’-代码如下："><a href="#（1）’1-2-3’如何变成-‘1’-’2’-’3’-代码如下：" class="headerlink" title="（1）’1,2,3’如何变成[‘1’,’2’,’3’]代码如下："></a>（1）’1,2,3’如何变成[‘1’,’2’,’3’]代码如下：</h4><pre><code class="bash">string1 =<span class="string">'1,2,3'</span>
-list1=string1.split(<span class="string">','</span>)
-<span class="built_in">print</span>(list1)
-</code></pre>
-<h4 id="（2）-‘1’-’2’-’3’-如何变成-1-2-3-代码如下："><a href="#（2）-‘1’-’2’-’3’-如何变成-1-2-3-代码如下：" class="headerlink" title="（2）[‘1’,’2’,’3’]如何变成[1,2,3]代码如下："></a>（2）[‘1’,’2’,’3’]如何变成[1,2,3]代码如下：</h4><h4 id="法一-推导式："><a href="#法一-推导式：" class="headerlink" title="法一:推导式："></a>法一:推导式：</h4><pre><code class="bash">a=[<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]
-b=[int(i) <span class="keyword">for</span> i <span class="keyword">in</span> a]
-<span class="built_in">print</span>(b)
-</code></pre>
-<h4 id="法二：-1"><a href="#法二：-1" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">li = [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]
-<span class="keyword">for</span> i <span class="keyword">in</span> range(len(li)):
-    li[i] = int(li[i])
-<span class="built_in">print</span>(li)
-</code></pre>
-<h4 id="7、开发敏感词语过滤程序，提示用户输入评论内容，如果用户输入的内容中包含特殊的字符："><a href="#7、开发敏感词语过滤程序，提示用户输入评论内容，如果用户输入的内容中包含特殊的字符：" class="headerlink" title="7、开发敏感词语过滤程序，提示用户输入评论内容，如果用户输入的内容中包含特殊的字符："></a>7、开发敏感词语过滤程序，提示用户输入评论内容，如果用户输入的内容中包含特殊的字符：</h4><h4 id="（1）-敏感词列表-li-“苍老师”-”贩毒”-”武老师”-”自杀”"><a href="#（1）-敏感词列表-li-“苍老师”-”贩毒”-”武老师”-”自杀”" class="headerlink" title="（1） 敏感词列表 li = [“苍老师”,”贩毒”,”武老师”,”自杀”]"></a>（1） 敏感词列表 li = [“苍老师”,”贩毒”,”武老师”,”自杀”]</h4><h4 id="（2）则将用户输入的内容中的敏感词汇替换成-，并添加到一个列表中；"><a href="#（2）则将用户输入的内容中的敏感词汇替换成-，并添加到一个列表中；" class="headerlink" title="（2）则将用户输入的内容中的敏感词汇替换成***，并添加到一个列表中；"></a>（2）则将用户输入的内容中的敏感词汇替换成***，并添加到一个列表中；</h4><h4 id="（3）如果用户输入的内容没有敏感词汇，则直接添加到上述的列表中"><a href="#（3）如果用户输入的内容没有敏感词汇，则直接添加到上述的列表中" class="headerlink" title="（3）如果用户输入的内容没有敏感词汇，则直接添加到上述的列表中"></a>（3）如果用户输入的内容没有敏感词汇，则直接添加到上述的列表中</h4><pre><code class="bash">comments = input(<span class="string">"请输入评论内容:"</span>)
-list1 = [<span class="string">"苍老师"</span>, <span class="string">"贩毒"</span>, <span class="string">"武老师"</span>, <span class="string">"自杀"</span>]
-list2 = []
-<span class="keyword">for</span> i <span class="keyword">in</span> list1:
-    <span class="keyword">if</span> i <span class="keyword">in</span> comments:
-        comments = comments.replace(i, <span class="string">"*"</span> * len(i)) 
-list2.append(comments)
-<span class="built_in">print</span>(list2)
-</code></pre>
-<h4 id="8、有如下列表li-1-3-4’-alex’-3-7-8-’taibai’-5-’ritian’"><a href="#8、有如下列表li-1-3-4’-alex’-3-7-8-’taibai’-5-’ritian’" class="headerlink" title="8、有如下列表li = [1,3,4’,alex’,[3,7,8,’taibai’],5,’ritian’]"></a>8、有如下列表li = [1,3,4’,alex’,[3,7,8,’taibai’],5,’ritian’]</h4><h4 id="（1）循环打印列表中的每个元素，遇到列表则再循环打印出它里面的元素。"><a href="#（1）循环打印列表中的每个元素，遇到列表则再循环打印出它里面的元素。" class="headerlink" title="（1）循环打印列表中的每个元素，遇到列表则再循环打印出它里面的元素。"></a>（1）循环打印列表中的每个元素，遇到列表则再循环打印出它里面的元素。</h4><h4 id="（2）我想要的结果是-用两种方法实现，其中一种用range做"><a href="#（2）我想要的结果是-用两种方法实现，其中一种用range做" class="headerlink" title="（2）我想要的结果是(用两种方法实现，其中一种用range做)"></a>（2）我想要的结果是(用两种方法实现，其中一种用range做)</h4><h4 id="法一：-1"><a href="#法一：-1" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">li = [1,3,4,<span class="string">'alex'</span>,[3,7,8,<span class="string">'taibai'</span>],5,<span class="string">'ritian'</span>]
-<span class="keyword">for</span> i <span class="keyword">in</span> li:
-    <span class="keyword">if</span> <span class="built_in">type</span>(i) == list:
-        <span class="keyword">for</span> j <span class="keyword">in</span> i:
-            <span class="built_in">print</span>(j,end = <span class="string">' '</span>)
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(i,end = <span class="string">' '</span>)
-</code></pre>
-<h4 id="法二：-2"><a href="#法二：-2" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">li = [1,3,4 ,<span class="string">'alex'</span>,[3,7,8,<span class="string">'taibai'</span>],5,<span class="string">'ritian'</span>]
-<span class="keyword">for</span> i <span class="keyword">in</span> range(len(li)):
-    <span class="keyword">if</span> <span class="built_in">type</span>(li[i]) == list:
-        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(li[i])):
-            <span class="built_in">print</span>(li[i][j],end = <span class="string">' '</span>)
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(li[i],end = <span class="string">' '</span>)
-</code></pre>
-<h4 id="9、编写程序，一个字符串内容如下：“TV，phone，pad，computer，watch”，将该字符串转化为列表类型，并将偶数位的内容输出。"><a href="#9、编写程序，一个字符串内容如下：“TV，phone，pad，computer，watch”，将该字符串转化为列表类型，并将偶数位的内容输出。" class="headerlink" title="9、编写程序，一个字符串内容如下：“TV，phone，pad，computer，watch”，将该字符串转化为列表类型，并将偶数位的内容输出。"></a>9、编写程序，一个字符串内容如下：“TV，phone，pad，computer，watch”，将该字符串转化为列表类型，并将偶数位的内容输出。</h4><pre><code class="bash">string1=<span class="string">"TV,phone,pad,computer,watch"</span>
-list1=string1.split(<span class="string">','</span>)
-list2=list1[1:5:2]
-<span class="built_in">print</span>(<span class="string">'偶数位的内容是：{}'</span>.format(list2))
-<span class="built_in">print</span>(<span class="string">'列表内容是：{}'</span>.format(list1))
-</code></pre>
-<h4 id="10、已知：元组-a-1-2-3-利用list方法，输出下面的结果：-1-2-4-？"><a href="#10、已知：元组-a-1-2-3-利用list方法，输出下面的结果：-1-2-4-？" class="headerlink" title="10、已知：元组 a = (1,2,3) 利用list方法，输出下面的结果：(1,2,4) ？"></a>10、已知：元组 a = (1,2,3) 利用list方法，输出下面的结果：(1,2,4) ？</h4><pre><code class="bash">a = (1,2,3) 
-b = list(a)
-b[2] = 4
-a = tuple(b)
-<span class="built_in">print</span> (a)
-</code></pre>
-<h4 id="11、-利用列表推导完成下面习题："><a href="#11、-利用列表推导完成下面习题：" class="headerlink" title="11、 利用列表推导完成下面习题："></a>11、 利用列表推导完成下面习题：</h4><h4 id="（1）输出结果：-‘1-love-python’-’2-love-python’-’3-love-python’-…-’10-love-python’"><a href="#（1）输出结果：-‘1-love-python’-’2-love-python’-’3-love-python’-…-’10-love-python’" class="headerlink" title="（1）输出结果：[‘1 love python’,’2 love python’,’3 love python’,….’10 love python’]"></a>（1）输出结果：[‘1 love python’,’2 love python’,’3 love python’,….’10 love python’]</h4><pre><code class="bash">li=[str(x)+<span class="string">'love python'</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(1,11)]
-<span class="built_in">print</span>(li)
-</code></pre>
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>推导公式的执行顺序是：先执行变量后面的循环语句，如果有两个连续的循环语句那么表明这是一个循环嵌套语句，先执行一次前面的循环语句，然后执行N次后面的循环语句，每次执行完就生成一次最前面变量，该变量作为列表的一个元素。一致到所有循环结束。</p>
-<h4 id="或者："><a href="#或者：" class="headerlink" title="或者："></a>或者：</h4><pre><code class="bash">list1 = [<span class="string">'{} love python'</span>.format(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(1, 11)]
-<span class="built_in">print</span>(list1)
-</code></pre>
-<h4 id="（3）输出结果：-0-0-0-2-2-0-2-2"><a href="#（3）输出结果：-0-0-0-2-2-0-2-2" class="headerlink" title="（3）输出结果：[(0,0),(0,2),(2,0),(2,2)]"></a>（3）输出结果：[(0,0),(0,2),(2,0),(2,2)]</h4><pre><code class="bash">list1 = list()
-<span class="keyword">for</span> i <span class="keyword">in</span> range(0,3,2):
-    <span class="keyword">for</span> j <span class="keyword">in</span> range(0,3,2):
-        tupl = (i,j)
-        list1.append(tupl)
-<span class="built_in">print</span>(list1)
-</code></pre>
-<h4 id="或者：（推导式）"><a href="#或者：（推导式）" class="headerlink" title="或者：（推导式）"></a>或者：（推导式）</h4><pre><code class="bash">list1 = [(x, y) <span class="keyword">for</span> x <span class="keyword">in</span> range(3) <span class="keyword">for</span> y <span class="keyword">in</span> range(3) <span class="keyword">if</span> x%2==0 and y%2==0]
-<span class="built_in">print</span>(list1)
-</code></pre>
-<h4 id="或者：-1"><a href="#或者：-1" class="headerlink" title="或者："></a>或者：</h4><pre><code class="bash">list1 = [(x, y) <span class="keyword">for</span> x <span class="keyword">in</span> range(0,3,2) <span class="keyword">for</span> y <span class="keyword">in</span> range(0,3,2)]
-<span class="built_in">print</span>(list1)
-</code></pre>
-<h4 id="12、"><a href="#12、" class="headerlink" title="12、"></a>12、</h4><h4 id="a-1-2-3"><a href="#a-1-2-3" class="headerlink" title="a = [1,2,3]"></a>a = [1,2,3]</h4><h4 id="b-a"><a href="#b-a" class="headerlink" title="b = a[:]"></a>b = a[:]</h4><h4 id="del-a"><a href="#del-a" class="headerlink" title="del a"></a>del a</h4><h4 id="b的值是什么。为什么呢？"><a href="#b的值是什么。为什么呢？" class="headerlink" title="b的值是什么。为什么呢？"></a>b的值是什么。为什么呢？</h4><pre><code>b的值还是[1,2,3]，因为该题中，代码是按照顺序执行的，首先，列表a 被赋值后，其次将a进行切片，并把值赋给b，但是，两者的内存地址不一样。所以在b被赋值后，再删除a列表进行释放，对b 是没影响的。
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/16/practice-comprehensive-day1-5/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/07/19/case-shopping/">展开全文 >></a>
         </p>
       
 
@@ -1865,7 +1677,7 @@ a = tuple(b)
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 

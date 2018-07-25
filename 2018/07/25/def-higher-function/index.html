@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>组合数据类型（高级特性或提升） | diana</title>
+  <title>高阶函数 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
+  <meta name="description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组合数据类型（高级特性或提升）">
-<meta property="og:url" content="http://yoursite.com/2018/07/19/combine-data-type-promote/index.html">
+<meta property="og:title" content="高阶函数">
+<meta property="og:url" content="http://yoursite.com/2018/07/25/def-higher-function/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
+<meta property="og:description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-21T00:23:32.252Z">
+<meta property="og:updated_time" content="2018-07-25T13:32:27.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="组合数据类型（高级特性或提升）">
-<meta name="twitter:description" content="拓展了迭代器、生成器1、range()Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。 2、列表推导式生成格式：[表达式或函数 for x in 序列]含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。 3、迭代器（Iterator）（1）概念：迭代器访问元素，是从第一个元素开">
+<meta name="twitter:title" content="高阶函数">
+<meta name="twitter:description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,187 +163,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-combine-data-type-promote" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-def-higher-function" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      组合数据类型（高级特性或提升）
+      高阶函数
     </h1>
   
 
         
-        <a href="/2018/07/19/combine-data-type-promote/" class="archive-article-date">
-  	<time datetime="2018-07-19T09:45:40.892Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
+        <a href="/2018/07/25/def-higher-function/" class="archive-article-date">
+  	<time datetime="2018-07-25T13:29:44.677Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="拓展了迭代器、生成器"><a href="#拓展了迭代器、生成器" class="headerlink" title="拓展了迭代器、生成器"></a>拓展了迭代器、生成器</h2><h3 id="1、range"><a href="#1、range" class="headerlink" title="1、range()"></a>1、range()</h3><p>Range()函数本身并不会自动产生整数序列，需要使用其他方式来调用它才会产生。</p>
-<h3 id="2、列表推导式生成"><a href="#2、列表推导式生成" class="headerlink" title="2、列表推导式生成"></a>2、列表推导式生成</h3><p>格式：[表达式或函数 for x in 序列]<br>含义：通过生成式中的循环，逐一产生x值，表达式使用x值进行相关运算。最终结果作为列表的元素。也就意味着，循环多少次，就会产生多少个相关元素。</p>
-<h3 id="3、迭代器（Iterator）"><a href="#3、迭代器（Iterator）" class="headerlink" title="3、迭代器（Iterator）"></a>3、迭代器（Iterator）</h3><h3 id="（1）概念："><a href="#（1）概念：" class="headerlink" title="（1）概念："></a>（1）概念：</h3><p>迭代器访问元素，是从第一个元素开始，依次访问后续元素直到结束，其中迭代器只能向前，不能回退。其包含两个方法：iter()和next()<br>Iter()用来创建迭代器，next()用来访问下一个元素。<br>目前我们所学的字符串、列表、元组都可以用来创建迭代器，它们都是可迭代化的对象。</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3,4]
-&gt;&gt;&gt; list1_iter = iter(list1)
-&gt;&gt;&gt; next(list1_iter)
-1
-&gt;&gt;&gt; next(list1_iter)
-2
-&gt;&gt;&gt; next(list1_iter)
-3
-&gt;&gt;&gt; next(list1_iter)
-4
-</code></pre>
-<h3 id="或者（循环）："><a href="#或者（循环）：" class="headerlink" title="或者（循环）："></a>或者（循环）：</h3><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3,4]
-&gt;&gt;&gt; list1_iter = iter(list1)
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> list1_iter:
-    <span class="built_in">print</span>(i) 
-1
-2
-3
-4
-</code></pre>
-<h3 id="（2）迭代器两个步骤："><a href="#（2）迭代器两个步骤：" class="headerlink" title="（2）迭代器两个步骤："></a>（2）迭代器两个步骤：</h3><pre><code>一、当调用next()函数，会将迭代器当前位置状态进行改变
-二、会将下一个元素进行返回
-</code></pre><h3 id="（3）迭代器的延迟作用："><a href="#（3）迭代器的延迟作用：" class="headerlink" title="（3）迭代器的延迟作用："></a>（3）迭代器的延迟作用：</h3><p>1）迭代器生成的元素并不是在迭代器声明时就准备好了的，通常是在调用迭代器需要提供该元素时生成的，也就是说，只有我们需要的时候，迭代器才产生相关元素，不需要时并不会主动地生成相关元素。<br>2）我们可以把迭代器看成一个容器，到我们需要时使用next()方法返回容器中的下一个值。<br>3）迭代器实现了工厂模式的对象，它在你每次访问下一个值的时候给你返回。</p>
-<h3 id="（4）可迭代化："><a href="#（4）可迭代化：" class="headerlink" title="（4）可迭代化："></a>（4）可迭代化：</h3><p>表明相关的对象可以创建迭代器对象，同时，他们自身都是可以进行for数据遍历的。同时可以使用isinstance()来判断对象是否为可迭代化。</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from collections import Iterable
-string = <span class="string">'wdd'</span>
-<span class="built_in">print</span>(isinstance(string,Iterable))
-结果：
-True
-</code></pre>
-<h3 id="（5）isinstance"><a href="#（5）isinstance" class="headerlink" title="（5）isinstance()"></a>（5）isinstance()</h3><p>函数格式：isinstance（对象，类型）<br>返回值：布尔值<br>结果：如果指定的对象属于指定的类型，那么返回True，否则返回False</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from collections import Iterable
-string = <span class="string">'wdd'</span>
-<span class="built_in">print</span>(isinstance(string,Iterable))
-</code></pre>
-<h3 id="（6）enumerate"><a href="#（6）enumerate" class="headerlink" title="（6）enumerate()"></a>（6）enumerate()</h3><p>函数格式：enumerate(iterable)<br>返回值：生成一个枚举对象</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; lis = [1,2,3,4,5,6]
-&gt;&gt;&gt; <span class="keyword">for</span> i,value <span class="keyword">in</span> enumerate(lis):
-    <span class="built_in">print</span>(i,value)   
-0 1
-1 2
-2 3
-3 4
-4 5
-5 6
-或者：
-&gt;&gt;&gt; lis = [1,2,3,4,5,6]
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> enumerate(lis):
-    <span class="built_in">print</span>(i)
-(0, 1)
-(1, 2)
-(2, 3)
-(3, 4)
-(4, 5)
-(5, 6)
-或者：
-&gt;&gt;&gt; enu = enumerate([1,2,3,4,5,6])
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> enu:
-    <span class="built_in">print</span>(i)
-(0, 1)
-(1, 2)
-(2, 3)
-(3, 4)
-(4, 5)
-(5, 6)
-</code></pre>
-<h3 id="4、生成器"><a href="#4、生成器" class="headerlink" title="4、生成器"></a>4、生成器</h3><h3 id="（1）创建方式"><a href="#（1）创建方式" class="headerlink" title="（1）创建方式"></a>（1）创建方式</h3><pre><code>一、使用列表推导式，将[ ]改为（），生成一个generator对象
-二、使用函数方式，采用yield关键字来实现
-</code></pre><h3 id="（2）使用"><a href="#（2）使用" class="headerlink" title="（2）使用"></a>（2）使用</h3><p>生成器我们通常可以认为一种特殊的迭代器，但是它不需要像迭代器一样去实现。<br><strong>iter</strong>,<strong>next</strong>方法，只需要使用yield关键字，该关键字可以在每次调用生成器函数时起到暂停作用，并将其值进行返回。同时还会记录当前运行值的状态。</p>
-<h3 id="5、总结：迭代器和生成器的区别"><a href="#5、总结：迭代器和生成器的区别" class="headerlink" title="5、总结：迭代器和生成器的区别"></a>5、总结：迭代器和生成器的区别</h3><p>（1）容器是一系列的元素集合，str、list、set、dict对象都可以看作是容器，容器都可以进行迭代（即用在while或for循环），凡是这样的容器我们都称为可迭代化对象（Iterable）。<br>（2）可迭代化对象都实现了<strong>iter</strong>方法，该方法返回一个迭代器对象。<br>（3）迭代器都拥有一个状态字段，用于记录下次迭代返回值。它实现了<strong>next</strong>和<strong>iter</strong>方法，迭代器不会一次性把所有的元素都加载到内存中，而是在需要的时候才生成返回结果。<br>（4）生成器是一种特殊的迭代器，它的返回值不是通过return来返回的，而是通过yield来返回的。</p>
-<h3 id="小程序：用生成器做医院挂号程序"><a href="#小程序：用生成器做医院挂号程序" class="headerlink" title="小程序：用生成器做医院挂号程序"></a>小程序：用生成器做医院挂号程序</h3><pre><code class="bash">def gene(n):
-    i = 1000
-    <span class="keyword">while</span> True:
-        <span class="keyword">if</span> <span class="string">'A'</span> ==n:
-            num = <span class="string">'A'</span>+str(i)   
-            yield num
-            i +=1
-        <span class="keyword">elif</span> <span class="string">'B'</span> ==n:
-            num = <span class="string">'B'</span>+str(i)
-            yield num
-            i +=1
-        <span class="keyword">elif</span> <span class="string">'C'</span> ==n:
-            num = <span class="string">'C'</span>+str(i)
-            yield num
-            i +=1
-
-a = gene(<span class="string">'A'</span>)
-b = gene(<span class="string">'B'</span>)
-c = gene(<span class="string">'C'</span>)
-<span class="keyword">while</span> True:
-    <span class="built_in">print</span>(<span class="string">'*'</span>*15)
-    <span class="built_in">print</span>(<span class="string">'A:精神科'</span>)
-    <span class="built_in">print</span>(<span class="string">'B:外科'</span>)
-    <span class="built_in">print</span>(<span class="string">'C:内科'</span>)
-    <span class="built_in">print</span>(<span class="string">'*'</span>*15)
-    msg = input(<span class="string">'请输入就诊科室：'</span>)
-    custmer = input(<span class="string">'请取号就诊，输入你的一卡通姓名：'</span>)
-    <span class="keyword">if</span> <span class="string">'A'</span> ==msg:
-        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(a),msg))
-    <span class="keyword">elif</span> <span class="string">'B'</span> ==msg:    
-        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(b),msg))
-    <span class="keyword">elif</span> <span class="string">'C'</span> ==msg:
-        <span class="built_in">print</span>(<span class="string">'患者姓名是{}，就诊号为{}的患者请到{}就诊'</span>.format(custmer,next(c),msg))
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'请输入正确的科室！'</span>)
-</code></pre>
-<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson10.py</p>
-<hr>
-<p>A:精神科<br>B:外科<br>C:内科</p>
-<hr>
-<p>请输入就诊科室：A<br>请取号就诊，输入你的一卡通姓名：曹猛<br>患者姓名是曹猛，就诊号为A1000的患者请到A就诊</p>
-<hr>
-<p>A:精神科<br>B:外科<br>C:内科</p>
-<hr>
-<p>请输入就诊科室：</p>
-<h3 id="输出-0-1-2-3-4-5-6-7-8-9"><a href="#输出-0-1-2-3-4-5-6-7-8-9" class="headerlink" title="输出 0 1 2 3 4 5 6 7 8 9"></a>输出 0 1 2 3 4 5 6 7 8 9</h3><pre><code class="bash">def getList(n):
-    result = []
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):
-        result.append(i)
-    <span class="built_in">return</span> result
-<span class="keyword">for</span> i <span class="keyword">in</span> getList(10):
-    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
-生成器做法：
-def iter_gene(n):
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(10):
-        yield i
-<span class="keyword">for</span> i <span class="keyword">in</span> iter_gene(10):
-    <span class="built_in">print</span>(i,end=<span class="string">' '</span>) 
-</code></pre>
-<h3 id="6、copy-（浅拷贝）-和-deepcopy-（深拷贝）"><a href="#6、copy-（浅拷贝）-和-deepcopy-（深拷贝）" class="headerlink" title="6、copy()（浅拷贝） 和 deepcopy()（深拷贝）"></a>6、copy()（浅拷贝） 和 deepcopy()（深拷贝）</h3><h3 id="（1）浅拷贝：我们使用copy-函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。"><a href="#（1）浅拷贝：我们使用copy-函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。" class="headerlink" title="（1）浅拷贝：我们使用copy()函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。"></a>（1）浅拷贝：我们使用copy()函数将列表中的元素进行复制，通常对于普通的列表（一维）能够实现完全的值传递，即将本身的副本赋值给另外一个列表。</h3><h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">list1 = [1,2,3,4,5]
-list2 = list1.copy()  <span class="comment">#经list1中的元素赋值给list2，此时他们的值相等</span>
-<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
-list1[3] = 6  <span class="comment">#此时，对list1中索引位3的值进行修改，变为6</span>
-<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
-</code></pre>
-<h3 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, 4, 5]<br>初始化list2的内容[1, 2, 3, 4, 5]<br>改变后list1的内容[1, 2, 3, 6, 5]<br>改变后list2的内容[1, 2, 3, 4, 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表改变，但是list2的列表值没有改变</p>
-<h3 id="一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy-对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。"><a href="#一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy-对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。" class="headerlink" title="一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy()对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。"></a>一旦，list1列表结构发生变化，出现子列表嵌套，这时再使用copy()对list2赋值，我们进行对list1里嵌套的值进行改变，list2的嵌套内容也会随之改变。</h3><h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">list1 = [1,2,3,[<span class="string">'one'</span>,<span class="string">'four'</span>]],5]
-list2 = list1.copy()
-<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
-list1[3][0] = <span class="string">'two'</span>
-<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
-</code></pre>
-<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3><p>SyntaxError: invalid syntax<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>初始化list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>改变后list1的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>改变后list2的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表值改变，list2也随之改变。</p>
-<h3 id="总结：这种现象我们成为浅拷贝，copy-函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。"><a href="#总结：这种现象我们成为浅拷贝，copy-函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。" class="headerlink" title="总结：这种现象我们成为浅拷贝，copy()函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。"></a>总结：这种现象我们成为浅拷贝，copy()函数进行组合数据类型拷贝时，只能控制第一层元素进行值传递，一旦出现潜逃的子列表、子字典等内容，将不再拷贝其内容的值，而是直接将这个嵌套的内存地址赋值给list2。所以会造成一旦原列表改变子列表内容后，目标列表中对应的子列表也会发生变化。</h3><h3 id="（2）深拷贝：我们需要一如copy这个模块，调用deepcopy-函数，写法如下："><a href="#（2）深拷贝：我们需要一如copy这个模块，调用deepcopy-函数，写法如下：" class="headerlink" title="（2）深拷贝：我们需要一如copy这个模块，调用deepcopy()函数，写法如下："></a>（2）深拷贝：我们需要一如copy这个模块，调用deepcopy()函数，写法如下：</h3><h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">import copy
-list1 = [1,2,3,[<span class="string">'one'</span>,<span class="string">'four'</span>],5]
-list2 = copy.deepcopy(list1)
-<span class="built_in">print</span>(<span class="string">'初始化list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'初始化list2的内容{}'</span>.format(list2))
-list1[3][0] = <span class="string">'two'</span>
-<span class="built_in">print</span>(<span class="string">'改变后list1的内容{}'</span>.format(list1))
-<span class="built_in">print</span>(<span class="string">'改变后list2的内容{}'</span>.format(list2))
-</code></pre>
-<h3 id="结果：-3"><a href="#结果：-3" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson11.py<br>初始化list1的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>初始化list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>改变后list1的内容[1, 2, 3, [‘two’, ‘four’], 5]<br>改变后list2的内容[1, 2, 3, [‘one’, ‘four’], 5]<br>PS D:\pythoncode&gt;<br>观察其结果，list1的列表值改变，list2并没有随之改变，那么也就意味着，deepcopy()将list1中内容，包括嵌套里的元素都进行了副本赋值给list2，因此，它们是值相同，并没有指向同一个内存地址。</p>
-<h3 id="2、sort（）与sorted（）"><a href="#2、sort（）与sorted（）" class="headerlink" title="2、sort（）与sorted（）"></a>2、sort（）与sorted（）</h3><p>（1）sort（）函数提供排序功能，同时该排序是实现了永久性排序，即会改变原有列表的元素位置。（list.sort（））<br>（2）sorted（）函数提供排序功能，同时该排序是实现了临时性排序，即只是产生一个有序结果，并不会真正改变原列表中元素的位置。（sorted（list））</p>
+        <h2 id="1、匿名函数"><a href="#1、匿名函数" class="headerlink" title="1、匿名函数"></a>1、匿名函数</h2><p>使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：<br>lambda 参数：表达式（返回值）<br>注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式</p>
 
       
 
@@ -423,7 +263,7 @@ list1[3][0] = <span class="string">'two'</span>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/19/combine-data-type-promote/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/25/def-higher-function/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -437,18 +277,9 @@ list1[3][0] = <span class="string">'two'</span>
   
 <nav id="article-nav">
   
-    <a href="/2018/07/19/case-shopping/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          购物小案例
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/18/combine-data-type-set/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">组合数据类型（集合）</div>
+    <a href="/2018/07/25/def-nest-clouser/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">函数的嵌套、闭包</div>
       <i class="icon-circle-right"></i>
     </a>
   
