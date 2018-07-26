@@ -161,6 +161,226 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-condition-control-if" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/12/condition-control-if/">条件控制语句（if）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/12/condition-control-if/" class="archive-article-date">
+  	<time datetime="2018-07-12T13:15:51.755Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="控制语句——条件（if）控制"><a href="#控制语句——条件（if）控制" class="headerlink" title="控制语句——条件（if）控制"></a>控制语句——条件（if）控制</h2><h3 id="1、格式如下："><a href="#1、格式如下：" class="headerlink" title="1、格式如下："></a>1、格式如下：</h3><pre><code class="bash">（1）单判断：
+If 条件：
+代码
+
+（2）双分支：
+If 条件：
+代码
+<span class="keyword">else</span>：
+代码
+
+（3）多分支：
+If 条件：
+代码
+<span class="keyword">elif</span> 条件：
+代码
+<span class="keyword">elif</span> 条件：
+代码
+<span class="keyword">elif</span> 条件：
+代码
+......
+<span class="keyword">else</span>：
+代码
+</code></pre>
+<h3 id="2、逻辑运算符：and、or、not"><a href="#2、逻辑运算符：and、or、not" class="headerlink" title="2、逻辑运算符：and、or、not"></a>2、逻辑运算符：and、or、not</h3><pre><code>（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果才为True；有一方为False时，其结果一定为False。
+（2）or：左右两端都是布尔型，其结果也是布尔型。有一方为True时，其结果一就为True；只有当左右两端的值都为False时，其结果才为False。
+（3）not:属于单目运算，其结果也是布尔型。其作用就是求反，如果变量为True，结果就为False；如果变量为False，结果就为True。
+注：
+1、逻辑运算、比较运算常用在条件中使用。同时，这两种运算符配合使用。
+2、在python中，我们认为变量如果被赋值，使用not运算后，会得False。如果一个变量没有被赋值或设为空值，那么进行not运算时，返回True。比如：
+</code></pre><pre><code class="bash">&gt;&gt;&gt;a = 10
+&gt;&gt;&gt;not a
+False
+
+&gt;&gt;&gt;a = none(代表了空值)
+&gt;&gt;&gt;not a
+True
+
+&gt;&gt;&gt;a = list（）此时列表没有被赋值，为空列表
+&gt;&gt;&gt;not a
+True
+
+&gt;&gt;&gt;a = list[1,2,3]此时列表被赋值
+&gt;&gt;&gt;not a
+False
+</code></pre>
+<h3 id="3、举例："><a href="#3、举例：" class="headerlink" title="3、举例："></a>3、举例：</h3><h4 id="（1）两个数比大小，并输出最大者"><a href="#（1）两个数比大小，并输出最大者" class="headerlink" title="（1）两个数比大小，并输出最大者"></a>（1）两个数比大小，并输出最大者</h4><pre><code class="bash">a=10
+b=100
+<span class="keyword">if</span> a&gt;b:
+    <span class="built_in">print</span>(<span class="string">'a is value %d'</span>%a)
+<span class="keyword">elif</span> a&lt;b:
+    <span class="built_in">print</span>(<span class="string">'b is value %d'</span>%b)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'%d is equal %d'</span>%(a,b))
+</code></pre>
+<h4 id="（2）三个数比大小并输出最大值"><a href="#（2）三个数比大小并输出最大值" class="headerlink" title="（2）三个数比大小并输出最大值"></a>（2）三个数比大小并输出最大值</h4><pre><code class="bash">a=10
+b=100
+c=50
+<span class="keyword">if</span> a&gt;b and a&gt;c:
+    <span class="built_in">print</span>(<span class="string">'a is biggist %d'</span>%a)
+<span class="keyword">elif</span> b&gt;a and b&gt;c:
+    <span class="built_in">print</span>(<span class="string">'b is biggist %d'</span>%b)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'c is biggist %d'</span>%c)
+</code></pre>
+<h4 id="（3）快递运费计算"><a href="#（3）快递运费计算" class="headerlink" title="（3）快递运费计算"></a>（3）快递运费计算</h4><h4 id="1-5kg-10元-kg"><a href="#1-5kg-10元-kg" class="headerlink" title="1~5kg :10元/kg"></a>1~5kg :10元/kg</h4><h4 id="5-10kg-15元-kg"><a href="#5-10kg-15元-kg" class="headerlink" title="5~10kg :15元/kg"></a>5~10kg :15元/kg</h4><h4 id="10-20kg-25元-kg"><a href="#10-20kg-25元-kg" class="headerlink" title="10~20kg :25元/kg"></a>10~20kg :25元/kg</h4><h4 id="20kg-30元-kg"><a href="#20kg-30元-kg" class="headerlink" title="20kg~ :30元/kg"></a>20kg~ :30元/kg</h4><pre><code class="bash">goods_weight=int(input(<span class="string">'请输入快递商品的重量：'</span>))
+<span class="keyword">if</span> goods_weight &lt;= 0: <span class="comment">#判断输入的值是否为正整数</span>
+    <span class="built_in">print</span>(<span class="string">'快递商品重量有错误，请重新输入！'</span>)
+    <span class="built_in">exit</span>()
+goods_price=0 <span class="comment">#快递费用</span>
+msg = <span class="string">'本次快递费用为{0}元'</span>
+<span class="keyword">if</span> goods_weight &gt; 1 and goods_weight &lt;= 5:
+    goods_price = goods_weight*10
+<span class="keyword">elif</span>  goods_weight &lt;= 10:
+    goods_price = goods_weight*15
+<span class="keyword">elif</span>  goods_weight &lt;= 20:
+    goods_price = goods_weight*25
+<span class="keyword">else</span>:
+    goods_price = goods_weight*30
+<span class="built_in">print</span>(msg.format(goods_price))
+</code></pre>
+<h4 id="（4）商场购物"><a href="#（4）商场购物" class="headerlink" title="（4）商场购物"></a>（4）商场购物</h4><h4 id="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。"><a href="#会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。" class="headerlink" title="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。"></a>会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。</h4><h4 id="钻石：100元6个积分-8折"><a href="#钻石：100元6个积分-8折" class="headerlink" title="钻石：100元6个积分 8折"></a>钻石：100元6个积分 8折</h4><h4 id="金牌：100元5个积分-8-5折"><a href="#金牌：100元5个积分-8-5折" class="headerlink" title="金牌：100元5个积分 8.5折"></a>金牌：100元5个积分 8.5折</h4><h4 id="银牌：100元3个积分-9折"><a href="#银牌：100元3个积分-9折" class="headerlink" title="银牌：100元3个积分 9折"></a>银牌：100元3个积分 9折</h4><h4 id="铜牌：100元2个积分-95折"><a href="#铜牌：100元2个积分-95折" class="headerlink" title="铜牌：100元2个积分 95折"></a>铜牌：100元2个积分 95折</h4><pre><code class="bash">from decimal import Decimal   <span class="comment"># 引入decimal包中的 Decimal 对象</span>
+user_level=input(<span class="string">'请输入用户等级：'</span>)
+goods_name = input(<span class="string">'所要购买的物品是：'</span>)
+goods_price=<span class="built_in">float</span>(input(<span class="string">'请输入所购买物品的价格：'</span>))
+<span class="keyword">if</span> goods_price &lt;=0:  <span class="comment">#判断输入的价格是否合理</span>
+    <span class="built_in">print</span>(<span class="string">'物品价格输入有误，请重新输入！'</span>)
+    <span class="built_in">exit</span>()
+real_price = 0.0 <span class="comment">#购买商品的实际价格</span>
+need_score = 0  <span class="comment">#积分</span>
+<span class="keyword">if</span> user_level == <span class="string">'钻石'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.8)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.6)
+<span class="keyword">elif</span> user_level == <span class="string">'金牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.85)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.5)
+<span class="keyword">elif</span> user_level == <span class="string">'银牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.9)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.3)
+<span class="keyword">elif</span> user_level == <span class="string">'铜牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.95)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.2)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'请输入正确的用户等级'</span>)
+    <span class="built_in">exit</span>()
+<span class="built_in">print</span>(<span class="string">'等级为{0}的顾客，购买的{1}所需要的实际价格为{2}，积分为{3}！'</span>.format(user_level,goods_name,real_price,need_score)) 
+</code></pre>
+<h4 id="（5）英雄联盟角色"><a href="#（5）英雄联盟角色" class="headerlink" title="（5）英雄联盟角色"></a>（5）英雄联盟角色</h4><h4 id="角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50"><a href="#角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50" class="headerlink" title="角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50"></a>角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50</h4><h4 id="角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80"><a href="#角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80" class="headerlink" title="角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80"></a>角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80</h4><h4 id="角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100"><a href="#角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100" class="headerlink" title="角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100"></a>角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100</h4><pre><code class="bash">import math   <span class="comment"># 引入math包</span>
+play_user=input(<span class="string">'请输入玩家角色：'</span>)
+kills_name = input(<span class="string">'所要启用的技能名称是：'</span>)
+boss_live=10000   <span class="comment">#Boss伤害值</span>
+play_blood=0  <span class="comment">#玩家技能值用完时所用的技能攻击掉的血</span>
+defind_num=0  <span class="comment">#打死Boss用的总次数</span>
+simple_num=0  <span class="comment">#技能值用完所用的技能攻击的次数</span>
+boss_blood=0  <span class="comment">#玩家技能值用完，boss剩余的血</span>
+<span class="keyword">if</span> play_user == <span class="string">'赵云'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
+        defind_num = math.ceil(boss_live/80)
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
+        defind_num = math.ceil(boss_live/120)
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>:  
+        simple_num=math.floor(500/50)
+        play_blood=120*simple_num
+        boss_blood=boss_live-play_blood
+        defind_num=math.ceil(boss_blood/80) + simple_num
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">elif</span> play_user == <span class="string">'李白'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
+        defind_num = math.ceil(boss_live/30)
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
+        defind_num = math.ceil(boss_live/100)
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>: 
+        simple_num=math.floor(350/80)
+        play_blood=100*simple_num
+        boss_blood=boss_live-play_blood
+        defind_num=math.ceil(boss_blood/30) + simple_num
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">elif</span> play_user == <span class="string">'刘备'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
+        defind_num = math.ceil(boss_live/50)
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
+        defind_num = math.ceil(boss_live/200)
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>: 
+        simple_num=math.floor(400/100)
+        play_blood=200*simple_num
+        boss_blood=boss_live-play_blood
+        defind_num=math.ceil(boss_blood/50) + simple_num
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'请输入正确的玩家角色！'</span>)
+    <span class="built_in">exit</span>()
+<span class="built_in">print</span>(<span class="string">'玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需要的次数为{2}！'</span>.format(play_user,kills_name,defind_num))
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/12/condition-control-if/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-basic-data-type" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

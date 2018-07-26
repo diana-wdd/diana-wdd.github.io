@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>高阶函数 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式">
+  <meta name="description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意:在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式 例如：###普通写法： def show(x,y): return x**y  a = show(2,3) print(a)  ### 匿名函数写：">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高阶函数">
 <meta property="og:url" content="http://yoursite.com/2018/07/25/def-higher-function/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式">
+<meta property="og:description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意:在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式 例如：###普通写法： def show(x,y): return x**y  a = show(2,3) print(a)  ### 匿名函数写：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-25T13:32:27.833Z">
+<meta property="og:updated_time" content="2018-07-26T13:09:55.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高阶函数">
-<meta name="twitter:description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式">
+<meta name="twitter:description" content="1、匿名函数使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：lambda 参数：表达式（返回值）注意:在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式 例如：###普通写法： def show(x,y): return x**y  a = show(2,3) print(a)  ### 匿名函数写：">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -183,7 +183,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、匿名函数"><a href="#1、匿名函数" class="headerlink" title="1、匿名函数"></a>1、匿名函数</h2><p>使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：<br>lambda 参数：表达式（返回值）<br>注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式</p>
+        <h3 id="1、匿名函数"><a href="#1、匿名函数" class="headerlink" title="1、匿名函数"></a>1、匿名函数</h3><p>使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：<br>lambda 参数：表达式（返回值）<br>注意:在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式</p>
+<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash"><span class="comment">###普通写法：</span>
+def show(x,y):
+<span class="built_in">return</span> x**y
+
+a = show(2,3)
+<span class="built_in">print</span>(a)
+
+<span class="comment">### 匿名函数写：</span>
+a = lambda x,y:x**y
+<span class="built_in">print</span>(a(2,3))
+</code></pre>
+<h3 id="2、map函数（映射函数）"><a href="#2、map函数（映射函数）" class="headerlink" title="2、map函数（映射函数）"></a>2、map函数（映射函数）</h3><p>函数格式：map（func，iterable）<br>返回值：map对象（迭代器）<br>说明：map函数主要作用是：将指定函数与序列中的元素进行映射，并完成函数中功能的批量操作，返回值为一个迭代器。我们可以使用for循环或next（）函数进行遍历。通常情况下，如果映射的函数较为简单，我们就不再单独声明函数，而是采用匿名函数来实现，这样也能提高运行效率。</p>
+<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def func(x):
+    <span class="built_in">return</span> x*x
+result = map(func,[1,2,3])
+
+<span class="comment">#print(next(result)) #next（）方法遍历迭代器对象result</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> result:      <span class="comment">#for循环遍历迭代器对象result</span>
+    <span class="built_in">print</span>(i)
+</code></pre>
+<h3 id="或者推导式和匿名函数lambda结合："><a href="#或者推导式和匿名函数lambda结合：" class="headerlink" title="或者推导式和匿名函数lambda结合："></a>或者推导式和匿名函数lambda结合：</h3><pre><code class="bash">result = map(lambda x:x*x,[1,2,3])
+<span class="comment">#print(next(result))</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> result:
+    <span class="built_in">print</span>(i)
+</code></pre>
+<h3 id="3、reduce函数（归纳函数）"><a href="#3、reduce函数（归纳函数）" class="headerlink" title="3、reduce函数（归纳函数）"></a>3、reduce函数（归纳函数）</h3><p>函数格式：reduce（func，iterator）<br>返回值：返回函数计算结果，具体类型根据函数的返回值而定<br>说明：reduce函数中的func一定要设为两个参数，用来接收迭代器返回的值。操作顺序为：首先接收第一、二个值，进行运算；运算结果再与第三个值进行计算，以此类推，直到迭代器迭代完所有数据。</p>
+<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from functools import reduce
+def f(x,y):
+    <span class="built_in">return</span> x*y
+
+result = reduce(f,range(1,4))
+<span class="built_in">print</span>(result)
+</code></pre>
+<h3 id="或者推导式和匿名函数lambda结合：-1"><a href="#或者推导式和匿名函数lambda结合：-1" class="headerlink" title="或者推导式和匿名函数lambda结合："></a>或者推导式和匿名函数lambda结合：</h3><pre><code class="bash">from functools import reduce
+result = reduce(lambda a,b:a*b,range(1,4))
+<span class="built_in">print</span>(result)
+</code></pre>
+<h3 id="4、filter函数（过滤函数）"><a href="#4、filter函数（过滤函数）" class="headerlink" title="4、filter函数（过滤函数）"></a>4、filter函数（过滤函数）</h3><p>函数格式：filter（func，iterable）<br>返回值：返回一个迭代器<br>说明：过滤函数与映射函数类似，都需要将函数作用于序列中的每个元素，根据函数判断True或False，返回相关元素。</p>
+<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def is_even(x):
+    <span class="built_in">return</span> x%2!=0
+
+result = filter(is_even,[1,2,3,4,5,6,7,8,9,10])
+<span class="keyword">for</span> i <span class="keyword">in</span> result:
+    <span class="built_in">print</span>(i)
+</code></pre>
+<h3 id="或者推导式和匿名函数lambda结合：-2"><a href="#或者推导式和匿名函数lambda结合：-2" class="headerlink" title="或者推导式和匿名函数lambda结合："></a>或者推导式和匿名函数lambda结合：</h3><pre><code class="bash">result = filter(lambda x:x%2!=0,[1,2,3,4,5,6,7,8,9,10])
+<span class="keyword">for</span> i <span class="keyword">in</span> result:
+    <span class="built_in">print</span>(i)
+</code></pre>
 
       
 
@@ -276,6 +325,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/07/26/def-recursion/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          函数的递归
+        
+      </div>
+    </a>
   
   
     <a href="/2018/07/25/def-nest-clouser/" id="article-nav-older" class="article-nav-link-wrap">

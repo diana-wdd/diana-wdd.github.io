@@ -161,6 +161,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-def-recursion" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/26/def-recursion/">函数的递归</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/26/def-recursion/" class="archive-article-date">
+  	<time datetime="2018-07-26T13:10:50.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="递归概念"><a href="#递归概念" class="headerlink" title="递归概念"></a>递归概念</h3><p>就是使用自身函数对自身进行调用，每调用一次将当前次的运行结果保存到函数的堆栈中，以副本形式保存，一直到最后完成全部调用。然后逐一向外将当期函数的结果返回并退出到其调用的位置。<br>在Python中，通常推荐使用迭代，递归本身对内存的消耗和运行效率低下的问题较少使用。<br>举例：</p>
+<h4 id="普通写法求n的阶乘"><a href="#普通写法求n的阶乘" class="headerlink" title="普通写法求n的阶乘"></a>普通写法求n的阶乘</h4><pre><code class="bash">def func1(n):
+    result = n
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,n):
+        result *= i
+    <span class="built_in">return</span> result
+
+<span class="built_in">print</span>(func1(5))
+</code></pre>
+<h3 id="递归写法求n的阶乘"><a href="#递归写法求n的阶乘" class="headerlink" title="递归写法求n的阶乘"></a>递归写法求n的阶乘</h3><pre><code class="bash">def func2(n):
+    <span class="keyword">if</span> n == 1:
+        <span class="built_in">return</span> 1
+    <span class="keyword">else</span>:
+        <span class="built_in">return</span> n * func2(n-1)
+
+<span class="built_in">print</span>(func2(5))
+</code></pre>
+<h3 id="递归写法求n的阶乘的和"><a href="#递归写法求n的阶乘的和" class="headerlink" title="递归写法求n的阶乘的和"></a>递归写法求n的阶乘的和</h3><pre><code class="bash">Sum=0
+factorial=1
+num = int(input(<span class="string">'请输入一个数字：'</span>))
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1):
+    factorial = factorial*i
+    Sum +=factorial
+<span class="built_in">print</span>(<span class="string">'阶乘之和：'</span>,Sum) 
+</code></pre>
+<h3 id="递归写法求n的阶乘的和-1"><a href="#递归写法求n的阶乘的和-1" class="headerlink" title="递归写法求n的阶乘的和"></a>递归写法求n的阶乘的和</h3><pre><code class="bash">from functools import reduce
+def func3(n):
+    <span class="keyword">if</span> n == 1:
+        <span class="built_in">return</span> 1
+    <span class="keyword">else</span>:
+        <span class="built_in">return</span> n * func3(n-1)
+result = reduce(lambda x,y:x+func3(y),[1,2,3,4,5])
+<span class="built_in">print</span>(result)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/26/def-recursion/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-def-higher-function" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -181,7 +277,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、匿名函数"><a href="#1、匿名函数" class="headerlink" title="1、匿名函数"></a>1、匿名函数</h2><p>使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：<br>lambda 参数：表达式（返回值）<br>注意，在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式</p>
+        <h3 id="1、匿名函数"><a href="#1、匿名函数" class="headerlink" title="1、匿名函数"></a>1、匿名函数</h3><p>使用lambda关键字进行修饰，没有显式声明函数的名字。格式如下：<br>lambda 参数：表达式（返回值）<br>注意:在使用匿名函数时，因为其自身的情况限制，匿名函数并不能执行比较复杂的业务逻辑，即函数内的代码不能过多。lambda本身是一个表达式</p>
+<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash"><span class="comment">###普通写法：</span>
+def show(x,y):
+<span class="built_in">return</span> x**y
+
+a = show(2,3)
+<span class="built_in">print</span>(a)
+
+<span class="comment">### 匿名函数写：</span>
+a = lambda x,y:x**y
+<span class="built_in">print</span>(a(2,3))
+</code></pre>
+<h3 id="2、map函数（映射函数）"><a href="#2、map函数（映射函数）" class="headerlink" title="2、map函数（映射函数）"></a>2、map函数（映射函数）</h3><p>函数格式：map（func，iterable）<br>返回值：map对象（迭代器）<br>说明：map函数主要作用是：将指定函数与序列中的元素进行映射，并完成函数中功能的批量操作，返回值为一个迭代器。我们可以使用for循环或next（）函数进行遍历。通常情况下，如果映射的函数较为简单，我们就不再单独声明函数，而是采用匿名函数来实现，这样也能提高运行效率。</p>
+<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def func(x):
+    <span class="built_in">return</span> x*x
+result = map(func,[1,2,3])
+
+<span class="comment">#print(next(result)) #next（）方法遍历迭代器对象result</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> result:      <span class="comment">#for循环遍历迭代器对象result</span>
+    <span class="built_in">print</span>(i)
+</code></pre>
+<h3 id="或者推导式和匿名函数lambda结合："><a href="#或者推导式和匿名函数lambda结合：" class="headerlink" title="或者推导式和匿名函数lambda结合："></a>或者推导式和匿名函数lambda结合：</h3><pre><code class="bash">result = map(lambda x:x*x,[1,2,3])
+<span class="comment">#print(next(result))</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> result:
+    <span class="built_in">print</span>(i)
+</code></pre>
+<h3 id="3、reduce函数（归纳函数）"><a href="#3、reduce函数（归纳函数）" class="headerlink" title="3、reduce函数（归纳函数）"></a>3、reduce函数（归纳函数）</h3><p>函数格式：reduce（func，iterator）<br>返回值：返回函数计算结果，具体类型根据函数的返回值而定<br>说明：reduce函数中的func一定要设为两个参数，用来接收迭代器返回的值。操作顺序为：首先接收第一、二个值，进行运算；运算结果再与第三个值进行计算，以此类推，直到迭代器迭代完所有数据。</p>
+<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">from functools import reduce
+def f(x,y):
+    <span class="built_in">return</span> x*y
+
+result = reduce(f,range(1,4))
+<span class="built_in">print</span>(result)
+</code></pre>
+<h3 id="或者推导式和匿名函数lambda结合：-1"><a href="#或者推导式和匿名函数lambda结合：-1" class="headerlink" title="或者推导式和匿名函数lambda结合："></a>或者推导式和匿名函数lambda结合：</h3><pre><code class="bash">from functools import reduce
+result = reduce(lambda a,b:a*b,range(1,4))
+<span class="built_in">print</span>(result)
+</code></pre>
+<h3 id="4、filter函数（过滤函数）"><a href="#4、filter函数（过滤函数）" class="headerlink" title="4、filter函数（过滤函数）"></a>4、filter函数（过滤函数）</h3><p>函数格式：filter（func，iterable）<br>返回值：返回一个迭代器<br>说明：过滤函数与映射函数类似，都需要将函数作用于序列中的每个元素，根据函数判断True或False，返回相关元素。</p>
+<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def is_even(x):
+    <span class="built_in">return</span> x%2!=0
+
+result = filter(is_even,[1,2,3,4,5,6,7,8,9,10])
+<span class="keyword">for</span> i <span class="keyword">in</span> result:
+    <span class="built_in">print</span>(i)
+</code></pre>
+<h3 id="或者推导式和匿名函数lambda结合：-2"><a href="#或者推导式和匿名函数lambda结合：-2" class="headerlink" title="或者推导式和匿名函数lambda结合："></a>或者推导式和匿名函数lambda结合：</h3><pre><code class="bash">result = filter(lambda x:x%2!=0,[1,2,3,4,5,6,7,8,9,10])
+<span class="keyword">for</span> i <span class="keyword">in</span> result:
+    <span class="built_in">print</span>(i)
+</code></pre>
 
       
 
@@ -1463,189 +1608,6 @@ dic1 = {
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/21/fangwen-bo-ke-yuan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-case-shopping" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/19/case-shopping/">购物小案例</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/19/case-shopping/" class="archive-article-date">
-  	<time datetime="2018-07-19T10:39:48.832Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="商品菜单"><a href="#商品菜单" class="headerlink" title="商品菜单:"></a>商品菜单:</h2><p>1、查看商品详情（编号，名称，单价，产地，库存，品牌）<br>2、购买商品（编号，名称，数量，总价）<br>3、添加商品<br>4、修改商品（单价，数量）<br>5、删除商品</p>
-<pre><code class="bash">goods_dic = {
-    <span class="string">'goods_no'</span>:[<span class="string">'101'</span>,<span class="string">'102'</span>,<span class="string">'103'</span>,<span class="string">'104'</span>,<span class="string">'105'</span>],
-    <span class="string">'101'</span>:{
-            <span class="string">'id'</span>:<span class="string">'101'</span>,
-            <span class="string">'name'</span>:<span class="string">'电磁炉'</span>,
-            <span class="string">'price'</span>:4000,
-            <span class="string">'address'</span>:<span class="string">'上海'</span>,
-            <span class="string">'num'</span>:100,
-            <span class="string">'brand'</span>:<span class="string">'华硕'</span>
-            },
-    <span class="string">'102'</span>:{
-            <span class="string">'id'</span>:<span class="string">'102'</span>,
-            <span class="string">'name'</span>:<span class="string">'电视机'</span>,
-            <span class="string">'price'</span>:8000,
-            <span class="string">'address'</span>:<span class="string">'北京'</span>,
-            <span class="string">'num'</span>:230,
-            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
-            },
-    <span class="string">'103'</span>:{
-            <span class="string">'id'</span>:<span class="string">'103'</span>,
-            <span class="string">'name'</span>:<span class="string">'电冰箱'</span>,
-            <span class="string">'price'</span>:2000,
-            <span class="string">'address'</span>:<span class="string">'广州'</span>,
-            <span class="string">'num'</span>:280,
-            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
-            },
-    <span class="string">'104'</span>:{
-            <span class="string">'id'</span>:<span class="string">'104'</span>,
-            <span class="string">'name'</span>:<span class="string">'电饭煲'</span>,
-            <span class="string">'price'</span>:5000,
-            <span class="string">'address'</span>:<span class="string">'郑州'</span>,
-            <span class="string">'num'</span>:500,
-            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
-           },
-    <span class="string">'105'</span>:{
-            <span class="string">'id'</span>:<span class="string">'105'</span>,
-            <span class="string">'name'</span>:<span class="string">'电热毯'</span>,
-            <span class="string">'price'</span>:1000,
-            <span class="string">'address'</span>:<span class="string">'南京'</span>,
-            <span class="string">'num'</span>:530,
-            <span class="string">'brand'</span>:<span class="string">'南极人'</span>
-            }
-}
-<span class="built_in">print</span>(<span class="string">'*'</span>*20)
-<span class="built_in">print</span>(<span class="string">'1、查看商品详情'</span>)
-<span class="built_in">print</span>(<span class="string">'2、购买商品'</span>)
-<span class="built_in">print</span>(<span class="string">'3、添加商品'</span>)
-<span class="built_in">print</span>(<span class="string">'4、修改商品'</span>)
-<span class="built_in">print</span>(<span class="string">'5、删除商品'</span>)
-<span class="built_in">print</span>(<span class="string">'6、退出'</span>)
-<span class="built_in">print</span>(<span class="string">'*'</span>*20)
-<span class="keyword">while</span> True:
-    msg = int(input(<span class="string">'请输入菜单选项：'</span>))
-    <span class="keyword">if</span> 1 == msg:  
-        <span class="built_in">print</span>(<span class="string">'编号      名称        单价        产地         库存        品牌'</span>)
-        <span class="keyword">for</span> key <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:
-            <span class="built_in">print</span>(<span class="string">'{}      {}       {}        {}         {}         {}'</span>.format(goods_dic[key][<span class="string">'id'</span>],goods_dic[key][<span class="string">'name'</span>],goods_dic[key][<span class="string">'price'</span>],goods_dic[key][<span class="string">'address'</span>],goods_dic[key][<span class="string">'num'</span>],goods_dic[key][<span class="string">'brand'</span>]))
-    <span class="keyword">else</span>:
-        <span class="keyword">if</span> 2 == msg:
-            key1 = input(<span class="string">'请输入购买商品编号：'</span>)
-            <span class="keyword">if</span> key1 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:
-                nums=int(input(<span class="string">'请输入购买商品的数量：'</span>))
-                <span class="keyword">if</span> nums &lt; goods_dic[key1][<span class="string">'num'</span>]:
-                    total = nums * goods_dic[key1][<span class="string">'price'</span>]
-                    <span class="built_in">print</span>(<span class="string">'编号    名称     单价    数量    总价'</span>)
-                    <span class="built_in">print</span>(<span class="string">'{}    {}    {}    {}       {}'</span>.format(goods_dic[key1][<span class="string">'id'</span>],goods_dic[key1][<span class="string">'name'</span>],goods_dic[key1][<span class="string">'price'</span>],nums,total))
-                <span class="keyword">else</span>:
-                    <span class="built_in">print</span>(<span class="string">'购买数量已超出库存！'</span>)
-                    <span class="built_in">continue</span>
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
-
-        <span class="keyword">elif</span> 3 == msg:
-            key2 = input(<span class="string">'请输入添加商品编号：'</span>)
-            <span class="keyword">if</span> key2 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:              
-                <span class="built_in">print</span>(<span class="string">'输入商品编号有误，请重新输入'</span>)
-                <span class="built_in">continue</span>
-            <span class="keyword">else</span>:
-                goods_id = input(<span class="string">'请输入商品编号：'</span>)
-                goods_name = input(<span class="string">'请输入商品名称：'</span>)
-                goods_price = input(<span class="string">'请输入商品价格：'</span>)
-                goods_address = input(<span class="string">'请输入商品产地：'</span>)
-                goods_num = input(<span class="string">'请输入商品数量：'</span>)
-                goods_grand = input(<span class="string">'请输入商品商标：'</span>)
-                goods_dic[<span class="string">'goods_no'</span>].append(goods_id)
-                goods_dic[goods_id] = {
-                    <span class="string">'id'</span> : goods_id,
-                    <span class="string">'name'</span> : goods_name,
-                    <span class="string">'price'</span> : goods_price,
-                    <span class="string">'address'</span> : goods_address,
-                    <span class="string">'num'</span> : goods_num,
-                    <span class="string">'brand'</span> : goods_grand
-                }
-                <span class="built_in">print</span>(<span class="string">'商品添加成功！'</span>)
-        <span class="keyword">elif</span> 4 == msg:
-            key3 = input(<span class="string">'请输入修改商品编号：'</span>)
-            <span class="keyword">if</span> key3 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:     
-                goods_dic[key3][<span class="string">'price'</span>] = input(<span class="string">'请修改商品价格：'</span>)
-                goods_dic[key3][<span class="string">'num'</span>] = input(<span class="string">'请修改商品库存：'</span>)
-                <span class="built_in">print</span>(<span class="string">'商品信息修改成功！'</span>)
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
-        <span class="keyword">elif</span> 5 == msg:
-            key4 = input(<span class="string">'请输入删除的商品编号：'</span>)
-            <span class="keyword">if</span> key4 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]: 
-                goods_dic[<span class="string">'goods_no'</span>].remove(key4)
-                goods_dic.pop(key4)
-                <span class="built_in">print</span>(<span class="string">'商品信息删除成功！'</span>)
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
-        <span class="keyword">elif</span> 6 == msg:
-            <span class="built_in">exit</span>()
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'你输入的商品序号有误，请重新输入！'</span>)
-</code></pre>
-<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson8.py</p>
-<hr>
-<p>1、查看商品详情<br>2、购买商品<br>3、添加商品<br>4、修改商品<br>5、删除商品<br>6、退出</p>
-<hr>
-<p>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       8000        北京         230         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>请输入菜单选项：2<br>请输入购买商品编号：101<br>请输入购买商品的数量：8<br>编号    名称     单价    数量    总价<br>101    电磁炉    4000    8       32000<br>请输入菜单选项：3<br>请输入添加商品编号：106<br>请输入商品编号：106<br>请输入商品名称：电子秤<br>请输入商品价格：1005<br>请输入商品产地：郑州<br>请输入商品数量：106<br>请输入商品商标：华泰<br>商品添加成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       8000        北京         230         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：4<br>请输入修改商品编号：102<br>请修改商品价格：5236<br>请修改商品库存：563<br>商品信息修改成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       5236        北京         563         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：5<br>请输入删除的商品编号：105<br>商品信息删除成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       5236        北京         563         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：6<br>PS D:\pythoncode&gt;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/19/case-shopping/">展开全文 >></a>
         </p>
       
 
