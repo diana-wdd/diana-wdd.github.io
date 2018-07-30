@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | diana</title>
+  <title>Python对Excel文件的操作 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="diana">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="1、需要三个主要的模块xlrd:用来读取Excel文件中的内容xlwt：用来生成Excel文件xlutils：用来实现Excel文件的复制 2、xlrd（1）open_workbook()函数格式：open_workbook(文件名)返回值：返回Excel对象说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容 （2）函数格式：sheet_by_name(sheet">
+<meta name="keywords" content="Python、爬虫、Web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python对Excel文件的操作">
+<meta property="og:url" content="http://yoursite.com/2018/07/30/excel/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="1、需要三个主要的模块xlrd:用来读取Excel文件中的内容xlwt：用来生成Excel文件xlutils：用来实现Excel文件的复制 2、xlrd（1）open_workbook()函数格式：open_workbook(文件名)返回值：返回Excel对象说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容 （2）函数格式：sheet_by_name(sheet">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-30T14:00:18.219Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="Python对Excel文件的操作">
+<meta name="twitter:description" content="1、需要三个主要的模块xlrd:用来读取Excel文件中的内容xlwt：用来生成Excel文件xlutils：用来实现Excel文件的复制 2、xlrd（1）open_workbook()函数格式：open_workbook(文件名)返回值：返回Excel对象说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容 （2）函数格式：sheet_by_name(sheet">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -159,295 +163,235 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-excel" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Python对Excel文件的操作
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-binary/" class="archive-article-date">
+
+        
+        <a href="/2018/07/30/excel/" class="archive-article-date">
   	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-binary/">文件输入输出（I/O）(二进制文件)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、需要三个主要的模块"><a href="#1、需要三个主要的模块" class="headerlink" title="1、需要三个主要的模块"></a>1、需要三个主要的模块</h2><p>xlrd:用来读取Excel文件中的内容<br>xlwt：用来生成Excel文件<br>xlutils：用来实现Excel文件的复制</p>
+<h2 id="2、xlrd"><a href="#2、xlrd" class="headerlink" title="2、xlrd"></a>2、xlrd</h2><h3 id="（1）open-workbook"><a href="#（1）open-workbook" class="headerlink" title="（1）open_workbook()"></a>（1）open_workbook()</h3><p>函数格式：open_workbook(文件名)<br>返回值：返回Excel对象<br>说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容</p>
+<h3 id="（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始"><a href="#（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始" class="headerlink" title="（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)"></a>（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)</h3><p>返回值：sheet页对象<br>说明：找到指定的sheet页，生成一个对应的sheet页对象，对其内部的数据进行检索</p>
+<h3 id="（3）函数格式：sheet-cell-rownum-colnum"><a href="#（3）函数格式：sheet-cell-rownum-colnum" class="headerlink" title="（3）函数格式：sheet.cell(rownum,colnum)"></a>（3）函数格式：sheet.cell(rownum,colnum)</h3><p>返回值：返回指定行列的单元格对象，如果要获取其中的内容，调用value属性。<br>说明：通过指定行、列，能够确认一个单元格。</p>
+<h2 id="3、xlwt"><a href="#3、xlwt" class="headerlink" title="3、xlwt"></a>3、xlwt</h2><h3 id="（1）函数名称：Workbook"><a href="#（1）函数名称：Workbook" class="headerlink" title="（1）函数名称：Workbook()"></a>（1）函数名称：Workbook()</h3><p>返回值：返回一个新创建的Excel空对象<br>说明：该函数用来生成一个Excel对象，但是该对象没有任何内容</p>
+<h3 id="（2）函数名称：add-sheet-sheet名字"><a href="#（2）函数名称：add-sheet-sheet名字" class="headerlink" title="（2）函数名称：add_sheet(sheet名字)"></a>（2）函数名称：add_sheet(sheet名字)</h3><p>返回值：返回一个新创建的sheet页对象<br>说明：该函数用来新增一个空的sheet页对象</p>
+<h3 id="（3）函数名称：write-row-col-value"><a href="#（3）函数名称：write-row-col-value" class="headerlink" title="（3）函数名称：write(row, col, value)"></a>（3）函数名称：write(row, col, value)</h3><p>返回值：无<br>说明：对指定的行列单元格内，写入value内容。</p>
+<h2 id="4、xlutils"><a href="#4、xlutils" class="headerlink" title="4、xlutils"></a>4、xlutils</h2><h3 id="（1）函数格式：copy-Excel对象"><a href="#（1）函数格式：copy-Excel对象" class="headerlink" title="（1）函数格式：copy(Excel对象)"></a>（1）函数格式：copy(Excel对象)</h3><p>返回值：返回一个指定对象的副本<br>说明：在Python中对Excel的修改，都是生成一个对应的副本，修改后保存。</p>
+<h3 id="（2）函数格式：get-sheet-索引位"><a href="#（2）函数格式：get-sheet-索引位" class="headerlink" title="（2）函数格式：get_sheet(索引位)"></a>（2）函数格式：get_sheet(索引位)</h3><p>返回值：返回一个指定对象副本中的sheet页<br>说明：我们实际修改的数据，都是位于sheet页中。因此要获取到指定的sheet页。</p>
+<p>例如：</p>
+<pre><code class="bash">import xlwt  <span class="comment">#写excel文件，选用该模块</span>
+import xlrd  <span class="comment">#读取写excel文件内容，选用该模块</span>
+from xlutils.copy import copy
 
-        <div class="article-info info-on-right">
-          
-          
+def saveExcel(title,data):
+    <span class="comment">#生成excel对象</span>
+    wbt = xlwt.Workbook()
+    <span class="comment">#生成一个sheet页</span>
+    sheet = wbt.add_sheet(<span class="string">'人员信息表'</span>)
 
+
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(title)):
+        sheet.write(0,i,title[i])
+
+    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data)):
+        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data[m])):
+            sheet.write(m+1,n,data[m][n])
+
+    wbt.save(<span class="string">'person.xls'</span>)
+
+def readExcel(bookname,sheetname):
+    <span class="comment">#打开excel文件</span>
+    wb = xlrd.open_workbook(bookname)
+    sheet = wb.sheet_by_name(sheetname)
+    <span class="comment">#for rownum in range(sheet.nrows):</span>
+        <span class="comment">#print(sheet.row_values(rownum))</span>
+    <span class="comment">#cell = sheet.cell(0,1).value</span>
+    <span class="comment">#print(sheet.nrows)  #行数</span>
+    <span class="comment">#print(sheet.ncols)  #列数</span>
+
+    <span class="keyword">for</span> rownum <span class="keyword">in</span> range(sheet.nrows):
+        msg = <span class="string">''</span>
+        <span class="keyword">for</span> colnum <span class="keyword">in</span> range(sheet.ncols):
+            msg += str(sheet.cell(rownum,colnum).value)
+        <span class="built_in">print</span>(msg)
+
+def updateExcel(bookname,sheetname):
+    wb = xlrd.open_workbook(bookname)
+    sheet = wb.sheet_by_name(sheetname)
+    new_wb = copy(wb)  <span class="comment">#将原有的excel，拷贝一个新的副本</span>
+    new_sheet = new_wb.get_sheet(0)  <span class="comment">#重新在新的excel中获取sheet页</span>
+    new_sheet.write(1,0,<span class="string">'大蚱蜢'</span>)
+    new_wb.save(<span class="string">'person_new.xls'</span>)
+
+
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="comment">#作为excel表中标题名称</span>
+    title = [<span class="string">'姓名'</span>,<span class="string">'年龄'</span>,<span class="string">'性别'</span>,<span class="string">'出生年月'</span>,<span class="string">'家庭住址'</span>,<span class="string">'婚姻状况'</span>,<span class="string">'身份证号'</span>]
+    <span class="comment">#生成excel中的数据</span>
+    data = [
+        [<span class="string">'蚱蜢'</span>,25,<span class="string">'女'</span>,<span class="string">'19930101'</span>,<span class="string">'河南'</span>,<span class="string">'未婚'</span>,<span class="string">'4111111111'</span>],
+        [<span class="string">'曹猛'</span>,26,<span class="string">'女'</span>,<span class="string">'19920202'</span>,<span class="string">'非洲'</span>,<span class="string">'未婚'</span>,<span class="string">'4112222222'</span>],
+        [<span class="string">'丹丹'</span>,22,<span class="string">'女'</span>,<span class="string">'19980303'</span>,<span class="string">'郑州'</span>,<span class="string">'未婚'</span>,<span class="string">'4115271999'</span>],
+        [<span class="string">'大头柯'</span>,30,<span class="string">'男'</span>,<span class="string">'19900101'</span>,<span class="string">'北京'</span>,<span class="string">'未婚'</span>,<span class="string">'411112221'</span>]
+    ]
+    saveExcel(title,data)
+    bookname = <span class="string">'person.xls'</span>
+    sheetname = <span class="string">'人员信息表'</span>
+    readExcel(bookname,sheetname)
+    updateExcel(bookname,sheetname)
+</code></pre>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/30/excel/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/excel/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/07/30/input-output-binary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          文件输入输出（I/O）(二进制文件)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/30/input-output-txt/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文件输入输出（I/O）(文本文件)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-txt/" class="archive-article-date">
-  	<time datetime="2018-07-30T00:35:54.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-txt/">文件输入输出（I/O）(文本文件)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/26/def-recursion/" class="archive-article-date">
-  	<time datetime="2018-07-26T13:10:50.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/26/def-recursion/">函数的递归</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/def-higher-function/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:29:44.677Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/def-higher-function/">高阶函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/def-nest-clouser/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:24:52.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/def-nest-clouser/">函数的嵌套、闭包</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/log-template/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:11:41.607Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/log-template/">日志格式模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/case-medicine-def-log-@/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:03:52.334Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/case-medicine-def-log-@/">药品进销存小案例（结合：函数、语法糖、日志）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/case-medicine-def/" class="archive-article-date">
-  	<time datetime="2018-07-25T12:56:54.239Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/case-medicine-def/">药品进销存小案例（函数写法）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/case-shopping-def/" class="archive-article-date">
-  	<time datetime="2018-07-25T12:54:14.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/case-shopping-def/">购物小案例（函数改写）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="page-number" href="/archives/2018/page/3/">3</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -474,8 +418,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
