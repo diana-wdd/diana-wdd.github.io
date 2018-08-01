@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="1、格式化函数（1）repr()函数格式：repr(object) ，python内置函数返回值：返回一个字符串类型的数据说明：该函数，将参数中的对象进行处理，变为字符串类型，其中如果参数为字符串仍然会在外部加上“”，其内部的字符串的边界符仍然存在。 例如：&amp;gt;&amp;gt;&amp;gt; repr(2.5) &apos;2.5&apos; &amp;gt;&amp;gt;&amp;gt; repr(&quot;hello world&quot;) &quot;&apos;hello w">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T00:59:07.360Z">
+<meta property="og:updated_time" content="2018-08-01T12:18:46.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件输入输出（I&#x2F;O）(文本文件)">
 <meta name="twitter:description" content="1、格式化函数（1）repr()函数格式：repr(object) ，python内置函数返回值：返回一个字符串类型的数据说明：该函数，将参数中的对象进行处理，变为字符串类型，其中如果参数为字符串仍然会在外部加上“”，其内部的字符串的边界符仍然存在。 例如：&amp;gt;&amp;gt;&amp;gt; repr(2.5) &apos;2.5&apos; &amp;gt;&amp;gt;&amp;gt; repr(&quot;hello world&quot;) &quot;&apos;hello w">
@@ -376,6 +376,116 @@ file.close()
 <h3 id="（8）重命名-rename"><a href="#（8）重命名-rename" class="headerlink" title="（8）重命名 rename()"></a>（8）重命名 rename()</h3><p>函数格式：os.rename(oldfilename/oldpath,newfilename/newpath)<br>返回值：无<br>说明:将指定的文件名或目录名进行重命名。</p>
 <h3 id="（9）替换-replace"><a href="#（9）替换-replace" class="headerlink" title="（9）替换 replace()"></a>（9）替换 replace()</h3><p>函数格式：os.replace(src,dst)<br>返回值：无<br>说明：使用目标文件替换掉原文件</p>
 <h3 id="注意：在Python3-x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from-pathlib-import-Path，使用。"><a href="#注意：在Python3-x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from-pathlib-import-Path，使用。" class="headerlink" title="注意：在Python3.x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from pathlib import Path，使用。"></a>注意：在Python3.x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from pathlib import Path，使用。</h3><p>其使用的前提为：需要先创建一个path对象，然后对其进行操作。<br>p = Path(‘c:\pythoncode\etc’)</p>
+<h2 id="作业练习"><a href="#作业练习" class="headerlink" title="作业练习"></a>作业练习</h2><h3 id="1、文件a-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#1、文件a-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="1、文件a.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>1、文件a.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p> apple        10        3<br> tesla        100000    1<br> mac          3000      2<br> lenovo       30000     3<br> chicken      10        3<br>通过代码，将其构建成这种数据类型：[{‘name’:’apple’,’price’:10,’amount’:3},{‘name’:’tesla’,’price’:1000000,’amount’:1}……] 并计算出总价钱。</p>
+<pre><code class="bash">def writeFile():
+    n=0
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
+    <span class="keyword">while</span> True:
+        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
+        file.write(item + <span class="string">'\n'</span>)
+        <span class="keyword">if</span> n == 5:
+            <span class="built_in">break</span>
+        n=n+1
+    file.close()
+
+writeFile()
+
+def readFile():
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
+    items = []
+    <span class="keyword">while</span> True:
+        dic = {}
+        line = file.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        ls = line.split()
+        dic[<span class="string">'name'</span>]=ls[0]
+        dic[<span class="string">'price'</span>]=ls[1]
+        dic[<span class="string">'amount'</span>]=ls[2]
+        dic[<span class="string">'total'</span>]=int(ls[1])*int(ls[2])
+        items.append(dic)
+    file.close()
+    <span class="built_in">return</span> items
+
+l = readFile()
+<span class="built_in">print</span>(l)
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘name’: ‘apple’, ‘price’: ‘10’, ‘amount’: ‘3’, ‘total’: 30}, {‘name’: ‘tesla’, ‘price’: ‘100000’, ‘amount’: ‘1’, ‘total’: 100000}, {‘name’: ‘mac’, ‘price’: ‘3000’, ‘amount’: ‘2’, ‘total’: 6000}, {‘name’: ‘lenovo’, ‘price’: ‘30000’,<br>‘amount’: ‘3’, ‘total’: 90000}, {‘name’: ‘chicken’, ‘price’: ‘10’, ‘amount’: ‘3’, ‘total’: 30}]<br>PS D:\pythoncode&gt;</p>
+<h3 id="2、文件a1-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#2、文件a1-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="2、文件a1.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>2、文件a1.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p> 文件内容：<br> name:apple price:10 amount:3 year:2012<br> name:tesla price:100000 amount:1 year:2013<br> 通过代码，将其构建成这种数据类型：<br>[{‘name’:’apple’,’price’:10,’amount’:3},<br>{‘name’:’tesla’,’price’:1000000,’amount’:1}……]<br>并计算出总价钱。<br>思路 {key1 : {‘name’:’apple’,’price’:10,’amount’:3} ….}</p>
+<pre><code class="bash">def writeFile():
+    n=0
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
+    <span class="keyword">while</span> True:
+        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
+        file.write(item + <span class="string">'\n'</span>)
+        <span class="keyword">if</span> n == 5:
+            <span class="built_in">break</span>
+        n=n+1
+    file.close()
+writeFile()
+
+def readFile():
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
+    items1 = []
+    total= 0
+    <span class="keyword">while</span> True:
+        dic = {}
+        line = file.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        items2 = line.split()
+        price = items2[1].split(<span class="string">':'</span>)
+        num = items2[2].split(<span class="string">':'</span>)
+        total = int(price[1])*int(num[1])
+        <span class="keyword">for</span> i <span class="keyword">in</span> items2:
+            items3=i.split(<span class="string">":"</span>)
+            dic[items3[0]]=items3[1].strip()
+        dic[<span class="string">'total'</span>] = total
+        items1.append(dic)
+    file.close()
+    <span class="built_in">return</span> items1
+
+l = readFile()
+<span class="built_in">print</span>(l)
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘name’: ‘apple’, ‘price’: ‘10’, ‘amount’: ‘5’, ‘year’: ‘2013’, ‘total’: 50}, {‘name’: ‘vivo’, ‘price’: ‘20’, ‘amount’: ‘6’, ‘year’: ‘2014’, ‘total’: 120}, {‘name’: ‘oppo’, ‘price’: ‘30’, ‘amount’: ‘7’, ‘year’: ‘2015’, ‘total’: 210}, {‘name’: ‘nubia’, ‘price’: ‘40’, ‘amount’: ‘8’, ‘year’: ‘2016’, ‘total’: 320}, {‘name’: ‘xiaomi’, ‘price’: ‘5’, ‘amount’: ‘5’, ‘year’: ‘2017’, ‘total’: 25}, {‘name’: ‘asus’, ‘price’: ‘100’, ‘amount’: ‘2’, ‘year’: ‘2018’, ‘total’: 200}]<br>PS D:\pythoncode&gt;</p>
+<h3 id="3、文件a2-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#3、文件a2-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="3、文件a2.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>3、文件a2.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p>文件内容：<br>序号   部门   人数  平均年龄  备注<br>1     python   30      26    单身狗<br>2     Linux    26      30    没对象<br>3     运营部   20      24    女生多<br>通过代码，将其构建成这种数据类型：<br>[{‘序号’:’1’,’部门’:Python,’人数’:30,’平均年龄’:26,’备注’:’单身狗’},……]<br>思路 {‘序号’:’1’,’部门’:Python,’人数’:30,’平均年龄’:26,’备注’:’单身狗’}</p>
+<pre><code class="bash">def writeFile():
+    n=0
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
+    <span class="keyword">while</span> True:
+        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
+        file.write(item + <span class="string">'\n'</span>)
+        <span class="keyword">if</span> n == 5:
+            <span class="built_in">break</span>
+        n=n+1
+    file.close()
+
+writeFile()
+
+def readFile():
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
+    items1 = []
+    <span class="keyword">while</span> True:
+        dic = {}
+        items3 = []
+        line = file.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        items2 = line.split()
+        dic[<span class="string">"序号"</span>] = items2[0]
+        dic[<span class="string">"部门"</span>] = items2[1]
+        dic[<span class="string">"人数"</span>] = items2[2]
+        dic[<span class="string">"平均年龄"</span>] = items2[3]
+        dic[<span class="string">"备注"</span>] = items2[4]
+        items1.append(dic)
+    file.close()
+    <span class="built_in">return</span> items1
+
+l = readFile()
+<span class="built_in">print</span>(l)
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘序号’: ‘1’, ‘部门’: ‘python’, ‘人数’: ‘30’, ‘平均年龄’: ‘26’, ‘备注’: ‘单身狗’}, {‘序号’: ‘2’, ‘部门’: ‘Linux’, ‘人数’: ‘26’, ‘平均年龄’: ‘30’, ‘备注’: ‘没对象’}, {‘序号’: ‘3’, ‘部门’: ‘运营部’, ‘人数’: ‘20’, ‘平均年龄’: ‘24’, ‘备注’: ‘女生多’}, {‘序号’: ‘4’, ‘部门’: ‘市场部’, ‘人数’: ‘25’, ‘平均年龄’: ‘25’, ‘备注’: ‘全脱单’}]<br>PS D:\pythoncode&gt;</p>
 
       
 
