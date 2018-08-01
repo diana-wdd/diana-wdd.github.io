@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>文件输入输出（I/O）(二进制文件) | diana</title>
+  <title>Python对XML文件的解析 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+  <meta name="description" content="1、XML解析的两种方式：DOM与SAX（1）DOM：文档对象模型，是Python处理XML文件的标准模式。一个DOM的解析器在解析XML文档时 ，一次性读入整个文档，把文档中的所有元素（标签和文本）保存在内存中的一个树形结构，然后我们可以利用DOM提供的各种函数，来读取或修改文档中的内容。 （2）SAX：是一种时间驱动的API，利用SAX解析XML 。主要使用解析器负责读取XML文档，并向事件处">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件输入输出（I&#x2F;O）(二进制文件)">
-<meta property="og:url" content="http://yoursite.com/2018/07/30/input-output-binary/index.html">
+<meta property="og:title" content="Python对XML文件的解析">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/xml/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+<meta property="og:description" content="1、XML解析的两种方式：DOM与SAX（1）DOM：文档对象模型，是Python处理XML文件的标准模式。一个DOM的解析器在解析XML文档时 ，一次性读入整个文档，把文档中的所有元素（标签和文本）保存在内存中的一个树形结构，然后我们可以利用DOM提供的各种函数，来读取或修改文档中的内容。 （2）SAX：是一种时间驱动的API，利用SAX解析XML 。主要使用解析器负责读取XML文档，并向事件处">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T13:55:36.379Z">
+<meta property="og:updated_time" content="2018-07-31T14:00:18.658Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件输入输出（I&#x2F;O）(二进制文件)">
-<meta name="twitter:description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+<meta name="twitter:title" content="Python对XML文件的解析">
+<meta name="twitter:description" content="1、XML解析的两种方式：DOM与SAX（1）DOM：文档对象模型，是Python处理XML文件的标准模式。一个DOM的解析器在解析XML文档时 ，一次性读入整个文档，把文档中的所有元素（标签和文本）保存在内存中的一个树形结构，然后我们可以利用DOM提供的各种函数，来读取或修改文档中的内容。 （2）SAX：是一种时间驱动的API，利用SAX解析XML 。主要使用解析器负责读取XML文档，并向事件处">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,115 +163,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-input-output-binary" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-xml" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文件输入输出（I/O）(二进制文件)
+      Python对XML文件的解析
     </h1>
   
 
         
-        <a href="/2018/07/30/input-output-binary/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+        <a href="/2018/07/31/xml/" class="archive-article-date">
+  	<time datetime="2018-07-31T13:40:47.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、struct和pickle"><a href="#1、struct和pickle" class="headerlink" title="1、struct和pickle"></a>1、struct和pickle</h2><h3 id="（1）使用struct模块，进行数据的输入输出"><a href="#（1）使用struct模块，进行数据的输入输出" class="headerlink" title="（1）使用struct模块，进行数据的输入输出"></a>（1）使用struct模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入到文件中的各种类型数据，进行统一打包<br>struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型<br>第二，使用write()写入，写入后以二进制的方式进行文件存储。<br>第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回一个序列，即写入时的顺序，与读取时的顺序应该一致。<br>注意：需要将所有写入的数据，一次性都封装到一个bytes中，因为在Python中没有byte的概念，所以需要第三方的模块进行封装。</p>
-<h3 id="例如1：写入与读出浮点数、布尔型、整型"><a href="#例如1：写入与读出浮点数、布尔型、整型" class="headerlink" title="例如1：写入与读出浮点数、布尔型、整型"></a>例如1：写入与读出浮点数、布尔型、整型</h3><pre><code class="bash">import struct
-<span class="comment">#读出</span>
-a = 123.3
-b = True
-c = 10
-sn = struct.pack(<span class="string">'if?'</span>,c,a,b)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read(9)
-ls = struct.unpack(<span class="string">'if?'</span>,sn)
-<span class="built_in">print</span>(ls[0])
-<span class="built_in">print</span>(ls[1])
-<span class="built_in">print</span>(ls[2])
-f.close()
-</code></pre>
-<h3 id="例如2：写入与读出字符串"><a href="#例如2：写入与读出字符串" class="headerlink" title="例如2：写入与读出字符串"></a>例如2：写入与读出字符串</h3><p>#写入</p>
-<pre><code class="bash">import struct
-str1=b<span class="string">'hello'</span>
-sn = struct.pack(<span class="string">'5s'</span>,str1)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
+        <h2 id="1、XML解析的两种方式：DOM与SAX"><a href="#1、XML解析的两种方式：DOM与SAX" class="headerlink" title="1、XML解析的两种方式：DOM与SAX"></a>1、XML解析的两种方式：DOM与SAX</h2><h3 id="（1）DOM：文档对象模型，是Python处理XML文件的标准模式。"><a href="#（1）DOM：文档对象模型，是Python处理XML文件的标准模式。" class="headerlink" title="（1）DOM：文档对象模型，是Python处理XML文件的标准模式。"></a>（1）DOM：文档对象模型，是Python处理XML文件的标准模式。</h3><p>一个DOM的解析器在解析XML文档时 ，一次性读入整个文档，把文档中的所有元素（标签和文本）保存在内存中的一个树形结构，然后我们可以利用DOM提供的各种函数，来读取或修改文档中的内容。</p>
+<h3 id="（2）SAX：是一种时间驱动的API，利用SAX解析XML-。"><a href="#（2）SAX：是一种时间驱动的API，利用SAX解析XML-。" class="headerlink" title="（2）SAX：是一种时间驱动的API，利用SAX解析XML 。"></a>（2）SAX：是一种时间驱动的API，利用SAX解析XML 。</h3><p>主要使用解析器负责读取XML文档，并向事件处理器发送事件，比如：元素开始、元素结束。常用在1）大型文档的处理，2）只需要文件的部分内容，或者从文件中得到特定的部分3）建立自己的对象模型。</p>
+<h3 id="（3）dom与sax对比："><a href="#（3）dom与sax对比：" class="headerlink" title="（3）dom与sax对比："></a>（3）dom与sax对比：</h3><p>（a）DOM解析需要读取整个文档到内存中，并且将所有元素保存到树形结构。那也就意味着，可以根据树形结构导航到任意节点，获取其相关内容。<br>（b）SAX解析文档，将文档边读入，边解析的方式，不需要一次性读入全部文档内容，只需要读入一部分即可。同时，因为其边读入边解析的工作方式，能够适应大文件的解析，提高解析效率。</p>
+<h3 id="例1：dom方式对文件解析并写入到excel文件中"><a href="#例1：dom方式对文件解析并写入到excel文件中" class="headerlink" title="例1：dom方式对文件解析并写入到excel文件中"></a>例1：dom方式对文件解析并写入到excel文件中</h3><h3 id="（1）仅用dom方式对test-xml文件进行解析，并打印"><a href="#（1）仅用dom方式对test-xml文件进行解析，并打印" class="headerlink" title="（1）仅用dom方式对test.xml文件进行解析，并打印"></a>（1）仅用dom方式对test.xml文件进行解析，并打印</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#引入minidom，以dom方式解析xml文件</span></span><br><span class="line">from xml.dom import minidom </span><br><span class="line"></span><br><span class="line"><span class="comment">#打开xml文件</span></span><br><span class="line">dom = minidom.parse(<span class="string">'test.xml'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#得到文档的元素对象</span></span><br><span class="line">root = dom.documentElement</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'根标签名为:&#123;&#125;'</span>.format(root.nodeName))  <span class="comment">#获得节点名字，即标签名</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'根节点值为:&#123;&#125;'</span>.format(root.nodeValue))  <span class="comment">#获得节点值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'根节点类型为:&#123;&#125;'</span>.format(root.nodeType))  <span class="comment">#获得节点类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#获得在根节点下，所有名字是car的节点对象</span></span><br><span class="line">nodes = root.getElementsByTagName(<span class="string">'car'</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'根节点下的car节点对象有:&#123;&#125;'</span>.format(nodes))</span><br><span class="line"></span><br><span class="line"><span class="comment">#法1获得car节点中，第一个节点中brand子节点的文本内容</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'第一个car节点对象下的第一个节点中的第一个子节点的值:&#123;&#125;'</span>.format(nodes[0].getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data))</span><br><span class="line"><span class="comment">#法2获得car节点中，第一个节点中brand子节点的文本内容</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'第一个car节点对象下的第一个节点中的第一个子节点的值:&#123;&#125;'</span>.format(root.getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nodes[0].childNodes)):</span><br><span class="line">    <span class="keyword">if</span> nodes[0].childNodes[i].nodeType == 1:</span><br><span class="line">        <span class="built_in">print</span>(nodes[0].childNodes[i].nodeName,end = <span class="string">' '</span>)</span><br><span class="line"><span class="built_in">print</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nodes)):</span><br><span class="line">    <span class="comment">#print(nodes[i])</span></span><br><span class="line">    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'brand'</span>)[i].firstChild.data,end = <span class="string">' '</span>)</span><br><span class="line">    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'comperny'</span>)[i].firstChild.data,end = <span class="string">' '</span>)</span><br><span class="line">    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'price'</span>)[i].firstChild.data,end = <span class="string">' '</span>)</span><br><span class="line">    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'color'</span>)[i].firstChild.data,end = <span class="string">' '</span>)</span><br><span class="line">    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'model'</span>)[i].firstChild.data,end = <span class="string">' '</span>)</span><br><span class="line">    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'country'</span>)[i].firstChild.data,end = <span class="string">' '</span>)</span><br><span class="line">    <span class="built_in">print</span>()</span><br><span class="line">``` </span><br><span class="line"><span class="comment">### （2）使用函数，用dom方式对test.xml文件进行解析，并写入到excel文件中</span></span><br><span class="line">``` bash</span><br><span class="line"><span class="comment">#引入minidom，以dom方式解析xml文件</span></span><br><span class="line">from xml.dom import minidom </span><br><span class="line">import xlwt  <span class="comment">#写excel文件，选用该模块 </span></span><br><span class="line"></span><br><span class="line">def readXML(xmlfile):</span><br><span class="line">    dic = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#载入xml文档进行解析，生成一个document对象</span></span><br><span class="line">    document = minidom.parse(xmlfile)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#得到文档的元素对象</span></span><br><span class="line">    root = document.documentElement</span><br><span class="line"></span><br><span class="line">    <span class="comment">#根据根节点下，向下查找内部所有名字是car的节点，并将节点名字返回</span></span><br><span class="line">    sheet_name = root.getElementsByTagName(<span class="string">'car'</span>)[0].nodeName</span><br><span class="line"></span><br><span class="line">    <span class="comment">#通过getElementsByTagName()函数，获得指定的节点对象，不管节点对象有几个，都是返回一个列表类型</span></span><br><span class="line">    node = root.getElementsByTagName(<span class="string">'car'</span>)</span><br><span class="line">    cars = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(node)):</span><br><span class="line">        item = []</span><br><span class="line">        item.append(node[i].getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data)</span><br><span class="line">        item.append(node[i].getElementsByTagName(<span class="string">'comperny'</span>)[0].firstChild.data)</span><br><span class="line">        item.append(node[i].getElementsByTagName(<span class="string">'price'</span>)[0].firstChild.data)</span><br><span class="line">        item.append(node[i].getElementsByTagName(<span class="string">'color'</span>)[0].firstChild.data)</span><br><span class="line">        item.append(node[i].getElementsByTagName(<span class="string">'model'</span>)[0].firstChild.data)</span><br><span class="line">        item.append(node[i].getElementsByTagName(<span class="string">'country'</span>)[0].firstChild.data)</span><br><span class="line">        cars.append(item)</span><br><span class="line">    dic[sheet_name] = cars</span><br><span class="line">    dic[<span class="string">'title'</span>] = [<span class="string">'brand'</span>,<span class="string">'comperny'</span>,<span class="string">'price'</span>,<span class="string">'color'</span>,<span class="string">'model'</span>,<span class="string">'country'</span>]</span><br><span class="line">    <span class="comment">#print(dic)</span></span><br><span class="line">    <span class="built_in">return</span> dic</span><br><span class="line"></span><br><span class="line">def saveXML(dic):</span><br><span class="line">    <span class="comment">#生成一个excel文件对象</span></span><br><span class="line">    book = xlwt.Workbook()</span><br><span class="line">    <span class="comment">#生成一个sheet页</span></span><br><span class="line">    sheet = book.add_sheet(<span class="string">'car'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dic[<span class="string">'title'</span>])):</span><br><span class="line">        sheet.write(0,i,dic[<span class="string">'title'</span>][i])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>])):</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>][m])):</span><br><span class="line">            sheet.write(m+1,n,dic[<span class="string">'car'</span>][m][n])</span><br><span class="line"></span><br><span class="line">    book.save(<span class="string">'car.xls'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    dic = readXML(<span class="string">'test.xml'</span>)</span><br><span class="line">    saveXML(dic)</span><br><span class="line">``` </span><br><span class="line"><span class="comment">### 例2：etree方式对文件解析并写入到excel文件中</span></span><br><span class="line"><span class="comment">### （1）仅用etree方式对test.xml文件进行解析，并打印</span></span><br><span class="line">循环式写法：</span><br><span class="line">``` bash</span><br><span class="line">from xml.etree import ElementTree</span><br><span class="line"></span><br><span class="line">tree = ElementTree.parse(<span class="string">'test.xml'</span>)</span><br><span class="line">root = tree.getroot()   <span class="comment">#获取根节点</span></span><br><span class="line"><span class="built_in">print</span>(root)</span><br><span class="line"><span class="keyword">for</span> child <span class="keyword">in</span> root:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'遍历root:'</span>,child.tag,<span class="string">'：'</span>,child.attrib)</span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> child:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">'遍历child:'</span>,node.tag,<span class="string">'：'</span>,node.text)</span><br></pre></td></tr></table></figure>
+<p>递归写法 </p>
+<pre><code class="bash">from xml.etree import ElementTree
 
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read()
-a = struct.unpack(<span class="string">'5s'</span>,sn)
-<span class="built_in">print</span>(a)
-f.close()
-</code></pre>
-<h3 id="（2）使用pickel模块，进行数据的输入输出"><a href="#（2）使用pickel模块，进行数据的输入输出" class="headerlink" title="（2）使用pickel模块，进行数据的输入输出"></a>（2）使用pickel模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入文件中的数据，进行逐一的写入。例如：<br>f = open(‘myfile.dat’,’wb’)<br>pickle.dump(10, f)<br>第二，读取数据时，同理，需要逐一的读取。例如：<br>pickle.load(f)<br>注意，在使用时，我们能够观察到该模块的dump和load函数，与前面所学的json模块的函数一致，在Python中json与pickle都能够实现序列化和反序列化的两个模块。<br>在实际的使用中，推荐使用pickle 模块。</p>
-<h3 id="例如1：一同写入与读出浮点数、布尔型、整型、字符串"><a href="#例如1：一同写入与读出浮点数、布尔型、整型、字符串" class="headerlink" title="例如1：一同写入与读出浮点数、布尔型、整型、字符串"></a>例如1：一同写入与读出浮点数、布尔型、整型、字符串</h3><pre><code class="bash">import pickle
-<span class="comment">#写入</span>
-a = 123.3
-b = True
-c = 10
-d = <span class="string">'ok'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(a,f)
-pickle.dump(b,f)
-pickle.dump(c,f)
-pickle.dump(d,f)
-f.close()
+tree = ElementTree.parse(<span class="string">'test.xml'</span>)
+root = tree.getroot()   <span class="comment">#获取根节点</span>
 
-<span class="comment">#读出，前提是要知道文件里有多少行</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-i = 0
-<span class="keyword">while</span> i &lt; 4:
-    x = pickle.load(f)
-    <span class="built_in">print</span>(x)
-    i = i+1
-f.close()
+def parseXML(element):
+    <span class="comment">#dic1 = {}</span>
+    <span class="comment">#dic2 = {}</span>
+    <span class="keyword">if</span> len(element) &gt; 0:
+         <span class="keyword">for</span> child <span class="keyword">in</span> element:
+            <span class="comment"># print(child.tag,':',child.text)</span>
+            <span class="keyword">if</span> child.tag != <span class="string">'car'</span>:
+                <span class="built_in">print</span>(child.tag,<span class="string">':'</span>,child.text,end = <span class="string">' '</span>)
+            <span class="built_in">print</span>()
+            parseXML(child)  
+parseXML(root)
+</code></pre>
+<h3 id="（2）使用函数，用etree方式对test-xml文件进行解析，并写入到excel文件中"><a href="#（2）使用函数，用etree方式对test-xml文件进行解析，并写入到excel文件中" class="headerlink" title="（2）使用函数，用etree方式对test.xml文件进行解析，并写入到excel文件中"></a>（2）使用函数，用etree方式对test.xml文件进行解析，并写入到excel文件中</h3><pre><code class="bash">from xml.etree import ElementTree
+import xlwt  <span class="comment">#写excel文件，选用该模块</span>
 
-<span class="comment">#读出，此方法不用写f.close()</span>
-with open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>) as f:
-    x = pickle.load(f)
-    y = pickle.load(f)
-    z = pickle.load(f)
-    s = pickle.load(f)
-    <span class="built_in">print</span>(x,y,z,s)
-</code></pre>
-<h3 id="例如2：写入与读出嵌套列表"><a href="#例如2：写入与读出嵌套列表" class="headerlink" title="例如2：写入与读出嵌套列表"></a>例如2：写入与读出嵌套列表</h3><pre><code class="bash"><span class="comment">#写入</span>
-c = [[1,2,3],[4,5,6]]
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
+def readXML2(xmlfile):
+    dic = {}
+    document = ElementTree.parse(<span class="string">'test.xml'</span>)
+    root = document.getroot()   <span class="comment">#获取根节点</span>
+    cars = []  <span class="comment">#存放各种汽车信息</span>
+    <span class="keyword">for</span> child <span class="keyword">in</span> root:
+        <span class="comment">#print('遍历root:',child.tag,'：',child.attrib)</span>
+        item = []  <span class="comment">#存放一条关于汽车的信息</span>
+        sheet_name = child.tag
+        <span class="keyword">for</span> node <span class="keyword">in</span> child:
+            <span class="comment">#print('遍历child:',node.tag,'：',node.text)</span>
+            item.append(node.text)
+        cars.append(item)
+        dic[sheet_name] = cars
+        dic[<span class="string">'title'</span>] = [<span class="string">'brand'</span>,<span class="string">'comperny'</span>,<span class="string">'price'</span>,<span class="string">'color'</span>,<span class="string">'model'</span>,<span class="string">'country'</span>]
+        <span class="comment">#print(dic)</span>
+    <span class="built_in">return</span> dic 
 
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
+def saveXML(dic):
+    <span class="comment">#生成一个excel文件对象</span>
+    book = xlwt.Workbook()
+    <span class="comment">#生成一个sheet页</span>
+    sheet = book.add_sheet(<span class="string">'car'</span>)
+
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dic[<span class="string">'title'</span>])):
+        sheet.write(0,i,dic[<span class="string">'title'</span>][i])
+
+    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>])):
+        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>][m])):
+            sheet.write(m+1,n,dic[<span class="string">'car'</span>][m][n])
+
+    book.save(<span class="string">'car2.xls'</span>)
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    dic = readXML2(<span class="string">'test.xml'</span>)
+    saveXML(dic)
 </code></pre>
-<h3 id="例如3：写入与读出文字字符串"><a href="#例如3：写入与读出文字字符串" class="headerlink" title="例如3：写入与读出文字字符串"></a>例如3：写入与读出文字字符串</h3><pre><code class="bash"><span class="comment">#写入文字字符串</span>
-c = <span class="string">'我很好'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
-<span class="comment">#读出文字字符串</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
+<h2 id="2、SAX解析文件步骤："><a href="#2、SAX解析文件步骤：" class="headerlink" title="2、SAX解析文件步骤："></a>2、SAX解析文件步骤：</h2><h3 id="（1）创建解析器"><a href="#（1）创建解析器" class="headerlink" title="（1）创建解析器"></a>（1）创建解析器</h3><p>parser = sax.make_parser()</p>
+<h3 id="（2）读取xml文档"><a href="#（2）读取xml文档" class="headerlink" title="（2）读取xml文档"></a>（2）读取xml文档</h3><p>xml.sax.parse(xmlfile)</p>
+<h3 id="（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法"><a href="#（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法" class="headerlink" title="（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法"></a>（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法</h3><p>（a）startDocument():文档载入时调用，文档开始<br>（b）endDocument()：当解析器达到文档结尾时调用<br>（c）startElement(name,attrs):当遇到XML标签时调用，name是标签的名字，attrs标签的属性字典<br>（d）endElement(name):当遇到XML标签结束时调用，name是标签名</p>
+<h3 id="4-使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。"><a href="#4-使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。" class="headerlink" title="(4)使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。"></a>(4)使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。</h3><p>carhandler = CarHandler()<br>parser.setContentHandler(carhandler)</p>
+<h3 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h3><pre><code class="bash">from xml import sax
+from handler import CarHandler
+<span class="comment">#创建一个解析器</span>
+parser = sax.make_parser()
+<span class="comment"># 给解析器指定一个handler</span>
+carhandler = CarHandler()
+parser.setContentHandler(carhandler)
+<span class="comment"># 解析指定的xml文档</span>
+parser.parse(<span class="string">'test.xml'</span>)
 </code></pre>
-<h2 id="2、文件定位"><a href="#2、文件定位" class="headerlink" title="2、文件定位"></a>2、文件定位</h2><h3 id="（1）seek"><a href="#（1）seek" class="headerlink" title="（1）seek()"></a>（1）seek()</h3><p>函数格式：seek(n)<br>返回值：返回指定的位置<br>说明：通过指定元素的位置，将文件指针移动到该位置。</p>
-<h3 id="（2）seek-函数有三个固定值，分别为：0-1-2"><a href="#（2）seek-函数有三个固定值，分别为：0-1-2" class="headerlink" title="（2）seek()函数有三个固定值，分别为：0,1,2"></a>（2）seek()函数有三个固定值，分别为：0,1,2</h3><p>0：文件的开头<br>1：文件当前的位置<br>2：文件的结尾位置<br>seek(0,2):代表着将指针定位到文件尾，然后进行添加操作<br>seek(0,1):代表着在当前指针的位置，进行替换</p>
-<h3 id="（3）补充："><a href="#（3）补充：" class="headerlink" title="（3）补充："></a>（3）补充：</h3><p>对文件的读取时，如果文件大小未知，切忌不要使用read(),readline()，readlines()将文件内容一次性读取到内存中。因为有可能文件内容过多，造成读取时的IO阻塞。建议，将文件分多次分批读入内存中，我们通常可以先获取到文件大小，即：<br>size = path.getsize(‘myfile.txt’)<br>根据其大小来判断我们采用何种方式进行读取数据内容。</p>
 
       
 
@@ -351,7 +338,7 @@ n = pickle.load(f)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/30/input-output-binary/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/31/xml/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -365,18 +352,9 @@ n = pickle.load(f)
   
 <nav id="article-nav">
   
-    <a href="/2018/07/31/xml/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python对XML文件的解析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/30/excel/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python对Excel文件的操作</div>
+    <a href="/2018/07/30/input-output-binary/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文件输入输出（I/O）(二进制文件)</div>
       <i class="icon-circle-right"></i>
     </a>
   
