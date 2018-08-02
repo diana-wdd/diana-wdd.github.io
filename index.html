@@ -161,6 +161,219 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-exception" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/02/exception/">异常的捕获、处理、抛出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/02/exception/" class="archive-article-date">
+  	<time datetime="2018-08-02T09:35:55.750Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h3><p>指因程序出错在正常的执行流程之外，采取的行为。异常是一个事件，会在程序的执行过程中执行，并影响程序的执行。</p>
+<h3 id="2、异常的阶段"><a href="#2、异常的阶段" class="headerlink" title="2、异常的阶段"></a>2、异常的阶段</h3><p>第一、产生异常（比如：代码错误、业务逻辑错误）<br>第二、处理异常（比如：将异常提示更加可理解、增强代码的健壮性）</p>
+<h3 id="3、常见的异常类"><a href="#3、常见的异常类" class="headerlink" title="3、常见的异常类"></a>3、常见的异常类</h3><p>（1）Exception：Python中所有异常的父类。<br>（2）NameError：访问了一个未声明的变量。<br>（3）keyError:访问一个不存在的字典key<br>（4）IndexError：索引超出序列的范围<br>（5）ValueError：传给函数的参数类型不正确。<br>（6）IOError：文件操作时输入输出错误<br>（7）ZeroDivisionError：除数为0<br>（8）SyntaxError：语法错误<br>（9）AttributeError：尝试访问未知的对象属性<br>（10）EOFError：发现一个不期望的文件尾</p>
+<h3 id="4、异常处理流程"><a href="#4、异常处理流程" class="headerlink" title="4、异常处理流程"></a>4、异常处理流程</h3><p>基本语法：</p>
+<h3 id="（1）-1个try，1个except"><a href="#（1）-1个try，1个except" class="headerlink" title="（1） 1个try，1个except"></a>（1） 1个try，1个except</h3><p>try：<br>   可能会产生异常的代码<br>except  对应的异常 as 别名：<br>   异常处理语句<br>说明：在try中，放置可能会产生错误的相关代码；except后标明对应的异常类型，一旦try中产生相关异常，except后声明的异常类能够对应捕获，执行相关异常处理语句。如果try外面后续还有其他语句，会继续执行。在产生异常时，出现异常的语句后，如果还有其他语句则不会执行。</p>
+<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">a = 10
+b = 0
+try:
+    result = a/b
+    <span class="built_in">print</span>(<span class="string">'ok'</span>) <span class="comment">#此语句不会执行，因try语句体已发生异常</span>
+except ZeroDivisionError as ze:
+    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
+<span class="built_in">print</span>(<span class="string">'我能被执行啦！'</span>) <span class="comment">#此语句能继续被执行，异常已被捕获，不影响下面语句运行</span>
+</code></pre>
+<h3 id="（2）1个try，1个except，一个else"><a href="#（2）1个try，1个except，一个else" class="headerlink" title="（2）1个try，1个except，一个else"></a>（2）1个try，1个except，一个else</h3><p>try:<br>   可能会产生异常的代码<br>except 对应的异常 as 别名：<br>   异常处理语句<br>else:<br>   程序代码<br>说明：在此结构中，如果try中的代码出现异常，则使用except后面声明的异常类进行捕获处理，如果没有异常出现，则执行else内部的代码。</p>
+<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">a = 10
+b = 1
+try:
+    result = a/b
+except ZeroDivisionError as ze:
+    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(result) <span class="comment">#此语句能继续被执行，异常已被捕获，不影响下面语句运行</span>
+</code></pre>
+<h3 id="（3）1个try，多个except，-一个else"><a href="#（3）1个try，多个except，-一个else" class="headerlink" title="（3）1个try，多个except，[一个else]"></a>（3）1个try，多个except，[一个else]</h3><p>try:<br>   可能会产生异常的代码<br>except 对应的异常 as 别名：<br>    异常处理语句<br>except 对应的异常 as 别名：<br>    异常处理语句<br>说明：当try中有多行代码可能会出现不同的异常，那么使用多个except与之对应，根据产生异常的顺序来依次捕获处理。</p>
+<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">try:
+    x = <span class="built_in">float</span>(input(<span class="string">"请输入被除数："</span>))
+    y = <span class="built_in">float</span>(input(<span class="string">"请输入除数："</span>))
+    z = x / y
+except ZeroDivisionError as e1:
+    <span class="built_in">print</span>(<span class="string">"除数不能为零"</span>)
+except ValueError as e2:
+    <span class="built_in">print</span>(<span class="string">"被除数和除数应为数值类型"</span>)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(z)
+</code></pre>
+<h3 id="（4）1个try，1个except，一个else，一个finally"><a href="#（4）1个try，1个except，一个else，一个finally" class="headerlink" title="（4）1个try，1个except，一个else，一个finally"></a>（4）1个try，1个except，一个else，一个finally</h3><p>try：<br>   可能会出产生异常的代码<br>except 对应的异常 as 别名：<br>   异常处理语句<br>finally：<br>   代码<br>说明：当异常捕获处理流程中，使用了finally来控制，表明不管是否出现异常进行捕获，最后代码都将执行finally内部的语句。<br>注意：finally中的语句，不管前面的代码出现何种操作，比如：break、return、exit等都会执行完finally内部的代码后，才会实现。</p>
+<h3 id="例如（1）："><a href="#例如（1）：" class="headerlink" title="例如（1）："></a>例如（1）：</h3><pre><code class="bash">a = 10
+b = 0
+try:
+    result = a/b
+except ZeroDivisionError as ze:
+    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'我被执行啦'</span>)
+finally:
+    <span class="built_in">print</span>(<span class="string">'我是finally执行结果'</span>)
+</code></pre>
+<h3 id="例如（2）："><a href="#例如（2）：" class="headerlink" title="例如（2）："></a>例如（2）：</h3><pre><code class="bash">try:
+    f = open(<span class="string">'my.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+    s = f.readline()
+    <span class="built_in">print</span>(s)
+except FileNotFoundError as fe:
+    <span class="built_in">print</span>(<span class="string">'文件不存在'</span>)
+except IOError as ioe:
+    <span class="built_in">print</span>(<span class="string">'文件读取有错误！'</span>)
+finally:
+    try:
+        f.close()
+    except NameError as ne:
+        <span class="built_in">print</span>(<span class="string">'变量未赋值'</span>)
+</code></pre>
+<h3 id="5、异常的大分类"><a href="#5、异常的大分类" class="headerlink" title="5、异常的大分类"></a>5、异常的大分类</h3><p>在Python中所有的异常都继承自BaseExcept,如下：<br>          |——&gt;KeyboardInterrupt（键盘中断异常）<br>          |<br>BaseExcept |——&gt;SystemExit(系统退出异常)<br>          |<br>          |——&gt;Exception（其他所有异常的父类）<br>其中：keyboardInterrupt在使用强制中断（Ctrl+C）程序时产生。<br>      SystemExit在使用sys.exit()函数时产生。</p>
+<h3 id="6、主动抛出异常"><a href="#6、主动抛出异常" class="headerlink" title="6、主动抛出异常"></a>6、主动抛出异常</h3><p>raise 异常类对象实例或自定义异常类实例<br>raise IOError(‘IO 错误’)<br>例如：<br>error.py内容：#自定义一个异常类</p>
+<pre><code class="bash">class MyError(Exception):
+    def __init__(self,value):
+        self.value = value
+
+    def __str__(self):
+        <span class="built_in">return</span> super(self,value)
+</code></pre>
+<p>在exception.py中调用自定义的异常类：</p>
+<pre><code class="bash">from error import MyError
+try:
+    raise MyError(<span class="string">'2*2'</span>)
+except MyError as my:
+    <span class="built_in">print</span>(<span class="string">'我是一个自定义异常类'</span>)
+</code></pre>
+<h3 id="7、finally的替换写法"><a href="#7、finally的替换写法" class="headerlink" title="7、finally的替换写法"></a>7、finally的替换写法</h3><p>with open(‘myfile.txt’,’r’) as f:<br>    for line in f:<br>        print(line)<br>其中打开的文件对象f，在执行完内容的读取后，被强制性关闭。及时在读取过程中，出现错误，也会被关闭。</p>
+<h3 id="8、使用异常机制的优势"><a href="#8、使用异常机制的优势" class="headerlink" title="8、使用异常机制的优势"></a>8、使用异常机制的优势</h3><p>第一，把错误控制与业务逻辑进行区分，增强程序的可读性和健壮性。<br>第二，代码结构更加清晰，复杂的业务流程的实现更加便利<br>第三，程序的容错性更强，不会因为一个小bug导致整体崩溃。</p>
+<h3 id="9、assert-断言"><a href="#9、assert-断言" class="headerlink" title="9、assert 断言"></a>9、assert 断言</h3><p>语法格式：assert 表达式，断言内容。代码如下<br>try:<br>    assert 1==2,’1 不等于 2’<br>except AssertionError as ae:<br>    print(‘{}{}’.format(ae.<strong>class</strong>.<strong>name</strong>, ae))<br>如果断言表达式为真，则正常执行，如果不为真，则返回断言内容，作为异常捕获的输出结果。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/02/exception/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-pack-module" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/02/pack-module/">包与模块</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/02/pack-module/" class="archive-article-date">
+  	<time datetime="2018-08-02T09:34:38.502Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="（一）模块"><a href="#（一）模块" class="headerlink" title="（一）模块"></a>（一）模块</h2><h3 id="1、模块概念"><a href="#1、模块概念" class="headerlink" title="1、模块概念"></a>1、模块概念</h3><p>在Python中进行Python定义和声明的文件，以.py结尾。使用import或from   import导入的文件，我们称为模块。</p>
+<h3 id="2、模块的优势"><a href="#2、模块的优势" class="headerlink" title="2、模块的优势"></a>2、模块的优势</h3><p>首先，使用模块，可以将常用的功能和变量，统一分类存储在不同的文件中，在使用时进行导入。提高了代码的可维护性。<br>其次，使用模块因为将常用功能进行了统一调用，提高了代码的复用性<br>最后，解决了在同一个文件中，方法和变量重名的问题。</p>
+<h3 id="3、导入时的问题"><a href="#3、导入时的问题" class="headerlink" title="3、导入时的问题"></a>3、导入时的问题</h3><p>如果导入了与文件同名的函数（方法名相同，函数个数相同）时，需要使用模块名调用函数，与文件中的函数进行区分，例如：<br>import my<br>my.show()<br>def show():<br>  pass<br>show()</p>
+<h3 id="4、模块的使用"><a href="#4、模块的使用" class="headerlink" title="4、模块的使用"></a>4、模块的使用</h3><p>模块可以在Python文件中，实现多次import导入，但是只有第一次导入时才真正将模块中的内容运行、方法载入，其他再进行导入时，Python解析器会先检测是否已经载入该模块，如果载入就不在执行相关操作。</p>
+<h3 id="5、总结："><a href="#5、总结：" class="headerlink" title="5、总结："></a>5、总结：</h3><p>模块载入一共分三个步骤：<br>（1）为模块的导入，创建命名空间（划分新的内存地址），被载入的文件按照全局作用域来使用。<br>（2）模块载入后，将在上一步操作中创建的命名空间中，执行模块中的代码<br>（3）创建一个模块的名字，来引用模块所在的命名空间。my.show()</p>
+<h3 id="6、注意"><a href="#6、注意" class="headerlink" title="6、注意"></a>6、注意</h3><p>当使用from  import引入多个模块时，同时多个模块存在同名函数，那么在程序中调用该函数时，以程序导入的最后一个模块的函数为准。</p>
+<h2 id="（二）包"><a href="#（二）包" class="headerlink" title="（二）包"></a>（二）包</h2><h3 id="1、概念："><a href="#1、概念：" class="headerlink" title="1、概念："></a>1、概念：</h3><p>包在Python中定义为可以包含多个模块文件的目录，其中必须要包含一个名为“<strong>init</strong>.py”的文件，用来初始化包。</p>
+<h3 id="2、包的调用"><a href="#2、包的调用" class="headerlink" title="2、包的调用"></a>2、包的调用</h3><p>包在调用的时候，首先会初始化<strong>init</strong>.py文件，主要功能为包中模块运行时提供所需要的相关数据，比如：数据库用户名称、密码、地址等内容。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/02/pack-module/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-case-ATM-def-log-@-txt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1510,207 +1723,9 @@ result = filter(is_even,[1,2,3,4,5,6,7,8,9,10])
 
 
   
-    <article id="post-def-nest-clouser" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/def-nest-clouser/">函数的嵌套、闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/def-nest-clouser/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:24:52.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、函数嵌套"><a href="#1、函数嵌套" class="headerlink" title="1、函数嵌套"></a>1、函数嵌套</h2><p>根据python中，对函数的载入和调用的特点，我们可以清楚看到，当python运行相关文件时，如果遇到函数时，会先将其名字载入到内存中（即为函数名指定一个内存地址）。因此我们在使用函数名时，可以有以下三种情况：</p>
-<h3 id="（1）将函数名赋值给变量"><a href="#（1）将函数名赋值给变量" class="headerlink" title="（1）将函数名赋值给变量"></a>（1）将函数名赋值给变量</h3><p>例如：</p>
-<pre><code class="bash">def f1():
-   <span class="built_in">print</span>(<span class="string">'ok'</span>)
-a = f1
-</code></pre>
-<p>这是变量a中的值就是f1()函数名的内存地址。</p>
-<h3 id="（2）将函数名作为容器的元素"><a href="#（2）将函数名作为容器的元素" class="headerlink" title="（2）将函数名作为容器的元素"></a>（2）将函数名作为容器的元素</h3><p>例如：</p>
-<pre><code class="bash">def f1():
-   <span class="built_in">print</span>(<span class="string">'ok'</span>)
-ls = [1,2,f1]
-</code></pre>
-<p>注意，此时存入到列表ls中的f1，它的值仍然是该函数名对应的内存地址</p>
-<h3 id="（3）将函数名作为另外一个函数的参数进行传递"><a href="#（3）将函数名作为另外一个函数的参数进行传递" class="headerlink" title="（3）将函数名作为另外一个函数的参数进行传递"></a>（3）将函数名作为另外一个函数的参数进行传递</h3><p>例如：</p>
-<pre><code class="bash">def f1():
-   <span class="built_in">print</span>(<span class="string">'ok'</span>)
-def f2(x):
-   x()
-f2(f1)
-</code></pre>
-<p>其执行结果为OK，这种方式类似与函数的普通嵌套,代码如下：</p>
-<pre><code class="bash">def f2():
-   def f1():
-      <span class="built_in">print</span>(<span class="string">'ok'</span>)
-   f1()
-f2()
-</code></pre>
-<h2 id="2、函数闭包"><a href="#2、函数闭包" class="headerlink" title="2、函数闭包"></a>2、函数闭包</h2><h3 id="1）闭包格式"><a href="#1）闭包格式" class="headerlink" title="1）闭包格式"></a>1）闭包格式</h3><p>def outer():<br>    print(‘我是外部函数’)<br>    def inner():<br>        print(‘我是闭包函数’)<br>    return inner<br>f = outer()<br>f()</p>
-<h3 id="通过对例子的观察，我们发现闭包函数的写法有如下特点："><a href="#通过对例子的观察，我们发现闭包函数的写法有如下特点：" class="headerlink" title="通过对例子的观察，我们发现闭包函数的写法有如下特点："></a>通过对例子的观察，我们发现闭包函数的写法有如下特点：</h3><p>（1）闭包函数作为内部函数，嵌套在外部函数中<br>（2）闭包函数会作为外部函数的返回值，进行返回。返回闭包函数时，只返回函数名，不带括号。<br>（3）外部调用时，首先要执行外部函数，然后将结果赋值给一个变量，此时该变量对应了闭包函数。<br>（4）我们可以通过<strong>closure</strong>内部函数可以观察到，闭包函数的存在。前提是，闭包函数要与外部函数进行数据传递或调用。<br>总结：闭包使用的数据，必须是本身定义或外部函数中定义的相关变量，通常需要调用外部函数的数据，形成一个封闭的函数结构。不能与外部数据（全局变量）发生交流。</p>
-<h3 id="2）闭包的应用—装饰器"><a href="#2）闭包的应用—装饰器" class="headerlink" title="2）闭包的应用—装饰器"></a>2）闭包的应用—装饰器</h3><p>（1）概念：装饰器本身仍然是一个函数。是我们队闭包应用的一种具体实现。<br>（2）作用：装饰器可以在不改变函数本身功能的情况下，为函数添加额外的功能。诸如：日志、测试、性能检测等。装饰器同样也是返回一个函数对象。<br>（3）用法：<br>使用格式：@+装饰器名称</p>
-<pre><code class="bash">import time
-
-def outer(f):
-    def inner(*var):
-        start_time = time.time()
-        f(*var)
-        time.sleep(0.3)
-        end_time = time.time()
-        <span class="built_in">print</span>(<span class="string">'此函数执行时间为{0}'</span>.format(str(end_time-start_time)))
-    <span class="built_in">return</span> inner
-
-@outer      <span class="comment"># 此处就是装饰器的声明，这种方法我们成为语法糖</span>
-def func1():
-    <span class="built_in">print</span>(<span class="string">'hello world'</span>)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/def-nest-clouser/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-log-template" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/log-template/">日志格式模板</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/log-template/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:11:41.607Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code class="bash">import logging
-def <span class="built_in">log</span>(msg):
-    <span class="comment">#创建一个日志对象,并设置日志级别</span>
-    logger = logging.getLogger(<span class="string">'pythonlogger'</span>)
-    logger.setLevel(logging.INFO)
-
-    <span class="comment">#创建一个handler,用来将日志内容存入文件中</span>
-    file = logging.FileHandler(<span class="string">'test.log'</span>)
-    file.setLevel(logging.INFO)
-
-    <span class="comment">#创建一个handler,用来将日志输出到控制台</span>
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-
-    <span class="comment">#定义日志输出格式</span>
-    formatter = logging.Formatter(<span class="string">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>)
-    file.setFormatter(formatter)
-    console.setFormatter(formatter)
-
-    <span class="comment">#将logger添加到handler</span>
-    logger.addHandler(file)
-    logger.addHandler(console)
-
-    logger.info(msg)
-
-    <span class="comment">#清除已经生成的日志显示信息，以防重复出现</span>
-    logger.removeHandler(file)
-    logger.removeHandler(console)
-</code></pre>
-<h3 id="注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def-log-msg-”删掉，以及将“logger-info-msg-”中的msg改为你想要显示的内容"><a href="#注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def-log-msg-”删掉，以及将“logger-info-msg-”中的msg改为你想要显示的内容" class="headerlink" title="注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def log(msg):”删掉，以及将“logger.info(msg)”中的msg改为你想要显示的内容"></a>注意：以上模板可以直接用于函数中，已经被定义好，如果不用于函数中，将“def log(msg):”删掉，以及将“logger.info(msg)”中的msg改为你想要显示的内容</h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/log-template/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 

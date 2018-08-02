@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | diana</title>
+  <title>包与模块 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="diana">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="（一）模块1、模块概念在Python中进行Python定义和声明的文件，以.py结尾。使用import或from   import导入的文件，我们称为模块。 2、模块的优势首先，使用模块，可以将常用的功能和变量，统一分类存储在不同的文件中，在使用时进行导入。提高了代码的可维护性。其次，使用模块因为将常用功能进行了统一调用，提高了代码的复用性最后，解决了在同一个文件中，方法和变量重名的问题。 3、导">
+<meta name="keywords" content="Python、爬虫、Web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="包与模块">
+<meta property="og:url" content="http://yoursite.com/2018/08/02/pack-module/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="（一）模块1、模块概念在Python中进行Python定义和声明的文件，以.py结尾。使用import或from   import导入的文件，我们称为模块。 2、模块的优势首先，使用模块，可以将常用的功能和变量，统一分类存储在不同的文件中，在使用时进行导入。提高了代码的可维护性。其次，使用模块因为将常用功能进行了统一调用，提高了代码的复用性最后，解决了在同一个文件中，方法和变量重名的问题。 3、导">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-02T09:38:52.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="包与模块">
+<meta name="twitter:description" content="（一）模块1、模块概念在Python中进行Python定义和声明的文件，以.py结尾。使用import或from   import导入的文件，我们称为模块。 2、模块的优势首先，使用模块，可以将常用的功能和变量，统一分类存储在不同的文件中，在使用时进行导入。提高了代码的可维护性。其次，使用模块因为将常用功能进行了统一调用，提高了代码的复用性最后，解决了在同一个文件中，方法和变量重名的问题。 3、导">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -159,295 +163,171 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-pack-module" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/exception/" class="archive-article-date">
-  	<time datetime="2018-08-02T09:35:55.750Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/exception/">异常的捕获、处理、抛出</a>
+    <h1 class="article-title" itemprop="name">
+      包与模块
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/pack-module/" class="archive-article-date">
+        
+        <a href="/2018/08/02/pack-module/" class="archive-article-date">
   	<time datetime="2018-08-02T09:34:38.502Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/pack-module/">包与模块</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="（一）模块"><a href="#（一）模块" class="headerlink" title="（一）模块"></a>（一）模块</h2><h3 id="1、模块概念"><a href="#1、模块概念" class="headerlink" title="1、模块概念"></a>1、模块概念</h3><p>在Python中进行Python定义和声明的文件，以.py结尾。使用import或from   import导入的文件，我们称为模块。</p>
+<h3 id="2、模块的优势"><a href="#2、模块的优势" class="headerlink" title="2、模块的优势"></a>2、模块的优势</h3><p>首先，使用模块，可以将常用的功能和变量，统一分类存储在不同的文件中，在使用时进行导入。提高了代码的可维护性。<br>其次，使用模块因为将常用功能进行了统一调用，提高了代码的复用性<br>最后，解决了在同一个文件中，方法和变量重名的问题。</p>
+<h3 id="3、导入时的问题"><a href="#3、导入时的问题" class="headerlink" title="3、导入时的问题"></a>3、导入时的问题</h3><p>如果导入了与文件同名的函数（方法名相同，函数个数相同）时，需要使用模块名调用函数，与文件中的函数进行区分，例如：<br>import my<br>my.show()<br>def show():<br>  pass<br>show()</p>
+<h3 id="4、模块的使用"><a href="#4、模块的使用" class="headerlink" title="4、模块的使用"></a>4、模块的使用</h3><p>模块可以在Python文件中，实现多次import导入，但是只有第一次导入时才真正将模块中的内容运行、方法载入，其他再进行导入时，Python解析器会先检测是否已经载入该模块，如果载入就不在执行相关操作。</p>
+<h3 id="5、总结："><a href="#5、总结：" class="headerlink" title="5、总结："></a>5、总结：</h3><p>模块载入一共分三个步骤：<br>（1）为模块的导入，创建命名空间（划分新的内存地址），被载入的文件按照全局作用域来使用。<br>（2）模块载入后，将在上一步操作中创建的命名空间中，执行模块中的代码<br>（3）创建一个模块的名字，来引用模块所在的命名空间。my.show()</p>
+<h3 id="6、注意"><a href="#6、注意" class="headerlink" title="6、注意"></a>6、注意</h3><p>当使用from  import引入多个模块时，同时多个模块存在同名函数，那么在程序中调用该函数时，以程序导入的最后一个模块的函数为准。</p>
+<h2 id="（二）包"><a href="#（二）包" class="headerlink" title="（二）包"></a>（二）包</h2><h3 id="1、概念："><a href="#1、概念：" class="headerlink" title="1、概念："></a>1、概念：</h3><p>包在Python中定义为可以包含多个模块文件的目录，其中必须要包含一个名为“<strong>init</strong>.py”的文件，用来初始化包。</p>
+<h3 id="2、包的调用"><a href="#2、包的调用" class="headerlink" title="2、包的调用"></a>2、包的调用</h3><p>包在调用的时候，首先会初始化<strong>init</strong>.py文件，主要功能为包中模块运行时提供所需要的相关数据，比如：数据库用户名称、密码、地址等内容。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/02/pack-module/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/case-ATM-def-log-@-txt/" class="archive-article-date">
-  	<time datetime="2018-08-02T01:00:27.124Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/08/02/exception/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          异常的捕获、处理、抛出
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/02/case-ATM-def-log-@-txt/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">案例——ATM取款机（函数、语法糖、日志、文本文件）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/case-ATM-def-log-@-txt/">案例——ATM取款机（函数、语法糖、日志、文本文件）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/01/practice--xml-excel/" class="archive-article-date">
-  	<time datetime="2018-08-01T11:40:07.291Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/01/practice--xml-excel/">作业练习——关于商品订购将xml文件读出并写入到excel中</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/31/xml/" class="archive-article-date">
-  	<time datetime="2018-07-31T13:40:47.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/31/xml/">Python对XML文件的解析</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-binary/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-binary/">文件输入输出（I/O）(二进制文件)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/excel/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-txt/" class="archive-article-date">
-  	<time datetime="2018-07-30T00:35:54.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-txt/">文件输入输出（I/O）(文本文件)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/26/def-recursion/" class="archive-article-date">
-  	<time datetime="2018-07-26T13:10:50.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/26/def-recursion/">函数的递归</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/def-higher-function/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:29:44.677Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/def-higher-function/">高阶函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -474,8 +354,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
