@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="题目要求一、编写一个ATM取款机，功能，界面如下 1). 注册新用户 2). 取款 3). 存款 4). 转账 5). 查询余额 6). 冻结账户 7). 修改密码 8). 退出 9）.登陆 1、注册用户，并存入本地文件count.txt中。其中文件格式如下：   用户名   密码    账户余额    状态    tom     1234    100000      正常其中，注册新用户时，默">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T01:03:04.236Z">
+<meta property="og:updated_time" content="2018-08-02T11:00:37.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="案例——ATM取款机（函数、语法糖、日志、文本文件）">
 <meta name="twitter:description" content="题目要求一、编写一个ATM取款机，功能，界面如下 1). 注册新用户 2). 取款 3). 存款 4). 转账 5). 查询余额 6). 冻结账户 7). 修改密码 8). 退出 9）.登陆 1、注册用户，并存入本地文件count.txt中。其中文件格式如下：   用户名   密码    账户余额    状态    tom     1234    100000      正常其中，注册新用户时，默">
@@ -197,6 +197,346 @@
 <p>二、修改上述的ATM取款系统，要求如下:<br>1). 每个选项操作前，显示用户欢迎信息;<br>    eg： “<strong><strong><strong>***</strong></strong></strong>ATM系统转账操作<strong><strong><strong>***</strong></strong></strong>“<br>    eg： “<strong><strong><strong>***</strong></strong></strong>ATM系统存款操作<strong><strong><strong>***</strong></strong></strong>“</p>
 <p>2). 用户执行操作前显示操作时间；<br>3). 用户执行后显示结束时间;<br>4).要求时间格式不是时间戳，而是我们可以看懂的即（YYYY-MM-DD）;</p>
 <p>1、要求使用日志，进行记录<br>2、采用装饰器进行日志的记录</p>
+<p>程序代码：</p>
+<pre><code class="bash">import os 
+from os import path
+import time
+import datetime
+import logging
+<span class="comment">#print(time.strftime('%Y-%m-%d',time.localtime()))</span>
+
+def <span class="built_in">log</span>(msg):
+    <span class="comment">#创建一个日志对象,并设置日志级别</span>
+    logger = logging.getLogger(<span class="string">'pythonlogger'</span>)
+    logger.setLevel(logging.INFO)
+
+    <span class="comment">#创建一个handler,用来将日志内容存入文件中</span>
+    file = logging.FileHandler(<span class="string">'test.log'</span>)
+    file.setLevel(logging.INFO)
+
+    <span class="comment">#创建一个handler,用来将日志输出到控制台</span>
+    console = logging.StreamHandler()
+    console.setLevel(logging.INFO)
+
+    <span class="comment">#定义日志输出格式</span>
+    formatter = logging.Formatter(<span class="string">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>)
+    file.setFormatter(formatter)
+    console.setFormatter(formatter)
+
+    <span class="comment">#将logger添加到handler</span>
+    logger.addHandler(file)
+    logger.addHandler(console)
+
+    logger.info(msg)
+
+    logger.removeHandler(file)
+    logger.removeHandler(console)
+
+<span class="comment">#存放用户当前信息字典</span>
+user_status = {<span class="string">'username'</span>: None,<span class="string">'password'</span>: None,<span class="string">'money'</span>:None,<span class="string">'status'</span>:None,<span class="string">'state'</span>: False}
+<span class="comment">#存放被转账人的姓名和转账金额</span>
+transter_id = {<span class="string">'id_name'</span>:None,<span class="string">'money'</span>:None}
+
+dic={}
+def mylogger(f):
+    def inner(*var,**kw):
+        <span class="built_in">print</span>(<span class="string">'********ATM系统{}操作********'</span>.format(f.__name__)) 
+        current_time()
+        <span class="keyword">if</span> f(*var,**kw):
+            current_time()     
+            <span class="built_in">log</span>(f.__name__+<span class="string">'操作成功'</span>)
+        <span class="keyword">else</span>:
+            current_time()
+            <span class="built_in">log</span>(f.__name__+<span class="string">'操作失败'</span>)
+    <span class="built_in">return</span> inner
+
+def menu():
+    <span class="built_in">print</span>(<span class="string">'*******欢迎前来办理业务*******'</span>)
+    <span class="built_in">print</span>(<span class="string">'1、注册新用户'</span>)
+    <span class="built_in">print</span>(<span class="string">'2、登录'</span>)
+    <span class="built_in">print</span>(<span class="string">'3、取款'</span>)
+    <span class="built_in">print</span>(<span class="string">'4、存款'</span>)
+    <span class="built_in">print</span>(<span class="string">'5、转账'</span>)
+    <span class="built_in">print</span>(<span class="string">'6、查询余额'</span>)
+    <span class="built_in">print</span>(<span class="string">'7、冻结账户'</span>)
+    <span class="built_in">print</span>(<span class="string">'8、修改密码'</span>)
+    <span class="built_in">print</span>(<span class="string">'9、退出'</span>)
+    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
+
+<span class="comment">#读取系统当前时间</span>
+def current_time():
+    now = datetime.datetime.now()  <span class="comment">#获取当前时间时分秒</span>
+    current = now.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)  <span class="comment">#显示当前时间的时分秒</span>
+    <span class="built_in">print</span>(<span class="string">'当前操作时间为：{}'</span>.format(current))  <span class="comment">#打印当前时间的时分秒</span>
+    <span class="built_in">return</span> current   <span class="comment">#返回当前时间的时分秒</span>
+
+<span class="comment">#判断该文件是否存在</span>
+def is_exist():   
+    <span class="keyword">if</span> os.path.exists(<span class="string">'count.txt'</span>):
+        pass
+    <span class="keyword">else</span>:
+        file = open(<span class="string">'count.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)  <span class="comment">#不存在则创建，并将用户名 密码 账户余额 状态输入到文件</span>
+        file.write(<span class="string">'用户名   密码    账户余额   状态\n'</span>)
+        file.close()
+
+<span class="comment">#读出文本文件内容</span>
+def readfile():
+    is_exist()     <span class="comment">#调用is_exist()函数，判断是否存在count.txt文件</span>
+    file = open(<span class="string">'count.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
+    msg = file.readline()
+    ls1 = msg.split()
+    <span class="keyword">while</span> True:
+        line = file.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        ls2 = line.split()
+        value_dic = dict(zip(ls1,ls2)) <span class="comment">#将读出的信息生成一个字典</span>
+        dic[ls2[0]] = value_dic  <span class="comment">#以用户名为键值，将字典添加到字典中</span>
+    file.close()
+    <span class="built_in">return</span> dic  <span class="comment">#返回该字典</span>
+
+<span class="comment">#写入文本文件内容</span>
+def writefile():
+    file = open(<span class="string">'count.txt'</span>,<span class="string">'w'</span>,encoding= <span class="string">'UTF-8'</span>)
+    file.write(<span class="string">'用户名   密码    账户余额   状态\n'</span>)   <span class="comment">#写入文件的第一行用户名 密码 账户余额 状态</span>
+    file.close()
+    file = open(<span class="string">'count.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)
+    str1=<span class="string">''</span>
+    <span class="keyword">for</span> key <span class="keyword">in</span> dic.keys():
+        str1=str1+(dic[key][<span class="string">'用户名'</span>]+<span class="string">' '</span>+dic[key][<span class="string">'密码'</span>]+<span class="string">' '</span>+str(dic[key][<span class="string">'账户余额'</span>])+<span class="string">' '</span>+dic[key][<span class="string">'状态'</span>]+<span class="string">'\n'</span>)
+    file.write(str1)     
+    file.close()
+
+<span class="comment">#注册新用户</span>
+@mylogger
+def reginster():
+    flag = False
+    readfile()
+    username = input(<span class="string">'请输入用户名：'</span>)
+    password = input(<span class="string">'请输入密码：'</span>)
+    items = username+<span class="string">'     '</span>+password + <span class="string">'     '</span> + <span class="string">'100'</span> + <span class="string">'     '</span> + <span class="string">'正常'</span>
+    <span class="keyword">if</span> username <span class="keyword">in</span> dic.keys():
+        <span class="built_in">print</span>(<span class="string">'该用户名已存在，请重新输入！'</span>)
+        flag = False
+    <span class="keyword">else</span>:
+        file = open(<span class="string">'count.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
+        file.write(items+<span class="string">'\n'</span>)
+        items=items.split()
+        value_dic=dict(zip([<span class="string">'用户名'</span>,<span class="string">'密码'</span>,<span class="string">'账户余额'</span>, <span class="string">'状态'</span>],items))
+        dic[items[0]]=value_dic
+        <span class="built_in">print</span>(<span class="string">'注册成功！'</span>)
+        flag = True 
+    <span class="built_in">return</span> flag
+
+<span class="comment">#登录</span>
+@mylogger
+def login():
+    flag = True
+    readfile()
+    username = input(<span class="string">'请输入用户名：'</span>)
+    password = input(<span class="string">'请输入密码：'</span>)
+    <span class="keyword">if</span> username <span class="keyword">in</span> dic.keys():
+        <span class="keyword">if</span> password == dic[username][<span class="string">'密码'</span>]:
+            <span class="built_in">print</span>(<span class="string">'登录成功！'</span>)
+            user_status[<span class="string">'username'</span>] = username    <span class="comment">#将读取出来的信息存在user_status字典中，便于后续调用以及用其中的state判断用户是否登录</span>
+            user_status[<span class="string">'password'</span>] = password
+            user_status[<span class="string">'money'</span>] = dic[username][<span class="string">'账户余额'</span>]
+            user_status[<span class="string">'status'</span>] = dic[username][<span class="string">'状态'</span>]
+            user_status[<span class="string">'state'</span>] = True       
+            flag = True
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'密码不正确，请重新输入！'</span>)
+            flag = False
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'该用户不存在，请先注册再登录！'</span>)
+        flag = False
+    <span class="built_in">return</span> flag  
+
+@mylogger
+<span class="comment">#取款</span>
+def withdrawal():
+    flag = False
+    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
+    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
+    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
+        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
+        flag = False
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'身份验证通过，请继续进行操作！'</span>)
+        withdrawal_money = int(input(<span class="string">'请输入取款金额：'</span>))
+        <span class="keyword">if</span> withdrawal_money &gt; int(user_status[<span class="string">'money'</span>]):
+            <span class="built_in">print</span>(<span class="string">'账户余额不足，请重新输入取款金额！'</span>)
+            flag =False
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'取款成功！'</span>)
+            user_status[<span class="string">'money'</span>] = str(int(user_status[<span class="string">'money'</span>]) - withdrawal_money)
+            readfile()
+            dic[username][<span class="string">'账户余额'</span>] = user_status[<span class="string">'money'</span>]
+            writefile()
+            flag = True  
+    <span class="built_in">return</span> flag
+
+<span class="comment">#存款</span>
+@mylogger
+def deposit():
+    flag = False
+    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
+    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
+    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
+        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
+        flag = False
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'身份验证通过，请继续进行操作！'</span>)
+        deposit_money = int(input(<span class="string">'请输入存款金额：'</span>))
+        <span class="built_in">print</span>(<span class="string">'存款成功！'</span>)
+        user_status[<span class="string">'money'</span>] = str(int(user_status[<span class="string">'money'</span>]) + deposit_money)
+        readfile()
+        dic[username][<span class="string">'账户余额'</span>] = user_status[<span class="string">'money'</span>]
+        writefile()
+        flag = True
+    <span class="built_in">return</span> flag
+
+<span class="comment">#转账</span>
+@mylogger
+def transfer_accounts():
+    flag = False
+    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
+    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
+    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
+        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
+        flag = False
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'身份验证通过，请继续进行操作！'</span>)
+        id_name = input(<span class="string">'请输入转账人姓名：'</span>)
+        transfer_money = int(input(<span class="string">'请输入转账金额：'</span>))
+        readfile()
+        <span class="keyword">if</span> id_name <span class="keyword">in</span> dic.keys():
+            <span class="built_in">print</span>(<span class="string">'转账成功！'</span>)
+            transter_id[<span class="string">'id_name'</span>] = id_name
+            transter_id[<span class="string">'money'</span>] = transfer_money
+            user_status[<span class="string">'money'</span>] = str(int(user_status[<span class="string">'money'</span>]) - transfer_money)
+            dic[username][<span class="string">'账户余额'</span>] = user_status[<span class="string">'money'</span>]
+            dic[id_name][<span class="string">'账户余额'</span>] = str(int(dic[id_name][<span class="string">'账户余额'</span>]) + transfer_money)
+            writefile()
+            flag = True
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'不存在该用户！'</span>)
+            flag = False
+    <span class="built_in">return</span> flag
+
+<span class="comment">#余额查询</span>
+@mylogger
+def balance_inquiry():
+    flag = False
+    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
+    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
+    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
+        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
+        flag = False
+    <span class="keyword">else</span>:
+        readfile()
+        money = dic[username][<span class="string">'账户余额'</span>]
+        <span class="built_in">print</span>(<span class="string">'当前余额为：{}元!'</span>.format(money))
+        flag = True
+    <span class="built_in">return</span> flag
+
+<span class="comment">#冻结账户</span>
+@mylogger
+def freeze_account():
+    flag = False
+    status = input(<span class="string">'请设置当前账户状态：'</span>)
+    user_status[<span class="string">'status'</span>] = <span class="string">'冻结'</span>
+    <span class="keyword">if</span> status == user_status[<span class="string">'status'</span>]:
+        <span class="built_in">print</span>(<span class="string">'当前账户已被冻结！无法进行其他操作！'</span>)
+        flag = True
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'当前账户状态正常！'</span>)
+    <span class="built_in">return</span> flag
+
+<span class="comment">#修改密码</span>
+@mylogger
+def change_password():
+    flag = False
+    username = input(<span class="string">'请输入用户名：'</span>)
+    password = input(<span class="string">'请输入原密码：'</span>)
+    repassword = input(<span class="string">'请输入修改后的密码：'</span>)
+    readfile()
+    <span class="keyword">if</span> password == dic[username][<span class="string">'密码'</span>]:
+        dic[username][<span class="string">'密码'</span>] = repassword
+        writefile()
+        <span class="built_in">print</span>(<span class="string">'密码修改成功！'</span>)
+        flag = True
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'密码输入错误！'</span>)
+        flag = False
+    <span class="built_in">return</span> flag
+
+<span class="comment">#退出</span>
+@mylogger
+def quit():
+    flag = False
+    mes = input(<span class="string">'确定要退出吗？退出请按Q：'</span>)
+    <span class="keyword">if</span> <span class="string">'Q'</span> == mes or <span class="string">'q'</span> == mes:
+        <span class="built_in">exit</span>()
+        flag = True
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'按键错误，请重新选择！'</span>)
+        flag = False
+    <span class="built_in">return</span> flag
+
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="keyword">while</span> True:
+        menu()
+        msg = int(input(<span class="string">'请输入操作的编号：'</span>))
+        <span class="keyword">if</span> 1 == msg:
+            reginster()
+
+        <span class="keyword">elif</span> 2 == msg:
+            login()
+
+        <span class="keyword">elif</span> 3 == msg:
+            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
+                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
+            <span class="keyword">else</span>:
+                withdrawal()
+
+        <span class="keyword">elif</span> 4 == msg:
+            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
+                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
+            <span class="keyword">else</span>:
+                deposit()
+
+        <span class="keyword">elif</span> 5 == msg:
+            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
+                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
+            <span class="keyword">else</span>: 
+                transfer_accounts()
+
+        <span class="keyword">elif</span> 6 == msg:
+            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
+                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
+            <span class="keyword">else</span>:
+                balance_inquiry()
+
+        <span class="keyword">elif</span> 7 == msg:
+            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
+                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
+            <span class="keyword">else</span>:  
+                freeze_account()
+
+        <span class="keyword">elif</span> 8 == msg:
+            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
+                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
+            <span class="keyword">else</span>:
+                change_password()
+
+        <span class="keyword">else</span>:
+            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
+                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
+            <span class="keyword">else</span>:
+                quit()
+</code></pre>
 
       
 
