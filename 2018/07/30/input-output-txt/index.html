@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="1、格式化函数（1）repr()函数格式：repr(object) ，python内置函数返回值：返回一个字符串类型的数据说明：该函数，将参数中的对象进行处理，变为字符串类型，其中如果参数为字符串仍然会在外部加上“”，其内部的字符串的边界符仍然存在。 例如：&amp;gt;&amp;gt;&amp;gt; repr(2.5) &apos;2.5&apos; &amp;gt;&amp;gt;&amp;gt; repr(&quot;hello world&quot;) &quot;&apos;hello w">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-01T12:18:46.038Z">
+<meta property="og:updated_time" content="2018-08-03T12:56:25.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件输入输出（I&#x2F;O）(文本文件)">
 <meta name="twitter:description" content="1、格式化函数（1）repr()函数格式：repr(object) ，python内置函数返回值：返回一个字符串类型的数据说明：该函数，将参数中的对象进行处理，变为字符串类型，其中如果参数为字符串仍然会在外部加上“”，其内部的字符串的边界符仍然存在。 例如：&amp;gt;&amp;gt;&amp;gt; repr(2.5) &apos;2.5&apos; &amp;gt;&amp;gt;&amp;gt; repr(&quot;hello world&quot;) &quot;&apos;hello w">
@@ -285,6 +285,14 @@ file.close()
 <h3 id="或者用write-写："><a href="#或者用write-写：" class="headerlink" title="或者用write()写："></a>或者用write()写：</h3><pre><code class="bash">str1 = <span class="string">'我去上学了\n中午回来吃饭\n好吗'</span>
 file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
 file.write(str1)
+file.close()
+</code></pre>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>方法函数：flush()<br>函数格式：file.flush()<br>返回值：无<br>说明：该函数是来刷新缓冲区的，即将缓冲区中的数据立刻写入文件，同时清空缓冲区。下例中，就是将信息项达到100条时，进行一次刷新。</p>
+<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+<span class="keyword">for</span> i <span class="keyword">in</span> range(10000):
+    file.write(<span class="string">'hello'</span>+str(i))
+    <span class="keyword">if</span> i % 100 == 0:
+        file.flush()
 file.close()
 </code></pre>
 <h3 id="2）读文件（读出来的均是字符串）"><a href="#2）读文件（读出来的均是字符串）" class="headerlink" title="2）读文件（读出来的均是字符串）"></a>2）读文件（读出来的均是字符串）</h3><h3 id="a-函数格式：read-size"><a href="#a-函数格式：read-size" class="headerlink" title="(a)函数格式：read([size])"></a>(a)函数格式：read([size])</h3><p>返回值：返回按照字节逐一读取的数据。<br>说明：该函数按照字节个数逐一读取文件中的数据，如果没有规定读取数据的字节大小size，会一直读完文件中全部数据，如果规定了数据的字节大小，只读取规定字节数的内容。</p>

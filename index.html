@@ -1614,6 +1614,14 @@ file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</s
 file.write(str1)
 file.close()
 </code></pre>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>方法函数：flush()<br>函数格式：file.flush()<br>返回值：无<br>说明：该函数是来刷新缓冲区的，即将缓冲区中的数据立刻写入文件，同时清空缓冲区。下例中，就是将信息项达到100条时，进行一次刷新。</p>
+<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+<span class="keyword">for</span> i <span class="keyword">in</span> range(10000):
+    file.write(<span class="string">'hello'</span>+str(i))
+    <span class="keyword">if</span> i % 100 == 0:
+        file.flush()
+file.close()
+</code></pre>
 <h3 id="2）读文件（读出来的均是字符串）"><a href="#2）读文件（读出来的均是字符串）" class="headerlink" title="2）读文件（读出来的均是字符串）"></a>2）读文件（读出来的均是字符串）</h3><h3 id="a-函数格式：read-size"><a href="#a-函数格式：read-size" class="headerlink" title="(a)函数格式：read([size])"></a>(a)函数格式：read([size])</h3><p>返回值：返回按照字节逐一读取的数据。<br>说明：该函数按照字节个数逐一读取文件中的数据，如果没有规定读取数据的字节大小size，会一直读完文件中全部数据，如果规定了数据的字节大小，只读取规定字节数的内容。</p>
 <h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
 a = file.read(5)
