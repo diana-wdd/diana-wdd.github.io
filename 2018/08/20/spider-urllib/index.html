@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>文件输入输出（I/O）(二进制文件) | diana</title>
+  <title>爬虫（urllib库） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+  <meta name="description" content="1、urllib库的基本使用import urllib.request函数格式：urllib.request.openurl(url, data, timeout)参数说明：url：指定的请求网址data：请求时提交给服务器端的数据，如果在openurl中使用了data参数，那么提交方式为post，默认情况下为get。timeout：指定连接url的超时时间，单位为秒。response = url">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件输入输出（I&#x2F;O）(二进制文件)">
-<meta property="og:url" content="http://yoursite.com/2018/07/30/input-output-binary/index.html">
+<meta property="og:title" content="爬虫（urllib库）">
+<meta property="og:url" content="http://yoursite.com/2018/08/20/spider-urllib/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+<meta property="og:description" content="1、urllib库的基本使用import urllib.request函数格式：urllib.request.openurl(url, data, timeout)参数说明：url：指定的请求网址data：请求时提交给服务器端的数据，如果在openurl中使用了data参数，那么提交方式为post，默认情况下为get。timeout：指定连接url的超时时间，单位为秒。response = url">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T13:55:36.379Z">
+<meta property="og:updated_time" content="2018-08-20T11:43:44.515Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件输入输出（I&#x2F;O）(二进制文件)">
-<meta name="twitter:description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+<meta name="twitter:title" content="爬虫（urllib库）">
+<meta name="twitter:description" content="1、urllib库的基本使用import urllib.request函数格式：urllib.request.openurl(url, data, timeout)参数说明：url：指定的请求网址data：请求时提交给服务器端的数据，如果在openurl中使用了data参数，那么提交方式为post，默认情况下为get。timeout：指定连接url的超时时间，单位为秒。response = url">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,115 +163,30 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-input-output-binary" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-spider-urllib" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文件输入输出（I/O）(二进制文件)
+      爬虫（urllib库）
     </h1>
   
 
         
-        <a href="/2018/07/30/input-output-binary/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+        <a href="/2018/08/20/spider-urllib/" class="archive-article-date">
+  	<time datetime="2018-08-20T11:41:55.994Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、struct和pickle"><a href="#1、struct和pickle" class="headerlink" title="1、struct和pickle"></a>1、struct和pickle</h2><h3 id="（1）使用struct模块，进行数据的输入输出"><a href="#（1）使用struct模块，进行数据的输入输出" class="headerlink" title="（1）使用struct模块，进行数据的输入输出"></a>（1）使用struct模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入到文件中的各种类型数据，进行统一打包<br>struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型<br>第二，使用write()写入，写入后以二进制的方式进行文件存储。<br>第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回一个序列，即写入时的顺序，与读取时的顺序应该一致。<br>注意：需要将所有写入的数据，一次性都封装到一个bytes中，因为在Python中没有byte的概念，所以需要第三方的模块进行封装。</p>
-<h3 id="例如1：写入与读出浮点数、布尔型、整型"><a href="#例如1：写入与读出浮点数、布尔型、整型" class="headerlink" title="例如1：写入与读出浮点数、布尔型、整型"></a>例如1：写入与读出浮点数、布尔型、整型</h3><pre><code class="bash">import struct
-<span class="comment">#读出</span>
-a = 123.3
-b = True
-c = 10
-sn = struct.pack(<span class="string">'if?'</span>,c,a,b)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read(9)
-ls = struct.unpack(<span class="string">'if?'</span>,sn)
-<span class="built_in">print</span>(ls[0])
-<span class="built_in">print</span>(ls[1])
-<span class="built_in">print</span>(ls[2])
-f.close()
-</code></pre>
-<h3 id="例如2：写入与读出字符串"><a href="#例如2：写入与读出字符串" class="headerlink" title="例如2：写入与读出字符串"></a>例如2：写入与读出字符串</h3><p>#写入</p>
-<pre><code class="bash">import struct
-str1=b<span class="string">'hello'</span>
-sn = struct.pack(<span class="string">'5s'</span>,str1)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
-
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read()
-a = struct.unpack(<span class="string">'5s'</span>,sn)
-<span class="built_in">print</span>(a)
-f.close()
-</code></pre>
-<h3 id="（2）使用pickel模块，进行数据的输入输出"><a href="#（2）使用pickel模块，进行数据的输入输出" class="headerlink" title="（2）使用pickel模块，进行数据的输入输出"></a>（2）使用pickel模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入文件中的数据，进行逐一的写入。例如：<br>f = open(‘myfile.dat’,’wb’)<br>pickle.dump(10, f)<br>第二，读取数据时，同理，需要逐一的读取。例如：<br>pickle.load(f)<br>注意，在使用时，我们能够观察到该模块的dump和load函数，与前面所学的json模块的函数一致，在Python中json与pickle都能够实现序列化和反序列化的两个模块。<br>在实际的使用中，推荐使用pickle 模块。</p>
-<h3 id="例如1：一同写入与读出浮点数、布尔型、整型、字符串"><a href="#例如1：一同写入与读出浮点数、布尔型、整型、字符串" class="headerlink" title="例如1：一同写入与读出浮点数、布尔型、整型、字符串"></a>例如1：一同写入与读出浮点数、布尔型、整型、字符串</h3><pre><code class="bash">import pickle
-<span class="comment">#写入</span>
-a = 123.3
-b = True
-c = 10
-d = <span class="string">'ok'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(a,f)
-pickle.dump(b,f)
-pickle.dump(c,f)
-pickle.dump(d,f)
-f.close()
-
-<span class="comment">#读出，前提是要知道文件里有多少行</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-i = 0
-<span class="keyword">while</span> i &lt; 4:
-    x = pickle.load(f)
-    <span class="built_in">print</span>(x)
-    i = i+1
-f.close()
-
-<span class="comment">#读出，此方法不用写f.close()</span>
-with open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>) as f:
-    x = pickle.load(f)
-    y = pickle.load(f)
-    z = pickle.load(f)
-    s = pickle.load(f)
-    <span class="built_in">print</span>(x,y,z,s)
-</code></pre>
-<h3 id="例如2：写入与读出嵌套列表"><a href="#例如2：写入与读出嵌套列表" class="headerlink" title="例如2：写入与读出嵌套列表"></a>例如2：写入与读出嵌套列表</h3><pre><code class="bash"><span class="comment">#写入</span>
-c = [[1,2,3],[4,5,6]]
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
-
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
-</code></pre>
-<h3 id="例如3：写入与读出文字字符串"><a href="#例如3：写入与读出文字字符串" class="headerlink" title="例如3：写入与读出文字字符串"></a>例如3：写入与读出文字字符串</h3><pre><code class="bash"><span class="comment">#写入文字字符串</span>
-c = <span class="string">'我很好'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
-<span class="comment">#读出文字字符串</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
-</code></pre>
-<h2 id="2、文件定位"><a href="#2、文件定位" class="headerlink" title="2、文件定位"></a>2、文件定位</h2><h3 id="（1）seek"><a href="#（1）seek" class="headerlink" title="（1）seek()"></a>（1）seek()</h3><p>函数格式：seek(n)<br>返回值：返回指定的位置<br>说明：通过指定元素的位置，将文件指针移动到该位置。</p>
-<h3 id="（2）seek-函数有三个固定值，分别为：0-1-2"><a href="#（2）seek-函数有三个固定值，分别为：0-1-2" class="headerlink" title="（2）seek()函数有三个固定值，分别为：0,1,2"></a>（2）seek()函数有三个固定值，分别为：0,1,2</h3><p>0：文件的开头<br>1：文件当前的位置<br>2：文件的结尾位置<br>seek(0,2):代表着将指针定位到文件尾，然后进行添加操作<br>seek(0,1):代表着在当前指针的位置，进行替换</p>
-<h3 id="（3）补充："><a href="#（3）补充：" class="headerlink" title="（3）补充："></a>（3）补充：</h3><p>对文件的读取时，如果文件大小未知，切忌不要使用read(),readline()，readlines()将文件内容一次性读取到内存中。因为有可能文件内容过多，造成读取时的IO阻塞。建议，将文件分多次分批读入内存中，我们通常可以先获取到文件大小，即：<br>size = path.getsize(‘myfile.txt’)<br>根据其大小来判断我们采用何种方式进行读取数据内容。</p>
+        <h3 id="1、urllib库的基本使用"><a href="#1、urllib库的基本使用" class="headerlink" title="1、urllib库的基本使用"></a>1、urllib库的基本使用</h3><p>import urllib.request<br>函数格式：urllib.request.openurl(url, data, timeout)<br>参数说明：<br>url：指定的请求网址<br>data：请求时提交给服务器端的数据，如果在openurl中使用了data参数，那么提交方式为post，默认情况下为get。<br>timeout：指定连接url的超时时间，单位为秒。<br>response = urllib.request.openurl()函数返回一个HTTPResponse对象<br>我们可以使用response对象中的相关方法：<br>read()读取响应体中的内容<br>status/getcode()返回响应码<br>reason 返回响应信息的内容<br>info()返回响应头信息<br>geturl()返回请求的url地址</p>
+<h3 id="2、Request请求对象"><a href="#2、Request请求对象" class="headerlink" title="2、Request请求对象"></a>2、Request请求对象</h3><p>req = urllib.request.Request(url,data,headers,method)<br>参数说明：<br>url：指定的请求网址<br>data：请求时提交给服务器端的数据，如果在openurl中使用了data参数，那么提交方式为post，默认情况下为get。<br>headers：请求对象的头信息，用来将一个爬虫伪装成一个普通的浏览器请求，主要设置user-agent<br>method：请求的方式，默认为get，可以设置为get或post</p>
+<h3 id="3、urllib-error"><a href="#3、urllib-error" class="headerlink" title="3、urllib.error"></a>3、urllib.error</h3><p>在urllib库中有三个error对象<br>HTTPError：HTTP访问异常<br>URLError：url地址异常<br>ContentTooShortError：文件大小异常<br>注意，HTTPError是URLError的子类。<br>HTTPError，只有一个属性reason<br>URLError，有code，reason，headers三个属性。</p>
+<h3 id="4、urllib-robotparser"><a href="#4、urllib-robotparser" class="headerlink" title="4、urllib.robotparser"></a>4、urllib.robotparser</h3><p>作用：用来解析指定网站的robots.txt文件。用来分析哪些内容是允许抓取，哪些内容是不允许的。</p>
 
       
 
@@ -351,7 +266,7 @@ n = pickle.load(f)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/30/input-output-binary/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/20/spider-urllib/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -365,18 +280,18 @@ n = pickle.load(f)
   
 <nav id="article-nav">
   
-    <a href="/2018/07/31/xml/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/20/spider-requests/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python对XML文件的解析
+          爬虫（requests库）
         
       </div>
     </a>
   
   
-    <a href="/2018/07/30/excel/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python对Excel文件的操作</div>
+    <a href="/2018/08/20/spider-HTML/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">爬虫（HTML网页结构）</div>
       <i class="icon-circle-right"></i>
     </a>
   

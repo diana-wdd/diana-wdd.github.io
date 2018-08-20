@@ -161,6 +161,963 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-practice--combine-data-type-list" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/16/practice--combine-data-type-list/">作业练习——组合数据类型（列表）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/16/practice--combine-data-type-list/" class="archive-article-date">
+  	<time datetime="2018-07-16T02:52:36.862Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="组合数据类型——list列表-作业练习"><a href="#组合数据类型——list列表-作业练习" class="headerlink" title="组合数据类型——list列表 作业练习"></a>组合数据类型——list列表 作业练习</h2><h3 id="一、按照要求实现每一个功能，写出对应代码："><a href="#一、按照要求实现每一个功能，写出对应代码：" class="headerlink" title="一、按照要求实现每一个功能，写出对应代码："></a>一、按照要求实现每一个功能，写出对应代码：</h3><h3 id="li-‘zhangsan’-’lisi’-’wangwu’-’liliu’-’zhuqi’"><a href="#li-‘zhangsan’-’lisi’-’wangwu’-’liliu’-’zhuqi’" class="headerlink" title="li = [‘zhangsan’,’lisi’,’wangwu’,’liliu’,’zhuqi’]"></a>li = [‘zhangsan’,’lisi’,’wangwu’,’liliu’,’zhuqi’]</h3><h4 id="1、计算列表的长度并输出"><a href="#1、计算列表的长度并输出" class="headerlink" title="1、计算列表的长度并输出"></a>1、计算列表的长度并输出</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+<span class="built_in">print</span>(len(li))
+</code></pre>
+<h4 id="2、列表中追加元素’wangba’-并输出添加后的列表"><a href="#2、列表中追加元素’wangba’-并输出添加后的列表" class="headerlink" title="2、列表中追加元素’wangba’,并输出添加后的列表"></a>2、列表中追加元素’wangba’,并输出添加后的列表</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+li.append(<span class="string">'wangba'</span>)
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="3、请在列表的第1个位置插入元素’Tony’-并输出添加后的列表"><a href="#3、请在列表的第1个位置插入元素’Tony’-并输出添加后的列表" class="headerlink" title="3、请在列表的第1个位置插入元素’Tony’,并输出添加后的列表"></a>3、请在列表的第1个位置插入元素’Tony’,并输出添加后的列表</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+li.insert(0,<span class="string">'Tony'</span>)
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="4、请修改列表第2个位置的元素为’Kelly’-并输出修改后的列表"><a href="#4、请修改列表第2个位置的元素为’Kelly’-并输出修改后的列表" class="headerlink" title="4、请修改列表第2个位置的元素为’Kelly’,并输出修改后的列表"></a>4、请修改列表第2个位置的元素为’Kelly’,并输出修改后的列表</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+li[1] = <span class="string">'Kelly'</span>
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="5、请将列表l2-1-’a’-3-4-’heart’-的每一个元素添加到列表li中，一行代码实现，不允许循环添加"><a href="#5、请将列表l2-1-’a’-3-4-’heart’-的每一个元素添加到列表li中，一行代码实现，不允许循环添加" class="headerlink" title="5、请将列表l2=[1,’a’,3,4,’heart’]的每一个元素添加到列表li中，一行代码实现，不允许循环添加"></a>5、请将列表l2=[1,’a’,3,4,’heart’]的每一个元素添加到列表li中，一行代码实现，不允许循环添加</h4><h4 id="法一："><a href="#法一：" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+l2=[1,<span class="string">'a'</span>,3,4,<span class="string">'heart'</span>]
+<span class="keyword">for</span> i <span class="keyword">in</span> l2:
+    li.append(i)
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="法二："><a href="#法二：" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+l2=[1,<span class="string">'a'</span>,3,4,<span class="string">'heart'</span>]
+li=li + [i <span class="keyword">for</span> i <span class="keyword">in</span> l2]
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="6、请将字符串s-‘qwert’的每一个元素添加到列表li中，一行代码实现，不允许循环添加"><a href="#6、请将字符串s-‘qwert’的每一个元素添加到列表li中，一行代码实现，不允许循环添加" class="headerlink" title="6、请将字符串s = ‘qwert’的每一个元素添加到列表li中，一行代码实现，不允许循环添加"></a>6、请将字符串s = ‘qwert’的每一个元素添加到列表li中，一行代码实现，不允许循环添加</h4><h4 id="法一：-1"><a href="#法一：-1" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+s = <span class="string">'qwert'</span>
+li = li + [i <span class="keyword">for</span> i <span class="keyword">in</span> s]
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="法二：-1"><a href="#法二：-1" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+<span class="built_in">print</span>(li+list(<span class="string">'qwert'</span>))
+</code></pre>
+<h4 id="7、请删除列表中的元素’wangwu’-并输出删除后的列表"><a href="#7、请删除列表中的元素’wangwu’-并输出删除后的列表" class="headerlink" title="7、请删除列表中的元素’wangwu’,并输出删除后的列表"></a>7、请删除列表中的元素’wangwu’,并输出删除后的列表</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+li.remove(<span class="string">'wangwu'</span>)
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="8、请删除列表中的第2个元素，并输出删除的元素和删除元素后的列表"><a href="#8、请删除列表中的第2个元素，并输出删除的元素和删除元素后的列表" class="headerlink" title="8、请删除列表中的第2个元素，并输出删除的元素和删除元素后的列表"></a>8、请删除列表中的第2个元素，并输出删除的元素和删除元素后的列表</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+<span class="built_in">print</span>(li.pop(1),li)
+</code></pre>
+<h4 id="9、请删除列表中的第2至4个元素，并输出删除元素后的列表"><a href="#9、请删除列表中的第2至4个元素，并输出删除元素后的列表" class="headerlink" title="9、请删除列表中的第2至4个元素，并输出删除元素后的列表"></a>9、请删除列表中的第2至4个元素，并输出删除元素后的列表</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+del li[1:4]
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="10、请将列表所有得元素反转，并输出反转后的列表"><a href="#10、请将列表所有得元素反转，并输出反转后的列表" class="headerlink" title="10、请将列表所有得元素反转，并输出反转后的列表"></a>10、请将列表所有得元素反转，并输出反转后的列表</h4><h4 id="法一：-2"><a href="#法一：-2" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+<span class="keyword">for</span> x <span class="keyword">in</span> reversed(li):
+    <span class="built_in">print</span>(x,end = <span class="string">' '</span>)
+</code></pre>
+<h4 id="法二：-2"><a href="#法二：-2" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+li[-1::-1]
+<span class="built_in">print</span>(li)
+</code></pre>
+<h4 id="11、请计算出‘zhangsan’元素在列表li中出现的次数，并输出该次数"><a href="#11、请计算出‘zhangsan’元素在列表li中出现的次数，并输出该次数" class="headerlink" title="11、请计算出‘zhangsan’元素在列表li中出现的次数，并输出该次数"></a>11、请计算出‘zhangsan’元素在列表li中出现的次数，并输出该次数</h4><pre><code class="bash">li = [<span class="string">'zhangsan'</span>,<span class="string">'lisi'</span>,<span class="string">'wangwu'</span>,<span class="string">'liliu'</span>,<span class="string">'zhuqi'</span>]
+a=li.count(<span class="string">'zhangsan'</span>)
+<span class="built_in">print</span>(a)
+</code></pre>
+<h3 id="二、有如下列表，利用切片实现每一个功能"><a href="#二、有如下列表，利用切片实现每一个功能" class="headerlink" title="二、有如下列表，利用切片实现每一个功能"></a>二、有如下列表，利用切片实现每一个功能</h3><h3 id="li1-1-3-2-’a’-4-’b’-5-’c‘"><a href="#li1-1-3-2-’a’-4-’b’-5-’c‘" class="headerlink" title="li1 = [1,3,2,’a’,4,’b’,5,’c‘]"></a>li1 = [1,3,2,’a’,4,’b’,5,’c‘]</h3><h4 id="1、通过对li1列表的切片形成新的列表l1-l1-1-3-2"><a href="#1、通过对li1列表的切片形成新的列表l1-l1-1-3-2" class="headerlink" title="1、通过对li1列表的切片形成新的列表l1,l1 = [1,3,2]"></a>1、通过对li1列表的切片形成新的列表l1,l1 = [1,3,2]</h4><pre><code class="bash">li1 = [1,3,2,<span class="string">'a'</span>,4,<span class="string">'b'</span>,5,<span class="string">'c'</span>]
+l1=li1[0:3]
+<span class="built_in">print</span>(l1)
+</code></pre>
+<h4 id="2、通过对li1列表的切片形成新的列表l2-l2-’a’-4-’b’"><a href="#2、通过对li1列表的切片形成新的列表l2-l2-’a’-4-’b’" class="headerlink" title="2、通过对li1列表的切片形成新的列表l2,l2 = [’a’,4,’b’]"></a>2、通过对li1列表的切片形成新的列表l2,l2 = [’a’,4,’b’]</h4><pre><code class="bash">li1 = [1,3,2,<span class="string">'a'</span>,4,<span class="string">'b'</span>,5,<span class="string">'c'</span>]
+l2=li1[3:6]
+<span class="built_in">print</span>(l2)
+</code></pre>
+<h4 id="3、通过对li1列表的切片形成新的列表l3-l3-1-2-4-5"><a href="#3、通过对li1列表的切片形成新的列表l3-l3-1-2-4-5" class="headerlink" title="3、通过对li1列表的切片形成新的列表l3,l3 = [1,2,4,5]"></a>3、通过对li1列表的切片形成新的列表l3,l3 = [1,2,4,5]</h4><pre><code class="bash">li1 = [1,3,2,<span class="string">'a'</span>,4,<span class="string">'b'</span>,5,<span class="string">'c'</span>]
+l3=li1[0:7:2]
+<span class="built_in">print</span>(l3)
+</code></pre>
+<h4 id="4、通过对li1列表的切片形成新的列表l4-l4-3-’a’-’b’"><a href="#4、通过对li1列表的切片形成新的列表l4-l4-3-’a’-’b’" class="headerlink" title="4、通过对li1列表的切片形成新的列表l4,l4 = [3,’a’,’b’]"></a>4、通过对li1列表的切片形成新的列表l4,l4 = [3,’a’,’b’]</h4><pre><code class="bash">li1 = [1,3,2,<span class="string">'a'</span>,4,<span class="string">'b'</span>,5,<span class="string">'c'</span>]
+l4=li1[1:6:2]
+<span class="built_in">print</span>(l4)
+</code></pre>
+<h4 id="5、通过对li1列表的切片形成新的列表l5-l5-‘c’"><a href="#5、通过对li1列表的切片形成新的列表l5-l5-‘c’" class="headerlink" title="5、通过对li1列表的切片形成新的列表l5,l5 = [‘c’]"></a>5、通过对li1列表的切片形成新的列表l5,l5 = [‘c’]</h4><pre><code class="bash">li1 = [1,3,2,<span class="string">'a'</span>,4,<span class="string">'b'</span>,5,<span class="string">'c'</span>]
+l5=li1[-1:]
+<span class="built_in">print</span>(l5)
+</code></pre>
+<h4 id="6、通过对li1列表的切片形成新的列表l6-l6-‘b’-’a’-3"><a href="#6、通过对li1列表的切片形成新的列表l6-l6-‘b’-’a’-3" class="headerlink" title="6、通过对li1列表的切片形成新的列表l6,l6 = [‘b’,’a’,3]"></a>6、通过对li1列表的切片形成新的列表l6,l6 = [‘b’,’a’,3]</h4><pre><code class="bash">li1 = [1,3,2,<span class="string">'a'</span>,4,<span class="string">'b'</span>,5,<span class="string">'c'</span>]
+l6=li1[-3::-2]
+<span class="built_in">print</span>(l6)
+</code></pre>
+<h3 id="三、有如下列表，按照要求实现每一个功能"><a href="#三、有如下列表，按照要求实现每一个功能" class="headerlink" title="三、有如下列表，按照要求实现每一个功能"></a>三、有如下列表，按照要求实现每一个功能</h3><h3 id="lis-2-3-’k’-‘qwe’-20-‘k1’-‘tt’-3-’1’-89-’ab’-’adv‘"><a href="#lis-2-3-’k’-‘qwe’-20-‘k1’-‘tt’-3-’1’-89-’ab’-’adv‘" class="headerlink" title="lis = [2,3,’k’,[‘qwe’,20,[‘k1’,[‘tt’,3,’1’]],89],’ab’,’adv‘]"></a>lis = [2,3,’k’,[‘qwe’,20,[‘k1’,[‘tt’,3,’1’]],89],’ab’,’adv‘]</h3><h4 id="1、将列表lis中的’tt’变成大写（用两种方式）"><a href="#1、将列表lis中的’tt’变成大写（用两种方式）" class="headerlink" title="1、将列表lis中的’tt’变成大写（用两种方式）"></a>1、将列表lis中的’tt’变成大写（用两种方式）</h4><h4 id="法一：-3"><a href="#法一：-3" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+lis[3][2][1][0]=<span class="string">'TT'</span>
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="法二：-3"><a href="#法二：-3" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+lis[3][2][1][0]=lis[3][2][1][0].upper()
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="法三："><a href="#法三：" class="headerlink" title="法三："></a>法三：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+lis[3][2][1][0] = lis[3][2][1][0].replace(<span class="string">"tt"</span>, <span class="string">"TT"</span>)
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="2、将列表中的数字3变成字符串’100’（用两种方式）"><a href="#2、将列表中的数字3变成字符串’100’（用两种方式）" class="headerlink" title="2、将列表中的数字3变成字符串’100’（用两种方式）"></a>2、将列表中的数字3变成字符串’100’（用两种方式）</h4><h4 id="法一：-4"><a href="#法一：-4" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+lis [1]=<span class="string">"100"</span>
+lis[3][2][1]=<span class="string">"100"</span>
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="法二：-4"><a href="#法二：-4" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+del lis[3][2][1]
+del lis[1]
+lis[3][2][1].insert(1,<span class="string">'100'</span>)
+lis[1].insert(1,<span class="string">'100'</span>)
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="法三：-1"><a href="#法三：-1" class="headerlink" title="法三："></a>法三：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(lis)):
+    <span class="keyword">if</span> lis[i]==3:
+        lis[i]=’100’
+    <span class="keyword">else</span> <span class="built_in">type</span>(lis[i])==list:
+        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(li[i])):
+            <span class="keyword">if</span> li[i][j]==3:
+                li[i][j]==’100’
+            <span class="keyword">elif</span>  <span class="built_in">type</span>(lis[i][j])==list:
+                <span class="keyword">for</span> k <span class="keyword">in</span> range(len(li[i][j])):
+                    <span class="keyword">if</span> li[i][j][k]==3:
+                        li[i][j][k]==’100’
+                    <span class="keyword">elif</span> <span class="built_in">type</span>(lis[i][j][k])==list:
+                        <span class="keyword">for</span> l <span class="keyword">in</span> range(len(li[i][j][k])):
+                            <span class="keyword">if</span> li[i][j][k][l]==3:
+                                li[i][j][k][l]==’100’
+                            <span class="keyword">else</span>:
+                                <span class="built_in">print</span>(‘没有匹配的了’)
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(‘执行结束！’)
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="3、将列表中的字符串’1’变成数字101（用两种方式）"><a href="#3、将列表中的字符串’1’变成数字101（用两种方式）" class="headerlink" title="3、将列表中的字符串’1’变成数字101（用两种方式）"></a>3、将列表中的字符串’1’变成数字101（用两种方式）</h4><h4 id="法一：-5"><a href="#法一：-5" class="headerlink" title="法一："></a>法一：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+lis[3][2][1][2]=101
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="法二：-5"><a href="#法二：-5" class="headerlink" title="法二："></a>法二：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+lis[3][2][1][2]=int(lis[3][2][1][2].replace(<span class="string">'1'</span>,<span class="string">'101'</span>))
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h4 id="法三：-2"><a href="#法三：-2" class="headerlink" title="法三："></a>法三：</h4><pre><code class="bash">lis = [2,3,<span class="string">'k'</span>,[<span class="string">'qwe'</span>,20,[<span class="string">'k1'</span>,[<span class="string">'tt'</span>,3,<span class="string">'1'</span>]],89],<span class="string">'ab'</span>,<span class="string">'adv'</span>]
+lis[3][2][1][2]=int(lis[3][2][1][2]+<span class="string">'01'</span>)
+<span class="built_in">print</span>(lis)
+</code></pre>
+<h3 id="四、请用代码实现："><a href="#四、请用代码实现：" class="headerlink" title="四、请用代码实现："></a>四、请用代码实现：</h3><h3 id="li-‘sam’-’tom’-’jack’-利用下划线将列表的每一个元素拼接成字符串”sam-tom-jack”"><a href="#li-‘sam’-’tom’-’jack’-利用下划线将列表的每一个元素拼接成字符串”sam-tom-jack”" class="headerlink" title="li = [‘sam’,’tom’,’jack’]   利用下划线将列表的每一个元素拼接成字符串”sam_tom_jack”"></a>li = [‘sam’,’tom’,’jack’]   利用下划线将列表的每一个元素拼接成字符串”sam_tom_jack”</h3><pre><code class="bash">li = [<span class="string">'sam'</span>,<span class="string">'tom'</span>,<span class="string">'jack'</span>]
+str1 = <span class="string">'_'</span>.join(li)
+<span class="built_in">print</span>(str1)
+</code></pre>
+<h3 id="五、查找列表li中的元素，移除每个元素的空格"><a href="#五、查找列表li中的元素，移除每个元素的空格" class="headerlink" title="五、查找列表li中的元素，移除每个元素的空格"></a>五、查找列表li中的元素，移除每个元素的空格</h3><h3 id="1、找出以’A’或者’a’开头，并以’c’结尾的所有元素"><a href="#1、找出以’A’或者’a’开头，并以’c’结尾的所有元素" class="headerlink" title="1、找出以’A’或者’a’开头，并以’c’结尾的所有元素"></a>1、找出以’A’或者’a’开头，并以’c’结尾的所有元素</h3><h3 id="2、并添加到一个新列表中，最后循环打印这个新列表。"><a href="#2、并添加到一个新列表中，最后循环打印这个新列表。" class="headerlink" title="2、并添加到一个新列表中，最后循环打印这个新列表。"></a>2、并添加到一个新列表中，最后循环打印这个新列表。</h3><h3 id="li3-‘taibai-‘-’alexC’-’AbC-‘-’egon’-’-Ritian’-’-Wusir’-’-aqc’"><a href="#li3-‘taibai-‘-’alexC’-’AbC-‘-’egon’-’-Ritian’-’-Wusir’-’-aqc’" class="headerlink" title="li3 = [‘taibai  ‘,’alexC’,’AbC  ‘,’egon’,’ Ritian’,’  Wusir’,’  aqc’]"></a>li3 = [‘taibai  ‘,’alexC’,’AbC  ‘,’egon’,’ Ritian’,’  Wusir’,’  aqc’]</h3><pre><code class="bash">li3 = [<span class="string">'taibai '</span>, <span class="string">'alexC'</span>, <span class="string">'AbC '</span>, <span class="string">'egon'</span>, <span class="string">' Ritian'</span>, <span class="string">' Wusir'</span>, <span class="string">' aqc'</span>]
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(li3)):
+    li3[i] = li3[i].strip() <span class="comment"># 去掉空格</span>
+    <span class="built_in">print</span>(li3)
+    li4=list()
+<span class="keyword">for</span> i <span class="keyword">in</span> li3:
+    <span class="keyword">if</span> (i[0]==<span class="string">'A'</span> or i[0]==<span class="string">'a'</span>) and i[-1]==<span class="string">'c'</span>: 
+        <span class="built_in">print</span>(i)
+        li4.append(i) <span class="comment">#将找到的元素增加到新列表li4中</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> li4:
+    <span class="built_in">print</span>(i) <span class="comment"># 循环打印新列表li4</span>
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/16/practice--combine-data-type-list/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-combine-data-type-list-tuple" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/13/combine-data-type-list-tuple/">组合数据类型（list和tuple）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/13/combine-data-type-list-tuple/" class="archive-article-date">
+  	<time datetime="2018-07-13T05:05:00.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="组合数据类型：list和tuple"><a href="#组合数据类型：list和tuple" class="headerlink" title="组合数据类型：list和tuple"></a>组合数据类型：list和tuple</h2><h2 id="列表-list"><a href="#列表-list" class="headerlink" title="列表 list"></a>列表 list</h2><h3 id="1、List列表概念："><a href="#1、List列表概念：" class="headerlink" title="1、List列表概念："></a>1、List列表概念：</h3><pre><code>（1）List数据，首先它可以存储各种数据类型，比如：数值、布尔型、字符串。
+（2）其次，列表中的元素可以随时进行删除、修改、增加，其长度也随之变化。
+（3）同时，列表也是有序的，我们同样可以使用循环对他们进行遍历。
+</code></pre><h3 id="2、声明与赋值"><a href="#2、声明与赋值" class="headerlink" title="2、声明与赋值"></a>2、声明与赋值</h3><h4 id="（1）声明列表同时进行赋值"><a href="#（1）声明列表同时进行赋值" class="headerlink" title="（1）声明列表同时进行赋值"></a>（1）声明列表同时进行赋值</h4><h4 id="举例子说明："><a href="#举例子说明：" class="headerlink" title="举例子说明："></a>举例子说明：</h4><pre><code class="bash">List1=[1,2,3,4,5]
+List2=[‘one’,’two’,’three’,’4’,’a’]
+List3=[1,’one’,3]
+</code></pre>
+<h4 id="我们通过观察可以发现，列表是有序的，那么可以通过-for-in-方式对其进行快速遍历。"><a href="#我们通过观察可以发现，列表是有序的，那么可以通过-for-in-方式对其进行快速遍历。" class="headerlink" title="我们通过观察可以发现，列表是有序的，那么可以通过 for   in 方式对其进行快速遍历。"></a>我们通过观察可以发现，列表是有序的，那么可以通过 for   in 方式对其进行快速遍历。</h4><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3,4,5]
+&gt;&gt;&gt; list1
+[1, 2, 3, 4, 5]
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> list1:
+    <span class="built_in">print</span>(i,end = ‘ ’)
+1 2 3 4 5
+</code></pre>
+<h4 id="（2）声明一个空列表，后续进行添加元素"><a href="#（2）声明一个空列表，后续进行添加元素" class="headerlink" title="（2）声明一个空列表，后续进行添加元素"></a>（2）声明一个空列表，后续进行添加元素</h4><pre><code>list1 = list()  此时，python会生成一个空列表，即：[]
+注意：生成的空列表中没有任何值，其长度为0
+</code></pre><h3 id="3、列表的操作（方法）"><a href="#3、列表的操作（方法）" class="headerlink" title="3、列表的操作（方法）"></a>3、列表的操作（方法）</h3><h4 id="（1）增加元素（4种方法）"><a href="#（1）增加元素（4种方法）" class="headerlink" title="（1）增加元素（4种方法）"></a>（1）增加元素（4种方法）</h4><h4 id="1-append-：在列表的尾部追加一个新元素"><a href="#1-append-：在列表的尾部追加一个新元素" class="headerlink" title="1) append()：在列表的尾部追加一个新元素"></a>1) append()：在列表的尾部追加一个新元素</h4><pre><code>函数格式：list.append(元素)
+返回值：列表的长度+1
+</code></pre><h4 id="用法举例："><a href="#用法举例：" class="headerlink" title="用法举例："></a>用法举例：</h4><pre><code class="bash">&gt;&gt;&gt;list1 = [1,2,3,4,5]
+&gt;&gt;&gt; list1
+[1, 2, 3, 4, 5]
+&gt;&gt;&gt;list1.append(6)
+&gt;&gt;&gt; list1
+[1, 2, 3, 4, 5, 6]
+</code></pre>
+<pre><code>注意：该方法添加元素都是在列表尾部。
+</code></pre><h4 id="2）extend-：在列表的尾部，追加一个子列表内容"><a href="#2）extend-：在列表的尾部，追加一个子列表内容" class="headerlink" title="2）extend()：在列表的尾部，追加一个子列表内容"></a>2）extend()：在列表的尾部，追加一个子列表内容</h4><pre><code>函数格式：list.extend(子列表)
+返回值：列表的长度+n
+</code></pre><h4 id="用法举例：-1"><a href="#用法举例：-1" class="headerlink" title="用法举例："></a>用法举例：</h4><pre><code class="bash">&gt;&gt;&gt;list1 = [1,2,3,4,5,6]
+[1, 2, 3, 4, 5,6]
+&gt;&gt;&gt; sublist = [7,8,9]
+&gt;&gt;&gt; list1.extend(sublist)
+&gt;&gt;&gt; list1
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+</code></pre>
+<h4 id="3）使用-运算符，连接两个列表，其结果会生成一个新的列表，同时原来两个列表不变。"><a href="#3）使用-运算符，连接两个列表，其结果会生成一个新的列表，同时原来两个列表不变。" class="headerlink" title="3）使用 + 运算符，连接两个列表，其结果会生成一个新的列表，同时原来两个列表不变。"></a>3）使用 + 运算符，连接两个列表，其结果会生成一个新的列表，同时原来两个列表不变。</h4><h4 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; sublist
+[7, 8, 9]
+&gt;&gt;&gt; list3
+[1, 2, 3, 4, 5]
+&gt;&gt;&gt; list3 + sublist
+[1, 2, 3, 4, 5, 7, 8, 9]
+&gt;&gt;&gt; 
+&gt;&gt;&gt; list3
+[1, 2, 3, 4, 5]
+&gt;&gt;&gt; sublist
+[7, 8, 9]
+</code></pre>
+<h4 id="4）insert（）：对列表指定位置进行插入操作"><a href="#4）insert（）：对列表指定位置进行插入操作" class="headerlink" title="4）insert（）：对列表指定位置进行插入操作"></a>4）insert（）：对列表指定位置进行插入操作</h4><pre><code>函数格式:list.insert(idx,元素)  其中idx代表要插入的索引位
+返回值：列表长度 +1
+</code></pre><h4 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+&gt;&gt;&gt; list1.insert(4,<span class="string">'four'</span>)
+&gt;&gt;&gt; list1
+[1, 2, 3, 4, <span class="string">'four'</span>, 5, 6, 7, 8, 9]
+</code></pre>
+<pre><code>注意：
+（1）插入指定的索引位后，原索引位所在的元素下标 +1
+（2）我们在实际中使用的时候，通常会利用append或者extend来实现元素的追加，而少用insert进行元素的插入。因为在频繁的插入操作中，需要耗费大量的内存来维护列表的索引关系。
+</code></pre><h4 id="（2）修改元素"><a href="#（2）修改元素" class="headerlink" title="（2）修改元素"></a>（2）修改元素</h4><pre><code>通过索引位，找到指定的列表元素，重新对其进行赋值便可完成修改操作。
+</code></pre><h4 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3]
+&gt;&gt;&gt; list1
+[1, 2, 3]
+&gt;&gt;&gt; list1[2] = 5
+&gt;&gt;&gt; list1
+[1, 2, 5]
+</code></pre>
+<h4 id="（3）删除元素（两种方法）"><a href="#（3）删除元素（两种方法）" class="headerlink" title="（3）删除元素（两种方法）"></a>（3）删除元素（两种方法）</h4><h4 id="1）remove-移除在列表中指定的元素"><a href="#1）remove-移除在列表中指定的元素" class="headerlink" title="1）remove() 移除在列表中指定的元素"></a>1）remove() 移除在列表中指定的元素</h4><pre><code>函数格式:list.remove(元素)  
+返回值：移除元素后的列表，列表长度 -1
+</code></pre><h4 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1 = [1,2,3]
+&gt;&gt;&gt; list1
+[1, 2, 3]
+&gt;&gt;&gt; list1[2] = 5
+&gt;&gt;&gt; list1
+[1, 2, 5]
+&gt;&gt;&gt; 
+&gt;&gt;&gt; list1.remove(2)
+&gt;&gt;&gt; list1
+[1, 5]
+&gt;&gt;&gt; list1.remove(1)
+&gt;&gt;&gt; list1
+[5]
+&gt;&gt;&gt; list1.remove(5)
+&gt;&gt;&gt; list1
+[]
+&gt;&gt;&gt; len(list1)
+0
+</code></pre>
+<h4 id="2）pop-有两种使用模式"><a href="#2）pop-有两种使用模式" class="headerlink" title="2）pop() 有两种使用模式"></a>2）pop() 有两种使用模式</h4><h4 id="第一种："><a href="#第一种：" class="headerlink" title="第一种："></a>第一种：</h4><pre><code>函数格式：list.pop()   默认模式，从列表的尾部弹出一个元素
+返回值：返回所弹出的元素本身。如果列表已经为空，执行pop()程序会报错提示：列表为空
+</code></pre><h4 id="第二种："><a href="#第二种：" class="headerlink" title="第二种："></a>第二种：</h4><pre><code>List.pop(idx)：idx指定的下表索引位置
+注意：此处pop()和remove()类似，但是区别在于pop()会将移除的元素返回。
+</code></pre><h4 id="3）使用del删除指定的列表片段或列表本身"><a href="#3）使用del删除指定的列表片段或列表本身" class="headerlink" title="3）使用del删除指定的列表片段或列表本身"></a>3）使用del删除指定的列表片段或列表本身</h4><pre><code>del  list(idx)  删除指定索引位对应的元素
+del  list   直接删除列表list，不再存在，并释放该列表所占用的内存空间
+del  list[star:end]   删除指定的列表片段，其中：star表示删除的开始索引位对应的元素，end 表示删除的结束索引位对应的元素，但不包括该下标的元素，即包头不包尾。 
+</code></pre><h5 id="注意：del-不属于list的方法，只是一个关键字，不是方法函数。"><a href="#注意：del-不属于list的方法，只是一个关键字，不是方法函数。" class="headerlink" title="注意：del 不属于list的方法，只是一个关键字，不是方法函数。"></a>注意：del 不属于list的方法，只是一个关键字，不是方法函数。</h5><h4 id="（4）del与clear的区别："><a href="#（4）del与clear的区别：" class="headerlink" title="（4）del与clear的区别："></a>（4）del与clear的区别：</h4><pre><code>del list VS list.clear
+1）del可以将列表的内容进行删除，同时可将列表所占内存进行释放。
+2）clear 只是将列表的内容进行清空，原列表内容为空。
+</code></pre><h4 id="（5）-与-运算符"><a href="#（5）-与-运算符" class="headerlink" title="（5）+ 与 * 运算符"></a>（5）+ 与 * 运算符</h4><pre><code>在列表中，我们使用+运算符，可以将两个列表进行连接，生成一个新的列表。
+例如：list1=[1,2,3]   list2=[4,5.6]   list1+list2=&gt;[1,2,3,4,5,6]
+使用*运算符，可以将目标列表的内容重复n次，并生成一个新的列表。
+例如：list1=[1,2,3]     list1*2=&gt;[1,2,3,1,2,3]
+</code></pre><h4 id="（6）max-与min"><a href="#（6）max-与min" class="headerlink" title="（6）max()与min()"></a>（6）max()与min()</h4><pre><code>函数格式：max(list)和min(list)
+返回值：返回列表的最大值或者最小值。
+
+注意：该函数在使用时，必须要求所统计的列表中的元素的数据类型要一致。不支持多数据类型。
+数值型根据数值本身的大小取值，字符串类型根据字母的ASCII码值进行比较取值，布尔类型根据True是1，False是0进行大小取值。
+</code></pre><h3 id="（7）Sum"><a href="#（7）Sum" class="headerlink" title="（7）Sum()"></a>（7）Sum()</h3><pre><code>函数格式：sum(list)
+返回值：将列表中所有的数值进行求和运算，返回结果。注意，该函数只能用于数值型列表。
+</code></pre><h4 id="（8）sort-排序"><a href="#（8）sort-排序" class="headerlink" title="（8）sort() 排序"></a>（8）sort() 排序</h4><pre><code>函数格式：list.sort()    list.sort(reverse=True)
+返回值：默认情况下，将原列表中元素按照升序进行排列
+
+注意：如果设置了反转函数为True，那么将原列表中元素按照降序进行排列
+</code></pre><h4 id="（9）Sorted-排序"><a href="#（9）Sorted-排序" class="headerlink" title="（9）Sorted() 排序"></a>（9）Sorted() 排序</h4><pre><code>函数格式：sorted(list)、sorted(list,reverse=True)
+返回值：默认情况下，将原列表中元素按照升序进行排序,
+
+如果设置了反转参数为True，那么将原列表中的元素按照降序排列
+
+注意：上面两种排序函数，其中第一个属于列表自身的排序方法，而第二种属于python内置的排序方法，也就是说第二种可以应用在包括列表在内多种集合排序。
+</code></pre><h4 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; list1
+[<span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>, <span class="string">' '</span>, <span class="string">'w'</span>, <span class="string">'o'</span>, <span class="string">'r'</span>, <span class="string">'l'</span>, <span class="string">'d'</span>]
+&gt;&gt;&gt; list1.sort(reverse=True)
+&gt;&gt;&gt; list1
+[<span class="string">'w'</span>, <span class="string">'r'</span>, <span class="string">'o'</span>, <span class="string">'o'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">' '</span>]
+&gt;&gt;&gt; sorted(list1)
+[<span class="string">' '</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'h'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>, <span class="string">'o'</span>, <span class="string">'r'</span>, <span class="string">'w'</span>]
+&gt;&gt;&gt; sorted(list1,reverse=True)
+[<span class="string">'w'</span>, <span class="string">'r'</span>, <span class="string">'o'</span>, <span class="string">'o'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'d'</span>, <span class="string">' '</span>]
+</code></pre>
+<h4 id="（10）reversed-逆序-用于遍历中"><a href="#（10）reversed-逆序-用于遍历中" class="headerlink" title="（10）reversed() 逆序,用于遍历中"></a>（10）reversed() 逆序,用于遍历中</h4><pre><code>函数格式：reversed(list)
+返回值：将原列表中元素按照逆顺序进行输出
+</code></pre><h4 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">list=[1,4,3,6,9,0,2]
+<span class="keyword">for</span> x <span class="keyword">in</span> reversed(list):
+    <span class="built_in">print</span> (x,end=<span class="string">' '</span>)
+2 0 9 6 3 4 1
+</code></pre>
+<h4 id="（11）Count-计数函数"><a href="#（11）Count-计数函数" class="headerlink" title="（11）Count() 计数函数"></a>（11）Count() 计数函数</h4><pre><code>函数格式：list.count(元素)
+返回值：返回指定元素在列表中出现的次数
+</code></pre><h4 id="（12）In-关键字"><a href="#（12）In-关键字" class="headerlink" title="（12）In 关键字"></a>（12）In 关键字</h4><pre><code>判断指定的元素是否在列表中存在，如果存在返回True,否则返回False
+</code></pre><h3 id="（13）index-检索函数"><a href="#（13）index-检索函数" class="headerlink" title="（13）index() 检索函数"></a>（13）index() 检索函数</h3><pre><code>函数格式：list.index(元素)
+返回值：返回元素在列表中的位置，如果不存在，直接报错。
+</code></pre><h4 id="（14）切片"><a href="#（14）切片" class="headerlink" title="（14）切片"></a>（14）切片</h4><pre><code>格式同字符串切片list[star:end:step]
+</code></pre><h4 id="（15）迭代："><a href="#（15）迭代：" class="headerlink" title="（15）迭代："></a>（15）迭代：</h4><pre><code>for x in list1:   
+    print(x,end=”+”)   注冒号后面可以跟一个语句，但不能多于一个
+即也可以写为：for x in list1: print(x,end=”+”)
+</code></pre><h4 id="按照从大到小的顺序输出列表"><a href="#按照从大到小的顺序输出列表" class="headerlink" title="按照从大到小的顺序输出列表"></a>按照从大到小的顺序输出列表</h4><pre><code class="bash">list1 = [36,85,96,52,36,2]
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(list1)):
+    <span class="keyword">for</span> j <span class="keyword">in</span> range(i+1,len(list1)):
+        first = list1[i]
+        second = list1[j]
+        <span class="keyword">if</span> first &lt; second:
+            list1[i] = list1[j]
+            list1[j] = first
+<span class="built_in">print</span>(list1)
+</code></pre>
+<h4 id="找出最大值，把最大值推向最右边（冒泡排序）"><a href="#找出最大值，把最大值推向最右边（冒泡排序）" class="headerlink" title="找出最大值，把最大值推向最右边（冒泡排序）"></a>找出最大值，把最大值推向最右边（冒泡排序）</h4><pre><code class="bash">list1 = [49,36,24,15,32,9,10]
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(list1)-1):
+    first = list1[i]
+    second = list1[i+1]
+    <span class="keyword">if</span>  first &gt; second:
+        list1[i] = list1[i+1]
+        list1[i+1] = first
+<span class="built_in">print</span>(list1[-1])
+</code></pre>
+<h3 id="3、列表比较运算符操作"><a href="#3、列表比较运算符操作" class="headerlink" title="3、列表比较运算符操作"></a>3、列表比较运算符操作</h3><pre><code>格式：operator.ge(列表1,列表2)
+返回值：如果符合条件，返回True，反之，返回False
+
+相当于列表使用普通的比较运算符
+import operator
+operator.ge()         大于等于   &gt;=
+operator.gt()         大于       &gt;
+operator.eq()       等于         ==
+operator.ne()        不等于      !=
+operator.le()           小于等于 &lt;=
+operator.lt()          小于      &lt;
+</code></pre><h3 id="4、列表的可迭代化："><a href="#4、列表的可迭代化：" class="headerlink" title="4、列表的可迭代化："></a>4、列表的可迭代化：</h3><p>当生成一个空列表时，因为列表中没有值，所以python并没有相应的内存地址分配给这个列表变量。当该列表添加元素后，python会自动给该列表扩充内存地址，那么地址都是依次连续的在内存中进行排列。</p>
+<h2 id="元组-tuple"><a href="#元组-tuple" class="headerlink" title="元组 tuple"></a>元组 tuple</h2><h3 id="1、Tuple元组"><a href="#1、Tuple元组" class="headerlink" title="1、Tuple元组"></a>1、Tuple元组</h3><h4 id="（1）元组的概念"><a href="#（1）元组的概念" class="headerlink" title="（1）元组的概念"></a>（1）元组的概念</h4><pre><code>元组是值的有序序列，里面可以存储各种数据类型的元素。但是元组一旦被赋值后，其内容就不可被改变。
+</code></pre><h4 id="（2）声明与赋值"><a href="#（2）声明与赋值" class="headerlink" title="（2）声明与赋值"></a>（2）声明与赋值</h4><pre><code>第一种，tup =’ a’,’b’,’c’,’d’
+第二种，tup = (‘a’,’b’,’c’,’d’) 推荐使用该种声明方式。
+第三种，tup = tuple() 声明一个空的元组对象
+注意：元组在赋值时，且元素只有一个时，具体情况如下：
+tuple1 = (1,)或tuple1 = 1,       注意：一定要在元素后面加上一个,号，与普通变量赋值进行区分。
+</code></pre><h4 id="（3）常用操作"><a href="#（3）常用操作" class="headerlink" title="（3）常用操作"></a>（3）常用操作</h4><pre><code>1）其他序列（列表和字符串）的操作都可用于元组，除了那些会违反不变性的列表运算符。
+2）“+”和“*”运算符同样适用于元组。
+3) 成员操作（in）和for循环同样适用于元组
+4）长度（len）、最大（max）和最小（min）同样适用于元组。
+注意：没有任何的操作能更改元组。例如append、extend、insert、remove、pop、reverse和sort不能用于元组。
+</code></pre><h3 id="2、list和tuple有什么不同"><a href="#2、list和tuple有什么不同" class="headerlink" title="2、list和tuple有什么不同"></a>2、list和tuple有什么不同</h3><p>（1）list为可变数据类型,而tuple为不可变数据类型<br>（2）前者的长度是可变的，后者是定长的<br>（3）两者都是有序的，元素都是允许重复的</p>
+<h3 id="3、推导式的执行顺序"><a href="#3、推导式的执行顺序" class="headerlink" title="3、推导式的执行顺序"></a>3、推导式的执行顺序</h3><p>推导公式的执行顺序是：先执行变量后面的循环语句，如果有两个连续的循环语句那么表明这是一个循环嵌套语句，先执行一次前面的循环语句，然后执行N次后面的循环语句，每次执行完就生成一次最前面变量，该变量作为列表的一个元素。一致到所有循环结束。</p>
+<h3 id="4、and-和-or-的运算结果比较："><a href="#4、and-和-or-的运算结果比较：" class="headerlink" title="4、and 和 or 的运算结果比较："></a>4、and 和 or 的运算结果比较：</h3><p>（1）在Python，我们使用True、False进行逻辑运算的元素，但是根据Python的原理，认为已经赋值存在的内容与True进行逻辑运算，其结果都为该内容本身，特殊的情况0，在Python2.7版本中，他被认为是False。因此，y=1  True and y =&gt; 1  y=0 True and y =&gt;0<br>（2）逻辑运算，通常是从做往右进行计算，因此你的Python解析器会根据最后读入的运算元素作为最终输出结果的类型，导致：<br>y=1   y and True =&gt;True</p>
+<h4 id="5、总结常用的数据类型转换"><a href="#5、总结常用的数据类型转换" class="headerlink" title="5、总结常用的数据类型转换"></a>5、总结常用的数据类型转换</h4><h4 id="（1）字符串转为整型：int-str"><a href="#（1）字符串转为整型：int-str" class="headerlink" title="（1）字符串转为整型：int(str)"></a>（1）字符串转为整型：int(str)</h4><pre><code>函数格式：int(str)
+返回值：将字符型数值转为整数
+
+例如：
+int(&apos;3&apos;) =&gt; 3
+</code></pre><h4 id="（2）字符串转为浮点型：float-str"><a href="#（2）字符串转为浮点型：float-str" class="headerlink" title="（2）字符串转为浮点型：float(str)"></a>（2）字符串转为浮点型：float(str)</h4><pre><code>函数格式：float(str)
+返回值：将字符型浮点数转为浮点数
+
+例如：
+float(&apos;2.4&apos;) =&gt; 2.4
+</code></pre><h4 id="（3）数值转为字符串：str-int-、str-float"><a href="#（3）数值转为字符串：str-int-、str-float" class="headerlink" title="（3）数值转为字符串：str(int)、str[float]"></a>（3）数值转为字符串：str(int)、str[float]</h4><pre><code>函数格式：str(int)、str(float)
+返回值：将整数或者浮点数，转为字符型数值
+
+例如:
+str(2) =&gt; &apos;2 &apos;    str(2.4) =&gt; &apos;2.4&apos;
+</code></pre><h4 id="（4）字符串转为列表：list-str"><a href="#（4）字符串转为列表：list-str" class="headerlink" title="（4）字符串转为列表：list(str)"></a>（4）字符串转为列表：list(str)</h4><pre><code>函数格式：list(str)
+返回值：将指定的字符串，按照元素顺序逐一转为列表
+
+例如：
+&gt;&gt;&gt; string1 = &apos;hello world&apos;
+&gt;&gt;&gt; list1 = list(string1)
+&gt;&gt;&gt; list1
+[&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;, &apos; &apos;, &apos;w&apos;, &apos;o&apos;, &apos;r&apos;, &apos;l&apos;, &apos;d&apos;]
+</code></pre><h4 id="（5）拆分字符串：str-split-分隔符"><a href="#（5）拆分字符串：str-split-分隔符" class="headerlink" title="（5）拆分字符串：str.split(分隔符)"></a>（5）拆分字符串：str.split(分隔符)</h4><pre><code>函数格式：str.split(分隔符)
+返回值：将字符串，根据指定的分隔符，转为列表
+
+例如：
+&gt;&gt;&gt; string1 = &quot;麻辣烫 番茄鸡蛋面 鱼粉&quot;
+&gt;&gt;&gt; list2 =  string1.split(&apos; &apos;)
+&gt;&gt;&gt; list2
+[&apos;麻辣烫&apos;, &apos;番茄鸡蛋面&apos;, &apos;鱼粉&apos;]
+</code></pre><h4 id="（6）列表转为字符串：‘分隔符’-join（list）"><a href="#（6）列表转为字符串：‘分隔符’-join（list）" class="headerlink" title="（6）列表转为字符串：‘分隔符’.join（list）"></a>（6）列表转为字符串：‘分隔符’.join（list）</h4><pre><code>函数格式：‘分隔符’.join（list）
+返回值：将指定的列表中的元素，通过分隔符进行连接，转换为字符串
+
+例如：
+&gt;&gt;&gt; list2 = [&apos;麻辣烫&apos;, &apos;番茄鸡蛋面&apos;, &apos;鱼粉&apos;]
+&gt;&gt;&gt; &apos; &apos;.join(list2)
+&apos;麻辣烫 番茄鸡蛋面 鱼粉&apos;
+</code></pre><h4 id="（7）元组与列表转换"><a href="#（7）元组与列表转换" class="headerlink" title="（7）元组与列表转换"></a>（7）元组与列表转换</h4><pre><code>元组转为列表：
+tuple1 = (1,2,3)
+list1 = list(tuple1)
+列表转为元组
+list1 = [1,2,3]
+tuple1 = tuple(list1)
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/13/combine-data-type-list-tuple/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-circulation-control-for-while" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/12/circulation-control-for-while/">循环控制语句（for和while）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/12/circulation-control-for-while/" class="archive-article-date">
+  	<time datetime="2018-07-12T13:59:26.855Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="控制语句——循环（for-和-while）控制"><a href="#控制语句——循环（for-和-while）控制" class="headerlink" title="控制语句——循环（for 和 while）控制"></a>控制语句——循环（for 和 while）控制</h2><h3 id="1、for循环控制语句"><a href="#1、for循环控制语句" class="headerlink" title="1、for循环控制语句"></a>1、for循环控制语句</h3><h4 id="（1）for循环格式（两种）："><a href="#（1）for循环格式（两种）：" class="headerlink" title="（1）for循环格式（两种）："></a>（1）for循环格式（两种）：</h4><h5 id="第一种格式（推荐使用）："><a href="#第一种格式（推荐使用）：" class="headerlink" title="第一种格式（推荐使用）："></a>第一种格式（推荐使用）：</h5><pre><code>            for 变量 in 集合:
+                 代码
+
+说明：这种循环方式我们称为快速迭代循环，能够对集合数据进行遍历。
+
+注意：该种循环方式，只能用在集合数据上，比如：字符串、列表、元组、字典等内容。
+</code></pre><h4 id="例如（竖着打印）："><a href="#例如（竖着打印）：" class="headerlink" title="例如（竖着打印）："></a>例如（竖着打印）：</h4><pre><code class="bash">&gt;&gt;&gt; string1 = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item)
+h
+e
+l
+l
+o
+
+w
+o
+r
+l
+D
+
+横着打印：
+&gt;&gt;&gt; <span class="keyword">for</span> item <span class="keyword">in</span> string1:
+    <span class="built_in">print</span>(item,end=<span class="string">' '</span>)    
+h e l l o   w o r l d 
+</code></pre>
+<h5 id="第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。"><a href="#第二种格式：传统式，配合range-函数使用，通过range-函数制定了循环的范围。" class="headerlink" title="第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。"></a>第二种格式：传统式，配合range() 函数使用，通过range()函数制定了循环的范围。</h5><pre><code>        for i in range（循环次数） 
+               代码
+
+说明：这种循环方式采用指定循环次数，对目标集合进行遍历。其做法主要是让循环与集合的下标同步，在循环次数时，一同取出集合指定下标的对应值。
+</code></pre><h3 id="（2）range-函数："><a href="#（2）range-函数：" class="headerlink" title="（2）range() 函数："></a>（2）range() 函数：</h3><pre><code>函数格式有两种：
+第一种：
+range(stop): 缺省情况下，表示从0开始，循环n次
+
+第二种：
+range([star,]stop[,step]) 其中，
+star：时循环开始的值
+stop：循环结束的值（循环次数）
+step：循环步长
+
+注意：此处循环，会根据stop规定循环的次数进行循环，循环都是从头（0）开始，但是显示的值是按照star的值开始的
+</code></pre><h4 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h4><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(0,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+0 1 2 3 4 5 6 7 8 9 
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(5,10):
+    <span class="built_in">print</span>(i,end=<span class="string">' '</span>)
+5 6 7 8 9 
+</code></pre>
+<h3 id="（3）for循环的常用方式：嵌套"><a href="#（3）for循环的常用方式：嵌套" class="headerlink" title="（3）for循环的常用方式：嵌套"></a>（3）for循环的常用方式：嵌套</h3><pre><code>for i in range(次数)：
+    for j in range(次数)：
+注意：这种嵌套表示的过程中，变量的位置尤为重要，通用原则为：如果变量的值需要通过外层循环来获取或生成，那么我们可以将其设为全局变量，即与外层循环for同等级的变量，如果变量需要在内层循环中生成或获取，我们通常会在外循环中声明，即与内循环同级。
+</code></pre><h4 id="例1、100以内数的和"><a href="#例1、100以内数的和" class="headerlink" title="例1、100以内数的和"></a>例1、100以内数的和</h4><pre><code class="bash">num=0
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,101):
+        num += i   
+<span class="built_in">print</span>(num)
+</code></pre>
+<h4 id="例2、求一个数的阶乘之和（嵌套循环）"><a href="#例2、求一个数的阶乘之和（嵌套循环）" class="headerlink" title="例2、求一个数的阶乘之和（嵌套循环）"></a>例2、求一个数的阶乘之和（嵌套循环）</h4><pre><code class="bash">num = int(input(<span class="string">"请输入一个数字: "</span>))   <span class="comment">#获取一个数字</span>
+sum = 0
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1,1):
+    result = 1  <span class="comment">#此处的 result 要在此处初始化，为了保证每一次的内循环都是从 1 开始</span>
+    <span class="keyword">for</span> j <span class="keyword">in</span> range(1,i+1,1):  <span class="comment">#每个数的小阶乘</span>
+        result *= j
+    sum += result  <span class="comment">#每个小阶乘的累加</span>
+<span class="built_in">print</span>(<span class="string">"{}的阶乘和为{}!"</span>.format(num,sum))
+</code></pre>
+<h4 id="例3、5的阶乘之和-不是嵌套"><a href="#例3、5的阶乘之和-不是嵌套" class="headerlink" title="例3、5的阶乘之和(不是嵌套)"></a>例3、5的阶乘之和(不是嵌套)</h4><pre><code class="bash">sum1 = 0
+result = 1
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,5):
+    result = result * i
+    sum1 += result  
+<span class="built_in">print</span>(sum1)
+</code></pre>
+<h4 id="例4、求一个数的奇数的阶乘之和（嵌套循环）"><a href="#例4、求一个数的奇数的阶乘之和（嵌套循环）" class="headerlink" title="例4、求一个数的奇数的阶乘之和（嵌套循环）"></a>例4、求一个数的奇数的阶乘之和（嵌套循环）</h4><pre><code class="bash">num = int(input(<span class="string">"请输入一个数字: "</span>))   <span class="comment">#获取一个数字</span>
+sum1 = 0
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1):
+    <span class="keyword">if</span> i % 2 != 0:    <span class="comment">#求奇数</span>
+        result = 1
+        <span class="keyword">for</span> j <span class="keyword">in</span> range(1,i+1):  <span class="comment">#每个数的小阶乘</span>
+            result *= j
+        sum1 += result  <span class="comment">#每个小阶乘的累加</span>
+<span class="built_in">print</span>(<span class="string">"{}的奇数阶乘和为{}!"</span>.format(num,sum1))
+</code></pre>
+<h4 id="例5、break关键字"><a href="#例5、break关键字" class="headerlink" title="例5、break关键字"></a>例5、break关键字</h4><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(10):
+    <span class="keyword">if</span> i==5:
+        <span class="built_in">break</span> <span class="comment">#中断for这个循环，直接跳出来</span>
+    <span class="built_in">print</span>(i)
+<span class="built_in">print</span>()
+</code></pre>
+<h4 id="例6、continue关键字"><a href="#例6、continue关键字" class="headerlink" title="例6、continue关键字"></a>例6、continue关键字</h4><pre><code class="bash"><span class="keyword">for</span> i <span class="keyword">in</span> range(10):
+    <span class="keyword">if</span> i==5:
+        <span class="built_in">continue</span> <span class="comment">#中断当前这次循环，进行下一次循环</span>
+    <span class="built_in">print</span>(i)
+<span class="built_in">print</span>(<span class="string">'ok'</span>)
+</code></pre>
+<h3 id="2、while循环控制语句"><a href="#2、while循环控制语句" class="headerlink" title="2、while循环控制语句"></a>2、while循环控制语句</h3><h4 id="（1）循环格式："><a href="#（1）循环格式：" class="headerlink" title="（1）循环格式："></a>（1）循环格式：</h4><pre><code>while 条件：
+     代码
+</code></pre><h4 id="（2）break与continue"><a href="#（2）break与continue" class="headerlink" title="（2）break与continue"></a>（2）break与continue</h4><pre><code>break：当满足指定条件时，break表示中断（中止）此循环，如果循环外部还有其他代码则继续向下执行。
+continue：当满足指定条件时，continue表示结束本次循环，开始下一次循环。注意continue并没有退出循环。
+
+同时，这两个关键字都是必须配合循环语句来使用，不能单独用在其他地方，比如：if
+</code></pre><h4 id="例1、whle循环求偶数和"><a href="#例1、whle循环求偶数和" class="headerlink" title="例1、whle循环求偶数和"></a>例1、whle循环求偶数和</h4><pre><code class="bash">i = 0
+sum1=0
+<span class="keyword">while</span> i &lt;= 5:
+    <span class="keyword">if</span> i % 2 ==0:
+        sum1 += i
+    i = i + 1
+<span class="built_in">print</span>(sum1)
+</code></pre>
+<h4 id="例2、三次登录不成功请重置密码"><a href="#例2、三次登录不成功请重置密码" class="headerlink" title="例2、三次登录不成功请重置密码"></a>例2、三次登录不成功请重置密码</h4><pre><code class="bash">count = 2
+<span class="keyword">while</span> count &gt;=0:
+    username = input(<span class="string">'请输入用户名：'</span>)
+    password = input(<span class="string">'请输入密码：'</span>) <span class="comment">#此处就是用字符串表示，不要用int转型</span>
+    <span class="keyword">if</span> username == <span class="string">'wdd'</span> and password == <span class="string">'123'</span>:
+        <span class="built_in">print</span>(<span class="string">'恭喜你，登陆成功！'</span>)
+        <span class="built_in">break</span>
+    <span class="keyword">else</span>:
+        <span class="keyword">if</span> count &gt; 0:
+            <span class="built_in">print</span>(<span class="string">'用户名或密码不正确！你还有{}次机会！'</span>.format(count))
+        <span class="keyword">else</span>:
+            <span class="built_in">print</span>(<span class="string">'三次机会已使用完毕，请重置密码！'</span>)
+            <span class="built_in">break</span>
+    count = count-1
+</code></pre>
+<h4 id="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："><a href="#例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：" class="headerlink" title="例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即："></a>例3、等待用户输入内容，检测用户输入内容中是否包含敏感字符？如果存在敏感字符提示“存在敏感字符请重新输入”，并允许用户重新输入并打印。敏感字符：“苍老师”、“嘻哈”，即：</h4><h4 id="请输入你要发布的内容……-用in判断敏感词"><a href="#请输入你要发布的内容……-用in判断敏感词" class="headerlink" title="请输入你要发布的内容…….(用in判断敏感词)"></a>请输入你要发布的内容…….(用in判断敏感词)</h4><h4 id="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"><a href="#如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）" class="headerlink" title="如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）"></a>如果继续输入，请输入I：（又会出现’请输入你要发布的内容‘的字样）</h4><h4 id="如果退出，请输入E：（出现-Bye-Bye）"><a href="#如果退出，请输入E：（出现-Bye-Bye）" class="headerlink" title="如果退出，请输入E：（出现 Bye Bye）"></a>如果退出，请输入E：（出现 Bye Bye）</h4><pre><code class="bash">words=<span class="string">'苍老师嘻哈'</span>
+<span class="keyword">while</span> True:
+    msg = input(<span class="string">'欢迎进入论坛，发帖请输入I；退出请输入E；您要输入的是：'</span>)
+    <span class="keyword">if</span> msg == <span class="string">'I'</span>:
+        content = input(<span class="string">'请输入帖子内容：'</span>)
+        <span class="keyword">for</span> item <span class="keyword">in</span> words:
+            <span class="keyword">if</span> item <span class="keyword">in</span> content:
+                content = <span class="string">'您输入的内容中，包含敏感词，请重新输入：'</span>
+                <span class="built_in">continue</span>
+        <span class="built_in">print</span>(content)
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'BYE-BYE'</span>)
+        <span class="built_in">break</span>
+</code></pre>
+<h4 id="例4、计算-1-2-3-…-99-中除了88以外所有数的总和"><a href="#例4、计算-1-2-3-…-99-中除了88以外所有数的总和" class="headerlink" title="例4、计算 1 - 2 + 3 … + 99 中除了88以外所有数的总和"></a>例4、计算 1 - 2 + 3 … + 99 中除了88以外所有数的总和</h4><pre><code class="bash">count = 1 <span class="comment">#初始值</span>
+sum = 0 <span class="comment">#用于存储结果</span>
+<span class="keyword">while</span> count &lt; 100 : <span class="comment">#如果&lt;100则进入while循环</span>
+    <span class="keyword">if</span> count % 2 != 0 : <span class="comment">#判断奇偶数 </span>
+        sum += count <span class="comment">#如果是奇数 按照规则相加</span>
+
+    <span class="keyword">if</span> count % 2 == 0 : <span class="comment">#判断奇偶数 </span>
+        <span class="keyword">if</span> count == 88 : <span class="comment">#判断每次循环的数字是否为88</span>
+            <span class="built_in">continue</span> <span class="comment">#如果是88 直接跳过下面相减得过程</span>
+        <span class="keyword">else</span> :
+            sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
+
+    count += 1 <span class="comment">#count自+1</span>
+<span class="built_in">print</span>(sum)<span class="comment">#打印最后sum结果</span>
+</code></pre>
+<h4 id="例5、计算-1-2-3-…-99-所有数的总和"><a href="#例5、计算-1-2-3-…-99-所有数的总和" class="headerlink" title="例5、计算 1 - 2 + 3 … + 99 所有数的总和"></a>例5、计算 1 - 2 + 3 … + 99 所有数的总和</h4><pre><code class="bash">count = 1 <span class="comment">#初始值</span>
+sum = 0 <span class="comment">#用于存储结果</span>
+<span class="keyword">while</span> count &lt; 100 : <span class="comment">#如果&lt;100则进入while循环</span>
+    <span class="keyword">if</span> count % 2 != 0 : <span class="comment">#判断奇偶数 </span>
+        sum += count <span class="comment">#如果是奇数 按照规则相加</span>
+    <span class="keyword">else</span> :
+        sum -= count <span class="comment">#如果是偶数 按照规则相减</span>
+
+    count += 1 <span class="comment">#count自+1</span>
+<span class="built_in">print</span>(sum)<span class="comment">#打印最后sum结果</span>
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/12/circulation-control-for-while/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-condition-control-if" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/12/condition-control-if/">条件控制语句（if）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/12/condition-control-if/" class="archive-article-date">
+  	<time datetime="2018-07-12T13:15:51.755Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="控制语句——条件（if）控制"><a href="#控制语句——条件（if）控制" class="headerlink" title="控制语句——条件（if）控制"></a>控制语句——条件（if）控制</h2><h3 id="1、格式如下："><a href="#1、格式如下：" class="headerlink" title="1、格式如下："></a>1、格式如下：</h3><pre><code class="bash">（1）单判断：
+If 条件：
+代码
+
+（2）双分支：
+If 条件：
+代码
+<span class="keyword">else</span>：
+代码
+
+（3）多分支：
+If 条件：
+代码
+<span class="keyword">elif</span> 条件：
+代码
+<span class="keyword">elif</span> 条件：
+代码
+<span class="keyword">elif</span> 条件：
+代码
+......
+<span class="keyword">else</span>：
+代码
+</code></pre>
+<h3 id="2、逻辑运算符：and、or、not"><a href="#2、逻辑运算符：and、or、not" class="headerlink" title="2、逻辑运算符：and、or、not"></a>2、逻辑运算符：and、or、not</h3><pre><code>（1）and：左右两端都是布尔型，其结果也是布尔型。当左右两端的值都为True时，其结果才为True；有一方为False时，其结果一定为False。
+（2）or：左右两端都是布尔型，其结果也是布尔型。有一方为True时，其结果一就为True；只有当左右两端的值都为False时，其结果才为False。
+（3）not:属于单目运算，其结果也是布尔型。其作用就是求反，如果变量为True，结果就为False；如果变量为False，结果就为True。
+注：
+1、逻辑运算、比较运算常用在条件中使用。同时，这两种运算符配合使用。
+2、在python中，我们认为变量如果被赋值，使用not运算后，会得False。如果一个变量没有被赋值或设为空值，那么进行not运算时，返回True。比如：
+</code></pre><pre><code class="bash">&gt;&gt;&gt;a = 10
+&gt;&gt;&gt;not a
+False
+
+&gt;&gt;&gt;a = none(代表了空值)
+&gt;&gt;&gt;not a
+True
+
+&gt;&gt;&gt;a = list（）此时列表没有被赋值，为空列表
+&gt;&gt;&gt;not a
+True
+
+&gt;&gt;&gt;a = list[1,2,3]此时列表被赋值
+&gt;&gt;&gt;not a
+False
+</code></pre>
+<h3 id="3、举例："><a href="#3、举例：" class="headerlink" title="3、举例："></a>3、举例：</h3><h4 id="（1）两个数比大小，并输出最大者"><a href="#（1）两个数比大小，并输出最大者" class="headerlink" title="（1）两个数比大小，并输出最大者"></a>（1）两个数比大小，并输出最大者</h4><pre><code class="bash">a=10
+b=100
+<span class="keyword">if</span> a&gt;b:
+    <span class="built_in">print</span>(<span class="string">'a is value %d'</span>%a)
+<span class="keyword">elif</span> a&lt;b:
+    <span class="built_in">print</span>(<span class="string">'b is value %d'</span>%b)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'%d is equal %d'</span>%(a,b))
+</code></pre>
+<h4 id="（2）三个数比大小并输出最大值"><a href="#（2）三个数比大小并输出最大值" class="headerlink" title="（2）三个数比大小并输出最大值"></a>（2）三个数比大小并输出最大值</h4><pre><code class="bash">a=10
+b=100
+c=50
+<span class="keyword">if</span> a&gt;b and a&gt;c:
+    <span class="built_in">print</span>(<span class="string">'a is biggist %d'</span>%a)
+<span class="keyword">elif</span> b&gt;a and b&gt;c:
+    <span class="built_in">print</span>(<span class="string">'b is biggist %d'</span>%b)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'c is biggist %d'</span>%c)
+</code></pre>
+<h4 id="（3）快递运费计算"><a href="#（3）快递运费计算" class="headerlink" title="（3）快递运费计算"></a>（3）快递运费计算</h4><h4 id="1-5kg-10元-kg"><a href="#1-5kg-10元-kg" class="headerlink" title="1~5kg :10元/kg"></a>1~5kg :10元/kg</h4><h4 id="5-10kg-15元-kg"><a href="#5-10kg-15元-kg" class="headerlink" title="5~10kg :15元/kg"></a>5~10kg :15元/kg</h4><h4 id="10-20kg-25元-kg"><a href="#10-20kg-25元-kg" class="headerlink" title="10~20kg :25元/kg"></a>10~20kg :25元/kg</h4><h4 id="20kg-30元-kg"><a href="#20kg-30元-kg" class="headerlink" title="20kg~ :30元/kg"></a>20kg~ :30元/kg</h4><pre><code class="bash">goods_weight=int(input(<span class="string">'请输入快递商品的重量：'</span>))
+<span class="keyword">if</span> goods_weight &lt;= 0: <span class="comment">#判断输入的值是否为正整数</span>
+    <span class="built_in">print</span>(<span class="string">'快递商品重量有错误，请重新输入！'</span>)
+    <span class="built_in">exit</span>()
+goods_price=0 <span class="comment">#快递费用</span>
+msg = <span class="string">'本次快递费用为{0}元'</span>
+<span class="keyword">if</span> goods_weight &gt; 1 and goods_weight &lt;= 5:
+    goods_price = goods_weight*10
+<span class="keyword">elif</span>  goods_weight &lt;= 10:
+    goods_price = goods_weight*15
+<span class="keyword">elif</span>  goods_weight &lt;= 20:
+    goods_price = goods_weight*25
+<span class="keyword">else</span>:
+    goods_price = goods_weight*30
+<span class="built_in">print</span>(msg.format(goods_price))
+</code></pre>
+<h4 id="（4）商场购物"><a href="#（4）商场购物" class="headerlink" title="（4）商场购物"></a>（4）商场购物</h4><h4 id="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。"><a href="#会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换-。" class="headerlink" title="会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。"></a>会员分为钻石、金牌、银牌、铜牌四个等级，四个等级对应不同的折扣，对应着不同的积分兑换 。</h4><h4 id="钻石：100元6个积分-8折"><a href="#钻石：100元6个积分-8折" class="headerlink" title="钻石：100元6个积分 8折"></a>钻石：100元6个积分 8折</h4><h4 id="金牌：100元5个积分-8-5折"><a href="#金牌：100元5个积分-8-5折" class="headerlink" title="金牌：100元5个积分 8.5折"></a>金牌：100元5个积分 8.5折</h4><h4 id="银牌：100元3个积分-9折"><a href="#银牌：100元3个积分-9折" class="headerlink" title="银牌：100元3个积分 9折"></a>银牌：100元3个积分 9折</h4><h4 id="铜牌：100元2个积分-95折"><a href="#铜牌：100元2个积分-95折" class="headerlink" title="铜牌：100元2个积分 95折"></a>铜牌：100元2个积分 95折</h4><pre><code class="bash">from decimal import Decimal   <span class="comment"># 引入decimal包中的 Decimal 对象</span>
+user_level=input(<span class="string">'请输入用户等级：'</span>)
+goods_name = input(<span class="string">'所要购买的物品是：'</span>)
+goods_price=<span class="built_in">float</span>(input(<span class="string">'请输入所购买物品的价格：'</span>))
+<span class="keyword">if</span> goods_price &lt;=0:  <span class="comment">#判断输入的价格是否合理</span>
+    <span class="built_in">print</span>(<span class="string">'物品价格输入有误，请重新输入！'</span>)
+    <span class="built_in">exit</span>()
+real_price = 0.0 <span class="comment">#购买商品的实际价格</span>
+need_score = 0  <span class="comment">#积分</span>
+<span class="keyword">if</span> user_level == <span class="string">'钻石'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.8)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.6)
+<span class="keyword">elif</span> user_level == <span class="string">'金牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.85)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.5)
+<span class="keyword">elif</span> user_level == <span class="string">'银牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.9)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.3)
+<span class="keyword">elif</span> user_level == <span class="string">'铜牌'</span>:
+    real_price=<span class="built_in">float</span>((Decimal(goods_price) * Decimal(0.95)).quantize(Decimal(<span class="string">'0.00'</span>)))
+    need_score = int(real_price/0.2)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'请输入正确的用户等级'</span>)
+    <span class="built_in">exit</span>()
+<span class="built_in">print</span>(<span class="string">'等级为{0}的顾客，购买的{1}所需要的实际价格为{2}，积分为{3}！'</span>.format(user_level,goods_name,real_price,need_score)) 
+</code></pre>
+<h4 id="（5）英雄联盟角色"><a href="#（5）英雄联盟角色" class="headerlink" title="（5）英雄联盟角色"></a>（5）英雄联盟角色</h4><h4 id="角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50"><a href="#角色：赵云-技能-伤害值-：物理攻击80-技能攻击120-技能值：500-每次消耗的值：50" class="headerlink" title="角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50"></a>角色：赵云             技能(伤害值)：物理攻击80  技能攻击120       技能值：500            每次消耗的值：50</h4><h4 id="角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80"><a href="#角色：李白-技能-伤害值-：物理攻击30-技能攻击100-技能值：350-每次消耗的值：80" class="headerlink" title="角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80"></a>角色：李白             技能(伤害值)：物理攻击30  技能攻击100       技能值：350            每次消耗的值：80</h4><h4 id="角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100"><a href="#角色：刘备-技能-伤害值-：物理攻击50-技能攻击200-技能值：400-每次消耗的值：100" class="headerlink" title="角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100"></a>角色：刘备             技能(伤害值)：物理攻击50  技能攻击200       技能值：400            每次消耗的值：100</h4><pre><code class="bash">import math   <span class="comment"># 引入math包</span>
+play_user=input(<span class="string">'请输入玩家角色：'</span>)
+kills_name = input(<span class="string">'所要启用的技能名称是：'</span>)
+boss_live=10000   <span class="comment">#Boss伤害值</span>
+play_blood=0  <span class="comment">#玩家技能值用完时所用的技能攻击掉的血</span>
+defind_num=0  <span class="comment">#打死Boss用的总次数</span>
+simple_num=0  <span class="comment">#技能值用完所用的技能攻击的次数</span>
+boss_blood=0  <span class="comment">#玩家技能值用完，boss剩余的血</span>
+<span class="keyword">if</span> play_user == <span class="string">'赵云'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
+        defind_num = math.ceil(boss_live/80)
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
+        defind_num = math.ceil(boss_live/120)
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>:  
+        simple_num=math.floor(500/50)
+        play_blood=120*simple_num
+        boss_blood=boss_live-play_blood
+        defind_num=math.ceil(boss_blood/80) + simple_num
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">elif</span> play_user == <span class="string">'李白'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
+        defind_num = math.ceil(boss_live/30)
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
+        defind_num = math.ceil(boss_live/100)
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>: 
+        simple_num=math.floor(350/80)
+        play_blood=100*simple_num
+        boss_blood=boss_live-play_blood
+        defind_num=math.ceil(boss_blood/30) + simple_num
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">elif</span> play_user == <span class="string">'刘备'</span>:
+    <span class="keyword">if</span> kills_name == <span class="string">'物理攻击'</span>:
+        defind_num = math.ceil(boss_live/50)
+    <span class="keyword">elif</span> kills_name == <span class="string">'技能攻击'</span>:
+        defind_num = math.ceil(boss_live/200)
+    <span class="keyword">elif</span> kills_name == <span class="string">'混合攻击'</span>: 
+        simple_num=math.floor(400/100)
+        play_blood=200*simple_num
+        boss_blood=boss_live-play_blood
+        defind_num=math.ceil(boss_blood/50) + simple_num
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'技能方式错误！'</span>)
+        <span class="built_in">exit</span>()
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'请输入正确的玩家角色！'</span>)
+    <span class="built_in">exit</span>()
+<span class="built_in">print</span>(<span class="string">'玩家角色为{0}的玩家，所用的技能是{1}，打死Boss需要的次数为{2}！'</span>.format(play_user,kills_name,defind_num))
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/12/condition-control-if/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-basic-data-type" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

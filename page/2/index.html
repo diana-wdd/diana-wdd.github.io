@@ -161,6 +161,1121 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-input-output-binary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/30/input-output-binary/">文件输入输出（I/O）(二进制文件)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/30/input-output-binary/" class="archive-article-date">
+  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、struct和pickle"><a href="#1、struct和pickle" class="headerlink" title="1、struct和pickle"></a>1、struct和pickle</h2><h3 id="（1）使用struct模块，进行数据的输入输出"><a href="#（1）使用struct模块，进行数据的输入输出" class="headerlink" title="（1）使用struct模块，进行数据的输入输出"></a>（1）使用struct模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入到文件中的各种类型数据，进行统一打包<br>struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型<br>第二，使用write()写入，写入后以二进制的方式进行文件存储。<br>第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回一个序列，即写入时的顺序，与读取时的顺序应该一致。<br>注意：需要将所有写入的数据，一次性都封装到一个bytes中，因为在Python中没有byte的概念，所以需要第三方的模块进行封装。</p>
+<h3 id="例如1：写入与读出浮点数、布尔型、整型"><a href="#例如1：写入与读出浮点数、布尔型、整型" class="headerlink" title="例如1：写入与读出浮点数、布尔型、整型"></a>例如1：写入与读出浮点数、布尔型、整型</h3><pre><code class="bash">import struct
+<span class="comment">#读出</span>
+a = 123.3
+b = True
+c = 10
+sn = struct.pack(<span class="string">'if?'</span>,c,a,b)
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
+f.write(sn)
+f.close()
+<span class="comment">#读出</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
+sn = f.read(9)
+ls = struct.unpack(<span class="string">'if?'</span>,sn)
+<span class="built_in">print</span>(ls[0])
+<span class="built_in">print</span>(ls[1])
+<span class="built_in">print</span>(ls[2])
+f.close()
+</code></pre>
+<h3 id="例如2：写入与读出字符串"><a href="#例如2：写入与读出字符串" class="headerlink" title="例如2：写入与读出字符串"></a>例如2：写入与读出字符串</h3><p>#写入</p>
+<pre><code class="bash">import struct
+str1=b<span class="string">'hello'</span>
+sn = struct.pack(<span class="string">'5s'</span>,str1)
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
+f.write(sn)
+f.close()
+
+<span class="comment">#读出</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
+sn = f.read()
+a = struct.unpack(<span class="string">'5s'</span>,sn)
+<span class="built_in">print</span>(a)
+f.close()
+</code></pre>
+<h3 id="（2）使用pickel模块，进行数据的输入输出"><a href="#（2）使用pickel模块，进行数据的输入输出" class="headerlink" title="（2）使用pickel模块，进行数据的输入输出"></a>（2）使用pickel模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入文件中的数据，进行逐一的写入。例如：<br>f = open(‘myfile.dat’,’wb’)<br>pickle.dump(10, f)<br>第二，读取数据时，同理，需要逐一的读取。例如：<br>pickle.load(f)<br>注意，在使用时，我们能够观察到该模块的dump和load函数，与前面所学的json模块的函数一致，在Python中json与pickle都能够实现序列化和反序列化的两个模块。<br>在实际的使用中，推荐使用pickle 模块。</p>
+<h3 id="例如1：一同写入与读出浮点数、布尔型、整型、字符串"><a href="#例如1：一同写入与读出浮点数、布尔型、整型、字符串" class="headerlink" title="例如1：一同写入与读出浮点数、布尔型、整型、字符串"></a>例如1：一同写入与读出浮点数、布尔型、整型、字符串</h3><pre><code class="bash">import pickle
+<span class="comment">#写入</span>
+a = 123.3
+b = True
+c = 10
+d = <span class="string">'ok'</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
+pickle.dump(a,f)
+pickle.dump(b,f)
+pickle.dump(c,f)
+pickle.dump(d,f)
+f.close()
+
+<span class="comment">#读出，前提是要知道文件里有多少行</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
+i = 0
+<span class="keyword">while</span> i &lt; 4:
+    x = pickle.load(f)
+    <span class="built_in">print</span>(x)
+    i = i+1
+f.close()
+
+<span class="comment">#读出，此方法不用写f.close()</span>
+with open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>) as f:
+    x = pickle.load(f)
+    y = pickle.load(f)
+    z = pickle.load(f)
+    s = pickle.load(f)
+    <span class="built_in">print</span>(x,y,z,s)
+</code></pre>
+<h3 id="例如2：写入与读出嵌套列表"><a href="#例如2：写入与读出嵌套列表" class="headerlink" title="例如2：写入与读出嵌套列表"></a>例如2：写入与读出嵌套列表</h3><pre><code class="bash"><span class="comment">#写入</span>
+c = [[1,2,3],[4,5,6]]
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
+pickle.dump(c,f)
+f.close()
+
+<span class="comment">#读出</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
+n = pickle.load(f)
+<span class="built_in">print</span>(n)
+</code></pre>
+<h3 id="例如3：写入与读出文字字符串"><a href="#例如3：写入与读出文字字符串" class="headerlink" title="例如3：写入与读出文字字符串"></a>例如3：写入与读出文字字符串</h3><pre><code class="bash"><span class="comment">#写入文字字符串</span>
+c = <span class="string">'我很好'</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
+pickle.dump(c,f)
+f.close()
+<span class="comment">#读出文字字符串</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
+n = pickle.load(f)
+<span class="built_in">print</span>(n)
+</code></pre>
+<h2 id="2、文件定位"><a href="#2、文件定位" class="headerlink" title="2、文件定位"></a>2、文件定位</h2><h3 id="（1）seek"><a href="#（1）seek" class="headerlink" title="（1）seek()"></a>（1）seek()</h3><p>函数格式：seek(n)<br>返回值：返回指定的位置<br>说明：通过指定元素的位置，将文件指针移动到该位置。</p>
+<h3 id="（2）seek-函数有三个固定值，分别为：0-1-2"><a href="#（2）seek-函数有三个固定值，分别为：0-1-2" class="headerlink" title="（2）seek()函数有三个固定值，分别为：0,1,2"></a>（2）seek()函数有三个固定值，分别为：0,1,2</h3><p>0：文件的开头<br>1：文件当前的位置<br>2：文件的结尾位置<br>seek(0,2):代表着将指针定位到文件尾，然后进行添加操作<br>seek(0,1):代表着在当前指针的位置，进行替换</p>
+<h3 id="（3）补充："><a href="#（3）补充：" class="headerlink" title="（3）补充："></a>（3）补充：</h3><p>对文件的读取时，如果文件大小未知，切忌不要使用read(),readline()，readlines()将文件内容一次性读取到内存中。因为有可能文件内容过多，造成读取时的IO阻塞。建议，将文件分多次分批读入内存中，我们通常可以先获取到文件大小，即：<br>size = path.getsize(‘myfile.txt’)<br>根据其大小来判断我们采用何种方式进行读取数据内容。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/30/input-output-binary/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-excel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/30/excel/" class="archive-article-date">
+  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、需要三个主要的模块"><a href="#1、需要三个主要的模块" class="headerlink" title="1、需要三个主要的模块"></a>1、需要三个主要的模块</h2><p>xlrd:用来读取Excel文件中的内容<br>xlwt：用来生成Excel文件<br>xlutils：用来实现Excel文件的复制</p>
+<h2 id="2、xlrd"><a href="#2、xlrd" class="headerlink" title="2、xlrd"></a>2、xlrd</h2><h3 id="（1）open-workbook"><a href="#（1）open-workbook" class="headerlink" title="（1）open_workbook()"></a>（1）open_workbook()</h3><p>函数格式：open_workbook(文件名)<br>返回值：返回Excel对象<br>说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容</p>
+<h3 id="（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始"><a href="#（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始" class="headerlink" title="（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)"></a>（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)</h3><p>返回值：sheet页对象<br>说明：找到指定的sheet页，生成一个对应的sheet页对象，对其内部的数据进行检索</p>
+<h3 id="（3）函数格式：sheet-cell-rownum-colnum"><a href="#（3）函数格式：sheet-cell-rownum-colnum" class="headerlink" title="（3）函数格式：sheet.cell(rownum,colnum)"></a>（3）函数格式：sheet.cell(rownum,colnum)</h3><p>返回值：返回指定行列的单元格对象，如果要获取其中的内容，调用value属性。<br>说明：通过指定行、列，能够确认一个单元格。</p>
+<h2 id="3、xlwt"><a href="#3、xlwt" class="headerlink" title="3、xlwt"></a>3、xlwt</h2><h3 id="（1）函数名称：Workbook"><a href="#（1）函数名称：Workbook" class="headerlink" title="（1）函数名称：Workbook()"></a>（1）函数名称：Workbook()</h3><p>返回值：返回一个新创建的Excel空对象<br>说明：该函数用来生成一个Excel对象，但是该对象没有任何内容</p>
+<h3 id="（2）函数名称：add-sheet-sheet名字"><a href="#（2）函数名称：add-sheet-sheet名字" class="headerlink" title="（2）函数名称：add_sheet(sheet名字)"></a>（2）函数名称：add_sheet(sheet名字)</h3><p>返回值：返回一个新创建的sheet页对象<br>说明：该函数用来新增一个空的sheet页对象</p>
+<h3 id="（3）函数名称：write-row-col-value"><a href="#（3）函数名称：write-row-col-value" class="headerlink" title="（3）函数名称：write(row, col, value)"></a>（3）函数名称：write(row, col, value)</h3><p>返回值：无<br>说明：对指定的行列单元格内，写入value内容。</p>
+<h2 id="4、xlutils"><a href="#4、xlutils" class="headerlink" title="4、xlutils"></a>4、xlutils</h2><h3 id="（1）函数格式：copy-Excel对象"><a href="#（1）函数格式：copy-Excel对象" class="headerlink" title="（1）函数格式：copy(Excel对象)"></a>（1）函数格式：copy(Excel对象)</h3><p>返回值：返回一个指定对象的副本<br>说明：在Python中对Excel的修改，都是生成一个对应的副本，修改后保存。</p>
+<h3 id="（2）函数格式：get-sheet-索引位"><a href="#（2）函数格式：get-sheet-索引位" class="headerlink" title="（2）函数格式：get_sheet(索引位)"></a>（2）函数格式：get_sheet(索引位)</h3><p>返回值：返回一个指定对象副本中的sheet页<br>说明：我们实际修改的数据，都是位于sheet页中。因此要获取到指定的sheet页。</p>
+<p>例如：</p>
+<pre><code class="bash">import xlwt  <span class="comment">#写excel文件，选用该模块</span>
+import xlrd  <span class="comment">#读取写excel文件内容，选用该模块</span>
+from xlutils.copy import copy
+
+def saveExcel(title,data):
+    <span class="comment">#生成excel对象</span>
+    wbt = xlwt.Workbook()
+    <span class="comment">#生成一个sheet页</span>
+    sheet = wbt.add_sheet(<span class="string">'人员信息表'</span>)
+
+
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(title)):
+        sheet.write(0,i,title[i])
+
+    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data)):
+        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data[m])):
+            sheet.write(m+1,n,data[m][n])
+
+    wbt.save(<span class="string">'person.xls'</span>)
+
+def readExcel(bookname,sheetname):
+    <span class="comment">#打开excel文件</span>
+    wb = xlrd.open_workbook(bookname)
+    sheet = wb.sheet_by_name(sheetname)
+    <span class="comment">#for rownum in range(sheet.nrows):</span>
+        <span class="comment">#print(sheet.row_values(rownum))</span>
+    <span class="comment">#cell = sheet.cell(0,1).value</span>
+    <span class="comment">#print(sheet.nrows)  #行数</span>
+    <span class="comment">#print(sheet.ncols)  #列数</span>
+
+    <span class="keyword">for</span> rownum <span class="keyword">in</span> range(sheet.nrows):
+        msg = <span class="string">''</span>
+        <span class="keyword">for</span> colnum <span class="keyword">in</span> range(sheet.ncols):
+            msg += str(sheet.cell(rownum,colnum).value)
+        <span class="built_in">print</span>(msg)
+
+def updateExcel(bookname,sheetname):
+    wb = xlrd.open_workbook(bookname)
+    sheet = wb.sheet_by_name(sheetname)
+    new_wb = copy(wb)  <span class="comment">#将原有的excel，拷贝一个新的副本</span>
+    new_sheet = new_wb.get_sheet(0)  <span class="comment">#重新在新的excel中获取sheet页</span>
+    new_sheet.write(1,0,<span class="string">'大蚱蜢'</span>)
+    new_wb.save(<span class="string">'person_new.xls'</span>)
+
+
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="comment">#作为excel表中标题名称</span>
+    title = [<span class="string">'姓名'</span>,<span class="string">'年龄'</span>,<span class="string">'性别'</span>,<span class="string">'出生年月'</span>,<span class="string">'家庭住址'</span>,<span class="string">'婚姻状况'</span>,<span class="string">'身份证号'</span>]
+    <span class="comment">#生成excel中的数据</span>
+    data = [
+        [<span class="string">'蚱蜢'</span>,25,<span class="string">'女'</span>,<span class="string">'19930101'</span>,<span class="string">'河南'</span>,<span class="string">'未婚'</span>,<span class="string">'4111111111'</span>],
+        [<span class="string">'曹猛'</span>,26,<span class="string">'女'</span>,<span class="string">'19920202'</span>,<span class="string">'非洲'</span>,<span class="string">'未婚'</span>,<span class="string">'4112222222'</span>],
+        [<span class="string">'丹丹'</span>,22,<span class="string">'女'</span>,<span class="string">'19980303'</span>,<span class="string">'郑州'</span>,<span class="string">'未婚'</span>,<span class="string">'4115271999'</span>],
+        [<span class="string">'大头柯'</span>,30,<span class="string">'男'</span>,<span class="string">'19900101'</span>,<span class="string">'北京'</span>,<span class="string">'未婚'</span>,<span class="string">'411112221'</span>]
+    ]
+    saveExcel(title,data)
+    bookname = <span class="string">'person.xls'</span>
+    sheetname = <span class="string">'人员信息表'</span>
+    readExcel(bookname,sheetname)
+    updateExcel(bookname,sheetname)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/30/excel/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-input-output-txt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/30/input-output-txt/">文件输入输出（I/O）(文本文件)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/30/input-output-txt/" class="archive-article-date">
+  	<time datetime="2018-07-30T00:35:54.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、格式化函数"><a href="#1、格式化函数" class="headerlink" title="1、格式化函数"></a>1、格式化函数</h2><h3 id="（1）repr"><a href="#（1）repr" class="headerlink" title="（1）repr()"></a>（1）repr()</h3><p>函数格式：repr(object) ，python内置函数<br>返回值：返回一个字符串类型的数据<br>说明：该函数，将参数中的对象进行处理，变为字符串类型，其中如果参数为字符串仍然会在外部加上“”，其内部的字符串的边界符仍然存在。</p>
+<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; repr(2.5)
+<span class="string">'2.5'</span>
+&gt;&gt;&gt; repr(<span class="string">"hello world"</span>)
+<span class="string">"'hello world'"</span>
+&gt;&gt;&gt; repr(<span class="string">'hello world'</span>)
+<span class="string">"'hello world'"</span>
+&gt;&gt;&gt; str((1,2,3))
+<span class="string">'(1, 2, 3)'</span>
+&gt;&gt;&gt; repr((1,2,3))
+<span class="string">'(1, 2, 3)'</span>
+</code></pre>
+<h3 id="（2）居左、居右、居中函数"><a href="#（2）居左、居右、居中函数" class="headerlink" title="（2）居左、居右、居中函数"></a>（2）居左、居右、居中函数</h3><p>rjust()、ljust()、center()<br>函数格式：rjust(int)、ljust(int)、center(int)<br>返回值：无<br>说明：该函数将输出的字符串居右/左/中对齐，左侧/右侧/左右两侧使用参数中规定的空格数来对齐。例如当int的值为5时，靠右对齐时，输出的数值左侧包括该数值有5位，其中空格4位；靠左对齐时，输出的数值右侧包括该数值有5位，其中空格4位；居中对齐时，输出的数值左右两侧包括该数值有5位，其中左侧空格2位，右侧空格2位，中间一位数字。</p>
+<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
+    <span class="built_in">print</span>(repr(i).rjust(5))
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
+    <span class="built_in">print</span>(repr(i).center(5)) 
+  1  
+  2  
+  3  
+  4  
+  5  
+  6  
+  7  
+  8  
+  9  
+  10 
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
+    <span class="built_in">print</span>(repr(i).ljust(5))  
+1    
+2    
+3    
+4    
+5    
+6    
+7    
+8    
+9    
+10   
+</code></pre>
+<h3 id="（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。"><a href="#（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。" class="headerlink" title="（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。"></a>（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。</h3><h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
+    <span class="built_in">print</span>(<span class="string">'{0:2d}{1:3d}{2:4d}'</span>.format(i,i*i,i*i*i))
+ 1  1   1
+ 2  4   8
+ 3  9  27
+ 4 16  64
+ 5 25 125
+ 6 36 216
+ 7 49 343
+ 8 64 512
+ 9 81 729
+101001000
+&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
+    <span class="built_in">print</span>(<span class="string">'{0:3d}{1:4d}{2:6d}'</span>.format(i,i*i,i*i*i))
+  1   1     1
+  2   4     8
+  3   9    27
+  4  16    64
+  5  25   125
+  6  36   216
+  7  49   343
+  8  64   512
+  9  81   729
+ 10 100  1000
+</code></pre>
+<h2 id="2、文本文件的输入输出"><a href="#2、文本文件的输入输出" class="headerlink" title="2、文本文件的输入输出"></a>2、文本文件的输入输出</h2><p>文本文件的操作步骤：</p>
+<h3 id="（1）打开文件"><a href="#（1）打开文件" class="headerlink" title="（1）打开文件"></a>（1）打开文件</h3><p>函数格式：open(file,mode,buffering,encoding)<br>返回值：返回一个文件对象，用来对文件进行操作。<br>说明：该函数主要是进行文件打开操作，如果文件不存在，则新建一个文件；如果存在就打开原有文件。</p>
+<h3 id="（2）操作文件"><a href="#（2）操作文件" class="headerlink" title="（2）操作文件"></a>（2）操作文件</h3><h3 id="1）写文件"><a href="#1）写文件" class="headerlink" title="1）写文件"></a>1）写文件</h3><h3 id="a-函数格式：write-str"><a href="#a-函数格式：write-str" class="headerlink" title="(a)函数格式：write(str)"></a>(a)函数格式：write(str)</h3><p>返回值：返回所写入文件的字符串中字符数。<br>说明：该函数可以一次性写入一个字符串内容到文件中。每次写入文件时，如果使用的模式为w，那么因为本次写入为覆盖式写入，即写入的内容会替换掉原有文件的内容。</p>
+<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>)
+num = file.write(<span class="string">'这是姐们创建的第一个文本文件！'</span>)
+<span class="built_in">print</span>(num)
+</code></pre>
+<p>结果：15</p>
+<h3 id="b-函数格式：writelines-sequence"><a href="#b-函数格式：writelines-sequence" class="headerlink" title="(b)函数格式：writelines(sequence)"></a>(b)函数格式：writelines(sequence)</h3><p>返回值：无<br>说明：该函数可以使用列表、字符串、元组、集合、字典等作为参数，其中这些序列中的元素必须为字符串类型，同时可以一次性写入多行字符串。</p>
+<h3 id="例如：写入列表（写入其他与之类似）"><a href="#例如：写入列表（写入其他与之类似）" class="headerlink" title="例如：写入列表（写入其他与之类似）"></a>例如：写入列表（写入其他与之类似）</h3><pre><code class="bash">ls = [<span class="string">'tv'</span>,<span class="string">'apple'</span>,<span class="string">'computer'</span>,<span class="string">'phone'</span>,<span class="string">'car'</span>]
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)
+file.writelines(ls)
+file.close()
+</code></pre>
+<h3 id="例如：一次写入多行（writelines（））"><a href="#例如：一次写入多行（writelines（））" class="headerlink" title="例如：一次写入多行（writelines（））"></a>例如：一次写入多行（writelines（））</h3><pre><code class="bash">str1 = <span class="string">''</span><span class="string">'</span>
+<span class="string">我去上学了</span>
+<span class="string">中午回来吃饭</span>
+<span class="string">好吗</span>
+<span class="string">'</span><span class="string">''</span>
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+file.writelines(str1)
+file.close()
+</code></pre>
+<p>结果：<br>在文件里显示：<br>我去上学了<br>中午回来吃饭<br>好吗</p>
+<h3 id="或者用write-写："><a href="#或者用write-写：" class="headerlink" title="或者用write()写："></a>或者用write()写：</h3><pre><code class="bash">str1 = <span class="string">'我去上学了\n中午回来吃饭\n好吗'</span>
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+file.write(str1)
+file.close()
+</code></pre>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>方法函数：flush()<br>函数格式：file.flush()<br>返回值：无<br>说明：该函数是来刷新缓冲区的，即将缓冲区中的数据立刻写入文件，同时清空缓冲区。下例中，就是将信息项达到100条时，进行一次刷新。</p>
+<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+<span class="keyword">for</span> i <span class="keyword">in</span> range(10000):
+    file.write(<span class="string">'hello'</span>+str(i))
+    <span class="keyword">if</span> i % 100 == 0:
+        file.flush()
+file.close()
+</code></pre>
+<h3 id="2）读文件（读出来的均是字符串）"><a href="#2）读文件（读出来的均是字符串）" class="headerlink" title="2）读文件（读出来的均是字符串）"></a>2）读文件（读出来的均是字符串）</h3><h3 id="a-函数格式：read-size"><a href="#a-函数格式：read-size" class="headerlink" title="(a)函数格式：read([size])"></a>(a)函数格式：read([size])</h3><p>返回值：返回按照字节逐一读取的数据。<br>说明：该函数按照字节个数逐一读取文件中的数据，如果没有规定读取数据的字节大小size，会一直读完文件中全部数据，如果规定了数据的字节大小，只读取规定字节数的内容。</p>
+<h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+a = file.read(5)
+<span class="built_in">print</span>(a)
+file.close()
+</code></pre>
+<h3 id="（b）函数格式：readline-size"><a href="#（b）函数格式：readline-size" class="headerlink" title="（b）函数格式：readline([size])"></a>（b）函数格式：readline([size])</h3><p>返回值：返回读取的一行字符串<br>说明：该函数一次能够读取文件中一行内容，如果需要读取全部内容，需要配合while循环使用，注意使用读取到的文件内容作为条件判断，即文件内容为空字符串时，退出循环。</p>
+<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><p>读取一行：</p>
+<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+a = file.readline()
+<span class="built_in">print</span>(a)
+file.close()
+</code></pre>
+<p>读取所有加循环：</p>
+<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+<span class="keyword">while</span> True:
+a = file.readline()
+<span class="built_in">print</span>(a)
+<span class="keyword">if</span> a == <span class="string">''</span>:
+<span class="built_in">break</span>
+file.close()
+</code></pre>
+<h3 id="（c）函数格式：readlines-size"><a href="#（c）函数格式：readlines-size" class="headerlink" title="（c）函数格式：readlines([size])"></a>（c）函数格式：readlines([size])</h3><p>返回值：返回一个包含多个字符串的列表<br>说明：该函数能够一次性将文件中的数据全部读取出来，然后将文件中每行字符串作为一个列表的元素，将其组装成一个列表返回。</p>
+<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+a = file.readlines()
+<span class="built_in">print</span>(a)
+file.close()
+</code></pre>
+<h3 id="（3）关闭文件"><a href="#（3）关闭文件" class="headerlink" title="（3）关闭文件"></a>（3）关闭文件</h3><p>函数格式：file.close（）<br>返回值：无<br>说明：当我们操作文件时，进行相关的写入操作，Python将数据写入文件之前，会将文件保存在文件缓冲区中，在我们调用close()函数时，首先会将文件缓冲区内还没有写入到文件中的数据进行刷新并强制写入文件，然后关闭Python与文件的通道，释放相关资源。</p>
+<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 = {<span class="string">'hello'</span>,<span class="string">'world'</span>,<span class="string">'zhameng'</span>}
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)
+file.writelines(set1)
+file.close()
+</code></pre>
+<h2 id="3、json格式处理"><a href="#3、json格式处理" class="headerlink" title="3、json格式处理"></a>3、json格式处理</h2><p>在Python中，提供了json模块可以实现对特殊数据结构的读写。比如：列表和字典。</p>
+<h3 id="（1）将嵌套列表或字典转为json格式数据"><a href="#（1）将嵌套列表或字典转为json格式数据" class="headerlink" title="（1）将嵌套列表或字典转为json格式数据"></a>（1）将嵌套列表或字典转为json格式数据</h3><pre><code class="bash">import json
+item = json.dumps(list/dict)
+file.writelines(item)  或者（json.dump(list, file)）
+</code></pre>
+<h3 id="（2）将文件中的列表或字典json字符串读取出来"><a href="#（2）将文件中的列表或字典json字符串读取出来" class="headerlink" title="（2）将文件中的列表或字典json字符串读取出来"></a>（2）将文件中的列表或字典json字符串读取出来</h3><pre><code class="bash">f= open(file,mode)
+json.load(f)
+</code></pre>
+<p>下面小总结里有例子</p>
+<h2 id="小总结："><a href="#小总结：" class="headerlink" title="小总结："></a>小总结：</h2><h3 id="（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。"><a href="#（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。" class="headerlink" title="（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。"></a>（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。</h3><h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><p>写入：</p>
+<pre><code class="bash">import json
+ls1 = [[<span class="string">'tv'</span>,<span class="string">'apple'</span>],[<span class="string">'computer'</span>,<span class="string">'phone'</span>,<span class="string">'car'</span>]]
+a = json.dumps(ls1)
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+file.writelines(a)
+file.close()
+</code></pre>
+<p>读出：</p>
+<pre><code class="bash">import json
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+ls = json.load(file)
+<span class="built_in">print</span>(ls)
+file.close()
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[[‘tv’, ‘apple’], [‘computer’, ‘phone’, ‘car’]]<br>PS D:\pythoncode&gt;</p>
+<h3 id="（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“-”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。"><a href="#（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“-”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。" class="headerlink" title="（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“[]”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。"></a>（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“[]”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。</h3><h3 id="举例：-1"><a href="#举例：-1" class="headerlink" title="举例："></a>举例：</h3><p>写入：</p>
+<pre><code class="bash">import json
+ls1 = [(1,2,3),5,6,3,(7,8,9)]
+a = json.dumps(ls1)
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+json.dump(ls1,file)
+file.close()
+</code></pre>
+<p>读出：</p>
+<pre><code class="bash">import json
+ls1 = [(1,2,3),5,6,3,[7,8,9]]
+a = json.dumps(ls1)
+file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+ls = json.load(file)
+<span class="built_in">print</span>(ls)
+file.close()
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[[1, 2, 3], 5, 6, 3, [7, 8, 9]]<br>PS D:\pythoncode&gt;<br>归纳：输入文本文件的内容只要包含元组，只要有元组的边界符括号“（）”出现，其符号都会变成列表的边界符“[ ]”，其余所有内容保持不变。</p>
+<h2 id="4、文件及路径操作函数"><a href="#4、文件及路径操作函数" class="headerlink" title="4、文件及路径操作函数"></a>4、文件及路径操作函数</h2><h3 id="（1）isfile-与isdir-（os-path模块）"><a href="#（1）isfile-与isdir-（os-path模块）" class="headerlink" title="（1）isfile()与isdir() （os.path模块）"></a>（1）isfile()与isdir() （os.path模块）</h3><p>函数格式：os.path.isfile(file)<br>返回值：bool<br>说明：根据传入的参数，判断该内容是否为文件类型。如果是文件类型返回True，如果不是返回False<br>isdir()</p>
+<p>函数格式：os.path.isdir(path)<br>返回值：bool<br>说明：根据传入的参数，判断内容是否为目录类型，如果是目录就返回True，如果不是返回False</p>
+<h3 id="（2）创建路径-mkdir-、删除路径removedirs-os模块"><a href="#（2）创建路径-mkdir-、删除路径removedirs-os模块" class="headerlink" title="（2）创建路径 mkdir()、删除路径removedirs() (os模块)"></a>（2）创建路径 mkdir()、删除路径removedirs() (os模块)</h3><p>函数格式：os.mkdir(path)<br>返回值：无<br>说明：如果指定路径中不存在该目录，那么创建该目录。注意，如果存在同名目录，则报错</p>
+<p>函数格式：os.removedirs(path)，os.rmdir(path)<br>返回值：无<br>说明：删除指定的目录，如果该目录中存在文件或子目录，都不允许删除。否则报错。</p>
+<h3 id="（3）删除文件-remove-（os模块）"><a href="#（3）删除文件-remove-（os模块）" class="headerlink" title="（3）删除文件 remove() （os模块）"></a>（3）删除文件 remove() （os模块）</h3><p>函数格式：os.remove(file)<br>返回值：无<br>说明：删除指定的文件，如果该文件不存在则报错。如果文件存在就删除。</p>
+<h3 id="（4）判断文件-目录是否存在-exists"><a href="#（4）判断文件-目录是否存在-exists" class="headerlink" title="（4）判断文件/目录是否存在 exists()"></a>（4）判断文件/目录是否存在 exists()</h3><p>函数格式：os.path.exists(file/path)<br>返回值：bool<br>说明：判断指定的文件或路径是否存在，如果存在返回True，如果不存在返回False。</p>
+<h3 id="（5）返回指定路径下，所有子路径-listdir"><a href="#（5）返回指定路径下，所有子路径-listdir" class="headerlink" title="（5）返回指定路径下，所有子路径 listdir()"></a>（5）返回指定路径下，所有子路径 listdir()</h3><p>函数格式：os.listdir(path)<br>返回值：list<br>说明：返回指定路径下，所有的子路径。</p>
+<h3 id="（6）返回当前路径-getcwd"><a href="#（6）返回当前路径-getcwd" class="headerlink" title="（6）返回当前路径 getcwd()"></a>（6）返回当前路径 getcwd()</h3><p>函数格式：os.getcwd()<br>返回值：path<br>说明：返回当前程序所在的绝对路径</p>
+<h3 id="（7）返回文件大小-getsize"><a href="#（7）返回文件大小-getsize" class="headerlink" title="（7）返回文件大小 getsize()"></a>（7）返回文件大小 getsize()</h3><p>函数格式：path.getsize()<br>返回值：int<br>说明：返回指定文件的大小，单位是字节</p>
+<h3 id="（8）重命名-rename"><a href="#（8）重命名-rename" class="headerlink" title="（8）重命名 rename()"></a>（8）重命名 rename()</h3><p>函数格式：os.rename(oldfilename/oldpath,newfilename/newpath)<br>返回值：无<br>说明:将指定的文件名或目录名进行重命名。</p>
+<h3 id="（9）替换-replace"><a href="#（9）替换-replace" class="headerlink" title="（9）替换 replace()"></a>（9）替换 replace()</h3><p>函数格式：os.replace(src,dst)<br>返回值：无<br>说明：使用目标文件替换掉原文件</p>
+<h3 id="注意：在Python3-x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from-pathlib-import-Path，使用。"><a href="#注意：在Python3-x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from-pathlib-import-Path，使用。" class="headerlink" title="注意：在Python3.x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from pathlib import Path，使用。"></a>注意：在Python3.x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from pathlib import Path，使用。</h3><p>其使用的前提为：需要先创建一个path对象，然后对其进行操作。<br>p = Path(‘c:\pythoncode\etc’)</p>
+<h2 id="作业练习"><a href="#作业练习" class="headerlink" title="作业练习"></a>作业练习</h2><h3 id="1、文件a-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#1、文件a-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="1、文件a.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>1、文件a.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p> apple        10        3<br> tesla        100000    1<br> mac          3000      2<br> lenovo       30000     3<br> chicken      10        3<br>通过代码，将其构建成这种数据类型：[{‘name’:’apple’,’price’:10,’amount’:3},{‘name’:’tesla’,’price’:1000000,’amount’:1}……] 并计算出总价钱。</p>
+<pre><code class="bash">def writeFile():
+    n=0
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
+    <span class="keyword">while</span> True:
+        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
+        file.write(item + <span class="string">'\n'</span>)
+        <span class="keyword">if</span> n == 5:
+            <span class="built_in">break</span>
+        n=n+1
+    file.close()
+
+writeFile()
+
+def readFile():
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
+    items = []
+    <span class="keyword">while</span> True:
+        dic = {}
+        line = file.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        ls = line.split()
+        dic[<span class="string">'name'</span>]=ls[0]
+        dic[<span class="string">'price'</span>]=ls[1]
+        dic[<span class="string">'amount'</span>]=ls[2]
+        dic[<span class="string">'total'</span>]=int(ls[1])*int(ls[2])
+        items.append(dic)
+    file.close()
+    <span class="built_in">return</span> items
+
+l = readFile()
+<span class="built_in">print</span>(l)
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘name’: ‘apple’, ‘price’: ‘10’, ‘amount’: ‘3’, ‘total’: 30}, {‘name’: ‘tesla’, ‘price’: ‘100000’, ‘amount’: ‘1’, ‘total’: 100000}, {‘name’: ‘mac’, ‘price’: ‘3000’, ‘amount’: ‘2’, ‘total’: 6000}, {‘name’: ‘lenovo’, ‘price’: ‘30000’,<br>‘amount’: ‘3’, ‘total’: 90000}, {‘name’: ‘chicken’, ‘price’: ‘10’, ‘amount’: ‘3’, ‘total’: 30}]<br>PS D:\pythoncode&gt;</p>
+<h3 id="2、文件a1-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#2、文件a1-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="2、文件a1.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>2、文件a1.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p> 文件内容：<br> name:apple price:10 amount:3 year:2012<br> name:tesla price:100000 amount:1 year:2013<br> 通过代码，将其构建成这种数据类型：<br>[{‘name’:’apple’,’price’:10,’amount’:3},<br>{‘name’:’tesla’,’price’:1000000,’amount’:1}……]<br>并计算出总价钱。<br>思路 {key1 : {‘name’:’apple’,’price’:10,’amount’:3} ….}</p>
+<pre><code class="bash">def writeFile():
+    n=0
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
+    <span class="keyword">while</span> True:
+        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
+        file.write(item + <span class="string">'\n'</span>)
+        <span class="keyword">if</span> n == 5:
+            <span class="built_in">break</span>
+        n=n+1
+    file.close()
+writeFile()
+
+def readFile():
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
+    items1 = []
+    total= 0
+    <span class="keyword">while</span> True:
+        dic = {}
+        line = file.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        items2 = line.split()
+        price = items2[1].split(<span class="string">':'</span>)
+        num = items2[2].split(<span class="string">':'</span>)
+        total = int(price[1])*int(num[1])
+        <span class="keyword">for</span> i <span class="keyword">in</span> items2:
+            items3=i.split(<span class="string">":"</span>)
+            dic[items3[0]]=items3[1].strip()
+        dic[<span class="string">'total'</span>] = total
+        items1.append(dic)
+    file.close()
+    <span class="built_in">return</span> items1
+
+l = readFile()
+<span class="built_in">print</span>(l)
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘name’: ‘apple’, ‘price’: ‘10’, ‘amount’: ‘5’, ‘year’: ‘2013’, ‘total’: 50}, {‘name’: ‘vivo’, ‘price’: ‘20’, ‘amount’: ‘6’, ‘year’: ‘2014’, ‘total’: 120}, {‘name’: ‘oppo’, ‘price’: ‘30’, ‘amount’: ‘7’, ‘year’: ‘2015’, ‘total’: 210}, {‘name’: ‘nubia’, ‘price’: ‘40’, ‘amount’: ‘8’, ‘year’: ‘2016’, ‘total’: 320}, {‘name’: ‘xiaomi’, ‘price’: ‘5’, ‘amount’: ‘5’, ‘year’: ‘2017’, ‘total’: 25}, {‘name’: ‘asus’, ‘price’: ‘100’, ‘amount’: ‘2’, ‘year’: ‘2018’, ‘total’: 200}]<br>PS D:\pythoncode&gt;</p>
+<h3 id="3、文件a2-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#3、文件a2-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="3、文件a2.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>3、文件a2.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p>文件内容：<br>序号   部门   人数  平均年龄  备注<br>1     python   30      26    单身狗<br>2     Linux    26      30    没对象<br>3     运营部   20      24    女生多<br>通过代码，将其构建成这种数据类型：<br>[{‘序号’:’1’,’部门’:Python,’人数’:30,’平均年龄’:26,’备注’:’单身狗’},……]<br>思路 {‘序号’:’1’,’部门’:Python,’人数’:30,’平均年龄’:26,’备注’:’单身狗’}</p>
+<pre><code class="bash">def writeFile():
+    n=0
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
+    <span class="keyword">while</span> True:
+        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
+        file.write(item + <span class="string">'\n'</span>)
+        <span class="keyword">if</span> n == 5:
+            <span class="built_in">break</span>
+        n=n+1
+    file.close()
+
+writeFile()
+
+def readFile():
+    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
+    items1 = []
+    <span class="keyword">while</span> True:
+        dic = {}
+        items3 = []
+        line = file.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        items2 = line.split()
+        dic[<span class="string">"序号"</span>] = items2[0]
+        dic[<span class="string">"部门"</span>] = items2[1]
+        dic[<span class="string">"人数"</span>] = items2[2]
+        dic[<span class="string">"平均年龄"</span>] = items2[3]
+        dic[<span class="string">"备注"</span>] = items2[4]
+        items1.append(dic)
+    file.close()
+    <span class="built_in">return</span> items1
+
+l = readFile()
+<span class="built_in">print</span>(l)
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘序号’: ‘1’, ‘部门’: ‘python’, ‘人数’: ‘30’, ‘平均年龄’: ‘26’, ‘备注’: ‘单身狗’}, {‘序号’: ‘2’, ‘部门’: ‘Linux’, ‘人数’: ‘26’, ‘平均年龄’: ‘30’, ‘备注’: ‘没对象’}, {‘序号’: ‘3’, ‘部门’: ‘运营部’, ‘人数’: ‘20’, ‘平均年龄’: ‘24’, ‘备注’: ‘女生多’}, {‘序号’: ‘4’, ‘部门’: ‘市场部’, ‘人数’: ‘25’, ‘平均年龄’: ‘25’, ‘备注’: ‘全脱单’}]<br>PS D:\pythoncode&gt;</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="1、json"><a href="#1、json" class="headerlink" title="1、json"></a>1、json</h3><p>json不支持元组，不支持除了str数据类型之外的key<br>（1）dumps序列化，loads反序列化，只在内存中操作数据。主要用于网络传输 和多个数据与文件打交道。<br>例如：</p>
+<pre><code class="bash">import json
+dic = {<span class="string">'name'</span>:<span class="string">'张三'</span>,<span class="string">'age'</span>:20}
+result = json.dumps(dic)
+<span class="built_in">print</span>(<span class="built_in">type</span>(result),result)
+
+item = json.loads(result)
+<span class="built_in">print</span>(item)
+</code></pre>
+<p>（2）json的dump序列化，load反序列化 ，主要用于一个数据直接存在文件里–直接和文件打交道。<br>例如：</p>
+<pre><code class="bash"><span class="comment">#json文件单行写入与读出</span>
+import json
+dic = {<span class="string">'name'</span>:<span class="string">'张三'</span>,<span class="string">'age'</span>:20}
+<span class="comment">#写入</span>
+f = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
+json.dump(dic,f)
+f.close()
+<span class="comment">#读出</span>
+f = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+result = json.load(f)
+<span class="built_in">print</span>(result)
+</code></pre>
+<p>（3）json如果要写入多个元素，可以先将元素dumps序列化， f.write(序列化+‘\n’)写入文件，读出元素的时候，应该先按行读文件，在使用loads将读出来的字符串转换成对应的数据类型。<br>例如：</p>
+<pre><code class="bash">import json
+<span class="comment">#将多个字典写入文件</span>
+def write_dic(file,*dic):   
+    f = open(file,<span class="string">'w'</span>,encoding = <span class="string">'utf-8'</span>)
+    <span class="keyword">for</span> dic <span class="keyword">in</span> dic:
+        results =  json.dumps(dic)
+        f.write(results+<span class="string">'\n'</span>)
+    f.close()
+<span class="comment">#将字典从文件中读出</span>
+def read_dic(file):     
+    f = open(file,<span class="string">'r'</span>,encoding = <span class="string">'utf-8'</span>)
+    <span class="keyword">while</span> True:
+        line = f.readline()
+        <span class="keyword">if</span> line == <span class="string">''</span>:
+            <span class="built_in">break</span>
+        results = json.loads(line)
+        <span class="built_in">print</span>(results)
+    f.close()
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    dic1 = {<span class="string">'name'</span>:<span class="string">'张三'</span>,<span class="string">'age'</span>:20}
+    dic2 = {<span class="string">'name'</span>:<span class="string">'蚱蜢'</span>,<span class="string">'age'</span>:28}
+    dic3 = {<span class="string">'name'</span>:<span class="string">'大大蚱蜢'</span>,<span class="string">'age'</span>:38}
+    write_dic(<span class="string">'my.txt'</span>,dic1,dic2,dic3)
+    read_dic(<span class="string">'my.txt'</span>)
+</code></pre>
+<h3 id="2、pickle"><a href="#2、pickle" class="headerlink" title="2、pickle"></a>2、pickle</h3><p>（1）dumps序列化，loads反序列化，只在内存中操作数据。主要用于网络传输 和多个数据与文件打交道。<br>例如：</p>
+<pre><code class="bash">import pickle
+dic = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
+result = pickle.dumps(dic)
+<span class="built_in">print</span>(<span class="built_in">type</span>(result),result)
+
+item = pickle.loads(result)
+<span class="built_in">print</span>(item)
+</code></pre>
+<p>（2）dump序列化，load反序列化 ，主要用于一个数据直接存在文件里–直接和文件打交道。（二进制文件）<br>例如：</p>
+<pre><code class="bash"><span class="comment">#pickle单行写入与读出</span>
+import pickle
+<span class="comment">#写入</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>) <span class="comment">#二进制文件不需要写编码</span>
+dic = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
+pickle.dump(dic,f)
+f.close()
+<span class="comment">#读出</span>
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
+item = pickle.load(f)
+<span class="built_in">print</span>(item)
+</code></pre>
+<p>（3）pickle可以，在写入多次dump的时候，能对应执行多次load来取出数据，而json不可以<br>例如：</p>
+<pre><code class="bash"><span class="comment">#pickle多行写入与读出</span>
+import pickle
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>) <span class="comment">#二进制文件不需要写编码</span>
+dic1 = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
+dic2 = {<span class="string">'id'</span>:<span class="string">'123666'</span>,<span class="string">'name'</span>:<span class="string">'小红'</span>}
+dic3 = {<span class="string">'id'</span>:<span class="string">'123356'</span>,<span class="string">'name'</span>:<span class="string">'小蓝'</span>}
+pickle.dump(dic1,f)
+pickle.dump(dic2,f)
+pickle.dump(dic3,f)
+f.close()
+
+f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
+<span class="keyword">while</span> True:
+    try:
+        item = pickle.load(f)
+        <span class="built_in">print</span>(item)
+    except Exception as e:
+        <span class="built_in">print</span>(<span class="string">'文件读取完毕'</span>)
+        <span class="built_in">break</span>
+f.close()
+</code></pre>
+<h3 id="3、shelve"><a href="#3、shelve" class="headerlink" title="3、shelve"></a>3、shelve</h3><pre><code class="bash"><span class="comment">#shelve文件的读取与写入，一般不使用此方法</span>
+import shelve
+s = shelve.open(<span class="string">'myfile'</span>)
+s[<span class="string">'key'</span>] = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
+s.close()
+
+s = shelve.open(<span class="string">'myfile'</span>)
+<span class="built_in">print</span>(s[<span class="string">'key'</span>])
+</code></pre>
+<h3 id="4、configparser文件的生成、写入、读取、以及增删改"><a href="#4、configparser文件的生成、写入、读取、以及增删改" class="headerlink" title="4、configparser文件的生成、写入、读取、以及增删改"></a>4、configparser文件的生成、写入、读取、以及增删改</h3><h3 id="（1）普通写法"><a href="#（1）普通写法" class="headerlink" title="（1）普通写法"></a>（1）普通写法</h3><pre><code class="bash">import configparser
+<span class="comment">#生成一个配置文件对象</span>
+config = configparser.ConfigParser()
+config[<span class="string">'account'</span>] = {
+    <span class="string">'username'</span>:<span class="string">'tom'</span>,
+    <span class="string">'password'</span>:<span class="string">'123'</span>
+}
+<span class="comment">#写文件</span>
+with open(<span class="string">'user.ini'</span>,<span class="string">'w'</span>) as f:
+    config.write(f)
+<span class="comment">#读文件</span>
+config = configparser.ConfigParser()
+<span class="comment">#将配置文件中的内容读出，那么原有的section及option都会被取出</span>
+config.read(<span class="string">'user.ini'</span>)
+<span class="comment">#得到配置文件里所有的小节名称</span>
+<span class="built_in">print</span>(config.sections()) 
+<span class="comment">#通过指定的小节的名称，得到其内部所有的options选项的key</span>
+<span class="built_in">print</span>(config.options(<span class="string">'account'</span>)) 
+<span class="comment">#判断指定的小节名称是否在文件里 </span>
+<span class="built_in">print</span>(<span class="string">'account'</span> <span class="keyword">in</span> config) 
+<span class="comment">#通过指定的小节名称，已经option的选项，得到对应的value</span>
+<span class="built_in">print</span>(config[<span class="string">'account'</span>][<span class="string">'username'</span>])
+<span class="built_in">print</span>(config[<span class="string">'account'</span>][<span class="string">'password'</span>])
+<span class="comment">#增删改</span>
+config = configparser.ConfigParser()
+<span class="comment">#将配置文件中的内容读出，那么原有的section及option都会被取出</span>
+config.read(<span class="string">'user.ini'</span>)
+<span class="comment">#增加一个section</span>
+config.add_section(<span class="string">'info'</span>)
+<span class="comment">#根据section，添加option</span>
+config.set(<span class="string">'info'</span>,<span class="string">'address'</span>,<span class="string">'zhengzhou'</span>)
+<span class="comment">#将以上新加的内容写入文件中</span>
+with open(<span class="string">'user.ini'</span>,<span class="string">'w'</span>) as f:
+    config.write(f)
+<span class="comment">#删除指定的section,同时会删除其内部的option</span>
+<span class="comment">#config.remove_section('info')</span>
+<span class="comment">#删除指定section下面的option内容</span>
+config.remove_option(<span class="string">'account'</span>,<span class="string">'password'</span>)
+with open(<span class="string">'user.ini'</span>,<span class="string">'w'</span>) as f:
+    config.write(f)
+</code></pre>
+<h3 id="（2）函数写法"><a href="#（2）函数写法" class="headerlink" title="（2）函数写法"></a>（2）函数写法</h3><pre><code class="bash">import configparser
+def saveConfig(file,config):
+    with open(file, <span class="string">'w'</span>) as f:
+        config.write(f)
+def createConfig(section, content, file):
+    <span class="comment"># 生成一个配置文件对象</span>
+    config = configparser.ConfigParser()
+    config[section] = content
+    saveConfig(file,config)
+def readConfig(file):
+    config = configparser.ConfigParser()
+    <span class="comment"># 将配置文件中的内容读取，原有的section及option都会被取出</span>
+    config.read(file)
+    <span class="built_in">return</span> config
+def removeSection(config, section, file):
+    <span class="comment"># 删除指定的section,同时会删除其内部的option</span>
+    config.remove_section(section)
+    saveConfig(file,config)
+def removeOption(config, section, option, file):
+    <span class="comment"># 删除指定的option</span>
+    config.remove_option(section, option)
+    saveConfig(file,config)
+def addSection(config, section, file):
+    <span class="comment">#添加section</span>
+    config.add_section(section)
+    saveConfig(file,config)
+def addOption(config, section, file, *option):
+    <span class="comment">#添加option</span>
+    config.set(section, option[0], option[1])
+    saveConfig(file,config)
+def findSection(config):
+    <span class="comment">#查找section</span>
+    <span class="built_in">return</span> config.sections()
+def findOptions(config, section):
+    <span class="comment">#查找option</span>
+    <span class="built_in">return</span> config.options(section)
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="comment">#生成一个配置文件，并写入到文件中</span>
+    section = <span class="string">'info'</span>
+    content = {<span class="string">'addr'</span>: <span class="string">'zhengzhou'</span>, <span class="string">'type'</span>: <span class="string">'A'</span>}
+    file = <span class="string">'book.ini'</span>
+    createConfig(section, content, file)
+
+    <span class="comment">#添加一个section，名为account</span>
+    section = <span class="string">'account'</span>
+    file = <span class="string">'book.ini'</span>
+    config = readConfig(file)
+    addSection(config, section, file)
+
+    <span class="comment">#添加一个option</span>
+    section = <span class="string">'account'</span>
+    option = [<span class="string">'id'</span>,<span class="string">'123456'</span>]
+    file = <span class="string">'book.ini'</span>
+    config = readConfig(file)
+    addOption(config, section, file, *option)
+
+    <span class="comment"># 删除指定的section,同时会删除其内部的option</span>
+    section = <span class="string">'account'</span>
+    file = <span class="string">'book.ini'</span>
+    config = readConfig(file)
+    removeSection(config, section, file)
+
+    <span class="comment"># 删除指定的option</span>
+    section = <span class="string">'info'</span>
+    option = <span class="string">'type'</span>
+    file = <span class="string">'book.ini'</span>
+    config = readConfig(file)
+    removeOption(config, section, option, file)
+
+    <span class="comment">#查找Section</span>
+    file = <span class="string">'book.ini'</span>
+    config = readConfig(file)
+    findSection(config)
+    <span class="built_in">print</span>(config.sections())
+
+    <span class="comment">#查找Options</span>
+    section = <span class="string">'info'</span>
+    file = <span class="string">'book.ini'</span>
+    config = readConfig(file)
+    findOptions(config, section)
+    <span class="built_in">print</span>(config.options(section))
+</code></pre>
+<h3 id="5、collections模块"><a href="#5、collections模块" class="headerlink" title="5、collections模块"></a>5、collections模块</h3><p>在内置数据类型（dict、list、set、tuple）的基础上，collections模块还提供了几个额外的数据类型：Counter、deque、defaultdict、namedtuple和OrderedDict等<br>（1）namedtuple: 生成可以使用名字来访问元素内容的tuple<br>例如：tuple元组，表示不变集合，例如，一个点的二维坐标就可以表示成：</p>
+<pre><code class="bash">from collections import namedtuple
+<span class="comment">#tuple元组，表示不变集合，例如，一个点的二维坐标就可以表示成：</span>
+<span class="built_in">test</span> = namedtuple(<span class="string">'hello'</span>,[<span class="string">'x'</span>,<span class="string">'y'</span>])
+p = <span class="built_in">test</span>(1,2)
+<span class="built_in">print</span>(p.x)
+<span class="built_in">print</span>(p.y)
+</code></pre>
+<p>（2）deque: 双端队列，可以快速的从另外一侧追加和推出对象<br>队列是为了维护秩序的(例如:抢票,请求之类的)，如果需要用到增删改查，不适合用队列。<br>双端队列:deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，这样就可以非常高效地往头部添加或删除元素<br>例如：</p>
+<pre><code class="bash">from collections import deque
+dq = deque()
+dq.append(1)
+dq.append(2)
+dq.append(3)
+dq.append(4)
+dq.append(5)
+dq.popleft()
+dq.pop()
+<span class="built_in">print</span>(dq)
+</code></pre>
+<p>（3）OrderedDict: 有序字典<br>例如：</p>
+<pre><code class="bash">from collections import OrderedDict
+dic1 = OrderedDict([(<span class="string">'1'</span>,<span class="string">'one'</span>),(<span class="string">'2'</span>,<span class="string">'two'</span>),(<span class="string">'3'</span>,<span class="string">'three'</span>)])
+<span class="built_in">print</span>(dic1)
+</code></pre>
+<p>（4）Counter: 计数器，主要用来计数<br>counter类的目的是用来跟踪值出现的次数，它是一个无序的容器类型，以字典的键值对形式存储，其中元素作为key,其计数作为value.计数值可以使任意的interger(包括0和负数)<br>例如：</p>
+<pre><code class="bash">from collections import Counter
+c = Counter(<span class="string">'sdfsnioefuhoimmjcbowdjpqdn'</span>)
+<span class="built_in">print</span>(c)
+<span class="built_in">print</span>(c.keys())
+</code></pre>
+<h3 id="6、time"><a href="#6、time" class="headerlink" title="6、time"></a>6、time</h3><p>在python中，通常有三种方式来表示时间：时间戳，元组(struct_time),格式化的时间字符串</p>
+<h3 id="1）时间戳-timestamp-：通常来说，时间戳表示的是从1970年1月1日00-00-00开始按秒计算的偏移量。我们运行“type-time-time-”，返回的是float类型"><a href="#1）时间戳-timestamp-：通常来说，时间戳表示的是从1970年1月1日00-00-00开始按秒计算的偏移量。我们运行“type-time-time-”，返回的是float类型" class="headerlink" title="1）时间戳(timestamp) ：通常来说，时间戳表示的是从1970年1月1日00:00:00开始按秒计算的偏移量。我们运行“type(time.time())”，返回的是float类型"></a>1）时间戳(timestamp) ：通常来说，时间戳表示的是从1970年1月1日00:00:00开始按秒计算的偏移量。我们运行“type(time.time())”，返回的是float类型</h3><p>例如：</p>
+<pre><code class="bash">import time
+<span class="comment">#时间戳，返回的是float类型</span>
+<span class="built_in">print</span>(time.time())
+</code></pre>
+<h3 id="2）元组-struct-time-：struct-time元组共有9个元素共九个元素-年，月，日，时，分，秒，一年中第几周，一年中第几天等）"><a href="#2）元组-struct-time-：struct-time元组共有9个元素共九个元素-年，月，日，时，分，秒，一年中第几周，一年中第几天等）" class="headerlink" title="2）元组(struct_time) ：struct_time元组共有9个元素共九个元素:(年，月，日，时，分，秒，一年中第几周，一年中第几天等）"></a>2）元组(struct_time) ：struct_time元组共有9个元素共九个元素:(年，月，日，时，分，秒，一年中第几周，一年中第几天等）</h3><p>索引（index）   属性（attribute）         值（values）<br>0                 tm_year（年）           比如2011<br>1                 tm_mon（月）            1-12<br>2                 tm_mday（日）           1-31<br>3                 tm_hour（时）           0-23<br>4                 tm_min（分）            0-59<br>5                 tm_sec（秒）            0-60<br>6                 tm_wday（weekday）      0-6（0表示周一）<br>7                 tm_yday（一年中的第几天） 1-366<br>8                 tm_isdst（是否是夏令时）  默认为0</p>
+<p>例如：</p>
+<pre><code class="bash">import time
+<span class="comment">#本地结构化时间</span>
+<span class="built_in">print</span>(time.localtime())
+<span class="comment">#英国结构化时间</span>
+<span class="built_in">print</span>(time.gmtime())
+</code></pre>
+<h3 id="3）格式化的时间字符串-Format-String-‘1999-12-06’"><a href="#3）格式化的时间字符串-Format-String-‘1999-12-06’" class="headerlink" title="3）格式化的时间字符串(Format String): ‘1999-12-06’"></a>3）格式化的时间字符串(Format String): ‘1999-12-06’</h3><p>%y 两位数的年份表示（00-99）<br>%Y 四位数的年份表示（000-9999）<br>%m 月份（01-12）<br>%d 月内中的一天（0-31）<br>%H 24小时制小时数（0-23）<br>%I 12小时制小时数（01-12）<br>%M 分钟数（00=59）<br>%S 秒（00-59）<br>%a 本地简化星期名称<br>%A 本地完整星期名称<br>%b 本地简化的月份名称<br>%B 本地完整的月份名称<br>%c 本地相应的日期表示和时间表示<br>%j 年内的一天（001-366）<br>%p 本地A.M.或P.M.的等价符<br>%U 一年中的星期数（00-53）星期天为星期的开始<br>%w 星期（0-6），星期天为星期的开始<br>%W 一年中的星期数（00-53）星期一为星期的开始<br>%x 本地相应的日期表示<br>%X 本地相应的时间表示<br>%Z 当前时区的名称<br>%% %号本身<br>例如：<br>import time</p>
+<pre><code class="bash">A）<span class="comment">#格式化时间</span>
+<span class="built_in">print</span>(time.strftime(<span class="string">'%Y-%m-%d %A %H:%M:%S'</span>))
+</code></pre>
+<p>B）时间的转换：<br>import time<br>（1）#格式化时间转换的时间戳</p>
+<pre><code class="bash">p = time.strptime(<span class="string">'2018-08-08'</span>,<span class="string">'%Y-%m-%d'</span>)
+<span class="built_in">print</span>(time.mktime(p))
+</code></pre>
+<p>（2）#时间戳转换的格式化时间</p>
+<pre><code class="bash">p2 = time.localtime(1500000000)
+<span class="built_in">print</span>(time.strftime(<span class="string">'%Y-%m-%d'</span>,p2))
+</code></pre>
+<p>（3）结构化时间转格式化时间</p>
+<pre><code class="bash"><span class="built_in">print</span>(time.strftime(<span class="string">'%Y-%m-%d,%H:%M:%S'</span>,time.localtime（1500000000）))<span class="comment">#年月日时分秒</span>
+</code></pre>
+<p>（4）格式化时间转结构化时间</p>
+<pre><code class="bash"><span class="built_in">print</span>(time.strptime(‘2018-01-24’，<span class="string">'%Y-%m-%d'</span>))
+<span class="built_in">print</span>(time.strptime(‘04/24/2018’，‘%m%d%Y’))
+</code></pre>
+<p>（5）结构化时间—–&gt;%a %b %d %H:%M:%S(格式化时间)</p>
+<pre><code class="bash">time.asctime(结构化时间) 如果不传参数，直接返回当前时间的格式化串
+<span class="comment">#当前时间</span>
+<span class="built_in">print</span>(time.asctime())
+<span class="comment">#指定时间</span>
+<span class="built_in">print</span>(time.asctime(time.localtime(1500000000)))
+</code></pre>
+<p>（6）时间戳—–&gt; %a %b % d %H:%M:%S(格式化时间)</p>
+<pre><code class="bash">time.ctime(时间戳) 如果不传参数，直接返回当前时间的格式化串
+<span class="comment">#当前时间</span>
+<span class="built_in">print</span>(time.ctime())
+<span class="comment">#指定时间</span>
+<span class="built_in">print</span>(time.ctime(1500000000))
+</code></pre>
+<h3 id="7、random"><a href="#7、random" class="headerlink" title="7、random"></a>7、random</h3><p>import random<br>（1）#大于0且小于1之间的小数<br>print(random.random())<br>（2）#大于1且小于3之间的小数<br>print(random.uniform(1,3))<br>（3）#大于等于1且小于等于10之间的数<br>print(random.randrange(1,10))<br>（4）#大于等于1且小于等于10之间的奇数<br>print(random.randrange(1,10，2))<br>（5）#大于等于1且小于等于10之间的整数<br>print(random.randint(1,10))<br>（6）#在指定序列中随机抽取一个数字<br>print(random.choice([1,2,3,4,5,6,7,8,9]))<br>（7）#在指定序列中随机抽取2个</p>
+<p>#print(random.sample([1,2,[4,5]],2))<br>（8）#打乱秩序<br>item = [1,2,3,4,5]<br>random.shuffle(item)<br>print(item)</p>
+<h3 id="8、sys"><a href="#8、sys" class="headerlink" title="8、sys"></a>8、sys</h3><p>（1）sys模块是与python解释器交互的一个接口<br>sys.argv     命令行参数List，第一个元素是程序本身路径<br>sys.exit(n)  退出程序，正常退出时exit(0),错误退出sys.exit(1)<br>sys.version  获取Python解释程序的版本信息<br>sys.path    返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值<br>sys.platform   返回操作系统平台名称<br>例如：</p>
+<pre><code class="bash">import sys
+<span class="built_in">print</span>(sys.argv)
+<span class="built_in">print</span>(sys.path)
+<span class="built_in">print</span>(sys.platform)
+<span class="built_in">print</span>(sys.version)
+<span class="built_in">print</span>(sys.argv)
+sys.exit(0)
+</code></pre>
+<p>例题：<br>（1）#生成6位随机验证码</p>
+<pre><code class="bash">import random
+def confident():
+    list1=[]
+    <span class="comment">#随机产生6位数字</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(6):
+        num = str(random.randint(0,9))  <span class="comment">#将数字转为字符串</span>
+        list1.append(num)
+        confident_num = <span class="string">''</span>.join(list1)
+    <span class="built_in">return</span> confident_num
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="built_in">print</span>(confident())
+</code></pre>
+<p>（2）#生成4位数字+字母验证码</p>
+<pre><code class="bash">import random
+def confident():
+    <span class="comment">#随机产生4个数字</span>
+    list1 = [str(random.randint(0,9)) <span class="keyword">for</span> i <span class="keyword">in</span> range(4)]
+    <span class="comment">#随机产生4个大写字母  </span>
+    list2 = [chr(random.randint(65,90)) <span class="keyword">for</span> i <span class="keyword">in</span> range(4)]
+    <span class="comment">#随机产生4个小写字母  </span>
+    list3 = [chr(random.randint(97,122)) <span class="keyword">for</span> i <span class="keyword">in</span> range(4)]
+    <span class="comment">#将随机产生的数字、大小写字母连在一起</span>
+    list4 = list1+list2+list3
+    <span class="comment">#从随机产生的数字、字母中随机返回4个，并连接成字符串</span>
+    confident_num = <span class="string">''</span>.join(random.sample(list4,4))  
+    <span class="built_in">return</span> confident_num
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="built_in">print</span>(confident())
+
+import time
+def timepass(old_time):
+    old_time = time.mktime(time.strptime(old_time,<span class="string">'%Y-%m-%d %H:%M:%S'</span>))
+    pass_time = time.time() - old_time   <span class="comment">#计算输入的时间距今相差多少秒</span>
+    <span class="built_in">return</span> pass_time
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    old_time = input(<span class="string">'请以YYYY-MM-DD HH:MM:SS格式输入一个时间：'</span>)
+    now_time = time.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)  <span class="comment">#当前时间</span>
+    second = timepass(old_time)   <span class="comment">#相差秒数</span>
+    minutes = second//60  <span class="comment">#相差分钟数</span>
+    hour = minutes//60  <span class="comment">#相差小时数</span>
+    day = hour//24   <span class="comment">#相差天数</span>
+    month = day//30  <span class="comment">#相差月数</span>
+    year = month//12  <span class="comment">#相差年数</span>
+    <span class="built_in">print</span>(<span class="string">'从{0}开始，比起{1}过去了{2}年，{3}月，{4}天，{5}小时，{6}分钟，{7}秒'</span>.format(now_time,old_time,year,month,day,hour,minutes,second))
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/30/input-output-txt/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-def-recursion" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/26/def-recursion/">函数的递归</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/26/def-recursion/" class="archive-article-date">
+  	<time datetime="2018-07-26T13:10:50.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="递归概念"><a href="#递归概念" class="headerlink" title="递归概念"></a>递归概念</h3><p>就是使用自身函数对自身进行调用，每调用一次将当前次的运行结果保存到函数的堆栈中，以副本形式保存，一直到最后完成全部调用。然后逐一向外将当期函数的结果返回并退出到其调用的位置。<br>在Python中，通常推荐使用迭代，递归本身对内存的消耗和运行效率低下的问题较少使用。<br>举例：</p>
+<h4 id="普通写法求n的阶乘"><a href="#普通写法求n的阶乘" class="headerlink" title="普通写法求n的阶乘"></a>普通写法求n的阶乘</h4><pre><code class="bash">def func1(n):
+    result = n
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,n):
+        result *= i
+    <span class="built_in">return</span> result
+
+<span class="built_in">print</span>(func1(5))
+</code></pre>
+<h3 id="递归写法求n的阶乘"><a href="#递归写法求n的阶乘" class="headerlink" title="递归写法求n的阶乘"></a>递归写法求n的阶乘</h3><pre><code class="bash">def func2(n):
+    <span class="keyword">if</span> n == 1:
+        <span class="built_in">return</span> 1
+    <span class="keyword">else</span>:
+        <span class="built_in">return</span> n * func2(n-1)
+
+<span class="built_in">print</span>(func2(5))
+</code></pre>
+<h3 id="递归写法求n的阶乘的和"><a href="#递归写法求n的阶乘的和" class="headerlink" title="递归写法求n的阶乘的和"></a>递归写法求n的阶乘的和</h3><pre><code class="bash">Sum=0
+factorial=1
+num = int(input(<span class="string">'请输入一个数字：'</span>))
+<span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1):
+    factorial = factorial*i
+    Sum +=factorial
+<span class="built_in">print</span>(<span class="string">'阶乘之和：'</span>,Sum) 
+</code></pre>
+<h3 id="递归写法求n的阶乘的和-1"><a href="#递归写法求n的阶乘的和-1" class="headerlink" title="递归写法求n的阶乘的和"></a>递归写法求n的阶乘的和</h3><pre><code class="bash">from functools import reduce
+def func3(n):
+    <span class="keyword">if</span> n == 1:
+        <span class="built_in">return</span> 1
+    <span class="keyword">else</span>:
+        <span class="built_in">return</span> n * func3(n-1)
+result = reduce(lambda x,y:x+func3(y),[1,2,3,4,5])
+<span class="built_in">print</span>(result)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/26/def-recursion/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-def-higher-function" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1146,555 +2261,6 @@ def main(dic):
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/25/case-shopping-def/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-def-variables" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/def-variables/">关于函数的全局变量与局部变量</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/def-variables/" class="archive-article-date">
-  	<time datetime="2018-07-25T04:48:46.222Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、局部变量与全局变量"><a href="#1、局部变量与全局变量" class="headerlink" title="1、局部变量与全局变量"></a>1、局部变量与全局变量</h3><p>（1）python中，函数在调用的时候，python才会给函数一个内存地址，用来执行函数内部的相关代码。<br>（2）python程序在运行时，首先会将程序最外部的变量载入内存，并将其分配相关的内存空间，这种变量为全局变量。<br>（3）函数中声明的变量，只有在函数被执行时，才会被分配内存空间进行执行。这种变量为局部变量。<br>（4）python程序执行的过程中，执行函数时首先会检查其函数内部的局部变量是否存在，如果存在就调用它，如果不存在，就从外部全局变量中进行调用，如果仍然没有发现相关内容，则报错。</p>
-<h3 id="2、全局作用域globals-与-局部作用域locals"><a href="#2、全局作用域globals-与-局部作用域locals" class="headerlink" title="2、全局作用域globals() 与 局部作用域locals()"></a>2、全局作用域globals() 与 局部作用域locals()</h3><p>（1）在python中，通过globals()观察全局作用域中内容，包括：内置函数、自定义函数、全局变量。<br>（2）通过locals()观察局部作用域中的内容，包括：局部变量、嵌套函数（内部函数）inner</p>
-<h3 id="3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。"><a href="#3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。" class="headerlink" title="3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。"></a>3、当函数中出现嵌套情况时，最内层函数执行调用变量，会采用“就近原则”，即先查找自身范围内的变量，如果没有找到，则向上查找，直到程序最外部结束。</h3><h3 id="4、global与nonlocal"><a href="#4、global与nonlocal" class="headerlink" title="4、global与nonlocal"></a>4、global与nonlocal</h3><p>（1）global用来修饰局部变量时，表示该变量将作为全局变量来使用。即不仅在函数中可以被调用，同时在文件最外部也可以被调用。<br>（2）nonlocal用来修饰嵌套函数内部的变量，对父级作用域（外层函数）中的变量进行引用和修改，那么从该层(包括父级)以下都将调用该变量的值。注意，该关键字只能影响其直接父级函数。<br>（3）两者区别：<br>使用global关键字修饰的变量之前可以并不存在<br>而使用nonlocal关键字修饰的变量在嵌套作用域中必须已经存在。</p>
-<h3 id="5、总结："><a href="#5、总结：" class="headerlink" title="5、总结："></a>5、总结：</h3><p>（1）在函数中定义的变量，我们称为局部变量。包括在函数内部定义的变量、作为参数传递进来的变量。局部变量起作用的范围，我们称为局部作用域。因为Python在调用局部变量时，需要给它分配内存地址，我们称为这个地址为局部命名空间。<br>（2）在文件最外层定义的变量，我们称为全局变量，可以在文件中的任意位置进行调用。全局变量起作用的范围，我们称为全局作用域。Python在载入文件时，就需要给全局变量分配内存地址，这个地址我们称为全局命名空间。</p>
-<h3 id="6、Python运行时处理变量的步骤："><a href="#6、Python运行时处理变量的步骤：" class="headerlink" title="6、Python运行时处理变量的步骤："></a>6、Python运行时处理变量的步骤：</h3><p>（1）从Python解释器开始执行之后，就在内存中开辟里一个空间，每当遇到一个变量的时候，就把变量名和值之间对应的关系记录下来，但是当遇到函数定义的时候，解释器只是象征性的将函数名读入内存，表示知道这个函数存在了，至于函数内部的变量和逻辑，解释器根本不关心。<br>（2）函数执行时，函数中的变量会储存在新开辟出来的内存中，函数中的变量只能在函数内部使用，并且会随着函数执行完毕，这块内存中的所有内容也会被清空</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/def-variables/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-def-definition" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/def-definition/">函数的定义</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/def-definition/" class="archive-article-date">
-  	<time datetime="2018-07-25T04:33:55.355Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、函数的定义如下："><a href="#1、函数的定义如下：" class="headerlink" title="1、函数的定义如下："></a>1、函数的定义如下：</h3><p>函数的格式：</p>
-<pre><code>def 函数名（[参数列表]）：
-    执行代码
-</code></pre><p>其中，函数名的命名方式与变量名的要求相同，即只能是数字、字符、下划线三者构成，同时不能由数字开头。<br>另外，函数的参数根据情况 ，可以有参，也可以无参。同时，参数的个数，可以是1到N个。<br>最后，调用函数时，一定要保证该函数已经被定义了，调用的函数名要与定义的函数名一致。</p>
-<h3 id="2、函数的调用"><a href="#2、函数的调用" class="headerlink" title="2、函数的调用"></a>2、函数的调用</h3><p>函数在外部调用时，直接写函数名以及函数参数即可，不需要将函数体写出来。同时，函数是否有返回值，由其函数体最后一句代码是否为return来决定的。如果由return语句，那么就意味着该函数有返回值，如果没有返回值就意味着返回值为None。</p>
-<p>注意：函数使用return作为返回值语句，该命令通常放在函数的最后一句，保证函数相关的代码都执行完毕后才返回，如果后面还有其他程序，则不会被执行。</p>
-<h3 id="3、函数的参数"><a href="#3、函数的参数" class="headerlink" title="3、函数的参数"></a>3、函数的参数</h3><p>概念：函数在定义时声明的参数，我们称为形参（形式参数）。形参的作用，主要是用来表明参数顺序、类型和个数。并不代表具体内容。</p>
-<p>我们在调用函数的时候，根据形参的规定（顺序、类型、个数），传递进来实际的内容。我们称为实参。</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def display(name,age):   <span class="comment"># 定义函数时声明的形参：name,age</span>
-    <span class="built_in">print</span>(name,age)
-display(<span class="string">'tom'</span>,22)        <span class="comment">#调用函数时实际传递的参数值：tom, 22</span>
-</code></pre>
-<h3 id="（1）必须的参数"><a href="#（1）必须的参数" class="headerlink" title="（1）必须的参数"></a>（1）必须的参数</h3><p>我们在函数定义时，显示声明在函数的参数列表中的参数，这些参数一旦被声明，函数在调用时，必须按照所声明的顺序、个数和数据类型，来传递实际的参数内容。</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def display(name,age):
-    <span class="built_in">print</span>(<span class="string">'夏天好热，不喜欢！'</span>)
-    <span class="built_in">print</span>(<span class="string">'名叫{}，年纪{}的人是一个大傻帽！'</span>.format(name,age))
-display(<span class="string">'蚱蜢'</span>,38)
-</code></pre>
-<h3 id="（2）关键字参数"><a href="#（2）关键字参数" class="headerlink" title="（2）关键字参数"></a>（2）关键字参数</h3><p>我们在定义函数时，声明了函数的参数后，在调用函数时我们不仅传递实际的参数内容，同时还将参数名字与之对应，这样保证传递进来的参数如果没有按照函数定义时规定的顺序，也能够正确传递进来。</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def display(name,age):
-    <span class="built_in">print</span>(<span class="string">'夏天好热，不喜欢！'</span>)
-    <span class="built_in">print</span>(<span class="string">'名叫{}，年纪{}的人真墨迹！'</span>.format(name,age))
-display(age = 22,name = <span class="string">'蚱蜢'</span>)
-</code></pre>
-<h3 id="（3）默认参数"><a href="#（3）默认参数" class="headerlink" title="（3）默认参数"></a>（3）默认参数</h3><p>我们在定义函数时，声明函数的参数，同时可以给这些参数进行赋值，在调用该函数时，如果没有给对应参数传递实参，那么python会默认使用定义函数时所声明的默认参数值。</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def display(name,age):
-    <span class="built_in">print</span>(<span class="string">'夏天好热，不喜欢！'</span>)
-    <span class="built_in">print</span>(<span class="string">'名叫{}，年纪{}的人真墨迹！'</span>.format(name,age))
-display(age = 22,name = <span class="string">'蚱蜢'</span>)
-</code></pre>
-<h3 id="（4）可变参数"><a href="#（4）可变参数" class="headerlink" title="（4）可变参数"></a>（4）可变参数</h3><h3 id="1）普通可变参数：我们在定义函数时，因为参数过多或者不确定具体参数列表的个数，我们还可以采用可变参数来实现。可变参数表示从0到N个参数，采用-参数名"><a href="#1）普通可变参数：我们在定义函数时，因为参数过多或者不确定具体参数列表的个数，我们还可以采用可变参数来实现。可变参数表示从0到N个参数，采用-参数名" class="headerlink" title="1）普通可变参数：我们在定义函数时，因为参数过多或者不确定具体参数列表的个数，我们还可以采用可变参数来实现。可变参数表示从0到N个参数，采用*参数名"></a>1）普通可变参数：我们在定义函数时，因为参数过多或者不确定具体参数列表的个数，我们还可以采用可变参数来实现。可变参数表示从0到N个参数，采用*参数名</h3><p>注意，此时可变参数类型，为tuple元组类型。</p>
-<h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def printpara(*vars):
-    <span class="built_in">print</span>(<span class="string">"大家好，我的名字叫蚱蜢，蚱蜢的蚱，蚱蜢的蜢！"</span>)
-    <span class="keyword">for</span> var <span class="keyword">in</span> vars:
-        <span class="built_in">print</span>(var)
-printpara()
-printpara(<span class="string">'蚱蜢'</span>)
-printpara(<span class="string">'蚱蜢'</span>,<span class="string">'曹猛'</span>,<span class="string">'蚱蜢'</span>)
-</code></pre>
-<h3 id="2）关键字可变参数：我们在定义函数时，通过使用-参数名，来表示0到N个参数，在外部调用函数时，将这些可变参数组装成一个字典。"><a href="#2）关键字可变参数：我们在定义函数时，通过使用-参数名，来表示0到N个参数，在外部调用函数时，将这些可变参数组装成一个字典。" class="headerlink" title="2）关键字可变参数：我们在定义函数时，通过使用**参数名，来表示0到N个参数，在外部调用函数时，将这些可变参数组装成一个字典。"></a>2）关键字可变参数：我们在定义函数时，通过使用**参数名，来表示0到N个参数，在外部调用函数时，将这些可变参数组装成一个字典。</h3><h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def person(name, password, **kw):
-    <span class="built_in">print</span>(<span class="string">'用户名{0}，密码{1}，其他内容{2}'</span>.format(name,password,kw))
-
-person(<span class="string">'tom'</span>,<span class="string">'123456'</span>)
-用户名tom，密码123456，其他内容{}
-
-person(<span class="string">'simth'</span>, <span class="string">'12345'</span>,sex=<span class="string">'男'</span>, address=<span class="string">'郑州'</span>)
-用户名simth，密码12345，其他内容{<span class="string">'sex'</span>: <span class="string">'男'</span>, <span class="string">'address'</span>: <span class="string">'郑州'</span>}
-</code></pre>
-<h3 id="3）特殊用法："><a href="#3）特殊用法：" class="headerlink" title="3）特殊用法：*"></a>3）特殊用法：*</h3><p>在函数定义中，如果单独使用一个<em>号，意味着该</em>后面的参数，为关键字参数声明时必须使用的名字。在调用该函数时，关键字参数的名字要与函数定义中*号后面的参数名称一致。</p>
-<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">def person(name, password, *, city, sex):
-    <span class="built_in">print</span>(<span class="string">'用户名{0}，密码{1}，其他内容{2}{3}'</span>.format(name, password, city, sex))
-
-person(<span class="string">'simth'</span>, <span class="string">'12345'</span>,sex=<span class="string">'男'</span>, city=<span class="string">'郑州'</span>)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/def-definition/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-fangwen-bo-ke-yuan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/21/fangwen-bo-ke-yuan/">访问博客园小案例</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/21/fangwen-bo-ke-yuan/" class="archive-article-date">
-  	<time datetime="2018-07-21T04:07:44.106Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="题目要求如下："><a href="#题目要求如下：" class="headerlink" title="题目要求如下："></a>题目要求如下：</h2><p>启动程序，首页面应该显示成如下格式：<br>    欢迎来到博客园首页<br>    1:请登录<br>    2:请注册<br>    3:文章页面<br>    4:日记页面<br>    5:评论页面<br>    6:收藏页面<br>    7:注销<br>    8:退出程序<br>2)，用户输入选项，3~6选项必须在用户登录成功之后，才能访问成功。<br>3)，用户选择登录，用户名密码从字典中读取验证，三次机会，没成功则结束整个程  序运行，成功之后，可以选择访问3~6项，访问页面之前，必须要在打印信息，  格式为–&gt;用户:xx 在xx年xx月xx日 执行了 %s操作，访问页面时，页面内容为：欢  迎xx用户访问评论（文章，日记，收藏）页面<br>4)，如果用户没有注册，则可以选择注册，注册成功之后，可以自动完成登录（完成自动登录+5分），然后进入首页选择。<br>5)，注销用户是指注销用户的登录状态，使其在访问任何页面时，必须重新登录。<br>6)，退出程序为结束整个程序运行。</p>
-<pre><code class="bash">import time
-<span class="comment">#import os </span>
-<span class="comment">#print(time.strftime('%Y-%m-%d',time.localtime()))</span>
-<span class="comment">#os.system('cls')</span>
-user_status = {<span class="string">'username'</span>: None,<span class="string">'status'</span>: False}
-login_dic = {
-    <span class="string">'user_name'</span> : [<span class="string">'rose'</span>,<span class="string">'jack'</span>,<span class="string">'wdd'</span>],
-    <span class="string">'rose'</span> : {
-        <span class="string">'name'</span> : <span class="string">'rose'</span>,
-        <span class="string">'pass_word'</span> : <span class="string">'123'</span>,
-    },
-    <span class="string">'jack'</span> : {
-        <span class="string">'name'</span> : <span class="string">'jack'</span>,
-        <span class="string">'pass_word'</span> : <span class="string">'456'</span>,
-    },
-    <span class="string">'wdd'</span> : {
-        <span class="string">'name'</span> : <span class="string">'wdd'</span>,
-        <span class="string">'pass_word'</span> : <span class="string">'789'</span>,
-    }
-}
-dic1 = {
-    1: <span class="string">'请登录'</span>,
-    2: <span class="string">'请注册'</span>,
-    3: <span class="string">'文章页面'</span>,
-    4: <span class="string">'日记页面'</span>,
-    5: <span class="string">'评论页面'</span>,
-    6: <span class="string">'收藏页面'</span>,
-    8: <span class="string">'退出程序'</span>
-}
-<span class="built_in">print</span>(<span class="string">'欢迎您来到博客园首页！'</span>)
-<span class="built_in">print</span>(<span class="string">'*'</span>*15)
-<span class="keyword">for</span> x,y <span class="keyword">in</span> dic1.items():
-    <span class="built_in">print</span>(x,y) 
-<span class="built_in">print</span>(<span class="string">'*'</span>*15)
-<span class="built_in">print</span>(<span class="string">'温馨提示：如果您没注册，请注册并登录！如果您已经登录，请选择3~8操作！'</span>)
-<span class="keyword">while</span> True: 
-    msg =int(input(<span class="string">'您的选择是：'</span>)) 
-    <span class="keyword">if</span> 1 == msg:
-        count = 2
-        <span class="keyword">while</span> count &gt;= 0: 
-            userName = input(<span class="string">'请输入您的用户名：'</span>).strip()
-            <span class="keyword">if</span> userName <span class="keyword">in</span> login_dic[<span class="string">'user_name'</span>]:
-                userPass = input(<span class="string">'请输入您的用户密码：'</span>).strip()
-                <span class="keyword">if</span> userPass == login_dic[userName][<span class="string">'pass_word'</span>]:
-                    user_status[<span class="string">'username'</span>] = userName
-                    user_status[<span class="string">'status'</span>] = True
-                    <span class="built_in">print</span>(<span class="string">'恭喜用户{}成功登录！'</span>.format(userName))
-                    <span class="built_in">print</span>(<span class="string">'请选择您所要继续进行的操作：'</span>)                  
-                    <span class="built_in">break</span>
-                <span class="keyword">else</span>:
-                    <span class="keyword">if</span> count &gt; 0:
-                        <span class="built_in">print</span>(<span class="string">'密码不正确！你还有{}次机会！'</span>.format(count))
-                    <span class="keyword">else</span>:
-                        <span class="built_in">print</span>(<span class="string">'三次机会已使用完毕，请重置密码！'</span>)
-                        <span class="built_in">break</span>
-                count = count-1
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'抱歉，该用户不存在，请检查是否注册或输入错误！'</span>)        
-    <span class="keyword">elif</span> 2 == msg:
-        <span class="keyword">while</span> True:
-            <span class="built_in">print</span>(<span class="string">'欢迎进入注册页面！'</span>)
-            userName = input(<span class="string">'请输入您的用户名：'</span>).strip()
-            <span class="keyword">if</span> userName <span class="keyword">in</span> login_dic[<span class="string">'user_name'</span>]:
-                <span class="built_in">print</span>(<span class="string">'此用户已经存在，请重新输入您的用户名！'</span>)
-            <span class="keyword">else</span>:
-                userPass = input(<span class="string">'请输入您的用户密码：'</span>).strip()
-                login_dic[<span class="string">'user_name'</span>].append(userName)
-                login_dic[userName] = {
-                    <span class="string">'name'</span> : userName,
-                    <span class="string">'pass_word'</span> : userPass
-                }
-                <span class="built_in">print</span>(<span class="string">'恭喜用户{}注册成功，请登录！'</span>.format(userName))
-                <span class="built_in">break</span>          
-    <span class="keyword">elif</span> 3 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 4 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 5 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 6 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'欢迎用户{}访问{}'</span>.format(userName,dic2[msg]))
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 7 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            del user_status[<span class="string">'username'</span>]
-            user_status[<span class="string">'status'</span>]=False
-            <span class="built_in">print</span>(<span class="string">'您已注销成功'</span>)
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">elif</span> 8 == msg:
-        <span class="built_in">print</span>(<span class="string">'用户{}在{}执行了{}操作！'</span>.format(userName,time.strftime(<span class="string">'%Y-%m-%d'</span>,time.localtime()),dic2[msg]))
-        <span class="keyword">if</span> user_status[<span class="string">'status'</span>] == True:
-            <span class="built_in">print</span>(<span class="string">'感谢您的来访！'</span>)
-            <span class="built_in">exit</span>()
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'请选择正确选项！'</span>)
-</code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson13.py<br>欢迎您来到博客园首页！</p>
-<hr>
-<p>1 请登录<br>2 请注册<br>3 文章页面<br>4 日记页面<br>5 评论页面<br>6 收藏页面<br>7 注销<br>8 退出程序</p>
-<hr>
-<p>温馨提示：如果您没注册，请注册并登录！如果您已经登录，请选择3~8操作！<br>您的选择是：1<br>请输入您的用户名：wdd<br>请输入您的用户密码：789<br>恭喜用户wdd成功登录！<br>请选择您所要继续进行的操作：<br>您的选择是：3<br>用户wdd在2018-07-21执行了文章页面操作！<br>欢迎用户wdd访问文章页面<br>您的选择是：4<br>用户wdd在2018-07-21执行了日记页面操作！<br>欢迎用户wdd访问日记页面<br>您的选择是：5<br>用户wdd在2018-07-21执行了评论页面操作！<br>欢迎用户wdd访问评论页面<br>您的选择是：6<br>用户wdd在2018-07-21执行了收藏页面操作！<br>欢迎用户wdd访问收藏页面<br>您的选择是：7<br>用户wdd在2018-07-21执行了注销操作！<br>您已注销成功<br>您的选择是：5<br>用户wdd在2018-07-21执行了评论页面操作！<br>请登录后再操作！<br>您的选择是：2<br>欢迎进入注册页面！<br>请输入您的用户名：cm<br>请输入您的用户密码：147<br>恭喜用户cm注册成功，请登录！<br>您的选择是：8<br>用户cm在2018-07-21执行了退出程序操作！<br>请登录后再操作</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/21/fangwen-bo-ke-yuan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-case-shopping" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/19/case-shopping/">案例——购物小案例</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/19/case-shopping/" class="archive-article-date">
-  	<time datetime="2018-07-19T10:39:48.832Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="商品菜单"><a href="#商品菜单" class="headerlink" title="商品菜单:"></a>商品菜单:</h2><p>1、查看商品详情（编号，名称，单价，产地，库存，品牌）<br>2、购买商品（编号，名称，数量，总价）<br>3、添加商品<br>4、修改商品（单价，数量）<br>5、删除商品</p>
-<pre><code class="bash">goods_dic = {
-    <span class="string">'goods_no'</span>:[<span class="string">'101'</span>,<span class="string">'102'</span>,<span class="string">'103'</span>,<span class="string">'104'</span>,<span class="string">'105'</span>],
-    <span class="string">'101'</span>:{
-            <span class="string">'id'</span>:<span class="string">'101'</span>,
-            <span class="string">'name'</span>:<span class="string">'电磁炉'</span>,
-            <span class="string">'price'</span>:4000,
-            <span class="string">'address'</span>:<span class="string">'上海'</span>,
-            <span class="string">'num'</span>:100,
-            <span class="string">'brand'</span>:<span class="string">'华硕'</span>
-            },
-    <span class="string">'102'</span>:{
-            <span class="string">'id'</span>:<span class="string">'102'</span>,
-            <span class="string">'name'</span>:<span class="string">'电视机'</span>,
-            <span class="string">'price'</span>:8000,
-            <span class="string">'address'</span>:<span class="string">'北京'</span>,
-            <span class="string">'num'</span>:230,
-            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
-            },
-    <span class="string">'103'</span>:{
-            <span class="string">'id'</span>:<span class="string">'103'</span>,
-            <span class="string">'name'</span>:<span class="string">'电冰箱'</span>,
-            <span class="string">'price'</span>:2000,
-            <span class="string">'address'</span>:<span class="string">'广州'</span>,
-            <span class="string">'num'</span>:280,
-            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
-            },
-    <span class="string">'104'</span>:{
-            <span class="string">'id'</span>:<span class="string">'104'</span>,
-            <span class="string">'name'</span>:<span class="string">'电饭煲'</span>,
-            <span class="string">'price'</span>:5000,
-            <span class="string">'address'</span>:<span class="string">'郑州'</span>,
-            <span class="string">'num'</span>:500,
-            <span class="string">'brand'</span>:<span class="string">'海尔'</span>
-           },
-    <span class="string">'105'</span>:{
-            <span class="string">'id'</span>:<span class="string">'105'</span>,
-            <span class="string">'name'</span>:<span class="string">'电热毯'</span>,
-            <span class="string">'price'</span>:1000,
-            <span class="string">'address'</span>:<span class="string">'南京'</span>,
-            <span class="string">'num'</span>:530,
-            <span class="string">'brand'</span>:<span class="string">'南极人'</span>
-            }
-}
-<span class="built_in">print</span>(<span class="string">'*'</span>*20)
-<span class="built_in">print</span>(<span class="string">'1、查看商品详情'</span>)
-<span class="built_in">print</span>(<span class="string">'2、购买商品'</span>)
-<span class="built_in">print</span>(<span class="string">'3、添加商品'</span>)
-<span class="built_in">print</span>(<span class="string">'4、修改商品'</span>)
-<span class="built_in">print</span>(<span class="string">'5、删除商品'</span>)
-<span class="built_in">print</span>(<span class="string">'6、退出'</span>)
-<span class="built_in">print</span>(<span class="string">'*'</span>*20)
-<span class="keyword">while</span> True:
-    msg = int(input(<span class="string">'请输入菜单选项：'</span>))
-    <span class="keyword">if</span> 1 == msg:  
-        <span class="built_in">print</span>(<span class="string">'编号      名称        单价        产地         库存        品牌'</span>)
-        <span class="keyword">for</span> key <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:
-            <span class="built_in">print</span>(<span class="string">'{}      {}       {}        {}         {}         {}'</span>.format(goods_dic[key][<span class="string">'id'</span>],goods_dic[key][<span class="string">'name'</span>],goods_dic[key][<span class="string">'price'</span>],goods_dic[key][<span class="string">'address'</span>],goods_dic[key][<span class="string">'num'</span>],goods_dic[key][<span class="string">'brand'</span>]))
-    <span class="keyword">else</span>:
-        <span class="keyword">if</span> 2 == msg:
-            key1 = input(<span class="string">'请输入购买商品编号：'</span>)
-            <span class="keyword">if</span> key1 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:
-                nums=int(input(<span class="string">'请输入购买商品的数量：'</span>))
-                <span class="keyword">if</span> nums &lt; goods_dic[key1][<span class="string">'num'</span>]:
-                    total = nums * goods_dic[key1][<span class="string">'price'</span>]
-                    <span class="built_in">print</span>(<span class="string">'编号    名称     单价    数量    总价'</span>)
-                    <span class="built_in">print</span>(<span class="string">'{}    {}    {}    {}       {}'</span>.format(goods_dic[key1][<span class="string">'id'</span>],goods_dic[key1][<span class="string">'name'</span>],goods_dic[key1][<span class="string">'price'</span>],nums,total))
-                <span class="keyword">else</span>:
-                    <span class="built_in">print</span>(<span class="string">'购买数量已超出库存！'</span>)
-                    <span class="built_in">continue</span>
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
-
-        <span class="keyword">elif</span> 3 == msg:
-            key2 = input(<span class="string">'请输入添加商品编号：'</span>)
-            <span class="keyword">if</span> key2 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:              
-                <span class="built_in">print</span>(<span class="string">'输入商品编号有误，请重新输入'</span>)
-                <span class="built_in">continue</span>
-            <span class="keyword">else</span>:
-                goods_id = input(<span class="string">'请输入商品编号：'</span>)
-                goods_name = input(<span class="string">'请输入商品名称：'</span>)
-                goods_price = input(<span class="string">'请输入商品价格：'</span>)
-                goods_address = input(<span class="string">'请输入商品产地：'</span>)
-                goods_num = input(<span class="string">'请输入商品数量：'</span>)
-                goods_grand = input(<span class="string">'请输入商品商标：'</span>)
-                goods_dic[<span class="string">'goods_no'</span>].append(goods_id)
-                goods_dic[goods_id] = {
-                    <span class="string">'id'</span> : goods_id,
-                    <span class="string">'name'</span> : goods_name,
-                    <span class="string">'price'</span> : goods_price,
-                    <span class="string">'address'</span> : goods_address,
-                    <span class="string">'num'</span> : goods_num,
-                    <span class="string">'brand'</span> : goods_grand
-                }
-                <span class="built_in">print</span>(<span class="string">'商品添加成功！'</span>)
-        <span class="keyword">elif</span> 4 == msg:
-            key3 = input(<span class="string">'请输入修改商品编号：'</span>)
-            <span class="keyword">if</span> key3 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]:     
-                goods_dic[key3][<span class="string">'price'</span>] = input(<span class="string">'请修改商品价格：'</span>)
-                goods_dic[key3][<span class="string">'num'</span>] = input(<span class="string">'请修改商品库存：'</span>)
-                <span class="built_in">print</span>(<span class="string">'商品信息修改成功！'</span>)
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
-        <span class="keyword">elif</span> 5 == msg:
-            key4 = input(<span class="string">'请输入删除的商品编号：'</span>)
-            <span class="keyword">if</span> key4 <span class="keyword">in</span> goods_dic[<span class="string">'goods_no'</span>]: 
-                goods_dic[<span class="string">'goods_no'</span>].remove(key4)
-                goods_dic.pop(key4)
-                <span class="built_in">print</span>(<span class="string">'商品信息删除成功！'</span>)
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'请输入正确的商品编号！'</span>)
-        <span class="keyword">elif</span> 6 == msg:
-            <span class="built_in">exit</span>()
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'你输入的商品序号有误，请重新输入！'</span>)
-</code></pre>
-<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/lesson8.py</p>
-<hr>
-<p>1、查看商品详情<br>2、购买商品<br>3、添加商品<br>4、修改商品<br>5、删除商品<br>6、退出</p>
-<hr>
-<p>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       8000        北京         230         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>请输入菜单选项：2<br>请输入购买商品编号：101<br>请输入购买商品的数量：8<br>编号    名称     单价    数量    总价<br>101    电磁炉    4000    8       32000<br>请输入菜单选项：3<br>请输入添加商品编号：106<br>请输入商品编号：106<br>请输入商品名称：电子秤<br>请输入商品价格：1005<br>请输入商品产地：郑州<br>请输入商品数量：106<br>请输入商品商标：华泰<br>商品添加成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       8000        北京         230         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：4<br>请输入修改商品编号：102<br>请修改商品价格：5236<br>请修改商品库存：563<br>商品信息修改成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       5236        北京         563         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>105      电热毯       1000        南京         530         南极人<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：5<br>请输入删除的商品编号：105<br>商品信息删除成功！<br>请输入菜单选项：1<br>编号      名称        单价        产地         库存        品牌<br>101      电磁炉       4000        上海         100         华硕<br>102      电视机       5236        北京         563         海尔<br>103      电冰箱       2000        广州         280         海尔<br>104      电饭煲       5000        郑州         500         海尔<br>106      电子秤       1005        郑州         106         华泰<br>请输入菜单选项：6<br>PS D:\pythoncode&gt;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/19/case-shopping/">展开全文 >></a>
         </p>
       
 
