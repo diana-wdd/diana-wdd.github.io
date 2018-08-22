@@ -161,6 +161,421 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-practice--xml-excel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/01/practice--xml-excel/">作业练习——关于商品订购将xml文件读出并写入到excel中</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/01/practice--xml-excel/" class="archive-article-date">
+  	<time datetime="2018-08-01T11:40:07.291Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目要求：<br>Alice Smith通过网络订购了部分商品，试为该订单建模（即书写保存订单信息的<br>XML文档所对应的Schema），并写出保存该订单的XML文档。 以下是订单的基本信息： <br>订购时间：2015-1-3 <br>客户地址： <br>国家：US <br>姓名：Alice Smith <br>街道：123 Maple Street  城市：Mill Valley 省份：CA  邮编：90952  <br>商家地址： <br>国家： US <br>姓名： Robert Smith  街道： 8 Oak Avenue  城市： Old Town  省份： PA  邮编： 95819  <br>订单上的附加说明：Hurry, my lawn is going wild! </p>
+<p>订单商品的详细清单：<br>商品编号     商品名称     数量     价格     急件      附言<br>872-AA      Lawnmower      1     148.92   YES      Confirm this is electric<br>926-AA      Baby Monitor   1     39.98    NO</p>
+<p>要求：<br>（1）将客户地址写入到一个sheet表中<br>（2）将商家地址写入到一个sheet表中<br>（3）意时间为sheet表名，将订单商品详细信息再写入到一个表中</p>
+<h3 id="order-xml文件内容为："><a href="#order-xml文件内容为：" class="headerlink" title="order.xml文件内容为："></a>order.xml文件内容为：</h3><pre><code class="bash">&lt;ORDER&gt;
+        &lt;DTIME&gt; 2005-1-3 &lt;/DTIME&gt;
+        &lt;CUSTOMERADDR&gt;
+                &lt;COUNTRY&gt; US &lt;/COUNTRY&gt;
+                &lt;NAME&gt; Alice Smith &lt;/NAME&gt;
+                &lt;STREET&gt; 123 Maple Street &lt;/STREET&gt;
+                &lt;CITY&gt; Mill Valley &lt;/CITY&gt;
+                &lt;PROVINCE&gt; CA &lt;/PROVINCE&gt;
+                &lt;ZIP&gt; 90952 &lt;/ZIP&gt;
+        &lt;/CUSTOMERADDR&gt;
+        &lt;MERCHANTADDR&gt;
+                &lt;COUNTRY&gt; US &lt;/COUNTRY&gt;
+                &lt;NAME&gt; Robert Smith &lt;/NAME&gt;
+                &lt;STREET&gt; 8 Oak Avenue &lt;/STREET&gt;
+                &lt;CITY&gt; Old Town &lt;/CITY&gt;
+                &lt;PROVINCE&gt; PA &lt;/PROVINCE&gt;
+                &lt;ZIP&gt; 95819 &lt;/ZIP&gt;
+        &lt;/MERCHANTADDR&gt;
+        &lt;INSTRUCTION&gt; Hurry, my lawn is going wild! &lt;/INSTRUCTION&gt;
+        &lt;DETAIL&gt;
+                &lt;SN&gt; 872-AA &lt;/SN&gt;
+                &lt;NAME&gt; Lawnmower &lt;/NAME&gt;
+                &lt;COUNT&gt; 1 &lt;/COUNT&gt;
+                &lt;PRICE&gt; 148.95 &lt;/PRICE&gt;
+                &lt;URGENT&gt; YES &lt;/URGENT&gt;
+                &lt;EXTRA&gt; Confirm this is electric &lt;/EXTRA&gt;
+        &lt;/DETAIL&gt;
+        &lt;DETAIL&gt;
+                &lt;SN&gt; 926-AA &lt;/SN&gt;
+                &lt;NAME&gt; Baby Monitor &lt;/NAME&gt;
+                &lt;COUNT&gt; 1 &lt;/COUNT&gt;
+                &lt;PRICE&gt; 39.98 &lt;/PRICE&gt;
+                &lt;URGENT&gt; NO &lt;/URGENT&gt;
+                &lt;EXTRA/&gt;
+        &lt;/DETAIL&gt;
+&lt;/ORDER&gt;
+</code></pre>
+<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><pre><code class="bash">from xml.etree import ElementTree as et
+import xlwt
+def readXML(xmlfile):
+    tree = et.parse(xmlfile)
+    root = tree.getroot()
+    order_time = <span class="string">''</span>
+    order_add = {}
+    order_list = []
+    <span class="keyword">if</span> len(root) &gt; 0:
+        <span class="keyword">for</span> child <span class="keyword">in</span> root: <span class="comment"># 将一级子节点内容取出</span>
+            <span class="keyword">if</span> child.tag == <span class="string">'DTIME'</span>:
+                order_time = (child.text).strip()
+            <span class="keyword">elif</span> child.tag ==<span class="string">'CUSTOMERADDR'</span>: 
+                customer = []
+                <span class="keyword">for</span> node <span class="keyword">in</span> child:
+                    customer.append((node.tag,(node.text).strip()))
+                    order_add[<span class="string">'CUSTOMERADDR'</span>] = customer
+            <span class="keyword">elif</span> child.tag == <span class="string">'MERCHANTADDR'</span>:
+                mercharnt = []
+                <span class="keyword">for</span> node <span class="keyword">in</span> child:
+                    mercharnt.append((node.tag,(node.text).strip()))
+                    order_add[<span class="string">'MERCHANTADDR'</span>] = mercharnt
+            <span class="keyword">elif</span> child.tag == <span class="string">'DETAIL'</span>:
+                detail = []
+                <span class="keyword">for</span> node <span class="keyword">in</span> child:
+                    content = <span class="string">''</span>
+                    <span class="keyword">if</span> node.text != None:
+                        content = node.text.strip()
+                    <span class="keyword">else</span>:
+                        content = <span class="string">''</span>
+                    detail.append((node.tag, content))
+                order_list.append(detail)
+                order_add[order_time] = order_list
+    <span class="built_in">return</span> order_add
+
+def saveExcel(dic):
+    items = list(dic.keys())
+
+    book = xlwt.Workbook()
+    customer_sheet = book.add_sheet(items[0])
+    mercharnt_sheet = book.add_sheet(items[1])
+    detail_sheet = book.add_sheet(items[2])
+
+    customer_list = dic[items[0]]
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(customer_list)):
+        customer_sheet.write(0,i,customer_list[i][0])
+        customer_sheet.write(1,i,customer_list[i][1])
+
+    mercharnt_list = dic[items[1]]
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(mercharnt_list)):
+        mercharnt_sheet.write(0,i,mercharnt_list[i][0])
+        mercharnt_sheet.write(1,i,mercharnt_list[i][1])
+
+    detail_list = dic[items[2]]
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(detail_list)):
+        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(detail_list[i])):
+            <span class="keyword">if</span> i == 0:
+                detail_sheet.write(0, j, detail_list[i][j][0])
+            detail_sheet.write(i+1, j, detail_list[i][j][1])
+    book.save(<span class="string">'order.xls'</span>)
+
+dic = readXML(<span class="string">'order.xml'</span>)
+saveExcel(dic)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/01/practice--xml-excel/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-xml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/31/xml/">Python对XML文件的解析</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/31/xml/" class="archive-article-date">
+  	<time datetime="2018-07-31T13:40:47.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、XML解析的两种方式：DOM与SAX"><a href="#1、XML解析的两种方式：DOM与SAX" class="headerlink" title="1、XML解析的两种方式：DOM与SAX"></a>1、XML解析的两种方式：DOM与SAX</h2><h3 id="（1）DOM：文档对象模型，是Python处理XML文件的标准模式。"><a href="#（1）DOM：文档对象模型，是Python处理XML文件的标准模式。" class="headerlink" title="（1）DOM：文档对象模型，是Python处理XML文件的标准模式。"></a>（1）DOM：文档对象模型，是Python处理XML文件的标准模式。</h3><p>一个DOM的解析器在解析XML文档时 ，一次性读入整个文档，把文档中的所有元素（标签和文本）保存在内存中的一个树形结构，然后我们可以利用DOM提供的各种函数，来读取或修改文档中的内容。</p>
+<h3 id="（2）SAX：是一种时间驱动的API，利用SAX解析XML-。"><a href="#（2）SAX：是一种时间驱动的API，利用SAX解析XML-。" class="headerlink" title="（2）SAX：是一种时间驱动的API，利用SAX解析XML 。"></a>（2）SAX：是一种时间驱动的API，利用SAX解析XML 。</h3><p>主要使用解析器负责读取XML文档，并向事件处理器发送事件，比如：元素开始、元素结束。常用在1）大型文档的处理，2）只需要文件的部分内容，或者从文件中得到特定的部分3）建立自己的对象模型。</p>
+<h3 id="（3）dom与sax对比："><a href="#（3）dom与sax对比：" class="headerlink" title="（3）dom与sax对比："></a>（3）dom与sax对比：</h3><p>（a）DOM解析需要读取整个文档到内存中，并且将所有元素保存到树形结构。那也就意味着，可以根据树形结构导航到任意节点，获取其相关内容。<br>（b）SAX解析文档，将文档边读入，边解析的方式，不需要一次性读入全部文档内容，只需要读入一部分即可。同时，因为其边读入边解析的工作方式，能够适应大文件的解析，提高解析效率。</p>
+<h3 id="例1：dom方式对文件解析并写入到excel文件中"><a href="#例1：dom方式对文件解析并写入到excel文件中" class="headerlink" title="例1：dom方式对文件解析并写入到excel文件中"></a>例1：dom方式对文件解析并写入到excel文件中</h3><h3 id="text-xml文件内容为："><a href="#text-xml文件内容为：" class="headerlink" title="text.xml文件内容为："></a>text.xml文件内容为：</h3><pre><code class="bash">&lt;catalog&gt; 
+    &lt;car&gt;
+        &lt;brand&gt;Audio&lt;/brand&gt;
+        &lt;comperny&gt;奥迪&lt;/comperny&gt;
+        &lt;price&gt;60万&lt;/price&gt;
+        &lt;color&gt;红色&lt;/color&gt;
+        &lt;model&gt;A7&lt;/model&gt;
+        &lt;country&gt;德国&lt;/country&gt;
+    &lt;/car&gt;
+    &lt;car&gt;
+        &lt;brand&gt;奔驰&lt;/brand&gt;
+        &lt;comperny&gt;梅赛德斯奔驰&lt;/comperny&gt;
+        &lt;price&gt;500万&lt;/price&gt;
+        &lt;color&gt;红色&lt;/color&gt;
+        &lt;model&gt;SL400&lt;/model&gt;
+        &lt;country&gt;德国&lt;/country&gt;
+    &lt;/car&gt;
+    &lt;car&gt;
+        &lt;brand&gt;宝马&lt;/brand&gt;
+        &lt;comperny&gt;宝马&lt;/comperny&gt;
+        &lt;price&gt;200万&lt;/price&gt;
+        &lt;color&gt;黑色&lt;/color&gt;
+        &lt;model&gt;BMW 7i&lt;/model&gt;
+        &lt;country&gt;德国&lt;/country&gt;
+    &lt;/car&gt;
+&lt;/catalog&gt;
+</code></pre>
+<h3 id="（1）仅用dom方式对test-xml文件进行解析，并打印"><a href="#（1）仅用dom方式对test-xml文件进行解析，并打印" class="headerlink" title="（1）仅用dom方式对test.xml文件进行解析，并打印"></a>（1）仅用dom方式对test.xml文件进行解析，并打印</h3><pre><code class="bash"><span class="comment">#引入minidom，以dom方式解析xml文件</span>
+from xml.dom import minidom 
+<span class="comment">#打开xml文件</span>
+dom = minidom.parse(<span class="string">'test.xml'</span>)
+<span class="comment">#得到文档的元素对象</span>
+root = dom.documentElement
+<span class="built_in">print</span>(<span class="string">'根标签名为:{}'</span>.format(root.nodeName))  <span class="comment">#获得节点名字，即标签名</span>
+<span class="built_in">print</span>(<span class="string">'根节点值为:{}'</span>.format(root.nodeValue))  <span class="comment">#获得节点值</span>
+<span class="built_in">print</span>(<span class="string">'根节点类型为:{}'</span>.format(root.nodeType))  <span class="comment">#获得节点类型</span>
+<span class="comment">#获得在根节点下，所有名字是car的节点对象</span>
+nodes = root.getElementsByTagName(<span class="string">'car'</span>)
+<span class="built_in">print</span>(<span class="string">'根节点下的car节点对象有:{}'</span>.format(nodes))
+<span class="comment">#法1获得car节点中，第一个节点中brand子节点的文本内容</span>
+<span class="built_in">print</span>(<span class="string">'第一个car节点对象下的第一个节点中的第一个子节点的值:{}'</span>.format(nodes[0].getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data))
+<span class="comment">#法2获得car节点中，第一个节点中brand子节点的文本内容</span>
+<span class="built_in">print</span>(<span class="string">'第一个car节点对象下的第一个节点中的第一个子节点的值:{}'</span>.format(root.getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data))
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(nodes[0].childNodes)):
+    <span class="keyword">if</span> nodes[0].childNodes[i].nodeType == 1:
+        <span class="built_in">print</span>(nodes[0].childNodes[i].nodeName,end = <span class="string">' '</span>)
+<span class="built_in">print</span>()
+<span class="keyword">for</span> i <span class="keyword">in</span> range(len(nodes)):
+    <span class="comment">#print(nodes[i])</span>
+    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'brand'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
+    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'comperny'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
+    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'price'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
+    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'color'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
+    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'model'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
+    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'country'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
+    <span class="built_in">print</span>()
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/test-xml-dom.py<br>根标签名为:catalog<br>根节点值为:None<br>根节点类型为:1<br>根节点下的car节点对象有:[<dom element:="" car="" at="" 0x195a448dc28="">, <dom element:="" car="" at="" 0x195a454e0e0="">, <dom element:="" car="" at="" 0x195a454e508="">]<br>第一个car节点对象下的第一个节点中的第一个子节点的值:Audio<br>第一个car节点对象下的第一个节点中的第一个子节点的值:Audio<br>brand comperny price color model country<br>Audio 奥迪 60万 红色 A7 德国<br>奔驰 梅赛德斯奔驰 500万 红色 SL400 德国<br>宝马 宝马 200万 黑色 BMW 7i 德国<br>PS D:\pythoncode&gt;</dom></dom></dom></p>
+<h3 id="（2）使用函数，用dom方式对test-xml文件进行解析，并写入到excel文件中"><a href="#（2）使用函数，用dom方式对test-xml文件进行解析，并写入到excel文件中" class="headerlink" title="（2）使用函数，用dom方式对test.xml文件进行解析，并写入到excel文件中"></a>（2）使用函数，用dom方式对test.xml文件进行解析，并写入到excel文件中</h3><pre><code class="bash">from xml.dom import minidom  <span class="comment">#引入minidom，以dom方式解析xml文件</span>
+import xlwt  <span class="comment">#写excel文件，选用该模块 </span>
+
+def readXML(xmlfile):
+    dic = {}
+    <span class="comment">#载入xml文档进行解析，生成一个document对象</span>
+    document = minidom.parse(xmlfile)
+    <span class="comment">#得到文档的元素对象</span>
+    root = document.documentElement
+    <span class="comment">#根据根节点下，向下查找内部所有名字是car的节点，并将节点名字返回</span>
+    sheet_name = root.getElementsByTagName(<span class="string">'car'</span>)[0].nodeName
+    <span class="comment">#通过getElementsByTagName()函数，获得指定的节点对象，不管节点对象有几个，都是返回一个列表类型</span>
+    node = root.getElementsByTagName(<span class="string">'car'</span>)
+    cars = []
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(node)):
+        item = []
+        item.append(node[i].getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data)
+        item.append(node[i].getElementsByTagName(<span class="string">'comperny'</span>)[0].firstChild.data)
+        item.append(node[i].getElementsByTagName(<span class="string">'price'</span>)[0].firstChild.data)
+        item.append(node[i].getElementsByTagName(<span class="string">'color'</span>)[0].firstChild.data)
+        item.append(node[i].getElementsByTagName(<span class="string">'model'</span>)[0].firstChild.data)
+        item.append(node[i].getElementsByTagName(<span class="string">'country'</span>)[0].firstChild.data)
+        cars.append(item)
+    dic[sheet_name] = cars
+    dic[<span class="string">'title'</span>] = [<span class="string">'brand'</span>,<span class="string">'comperny'</span>,<span class="string">'price'</span>,<span class="string">'color'</span>,<span class="string">'model'</span>,<span class="string">'country'</span>]
+    <span class="comment">#print(dic)</span>
+    <span class="built_in">return</span> dic
+def saveXML(dic):
+    <span class="comment">#生成一个excel文件对象</span>
+    book = xlwt.Workbook()
+    <span class="comment">#生成一个sheet页</span>
+    sheet = book.add_sheet(<span class="string">'car'</span>)
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dic[<span class="string">'title'</span>])):
+        sheet.write(0,i,dic[<span class="string">'title'</span>][i])
+    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>])):
+        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>][m])):
+            sheet.write(m+1,n,dic[<span class="string">'car'</span>][m][n])
+    book.save(<span class="string">'car.xls'</span>)
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    dic = readXML(<span class="string">'test.xml'</span>)
+    saveXML(dic)
+</code></pre>
+<p>结果：<br>将三条车的信息以表格的形式存到excel文件中</p>
+<h3 id="例2、etree方式对文件解析并写入到excel文件中"><a href="#例2、etree方式对文件解析并写入到excel文件中" class="headerlink" title="例2、etree方式对文件解析并写入到excel文件中"></a>例2、etree方式对文件解析并写入到excel文件中</h3><h3 id="（1）仅用etree方式对test-xml文件进行解析，并打印"><a href="#（1）仅用etree方式对test-xml文件进行解析，并打印" class="headerlink" title="（1）仅用etree方式对test.xml文件进行解析，并打印"></a>（1）仅用etree方式对test.xml文件进行解析，并打印</h3><p>1）循环式写法：</p>
+<pre><code class="bash">from xml.etree import ElementTree
+tree = ElementTree.parse(<span class="string">'test.xml'</span>)
+root = tree.getroot()   <span class="comment">#获取根节点</span>
+<span class="built_in">print</span>(root)
+<span class="keyword">for</span> child <span class="keyword">in</span> root:
+    <span class="built_in">print</span>(<span class="string">'遍历root:'</span>,child.tag,<span class="string">'：'</span>,child.attrib)
+    <span class="keyword">for</span> node <span class="keyword">in</span> child:
+        <span class="built_in">print</span>(<span class="string">'遍历child:'</span>,node.tag,<span class="string">'：'</span>,node.text)
+
+2）递归写法 
+from xml.etree import ElementTree
+tree = ElementTree.parse(<span class="string">'test.xml'</span>)
+root = tree.getroot()   <span class="comment">#获取根节点</span>
+
+def parseXML(element):
+    <span class="comment">#dic1 = {}</span>
+    <span class="comment">#dic2 = {}</span>
+    <span class="keyword">if</span> len(element) &gt; 0:
+         <span class="keyword">for</span> child <span class="keyword">in</span> element:
+            <span class="comment"># print(child.tag,':',child.text)</span>
+            <span class="keyword">if</span> child.tag != <span class="string">'car'</span>:
+                <span class="built_in">print</span>(child.tag,<span class="string">':'</span>,child.text,end = <span class="string">' '</span>)
+            <span class="built_in">print</span>()
+            parseXML(child)  
+parseXML(root)
+</code></pre>
+<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/test-xml-etree.py</p>
+<p>brand : Audio<br>comperny : 奥迪<br>price : 60万<br>color : 红色<br>model : A7<br>country : 德国</p>
+<p>brand : 奔驰<br>comperny : 梅赛德斯奔驰<br>price : 500万<br>color : 红色<br>model : SL400<br>country : 德国</p>
+<p>brand : 宝马<br>comperny : 宝马<br>price : 200万<br>color : 黑色<br>model : BMW 7i<br>country : 德国<br>PS D:\pythoncode&gt;</p>
+<h3 id="（2）使用函数，用etree方式对test-xml文件进行解析，并写入到excel文件中"><a href="#（2）使用函数，用etree方式对test-xml文件进行解析，并写入到excel文件中" class="headerlink" title="（2）使用函数，用etree方式对test.xml文件进行解析，并写入到excel文件中"></a>（2）使用函数，用etree方式对test.xml文件进行解析，并写入到excel文件中</h3><pre><code class="bash">from xml.etree import ElementTree
+import xlwt  <span class="comment">#写excel文件，选用该模块</span>
+def readXML2(xmlfile):
+    dic = {}
+    document = ElementTree.parse(<span class="string">'test.xml'</span>)
+    root = document.getroot()   <span class="comment">#获取根节点</span>
+    cars = []  <span class="comment">#存放各种汽车信息</span>
+    <span class="keyword">for</span> child <span class="keyword">in</span> root:
+        <span class="comment">#print('遍历root:',child.tag,'：',child.attrib)</span>
+        item = []  <span class="comment">#存放一条关于汽车的信息</span>
+        sheet_name = child.tag
+        <span class="keyword">for</span> node <span class="keyword">in</span> child:
+            <span class="comment">#print('遍历child:',node.tag,'：',node.text)</span>
+            item.append(node.text)
+        cars.append(item)
+        dic[sheet_name] = cars
+        dic[<span class="string">'title'</span>] = [<span class="string">'brand'</span>,<span class="string">'comperny'</span>,<span class="string">'price'</span>,<span class="string">'color'</span>,<span class="string">'model'</span>,<span class="string">'country'</span>]
+        <span class="comment">#print(dic)</span>
+    <span class="built_in">return</span> dic 
+def saveXML(dic):
+    <span class="comment">#生成一个excel文件对象</span>
+    book = xlwt.Workbook()
+    <span class="comment">#生成一个sheet页</span>
+    sheet = book.add_sheet(<span class="string">'car'</span>)
+
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dic[<span class="string">'title'</span>])):
+        sheet.write(0,i,dic[<span class="string">'title'</span>][i])
+
+    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>])):
+        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>][m])):
+            sheet.write(m+1,n,dic[<span class="string">'car'</span>][m][n])
+
+    book.save(<span class="string">'car2.xls'</span>)
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    dic = readXML2(<span class="string">'test.xml'</span>)
+    saveXML(dic)
+</code></pre>
+<p>结果：<br>将三条车的信息以表格的形式存到excel文件中</p>
+<h2 id="2、SAX解析文件步骤："><a href="#2、SAX解析文件步骤：" class="headerlink" title="2、SAX解析文件步骤："></a>2、SAX解析文件步骤：</h2><h3 id="（1）创建解析器"><a href="#（1）创建解析器" class="headerlink" title="（1）创建解析器"></a>（1）创建解析器</h3><p>parser = sax.make_parser()</p>
+<h3 id="（2）读取xml文档"><a href="#（2）读取xml文档" class="headerlink" title="（2）读取xml文档"></a>（2）读取xml文档</h3><p>xml.sax.parse(xmlfile)</p>
+<h3 id="（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法"><a href="#（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法" class="headerlink" title="（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法"></a>（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法</h3><p>（a）startDocument():文档载入时调用，文档开始<br>（b）endDocument()：当解析器达到文档结尾时调用<br>（c）startElement(name,attrs):当遇到XML标签时调用，name是标签的名字，attrs标签的属性字典<br>（d）endElement(name):当遇到XML标签结束时调用，name是标签名</p>
+<h3 id="4-使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。"><a href="#4-使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。" class="headerlink" title="(4)使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。"></a>(4)使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。</h3><p>carhandler = CarHandler()<br>parser.setContentHandler(carhandler)</p>
+<h3 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h3><pre><code class="bash">from xml import sax
+from handler import CarHandler
+<span class="comment">#创建一个解析器</span>
+parser = sax.make_parser()
+<span class="comment"># 给解析器指定一个handler</span>
+carhandler = CarHandler()
+parser.setContentHandler(carhandler)
+<span class="comment"># 解析指定的xml文档</span>
+parser.parse(<span class="string">'test.xml'</span>)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/31/xml/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-input-output-binary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1878,389 +2293,6 @@ def quit():
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/25/case-medicine-def-log-@/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-case-medicine-def" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/case-medicine-def/">药品进销存小案例（函数写法）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/case-medicine-def/" class="archive-article-date">
-  	<time datetime="2018-07-25T12:56:54.239Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><p>1、写一个药品进货记录字典，有药品编号、药品名称、药品分类、药品单价、进货时间、进货数量、进货人属性。<br>2、写一个药品销售销售字典，有药品编号、药品名称、药品分类、药品单价、药品总价、销售时间、销售数量、销售人属性<br>3、写一个药品库存记录字典，有药品编号、药品名称、药品分类、药品单价、入库时间、库存数量、库存管理人属性<br>4、写一个用户权限字典，有用户名、密码、身份<br>操作：<br>1、登陆药品进销存模块<br>2、药品购入（对进货记录、库存记录进行添加）<br>3、销售药品（对销售记录、库存记录进行添加和修改）<br>4、药品入库（对库存记录进行添加或修改）<br>5、药品统计<br>（1）通过输入药品名称，得到下列内容：<br> 药品名称  药品购入数量 购入人  药品销售数量 销售人 药品库存数量 保管人</p>
-<p>（2）统计所有库存药品的销售情况（按照销售数量，进行降序）<br>药品名称  药品销售数量   药品总价  药品销售比例</p>
-<pre><code class="bash">buy_dic = {}  <span class="comment">#药品采购字典</span>
-
-stock_dic = {}  <span class="comment">#药品入库字典</span>
-
-sale_dic = {}  <span class="comment">#药品销售字典</span>
-
-count_dic = {}  <span class="comment">#药品统计字典</span>
-
-<span class="comment">#用户身份字典，用来存放用户名和密码</span>
-user = {
-    <span class="string">'tom'</span>:<span class="string">'123'</span>,
-    <span class="string">'smith'</span>:<span class="string">'123456'</span>
-}
-
-<span class="comment">#菜单项，供程序运行调用</span>
-def menu():
-    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
-    <span class="built_in">print</span>(<span class="string">'1、登录药品采购平台'</span>)
-    <span class="built_in">print</span>(<span class="string">'2、采购药品'</span>)
-    <span class="built_in">print</span>(<span class="string">'3、药品入库'</span>)
-    <span class="built_in">print</span>(<span class="string">'4、药品销售'</span>)
-    <span class="built_in">print</span>(<span class="string">'5、药品统计'</span>)
-    <span class="built_in">print</span>(<span class="string">'6、退出'</span>)
-    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
-
-<span class="string">''</span><span class="string">'</span>
-<span class="string">    function：登录功能</span>
-<span class="string">    parameter：username（用户名）、password（密码）</span>
-<span class="string">    return：True or False</span>
-<span class="string">    description：传递参数：用户名与密码；验证用户名与密码是否正确：如果正确返回True，反之返回False</span>
-<span class="string">'</span><span class="string">''</span>
-def login(username,password):
-    flag = False
-    <span class="comment">#if username in user.keys():</span>
-        <span class="comment">#flag = (password == user[username])</span>
-    <span class="keyword">if</span> password == user[username]:
-        flag = True
-    <span class="keyword">else</span>:
-        flag = False
-    <span class="built_in">return</span> flag
-
-<span class="string">''</span><span class="string">'</span>
-<span class="string">    function：查询指定字典内容</span>
-<span class="string">    parameter：dic</span>
-<span class="string">    return：none</span>
-<span class="string">    description：根据传入的字典参数，对其进行遍历</span>
-<span class="string">'</span><span class="string">''</span>
-def findAll(dic):
-    <span class="built_in">print</span>(dic)
-
-<span class="string">''</span><span class="string">'</span>
-<span class="string">    function：采购药品功能</span>
-<span class="string">    parameter：buy_time, m_name, m_no, price, buyer, catalog, num</span>
-<span class="string">    return：none</span>
-<span class="string">    description：根据传入的药品参数，存入指定的药品采购字典中 </span>
-<span class="string">'</span><span class="string">''</span>
-def buy(buy_time,**kw):
-    buy_dic[buy_time] = kw
-
-<span class="string">''</span><span class="string">'</span>
-<span class="string">    function：药品入库功能</span>
-<span class="string">    parameter：stock_time, m_name, m_no, price, stocker, catalog, num, buy_time</span>
-<span class="string">    return：none</span>
-<span class="string">    description：根据传入的采购时间，进行查询采购字典中是否有对应记录，如果存在则进行入库操作</span>
-<span class="string">'</span><span class="string">''</span>
-def stock(buy_time,stocker,stock_time,**kw):
-    <span class="keyword">if</span> buy_time <span class="keyword">in</span> buy_dic.keys():
-        kw = buy_dic[buy_time].copy()
-        del kw[<span class="string">'buyer'</span>]
-        kw[<span class="string">'stocker'</span>] = stocker
-        kw[<span class="string">'stock_time'</span>] = stock_time
-        stock_dic[stock_time] = kw
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'输入采购时间有误！'</span>)
-
-<span class="string">''</span><span class="string">'</span>
-<span class="string">    function：药品销售功能</span>
-<span class="string">    parameter：sale_time, m_name, m_no, price, saler, catalog, num, total, stock_time</span>
-<span class="string">    return：none</span>
-<span class="string">    description：根据传入的入库时间，进行查询库存字典中是否有对应记录，如果存在则进行销售操作</span>
-<span class="string">'</span><span class="string">''</span>
-def sale(stock_time,saler,sale_time,num,**kw):
-    <span class="keyword">if</span> stock_time <span class="keyword">in</span> stock_dic.keys():
-        <span class="keyword">if</span> num &lt;= stock_dic[stock_time][<span class="string">'num'</span>]:
-            kw = stock_dic[stock_time].copy()
-            del kw[<span class="string">'stocker'</span>]
-            del kw[<span class="string">'num'</span>]
-            kw[<span class="string">'saler'</span>] = saler
-            kw[<span class="string">'sale_time'</span>] = sale_time
-            kw[<span class="string">'num'</span>] = num
-            kw[<span class="string">'total'</span>] = stock_dic[stock_time][<span class="string">'price'</span>] * num
-            sale_dic[sale_time] = kw
-            stock_dic[stock_time][<span class="string">'num'</span>] = stock_dic[stock_time][<span class="string">'num'</span>] - num
-        <span class="keyword">else</span> :
-            <span class="built_in">print</span>(<span class="string">'药品数量不足！'</span>)
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'输入的入库时间有误！'</span>)
-
-<span class="string">''</span><span class="string">'</span>
-<span class="string">    function：药品统计功能</span>
-<span class="string">    parameter：</span>
-<span class="string">    return：none</span>
-<span class="string">    description：将三个字典中的信息进行统计</span>
-<span class="string">'</span><span class="string">''</span>
-def count(m_name):
-    count_dic[m_name] = {}
-    <span class="keyword">for</span> key <span class="keyword">in</span> buy_dic.keys():
-        <span class="keyword">if</span> m_name == buy_dic[key][<span class="string">'m_name'</span>]:
-            count_dic[m_name][<span class="string">'buyer'</span>] = buy_dic[key][<span class="string">'buyer'</span>]
-            count_dic[m_name][<span class="string">'buy_num'</span>] = buy_dic[key][<span class="string">'num'</span>]
-    <span class="keyword">for</span> key <span class="keyword">in</span> stock_dic.keys():
-        <span class="keyword">if</span> m_name == stock_dic[key][<span class="string">'m_name'</span>]:
-            count_dic[m_name][<span class="string">'stocker'</span>] = stock_dic[key][<span class="string">'stocker'</span>]
-            count_dic[m_name][<span class="string">'stock_num'</span>] = stock_dic[key][<span class="string">'num'</span>]
-    <span class="keyword">for</span> key <span class="keyword">in</span> sale_dic.keys():
-        <span class="keyword">if</span> m_name == sale_dic[key][<span class="string">'m_name'</span>]:
-            count_dic[m_name][<span class="string">'saler'</span>] = sale_dic[key][<span class="string">'saler'</span>]
-            count_dic[m_name][<span class="string">'sale_num'</span>] = sale_dic[key][<span class="string">'num'</span>]
-<span class="string">''</span><span class="string">'</span>
-<span class="string">    function：退出功能</span>
-<span class="string">    parameter：none</span>
-<span class="string">    return：none</span>
-<span class="string">    description：退出整个应用程序</span>
-<span class="string">'</span><span class="string">''</span>
-def quit():
-    <span class="keyword">if</span> <span class="string">'Q'</span> == msg or <span class="string">'q'</span> == msg:
-        <span class="built_in">exit</span>()
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'按键错误，请重新选择！'</span>)
-
-<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:
-    <span class="keyword">while</span> True:
-        menu()
-        num = int(input(<span class="string">'请输入菜单编号：'</span>))
-        <span class="keyword">if</span> 1 == num:
-            username = input(<span class="string">'请输入用户名：'</span>)
-            password = input(<span class="string">'请输入密码：'</span>)
-            flag = login(username,password)
-            <span class="keyword">if</span> flag:
-                <span class="built_in">print</span>(<span class="string">'登录成功，请继续选择其他操作！'</span>)               
-            <span class="keyword">else</span>:
-                <span class="built_in">print</span>(<span class="string">'用户名或密码不正确，请重新登录！'</span>)
-        <span class="keyword">elif</span> 2 == num:
-            buy_time= input(<span class="string">'请输入药品采购日期，按照YYYYMMDD格式输入：'</span>)
-            m_name = input(<span class="string">'请输入药品名：'</span>)
-            m_no= input(<span class="string">'请输入药品编号：'</span>)
-            price= <span class="built_in">float</span>(input(<span class="string">'请输入药品单价：'</span>))
-            buyer= input(<span class="string">'请输入采购人姓名：'</span>)
-            catalog= input(<span class="string">'请输入药品分类：'</span>)  
-            num = int(input(<span class="string">'请输入采购药品的数量：'</span>))            
-            buy(buy_time,m_name=m_name,m_no=m_no,price=price,buyer=buyer,catalog=catalog,num=num)
-            findAll(buy_dic)
-        <span class="keyword">elif</span> 3 == num:
-            buy_time= input(<span class="string">'请输入药品采购日期，按照YYYYMMDD格式输入：'</span>)
-            stocker = input(<span class="string">'请输入库管人员姓名：'</span>)
-            stock_time = input(<span class="string">'请输入药品入库日期，按照YYYYMMDD格式输入：'</span>)
-            stock(buy_time,stocker,stock_time)
-            findAll(stock_dic)
-        <span class="keyword">elif</span> 4 == num:
-            stock_time = input(<span class="string">'请输入入库日期，按照（YYYYMMDD）格式输入：'</span>)
-            saler = input(<span class="string">'请输入销售人姓名：'</span>)
-            sale_time = input(<span class="string">'请输入销售日期，按照（YYYYMMDD）格式输入：'</span>)
-            num = int(input(<span class="string">'请输入销售药品的数量：'</span>))
-            sale(stock_time,saler,sale_time,num)
-            findAll(sale_dic)
-        <span class="keyword">elif</span> 5 == num:
-            m_name = input(<span class="string">'请输入要查询的药品名字：'</span>)
-            count(m_name)
-            findAll(count_dic)
-        <span class="keyword">else</span>:
-            msg = input(<span class="string">'确定要退出吗？退出请按Q：'</span>)
-            quit()
-</code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>PS D:\pythoncode&gt; &amp; python d:/pythoncode/def-medicine-case.py</p>
-<hr>
-<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
-<hr>
-<p>请输入菜单编号：1<br>请输入用户名：tom<br>请输入密码：123<br>登录成功，请继续选择其他操作！</p>
-<hr>
-<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
-<hr>
-<p>请输入菜单编号：2<br>请输入药品采购日期，按照YYYYMMDD格式输入：20180102<br>请输入药品名：维生素<br>请输入药品编号：1001<br>请输入药品单价：59<br>请输入采购人姓名：丹丹<br>请输入药品分类：非处方<br>请输入采购药品的数量：100<br>{‘20180102’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 59.0, ‘buyer’: ‘丹丹’, ‘catalog’: ‘非处方’, ‘num’: 100}}</p>
-<hr>
-<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
-<hr>
-<p>请输入菜单编号：3<br>请输入药品采购日期，按照YYYYMMDD格式输入：20180102<br>请输入库管人员姓名：蚱蜢<br>请输入药品入库日期，按照YYYYMMDD格式输入：20180103<br>{‘20180103’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 59.0, ‘catalog’: ‘非处方’, ‘num’: 100, ‘stocker’: ‘蚱蜢’, ‘stock_time’: ‘20180103’}}</p>
-<hr>
-<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
-<hr>
-<p>请输入菜单编号：4<br>请输入入库日期，按照（YYYYMMDD）格式输入：20180103<br>请输入销售人姓名：大头柯<br>请输入销售日期，按照（YYYYMMDD）格式输入：20180104<br>请输入销售药品的数量：50<br>{‘20180104’: {‘m_name’: ‘维生素’, ‘m_no’: ‘1001’, ‘price’: 59.0, ‘catalog’: ‘非处方’, ‘stock_time’: ‘20180103’, ‘saler’: ‘大头柯’, ‘sale_time’: ‘20180104’, ‘num’: 50, ‘total’: 2950.0}}</p>
-<hr>
-<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
-<hr>
-<p>请输入菜单编号：5<br>请输入要查询的药品名字：维生素<br>{‘维生素’: {‘buyer’: ‘丹丹’, ‘buy_num’: 100, ‘stocker’: ‘蚱蜢’, ‘stock_num’: 50, ‘saler’: ‘大头柯’, ‘sale_num’: 50}}</p>
-<hr>
-<p>1、登录药品采购平台<br>2、采购药品<br>3、药品入库<br>4、药品销售<br>5、药品统计<br>6、退出</p>
-<hr>
-<p>请输入菜单编号：6<br>确定要退出吗？退出请按Q：q<br>PS D:\pythoncode&gt;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/case-medicine-def/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-case-shopping-def" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/case-shopping-def/">案例——购物小案例（函数改写）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/case-shopping-def/" class="archive-article-date">
-  	<time datetime="2018-07-25T12:54:14.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="商品菜单"><a href="#商品菜单" class="headerlink" title="商品菜单:"></a>商品菜单:</h2><p>1、查看商品详情（编号，名称，单价，产地，库存，品牌）<br>2、购买商品（编号，名称，数量，总价）<br>3、添加商品<br>4、修改商品（单价，数量）<br>5、删除商品</p>
-<pre><code class="bash">def displayAll(dic):  <span class="comment"># 查询所有的商品信息</span>
-    <span class="built_in">print</span>(<span class="string">'序号      商品名称'</span>)
-    <span class="keyword">for</span> key <span class="keyword">in</span> goods_dic:
-        <span class="built_in">print</span>(<span class="string">'{0}       {1}'</span>.format(key, goods_dic[key]))
-def menu():
-    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
-    <span class="built_in">print</span>(<span class="string">'1、输入商品序号，查询商品信息'</span>)
-    <span class="built_in">print</span>(<span class="string">'2、添加商品信息'</span>)
-    <span class="built_in">print</span>(<span class="string">'3、下架商品'</span>)
-    <span class="built_in">print</span>(<span class="string">'4、修改商品信息'</span>)
-    <span class="built_in">print</span>(<span class="string">'5、退出'</span>)
-    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
-def addGoods(g_name, g_no):  <span class="comment"># 添加商品，传入商品编号与名称</span>
-    goods_dic[g_no] = g_name
-def removeGoods(g_no):  <span class="comment"># 下架商品，根据商品编号，在商品字典中删除该商品信息</span>
-    <span class="comment">#del goods_dic[g_no]</span>
-    <span class="built_in">return</span> goods_dic.pop(g_no)
-def updateGoods(g_no, g_name): <span class="comment"># 修改商品信息，根据商品编号进行商品名称的修改</span>
-    goods_dic[g_no] = g_name
-def exitApp(): <span class="comment"># 退出程序</span>
-    <span class="built_in">exit</span>()
-def findById(g_no):
-    <span class="built_in">return</span> goods_dic[g_no]
-def main(dic):
-    displayAll(dic)
-    <span class="keyword">while</span> True:
-        menu()
-        msg = int(input(<span class="string">'请输入你所需要购买的商品序号：'</span>))
-        <span class="keyword">if</span> 1 == msg:
-            key = input(<span class="string">'请输入商品序号：'</span>)
-            <span class="built_in">print</span>(<span class="string">'序号      商品名称'</span>)
-            <span class="built_in">print</span>(<span class="string">'{0}       {1}'</span>.format(key, findById(key)))
-        <span class="keyword">elif</span> 2 == msg:
-            gno = input(<span class="string">'请输入商品序号：'</span>)
-            gname = input(<span class="string">'请输入商品名称：'</span>)
-            addGoods(gname, gno)
-        <span class="keyword">elif</span> 3 == msg:
-            key = input(<span class="string">'请输入商品序号：'</span>)
-            item = removeGoods(key)
-            <span class="built_in">print</span>(<span class="string">'{0}商品已被下架'</span>.format(item))
-        <span class="keyword">elif</span> 4 == msg:
-            gno = input(<span class="string">'请输入商品序号：'</span>)
-            gname = input(<span class="string">'请输入商品名称：'</span>)
-            updateGoods(gno, gname)
-        <span class="keyword">elif</span> 5 == msg:
-            exitApp()
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'你输入的商品序号有误，请重新输入！'</span>)
-<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
-    goods_dic = {
-        <span class="string">'10001'</span> : <span class="string">'电视机'</span>,
-        <span class="string">'10002'</span> : <span class="string">'手机'</span>,
-        <span class="string">'10003'</span> : <span class="string">'洗衣机'</span>,
-        <span class="string">'10004'</span> : <span class="string">'冰箱'</span>,
-        <span class="string">'10005'</span> : <span class="string">'空调'</span>
-    }
-    main(goods_dic)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/case-shopping-def/">展开全文 >></a>
         </p>
       
 

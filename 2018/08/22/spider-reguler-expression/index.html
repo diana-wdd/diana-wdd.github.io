@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | diana</title>
+  <title>爬虫（正则表达式） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="diana">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="1、正则表达式的概念正则表达式就是使用一些特定的表达式，来表示符合其规范的字符串。 2、常用操作符^:^ab,代表着必须是ab开头，[^ab]代表不能是a或b开头$:表示字符串结尾，放在正则表达式的结尾[]：代表了值域的范围，例如：[0-9][a-z]{}：代表了字符出现的次数,例如：{n}代表了出现n次，{n,m}代表出现了n到m次*:代表了字符出现0-n次+：代表了字符出现1-n次？：代表了字">
+<meta name="keywords" content="Python、爬虫、Web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫（正则表达式）">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/spider-reguler-expression/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="1、正则表达式的概念正则表达式就是使用一些特定的表达式，来表示符合其规范的字符串。 2、常用操作符^:^ab,代表着必须是ab开头，[^ab]代表不能是a或b开头$:表示字符串结尾，放在正则表达式的结尾[]：代表了值域的范围，例如：[0-9][a-z]{}：代表了字符出现的次数,例如：{n}代表了出现n次，{n,m}代表出现了n到m次*:代表了字符出现0-n次+：代表了字符出现1-n次？：代表了字">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-22T12:09:46.135Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="爬虫（正则表达式）">
+<meta name="twitter:description" content="1、正则表达式的概念正则表达式就是使用一些特定的表达式，来表示符合其规范的字符串。 2、常用操作符^:^ab,代表着必须是ab开头，[^ab]代表不能是a或b开头$:表示字符串结尾，放在正则表达式的结尾[]：代表了值域的范围，例如：[0-9][a-z]{}：代表了字符出现的次数,例如：{n}代表了出现n次，{n,m}代表出现了n到m次*:代表了字符出现0-n次+：代表了字符出现1-n次？：代表了字">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -159,295 +163,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-spider-reguler-expression" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      爬虫（正则表达式）
+    </h1>
+  
+
+        
+        <a href="/2018/08/22/spider-reguler-expression/" class="archive-article-date">
+  	<time datetime="2018-08-22T12:01:41.236Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-22</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、正则表达式的概念"><a href="#1、正则表达式的概念" class="headerlink" title="1、正则表达式的概念"></a>1、正则表达式的概念</h3><p>正则表达式就是使用一些特定的表达式，来表示符合其规范的字符串。</p>
+<h3 id="2、常用操作符"><a href="#2、常用操作符" class="headerlink" title="2、常用操作符"></a>2、常用操作符</h3><p>^:^ab,代表着必须是ab开头，[^ab]代表不能是a或b开头<br>$:表示字符串结尾，放在正则表达式的结尾<br>[]：代表了值域的范围，例如：[0-9][a-z]<br>{}：代表了字符出现的次数,例如：{n}代表了出现n次，{n,m}代表出现了n到m次<br>*:代表了字符出现0-n次<br>+：代表了字符出现1-n次<br>？：代表了字符出现0-1次</p>
+<h3 id="3、常用方法"><a href="#3、常用方法" class="headerlink" title="3、常用方法"></a>3、常用方法</h3><p>1）search()：会在指定的字符串中查找，是否有匹配正则表达式的内容<br>函数格式：search(pattern, str)<br>参数说明：<br>pattern：正则表达式<br>str：字符串<br>返回值：match对象，可以通过match.group(0)返回匹配正则表达式的内容<br>2）match():会从字符串的开始进行匹配<br>函数格式：match(pattern, str)<br>返回值：match对象<br>3）findall():会从指定的字符串中，匹配所有满足正则表达式的内容<br>函数格式：findall(pattern,str)<br>返回值：返回所有匹配的内容，以列表形式。<br>4）split():根据字符串匹配正则表达式的情况来切分<br>函数格式：split(pattern, str, maxsplit)<br>maxsplit：最大切分次数，剩余部分将作为一个整体输出<br>返回值：将切分后的字符串，以列表形式返回<br>5）finditer():根据字符串匹配正则表达式，返回一个迭代对象，其中的每一个对象都是match对象<br>函数格式：finditer(pattern,str)<br>返回值：返回迭代对象，其中每个对象都是match类型<br>6）sub():根据正则表达式，将指定的字符串内容替换<br>函数格式：sub(pattern, repl, string, count)<br>参数说明：<br>repl：替换匹配字符串的字符串<br>count：匹配的最大次数<br>返回值：返回替换后的字符串<br>7）compile():生成正则表达式对象<br>函数格式：compile(pattern)<br>返回值：返回一个正则表达式对象</p>
+<h3 id="4、match对象"><a href="#4、match对象" class="headerlink" title="4、match对象"></a>4、match对象</h3><p>1）match对象属性<br>string：待匹配的字符串<br>pos：匹配文本的开始位置<br>endpos：匹配文件的结束位置<br>re：正则表达式<br>2）match方法<br>group(0)：获得匹配后的字符串<br>start()：返回文本开始的位置<br>end()：返回文本结束的位置<br>span()：返回文本开始，结束的位置，以元组的形式返回</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/01/practice--xml-excel/" class="archive-article-date">
-  	<time datetime="2018-08-01T11:40:07.291Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/01/practice--xml-excel/">作业练习——关于商品订购将xml文件读出并写入到excel中</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/22/spider-reguler-expression/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/31/xml/" class="archive-article-date">
-  	<time datetime="2018-07-31T13:40:47.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/22/spider-beautifulsoup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">爬虫（beautiful soup库）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/31/xml/">Python对XML文件的解析</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-binary/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-binary/">文件输入输出（I/O）(二进制文件)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/excel/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-txt/" class="archive-article-date">
-  	<time datetime="2018-07-30T00:35:54.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-txt/">文件输入输出（I/O）(文本文件)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/26/def-recursion/" class="archive-article-date">
-  	<time datetime="2018-07-26T13:10:50.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/26/def-recursion/">函数的递归</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/def-higher-function/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:29:44.677Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/def-higher-function/">高阶函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/def-nest-clouser/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:24:52.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/def-nest-clouser/">函数的嵌套、闭包</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/log-template/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:11:41.607Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/log-template/">日志格式模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/case-medicine-def-log-@/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:03:52.334Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/case-medicine-def-log-@/">案例——药品进销存小案例（结合：函数、语法糖、日志）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -474,8 +341,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
