@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>文件输入输出（I/O）(二进制文件) | diana</title>
+  <title>案例————lagou网站职位获取（输入城市名、技术名称，例如：北京 python）（爬虫） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+  <meta name="description" content="源代码：lagou1.pyimport requests import math import xlrd from xlutils.copy import copy from urllib import parse import time  class LagouSpider:     def __init__(self, url, city, job):         self.__url =">
 <meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件输入输出（I&#x2F;O）(二进制文件)">
-<meta property="og:url" content="http://yoursite.com/2018/07/30/input-output-binary/index.html">
+<meta property="og:title" content="案例————lagou网站职位获取（输入城市名、技术名称，例如：北京 python）（爬虫）">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/case-lagou-job-spider/index.html">
 <meta property="og:site_name" content="diana">
-<meta property="og:description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+<meta property="og:description" content="源代码：lagou1.pyimport requests import math import xlrd from xlutils.copy import copy from urllib import parse import time  class LagouSpider:     def __init__(self, url, city, job):         self.__url =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T13:55:36.379Z">
+<meta property="og:updated_time" content="2018-08-23T12:58:46.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件输入输出（I&#x2F;O）(二进制文件)">
-<meta name="twitter:description" content="1、struct和pickle（1）使用struct模块，进行数据的输入输出使用步骤：第一，对要写入到文件中的各种类型数据，进行统一打包struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型第二，使用write()写入，写入后以二进制的方式进行文件存储。第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回">
+<meta name="twitter:title" content="案例————lagou网站职位获取（输入城市名、技术名称，例如：北京 python）（爬虫）">
+<meta name="twitter:description" content="源代码：lagou1.pyimport requests import math import xlrd from xlutils.copy import copy from urllib import parse import time  class LagouSpider:     def __init__(self, url, city, job):         self.__url =">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,115 +163,142 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-input-output-binary" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-case-lagou-job-spider" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文件输入输出（I/O）(二进制文件)
+      案例————lagou网站职位获取（输入城市名、技术名称，例如：北京 python）（爬虫）
     </h1>
   
 
         
-        <a href="/2018/07/30/input-output-binary/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+        <a href="/2018/08/23/case-lagou-job-spider/" class="archive-article-date">
+  	<time datetime="2018-08-23T12:17:46.628Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、struct和pickle"><a href="#1、struct和pickle" class="headerlink" title="1、struct和pickle"></a>1、struct和pickle</h2><h3 id="（1）使用struct模块，进行数据的输入输出"><a href="#（1）使用struct模块，进行数据的输入输出" class="headerlink" title="（1）使用struct模块，进行数据的输入输出"></a>（1）使用struct模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入到文件中的各种类型数据，进行统一打包<br>struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型<br>第二，使用write()写入，写入后以二进制的方式进行文件存储。<br>第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回一个序列，即写入时的顺序，与读取时的顺序应该一致。<br>注意：需要将所有写入的数据，一次性都封装到一个bytes中，因为在Python中没有byte的概念，所以需要第三方的模块进行封装。</p>
-<h3 id="例如1：写入与读出浮点数、布尔型、整型"><a href="#例如1：写入与读出浮点数、布尔型、整型" class="headerlink" title="例如1：写入与读出浮点数、布尔型、整型"></a>例如1：写入与读出浮点数、布尔型、整型</h3><pre><code class="bash">import struct
-<span class="comment">#读出</span>
-a = 123.3
-b = True
-c = 10
-sn = struct.pack(<span class="string">'if?'</span>,c,a,b)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read(9)
-ls = struct.unpack(<span class="string">'if?'</span>,sn)
-<span class="built_in">print</span>(ls[0])
-<span class="built_in">print</span>(ls[1])
-<span class="built_in">print</span>(ls[2])
-f.close()
-</code></pre>
-<h3 id="例如2：写入与读出字符串"><a href="#例如2：写入与读出字符串" class="headerlink" title="例如2：写入与读出字符串"></a>例如2：写入与读出字符串</h3><p>#写入</p>
-<pre><code class="bash">import struct
-str1=b<span class="string">'hello'</span>
-sn = struct.pack(<span class="string">'5s'</span>,str1)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
+        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h3 id="lagou1-py"><a href="#lagou1-py" class="headerlink" title="lagou1.py"></a>lagou1.py</h3><pre><code class="bash">import requests
+import math
+import xlrd
+from xlutils.copy import copy
+from urllib import parse
+import time
 
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read()
-a = struct.unpack(<span class="string">'5s'</span>,sn)
-<span class="built_in">print</span>(a)
-f.close()
-</code></pre>
-<h3 id="（2）使用pickel模块，进行数据的输入输出"><a href="#（2）使用pickel模块，进行数据的输入输出" class="headerlink" title="（2）使用pickel模块，进行数据的输入输出"></a>（2）使用pickel模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入文件中的数据，进行逐一的写入。例如：<br>f = open(‘myfile.dat’,’wb’)<br>pickle.dump(10, f)<br>第二，读取数据时，同理，需要逐一的读取。例如：<br>pickle.load(f)<br>注意，在使用时，我们能够观察到该模块的dump和load函数，与前面所学的json模块的函数一致，在Python中json与pickle都能够实现序列化和反序列化的两个模块。<br>在实际的使用中，推荐使用pickle 模块。</p>
-<h3 id="例如1：一同写入与读出浮点数、布尔型、整型、字符串"><a href="#例如1：一同写入与读出浮点数、布尔型、整型、字符串" class="headerlink" title="例如1：一同写入与读出浮点数、布尔型、整型、字符串"></a>例如1：一同写入与读出浮点数、布尔型、整型、字符串</h3><pre><code class="bash">import pickle
-<span class="comment">#写入</span>
-a = 123.3
-b = True
-c = 10
-d = <span class="string">'ok'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(a,f)
-pickle.dump(b,f)
-pickle.dump(c,f)
-pickle.dump(d,f)
-f.close()
+class LagouSpider:
+    def __init__(self, url, city, job):
+        self.__url = url
+        self.__city = city
+        self.__job = job
 
-<span class="comment">#读出，前提是要知道文件里有多少行</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-i = 0
-<span class="keyword">while</span> i &lt; 4:
-    x = pickle.load(f)
-    <span class="built_in">print</span>(x)
-    i = i+1
-f.close()
+    <span class="comment"># 获取到指定url地址的第num页岗位信息，</span>
+    def get_json(self,  num):
+        my_headers = {
+            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36'</span>,
+            <span class="string">'Host'</span>: <span class="string">'www.lagou.com'</span>,
+            <span class="string">'Referer'</span>: <span class="string">'https://www.lagou.com/jobs/list_python?labelWords=&amp;fromSearch=true&amp;suginput='</span>
+        }
+        request_params = {
+            <span class="string">'px'</span>: <span class="string">'default'</span>,
+            <span class="string">'city'</span>: self.__city,
+            <span class="string">'needAddtionalResult'</span>: <span class="string">'false'</span>,
+            <span class="string">'isSchoolJob'</span>: <span class="string">'0'</span>
+        }
+        url = self.__url + parse.urlencode(request_params)
 
-<span class="comment">#读出，此方法不用写f.close()</span>
-with open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>) as f:
-    x = pickle.load(f)
-    y = pickle.load(f)
-    z = pickle.load(f)
-    s = pickle.load(f)
-    <span class="built_in">print</span>(x,y,z,s)
-</code></pre>
-<h3 id="例如2：写入与读出嵌套列表"><a href="#例如2：写入与读出嵌套列表" class="headerlink" title="例如2：写入与读出嵌套列表"></a>例如2：写入与读出嵌套列表</h3><pre><code class="bash"><span class="comment">#写入</span>
-c = [[1,2,3],[4,5,6]]
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
+        my_data = {
+            <span class="string">'first'</span>: <span class="string">'true'</span>,
+            <span class="string">'pn'</span>: num,
+            <span class="string">'kd'</span>: self.__job
+        }
+        try:
+            response = requests.post(url=url, headers=my_headers, data=my_data)
+            response.raise_for_status()
+            response.encoding = <span class="string">'utf-8'</span>
+            page = response.json()
+            <span class="built_in">return</span> page
+        except requests.HTTPError as he:
+            <span class="built_in">print</span>(he.args)
 
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
+    <span class="comment"># 计算要抓取的页数</span>
+    def get_page_num(self, count):
+        result = math.ceil(count/15)
+        <span class="keyword">if</span> result &gt; 30:
+            result = 30
+        <span class="built_in">return</span> result
+
+    <span class="comment"># 对一个页面的岗位信息，进行解析，返回一个列表</span>
+    def get_page_info(self, jobs_list):
+        page_info_list = []
+        <span class="keyword">for</span> item <span class="keyword">in</span> jobs_list:
+            job_info = []
+            job_info.append(item[<span class="string">'companyFullName'</span>])
+            job_info.append(item[<span class="string">'companySize'</span>])
+            job_info.append(item[<span class="string">'financeStage'</span>])
+            job_info.append(item[<span class="string">'education'</span>])
+            job_info.append(item[<span class="string">'workYear'</span>])
+            job_info.append(item[<span class="string">'salary'</span>])
+            job_info.append(item[<span class="string">'positionAdvantage'</span>])
+            job_info.append(item[<span class="string">'district'</span>])
+            page_info_list.append(job_info)
+        <span class="built_in">return</span> page_info_list
+    <span class="string">''</span><span class="string">'</span>
+<span class="string">    def saveExcel(self, total_info):</span>
+<span class="string">        ls = ['</span>公司名称<span class="string">', '</span>公司规模<span class="string">', '</span>融资情况<span class="string">', '</span>学历要求<span class="string">', '</span>工作经验<span class="string">', '</span>薪资<span class="string">','</span>福利<span class="string">', '</span>区名称<span class="string">']</span>
+<span class="string">        wb = xlwt.Workbook()</span>
+<span class="string">        sheet = wb.add_sheet('</span>职位信息<span class="string">')</span>
+<span class="string">        for m in range(len(ls)):</span>
+<span class="string">            sheet.write(0, m, ls[m])</span>
+<span class="string">        for i in range(len(total_info)):</span>
+<span class="string">            for j in range(len(total_info[i])):</span>
+<span class="string">                sheet.write(i+1, j, total_info[i][j])</span>
+<span class="string">        wb.save('</span>lagou.xls<span class="string">')</span>
+<span class="string">    '</span><span class="string">''</span>
+
+    def saveExcel(self, data_lis):
+        wb = xlrd.open_workbook(r<span class="string">'D:\PycharmText\text\lagou\lagou.xls'</span>)
+        sheet = wb.sheet_by_name(<span class="string">'职位信息'</span>)
+        new_wb = copy(wb)
+        new_sheet = new_wb.get_sheet(<span class="string">'职位信息'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data_lis)):  <span class="comment"># 输入表格内容</span>
+            <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data_lis[m])):
+                new_sheet.write(sheet.nrows + m, n, data_lis[m][n])
+        new_wb.save(r<span class="string">'D:\PycharmText\text\lagou\lagou.xls'</span>)
 </code></pre>
-<h3 id="例如3：写入与读出文字字符串"><a href="#例如3：写入与读出文字字符串" class="headerlink" title="例如3：写入与读出文字字符串"></a>例如3：写入与读出文字字符串</h3><pre><code class="bash"><span class="comment">#写入文字字符串</span>
-c = <span class="string">'我很好'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
-<span class="comment">#读出文字字符串</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
+<h3 id="Testlagou1-py"><a href="#Testlagou1-py" class="headerlink" title="Testlagou1.py"></a>Testlagou1.py</h3><pre><code class="bash">from Lagou1 import LagouSpider
+import time
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    city = input(<span class="string">'请输入求职城市名称：'</span>)
+    job = input(<span class="string">'请输入求职岗位名称：'</span>)
+    ajax_url = <span class="string">'http://www.lagou.com/jobs/positionAjax.json?'</span>
+    spider = LagouSpider(ajax_url, city, job)
+    page = spider.get_json(1)
+
+    <span class="comment"># 获取到指定岗位的岗位总数</span>
+    total_count = page[<span class="string">'content'</span>][<span class="string">'positionResult'</span>][<span class="string">'totalCount'</span>]
+
+    <span class="comment"># 根据岗位数量，计算出共有多少页</span>
+    num = spider.get_page_num(total_count)
+    <span class="built_in">print</span>(<span class="string">'职位总数：{0}，页数：{1}'</span>.format(total_count, num))
+
+    total_info = []
+    <span class="keyword">for</span> n <span class="keyword">in</span> range(1, num+1):
+        item = spider.get_json(n)
+        <span class="comment"># 根据json字符串的结构，得到岗位信息</span>
+        jobs_list = item[<span class="string">'content'</span>][<span class="string">'positionResult'</span>][<span class="string">'result'</span>]
+        page_info = spider.get_page_info(jobs_list)
+        spider.saveExcel(page_info)
+        total_info.append(page_info)
+        <span class="built_in">print</span>(<span class="string">'已经抓取第{0}页，职位总数：{1}'</span>.format(n, len(total_info)))
+        time.sleep(30)
+        <span class="built_in">print</span>(total_info)
 </code></pre>
-<h2 id="2、文件定位"><a href="#2、文件定位" class="headerlink" title="2、文件定位"></a>2、文件定位</h2><h3 id="（1）seek"><a href="#（1）seek" class="headerlink" title="（1）seek()"></a>（1）seek()</h3><p>函数格式：seek(n)<br>返回值：返回指定的位置<br>说明：通过指定元素的位置，将文件指针移动到该位置。</p>
-<h3 id="（2）seek-函数有三个固定值，分别为：0-1-2"><a href="#（2）seek-函数有三个固定值，分别为：0-1-2" class="headerlink" title="（2）seek()函数有三个固定值，分别为：0,1,2"></a>（2）seek()函数有三个固定值，分别为：0,1,2</h3><p>0：文件的开头<br>1：文件当前的位置<br>2：文件的结尾位置<br>seek(0,2):代表着将指针定位到文件尾，然后进行添加操作<br>seek(0,1):代表着在当前指针的位置，进行替换</p>
-<h3 id="（3）补充："><a href="#（3）补充：" class="headerlink" title="（3）补充："></a>（3）补充：</h3><p>对文件的读取时，如果文件大小未知，切忌不要使用read(),readline()，readlines()将文件内容一次性读取到内存中。因为有可能文件内容过多，造成读取时的IO阻塞。建议，将文件分多次分批读入内存中，我们通常可以先获取到文件大小，即：<br>size = path.getsize(‘myfile.txt’)<br>根据其大小来判断我们采用何种方式进行读取数据内容。</p>
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>数据存放在excel表格中，表所在的位置是D:\PycharmText\text\lagou\lagou.xls</p>
 
       
 
@@ -351,7 +378,7 @@ n = pickle.load(f)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/30/input-output-binary/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/23/case-lagou-job-spider/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -365,18 +392,9 @@ n = pickle.load(f)
   
 <nav id="article-nav">
   
-    <a href="/2018/07/31/xml/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python对XML文件的解析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/30/excel/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python对Excel文件的操作</div>
+    <a href="/2018/08/23/case-lianjiahouse-spider/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">案例————链家二手房信息获取（郑州市所在的区）（爬虫）</div>
       <i class="icon-circle-right"></i>
     </a>
   

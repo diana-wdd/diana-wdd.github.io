@@ -161,6 +161,184 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-case-lagou-job-spider" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/23/case-lagou-job-spider/">案例————lagou网站职位获取（输入城市名、技术名称，例如：北京 python）（爬虫）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/23/case-lagou-job-spider/" class="archive-article-date">
+  	<time datetime="2018-08-23T12:17:46.628Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h3 id="lagou1-py"><a href="#lagou1-py" class="headerlink" title="lagou1.py"></a>lagou1.py</h3><pre><code class="bash">import requests
+import math
+import xlrd
+from xlutils.copy import copy
+from urllib import parse
+import time
+
+class LagouSpider:
+    def __init__(self, url, city, job):
+        self.__url = url
+        self.__city = city
+        self.__job = job
+
+    <span class="comment"># 获取到指定url地址的第num页岗位信息，</span>
+    def get_json(self,  num):
+        my_headers = {
+            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36'</span>,
+            <span class="string">'Host'</span>: <span class="string">'www.lagou.com'</span>,
+            <span class="string">'Referer'</span>: <span class="string">'https://www.lagou.com/jobs/list_python?labelWords=&amp;fromSearch=true&amp;suginput='</span>
+        }
+        request_params = {
+            <span class="string">'px'</span>: <span class="string">'default'</span>,
+            <span class="string">'city'</span>: self.__city,
+            <span class="string">'needAddtionalResult'</span>: <span class="string">'false'</span>,
+            <span class="string">'isSchoolJob'</span>: <span class="string">'0'</span>
+        }
+        url = self.__url + parse.urlencode(request_params)
+
+        my_data = {
+            <span class="string">'first'</span>: <span class="string">'true'</span>,
+            <span class="string">'pn'</span>: num,
+            <span class="string">'kd'</span>: self.__job
+        }
+        try:
+            response = requests.post(url=url, headers=my_headers, data=my_data)
+            response.raise_for_status()
+            response.encoding = <span class="string">'utf-8'</span>
+            page = response.json()
+            <span class="built_in">return</span> page
+        except requests.HTTPError as he:
+            <span class="built_in">print</span>(he.args)
+
+    <span class="comment"># 计算要抓取的页数</span>
+    def get_page_num(self, count):
+        result = math.ceil(count/15)
+        <span class="keyword">if</span> result &gt; 30:
+            result = 30
+        <span class="built_in">return</span> result
+
+    <span class="comment"># 对一个页面的岗位信息，进行解析，返回一个列表</span>
+    def get_page_info(self, jobs_list):
+        page_info_list = []
+        <span class="keyword">for</span> item <span class="keyword">in</span> jobs_list:
+            job_info = []
+            job_info.append(item[<span class="string">'companyFullName'</span>])
+            job_info.append(item[<span class="string">'companySize'</span>])
+            job_info.append(item[<span class="string">'financeStage'</span>])
+            job_info.append(item[<span class="string">'education'</span>])
+            job_info.append(item[<span class="string">'workYear'</span>])
+            job_info.append(item[<span class="string">'salary'</span>])
+            job_info.append(item[<span class="string">'positionAdvantage'</span>])
+            job_info.append(item[<span class="string">'district'</span>])
+            page_info_list.append(job_info)
+        <span class="built_in">return</span> page_info_list
+    <span class="string">''</span><span class="string">'</span>
+<span class="string">    def saveExcel(self, total_info):</span>
+<span class="string">        ls = ['</span>公司名称<span class="string">', '</span>公司规模<span class="string">', '</span>融资情况<span class="string">', '</span>学历要求<span class="string">', '</span>工作经验<span class="string">', '</span>薪资<span class="string">','</span>福利<span class="string">', '</span>区名称<span class="string">']</span>
+<span class="string">        wb = xlwt.Workbook()</span>
+<span class="string">        sheet = wb.add_sheet('</span>职位信息<span class="string">')</span>
+<span class="string">        for m in range(len(ls)):</span>
+<span class="string">            sheet.write(0, m, ls[m])</span>
+<span class="string">        for i in range(len(total_info)):</span>
+<span class="string">            for j in range(len(total_info[i])):</span>
+<span class="string">                sheet.write(i+1, j, total_info[i][j])</span>
+<span class="string">        wb.save('</span>lagou.xls<span class="string">')</span>
+<span class="string">    '</span><span class="string">''</span>
+
+    def saveExcel(self, data_lis):
+        wb = xlrd.open_workbook(r<span class="string">'D:\PycharmText\text\lagou\lagou.xls'</span>)
+        sheet = wb.sheet_by_name(<span class="string">'职位信息'</span>)
+        new_wb = copy(wb)
+        new_sheet = new_wb.get_sheet(<span class="string">'职位信息'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data_lis)):  <span class="comment"># 输入表格内容</span>
+            <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data_lis[m])):
+                new_sheet.write(sheet.nrows + m, n, data_lis[m][n])
+        new_wb.save(r<span class="string">'D:\PycharmText\text\lagou\lagou.xls'</span>)
+</code></pre>
+<h3 id="Testlagou1-py"><a href="#Testlagou1-py" class="headerlink" title="Testlagou1.py"></a>Testlagou1.py</h3><pre><code class="bash">from Lagou1 import LagouSpider
+import time
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    city = input(<span class="string">'请输入求职城市名称：'</span>)
+    job = input(<span class="string">'请输入求职岗位名称：'</span>)
+    ajax_url = <span class="string">'http://www.lagou.com/jobs/positionAjax.json?'</span>
+    spider = LagouSpider(ajax_url, city, job)
+    page = spider.get_json(1)
+
+    <span class="comment"># 获取到指定岗位的岗位总数</span>
+    total_count = page[<span class="string">'content'</span>][<span class="string">'positionResult'</span>][<span class="string">'totalCount'</span>]
+
+    <span class="comment"># 根据岗位数量，计算出共有多少页</span>
+    num = spider.get_page_num(total_count)
+    <span class="built_in">print</span>(<span class="string">'职位总数：{0}，页数：{1}'</span>.format(total_count, num))
+
+    total_info = []
+    <span class="keyword">for</span> n <span class="keyword">in</span> range(1, num+1):
+        item = spider.get_json(n)
+        <span class="comment"># 根据json字符串的结构，得到岗位信息</span>
+        jobs_list = item[<span class="string">'content'</span>][<span class="string">'positionResult'</span>][<span class="string">'result'</span>]
+        page_info = spider.get_page_info(jobs_list)
+        spider.saveExcel(page_info)
+        total_info.append(page_info)
+        <span class="built_in">print</span>(<span class="string">'已经抓取第{0}页，职位总数：{1}'</span>.format(n, len(total_info)))
+        time.sleep(30)
+        <span class="built_in">print</span>(total_info)
+</code></pre>
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>数据存放在excel表格中，表所在的位置是D:\PycharmText\text\lagou\lagou.xls</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/23/case-lagou-job-spider/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-case-lianjiahouse-spider" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1202,252 +1380,6 @@ file:文件上传
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/20/spider-wangluoyuanli/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-object-oriented" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/09/object-oriented/">面向对象</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/09/object-oriented/" class="archive-article-date">
-  	<time datetime="2018-08-09T09:38:16.107Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、面向对象的概念"><a href="#1、面向对象的概念" class="headerlink" title="1、面向对象的概念"></a>1、面向对象的概念</h2><p>类：指具有相同属性或行为的一组事物。<br>对象：是类的具体化<br>类与对象的关系：<br>类是一组对象的抽象表示，而对象是类的具体化实现。</p>
-<h2 id="2、类的语法结构"><a href="#2、类的语法结构" class="headerlink" title="2、类的语法结构"></a>2、类的语法结构</h2><p>class 类名：<br>     变量声明语句<br>     执行语句<br>     def func(self):<br>         执行语句<br>其中，类名首字母要求大写（约定俗成），遵守Python命名规则，不能以数字开头，通常我们都是字母开头。<br>注意：<br>（1）如果类中声明了函数，其函数的参数，必须有一个默认的参数为self，self代表了该类的实例化对象。<br>（2）如果在类中声明了变量，且该变量位于函数体之外，这个变量我们成为类变量，类变量是公共的。类变量的调用可以直接使用类名进行调用，</p>
-<h3 id="比如："><a href="#比如：" class="headerlink" title="比如："></a>比如：</h3><pre><code class="bash">class Dog:  <span class="comment"># 定义一个类，类名Animal</span>
-    color = <span class="string">'灰色'</span>
-    leg_num = 4
-    weight = 20
-    width = 150
-
-    def wangwang(self):
-        <span class="built_in">print</span>(<span class="string">'wangwangwangwang'</span>)
-
-    def eat(self):
-        <span class="built_in">print</span>(<span class="string">'一顿饭20块钱'</span>)
-
-    def run(self):
-        <span class="built_in">print</span>(<span class="string">'非常快'</span>)
-
-husky = Dog()  <span class="comment"># 将类实例化成对象，对象为dog</span>
-husky.run()
-Dog.color
-</code></pre>
-<p>类变量，作为公共的变量，不管类实例化多少个对象，都只实例一份类变量。而且类变量会在对象实例化之前载入内容，一旦改变了类变量中的内容，所有对象中调用这个类变量的值都会随之改变。<br>（3）在类实例化对象时，会将其定义的属性和行为，生成一份副本给具体的实例化对象。对象与对象之间，他们的属性和行为是不相互干扰的。</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class Dog:  <span class="comment"># 定义一个类，类名Animal</span>
-    color = <span class="string">'灰色'</span>
-    def __init__(self, num):
-        self.num = num
-
-    def getNum(self):
-        <span class="built_in">print</span>(self.num)
-
-husky = Dog(5)  <span class="comment"># 将类实例化成对象，对象为dog</span>
-samoye = Dog(3)
-husky.getNum()
-samoye.getNum()
-</code></pre>
-<p>我们在实例化Dog类时，生成两个对象husky、samoye，这两对象在实例化的过程中会生成两套成员变量和函数，他们的相互不干扰的。我们可以观察上面的代码，发现num变量属于成员变量，即husky和samoye各有持有相同的成员变量，但是修改num的值，husky为5，而samoye为3。结果表明他们的成员变量只能归各自的对象所拥有，并进行改变。对象与对象之间不会相互影响。<br>（4）使用构造函数，来初始化成员变量</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class Person:
-    def __init__(self):  <span class="comment"># 构造函数，在实例化对象时被默认调用，用来给对象的成员变量赋值</span>
-        self.name = <span class="string">'tom'</span>
-        self.age = 21
-        self.tel = <span class="string">'1350000000'</span>
-        self.address = <span class="string">'北京'</span>
-        self.sex = <span class="string">'男'</span>
-
-    def setName(self, name):
-        self.name = name
-
-    def getName(self):
-        <span class="built_in">return</span> self.name
-p1 = Person()
-p1.name
-</code></pre>
-<p>使用<strong>init</strong>()函数，用来初始化成员变量。对象在实例化时，会默认的调用<strong>init</strong>()函数，同时将成员变量进行初始化。同时，在构造函数中，使用self.变量名进行初始化的成员变量，都是公有的。即在类外可以通过实例化的对象调用。</p>
-<h2 id="3、类变量与成员变量的区别"><a href="#3、类变量与成员变量的区别" class="headerlink" title="3、类变量与成员变量的区别"></a>3、类变量与成员变量的区别</h2><p>（1）类变量是声明在类中，位于函数之外声明的变量。这些变量是公共的，即在类外使用类名.类变量的方式进行调用。我们一旦修改类变量的值，所有调用类变量的内容均发生改变。<br>（2）成员变量，是声明在类中的构造函数中，通过self.变量来进行声明赋值的。这些成员变量是公有的，即在类外可以通过对象名.成员变量的方式进行调用。所有的对象都有自己的成员变量，也就意味着每个对象的成员变量都是独立的，不会相互干扰。<br>（3）类变量是该类所有实例化对象所公有的，它会早于对象实例化之前被载入内容中。<br>成员变量都是跟随对象实例化的过程中，被声明出来的。它是伴随着对象的产生而产生，消亡而消亡的。<br>（4）成员变量和方法，默认情况下都是公有的。也就是说在类外可以直接使用对象进行调用。我们可以通过为成员变量设置双下划线，将其标识为私有的成员变量，例如：self.__name = ‘tom’。私有的成员变量只能在类内进行直接使用，类外必须通过相关方法进行间接调用。</p>
-<h2 id="4、Python中对象创建的流程"><a href="#4、Python中对象创建的流程" class="headerlink" title="4、Python中对象创建的流程"></a>4、Python中对象创建的流程</h2><p>（1）Python创建一个对象，首先要调用<strong>new</strong>方法，用来创建并返回一个对象。通常，Python中不需要我们直接显示调用，它会默认调用object.<strong>new</strong>()方法<br>（2）然后，调用<strong>init</strong>方法，对该对象进行初始化。</p>
-<h2 id="5、析构函数"><a href="#5、析构函数" class="headerlink" title="5、析构函数"></a>5、析构函数</h2><p>（1）析构函数与构造函数一样，都是Python中特殊的函数。<br>（2）析构函数如果用户没有定义的话，Python会提供一个默认的析构函数<br>（3）析构函数<strong>del</strong>(self)，作用用来释放掉对象所占用的内存空间，在Python回收对象空间之前自动被执行。<br>（4）通常在析构函数中，主要是将对象中占用大量资源的变量进行手动的释放，便于后续Python解释器去回收这些内存空间。</p>
-<h2 id="6、继承"><a href="#6、继承" class="headerlink" title="6、继承"></a>6、继承</h2><p>（1）Python中能够实现单继承与多继承。<br>单继承：就是子类只有一个直接父类。<br>多继承：子类有两个及两个以上的直接父类。<br>（2）如果在多继承情况下，父类出现同名函数，那么子类继承该函数时，根据继承的顺序进行调用。<br>（3）super()函数，它指代了当前类的父类。我们可以在子类中调用super函数，用来初始化父类。但是使用super()调用父类的构造函数时，只能对多继承中的第一个父类生效。<br>（4）抽象与继承的区别与关系<br>抽象：指对同一类别事物的相似部分进行抽取。抽象我们认为是对具体化对象的相关行为和属性的泛化过程。<br>继承：Python中我们通常认为类就是一个抽象的内容。类本身并不能直接执行，需要通过继承，进行对象的实例化，进而获得具体的对象本身，才能执行相关的功能。<br>也就是说继承其实是抽象的具体化过程。<br>（5）多继承中，当一个子类继承多个父类时，我们需要如下声明：</p>
-<p>class SubClass(A,B):</p>
-<p>其中，A、B是SubClass的父类。那么，如果我们分为两种个情况：<br>第一，子类中没有显式的定义<strong>init</strong>()，那么在实例化子类时调用其父类的构造函数。如果有多个类，都定义了<strong>init()函数，那么它会调用第一个具有</strong>init__()函数的父类。<br>第二，子类中显式的定义了<strong>init_(),那么实例化子类时不再调用父类的构造函数。此时，如果我们要调用父类的构造函数，有两种方法：<br>1）在子类的构造函数中，显式的调用对应父类的构造函数，例如：<br>A.</strong>init__()<br>2)采用super()函数，super().<strong>init</strong>()或者super(子类，self).<strong>init</strong>()<br>但是如果遇到其多个父类，他们的构造函数同名时，我们根据他们在MRO中的顺序，分别调用他们</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class SubClass(B, A):
-    def __init__(self):
-        super().__init__()   <span class="comment"># 此处调用了父类B</span>
-        super(B, self).__init__() <span class="comment">#此处调用了父类C</span>
-        <span class="built_in">print</span>(<span class="string">'我是子类'</span>)
-</code></pre>
-<p>注意，在这里不要看到super就认为是父类，但是在多继承时，实际上super指的是MRO中的下一个类。</p>
-<h2 id="7、封装"><a href="#7、封装" class="headerlink" title="7、封装"></a>7、封装</h2><p>在Python中，我们针对其内部细节进行封装。通常我们将属性定义为私有类型，意味着在类外无法直接访问。可以通过相关的方法对其进行调用。<br>私有的成员变量和方法，都需要在类内进行定义。所有在类外实现的定义都是公有的</p>
-<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><pre><code class="bash">class A:
-    __N = <span class="string">'hello'</span>      <span class="comment"># 此处是一个私有的类变量</span>
-    def __init__(self):
-        self.__name = <span class="string">'tom'</span>
-
-    def __method(self):
-        <span class="built_in">print</span>(<span class="string">'我是私有函数'</span>)
-
-    def show(self):
-        self.__method()
-        <span class="built_in">print</span>(self.__name)
-
-a = A()
-A.__age = 10       <span class="comment"># 此处的__age是一个公有的类变量</span>
-<span class="built_in">print</span>(A.__age)
-</code></pre>
-<h2 id="8、property方法"><a href="#8、property方法" class="headerlink" title="8、property方法"></a>8、property方法</h2><p>在Python中，我们可以使用property来修饰指定的函数，被修饰后的函数，在类外可以通过对象调用（类似调用变量）</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class Person:
-    def __init__(self, name, height, weight):
-        self.__name = name
-        self.__height = height
-        self.__weight = weight
-
-    @property
-    def bmi(self):
-        <span class="built_in">return</span> self.__weight / self.__height**2
-
-p = Person()
-<span class="built_in">print</span>(p.bmi)  <span class="comment"># 此处调用的bmi是Person类中的函数。</span>
-</code></pre>
-<p>原理：当类被载入时，首先会载入类的名称和被property修饰的名字到类的命名空间中；然后在类对象进行实例化时，Python解析器会查找是否存在property修饰的名字，如果存在，就不在实例化对象是为其分配内存空间。</p>
-<h2 id="9、classmethod方法"><a href="#9、classmethod方法" class="headerlink" title="9、classmethod方法"></a>9、classmethod方法</h2><p>在Python中，我们通常使用classmethod用来修饰一个方法，这个方法就被称为类方法，类方法通常用来操作类变量。类方法和类变量一样，都需要通过类名来调用。</p>
-<h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class Goods:
-    __discount = 0.8
-    def __init__(self, name, price):
-        self.__name = name
-        self.__price = price
-
-    @classmethod
-    def change_discount(cls, new_discount): <span class="comment">#此处传递的默认参数不是对象参数self，而是类参数cls</span>
-        cls.__discount = new_discount
-
-    @classmethod
-    def get_discount(cls):
-        <span class="built_in">return</span> cls.__discount
-
-goods = Goods(<span class="string">'apple'</span>, 6)
-<span class="built_in">print</span>(Goods.get_discount())
-Goods.change_discount(0.9)
-<span class="built_in">print</span>(Goods.get_discount())
-</code></pre>
-<h2 id="10、staticmethod方法"><a href="#10、staticmethod方法" class="headerlink" title="10、staticmethod方法"></a>10、staticmethod方法</h2><p>在Python中，我们使用staticmethod来修饰函数，该函数被称为静态方法，首先，静态方法不需要使用对象参数或类参数作为默认参数。其次，静态方法通常只能调用类变量，而不可以使用成员变量。最后，在类外进行调用时，可以使用类名来调用。</p>
-<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">import time
-class MyTime(object):
-    def __init__(self,hour,minute,second):
-        self.__hour = hour
-        self.__minute = minute
-        self.__second = second
-
-    @staticmethod
-    def showTime():
-        <span class="built_in">return</span> time.strftime(<span class="string">'%H:%M:%S'</span>,time.localtime())
-
-<span class="built_in">print</span>(MyTime.showTime())
-</code></pre>
-<h2 id="11、实例方法、类方法与静态方法的区别"><a href="#11、实例方法、类方法与静态方法的区别" class="headerlink" title="11、实例方法、类方法与静态方法的区别"></a>11、实例方法、类方法与静态方法的区别</h2><p>（1）实例方法：第一个参数必须是实例对象（self）,通过它来传递实例的属性和方法，只能由实例对象来调用。<br>（2）类方法：使用装饰器@classmethod，第一个参数必须是类对象（cls）,通过它来传递类的属性和方法。可以通过实例对象或类对象来调用，通常使用类对象调用。<br>（3）静态方法：使用装饰器@staticmethod,没有默认参数（self和cls），但是方法体中不能使用类或实例对象的任何属性和方法。可以通过实例对象或类对象进行调用。<br>（4）类方法和静态方法都可以通过对象实例或者类名来调用。<br>（5）类方法主要针对的是类，可以通过继承和重新定义<br>（6）静态方法不能被继承，无法被重写，可以被认为是全局函数。静态方法在使用时完全不会用到对象实例本身。静态方法逻辑上属于类，但是不会涉及到类中的属性和方法的操作。</p>
-<h2 id="12、方法重写"><a href="#12、方法重写" class="headerlink" title="12、方法重写"></a>12、方法重写</h2><p>概念：当子类继承父类时，子类会继承父类所有的公有方法。如果在子类中重写定义一个与父类中同名的方法，我们成为方法的重写（覆盖）。方法重写只需要名字相同即可，与方法的参数个数、顺序无关</p>
-<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class Animal:
-    def eat(self):
-        <span class="built_in">print</span>(<span class="string">'Animal is eatting'</span>)
-
-class Dog(Animal):
-    def eat(self):
-        <span class="built_in">print</span>(<span class="string">'Dog is eatting'</span>)
-
-class Cat(Animal):
-    def eat(self):
-        <span class="built_in">print</span>(<span class="string">'Cat is eatting'</span>)
-
-def eating_double(animal):
-    animal.eat()
-
-animal = Animal()
-dog = Dog()
-cat = Cat()
-
-eating_double(animal)
-eating_double(dog)
-eating_double(cat)
-</code></pre>
-<h2 id="13、多态与鸭子类型"><a href="#13、多态与鸭子类型" class="headerlink" title="13、多态与鸭子类型"></a>13、多态与鸭子类型</h2><p>（1）多态：多态一般都是通过继承来实现的，也就是根据不同的对象形态来进行区分。我们在Python中，使用多态时，意味着在编码时变量并不知道所引用的对象具体内容，只有在程序运行时相关对象被实例化后，才能够确定。<br>（2）鸭子类型：在Python中，因为其自身特性并没有对多态进行明确的规定，可以创建一个功能相似，但与原对象无关的、全新对象，来实现程序的松耦合。<br>我们通常在开发中，采用接口的方式来实现。<br>我们认为在一组功能相似，但没有继承关系的对象中，采用接口方式。</p>
-<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class Payment:
-    def payment(self, money):
-        pass
-class Weixinpay(Payment):
-    def payment(self, money):
-        <span class="built_in">print</span>(<span class="string">'微信支付了{0}元'</span>.format(money))
-class Alipay(Payment):
-    def payment(self, money):
-        <span class="built_in">print</span>(<span class="string">'支付宝支付了{0}元'</span>.format(money))
-class My(Payment):
-    def payment(self, money):
-        <span class="built_in">print</span>(<span class="string">'支付了{0}元'</span>.format(money))
-</code></pre>
-<p>此例，我们可以看到：<br>第一，通过继承，实现了多态，即三种支付方式不同的形态<br>第二，我们观察到，微信支付、支付宝、个人支付，三者之间没有任何继承关系，但是都具有相同的支付功能，我们可以认为这种形式就是鸭子类型<br>第三，因为三种支付方式，分别继承了接口类Payment，都重新了相关的支付方法payment()</p>
-<h2 id="14、运算符重载"><a href="#14、运算符重载" class="headerlink" title="14、运算符重载"></a>14、运算符重载</h2><p>1、<strong>getitem</strong>：索引迭代<br>在Python，可迭代化对象在使用循环迭代时，都会默认的调用<strong>iter</strong>,如果没有next()方法，会调用<strong>getitem</strong>方法。</p>
-<h3 id="例如：-8"><a href="#例如：-8" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">class Stepper:
-def __init__(self,data):
-    self.data = data
-
-def __getitem__(self,i):
-    <span class="built_in">return</span> self.data[i]
-
-step = Stepper(<span class="string">'hello'</span>)
-<span class="keyword">for</span> i <span class="keyword">in</span> step:
-<span class="built_in">print</span>(i,end = <span class="string">' '</span>)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/09/object-oriented/">展开全文 >></a>
         </p>
       
 
