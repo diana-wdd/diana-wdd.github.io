@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | diana</title>
+  <title>案例————链家二手房信息获取（郑州市所在的区）（爬虫） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="diana">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/2/index.html">
+  <meta name="description" content="源代码：house.pyimport requests from bs4 import BeautifulSoup import json import xlwt import xlrd from xlutils.copy import copy from house_info import HouseInfo from houseDetail_info import HouseDetail  c">
+<meta name="keywords" content="Python、爬虫、Web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="案例————链家二手房信息获取（郑州市所在的区）（爬虫）">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/case-lianjiahouse-spider/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="源代码：house.pyimport requests from bs4 import BeautifulSoup import json import xlwt import xlrd from xlutils.copy import copy from house_info import HouseInfo from houseDetail_info import HouseDetail  c">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-23T11:41:08.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="案例————链家二手房信息获取（郑州市所在的区）（爬虫）">
+<meta name="twitter:description" content="源代码：house.pyimport requests from bs4 import BeautifulSoup import json import xlwt import xlrd from xlutils.copy import copy from house_info import HouseInfo from houseDetail_info import HouseDetail  c">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -159,295 +163,372 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-case-lianjiahouse-spider" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      案例————链家二手房信息获取（郑州市所在的区）（爬虫）
+    </h1>
+  
+
+        
+        <a href="/2018/08/23/case-lianjiahouse-spider/" class="archive-article-date">
+  	<time datetime="2018-08-23T11:08:35.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h4 id="house-py"><a href="#house-py" class="headerlink" title="house.py"></a>house.py</h4><pre><code class="bash">import requests
+from bs4 import BeautifulSoup
+import json
+import xlwt
+import xlrd
+from xlutils.copy import copy
+from house_info import HouseInfo
+from houseDetail_info import HouseDetail
+
+class House:
+    def __init__(self, url):
+        self.url = url
+
+    def getHouseHTML(self):
+        my_headers = {
+            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64)\</span>
+<span class="string">                     AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'</span>,
+            <span class="string">'Host'</span>: <span class="string">'zz.lianjia.com'</span>,
+            <span class="string">'Referer'</span>: <span class="string">'https://zz.lianjia.com/?utm_source=baidu&amp;utm_medium=pinzhuan&amp;utm_term=biaoti&amp;\</span>
+<span class="string">            utm_content=biaotimiaoshu&amp;utm_campaign=sousuo&amp;ljref=pc_sem_baidu_ppzq_x'</span>
+        }
+        try:
+            response = requests.get(url=self.url, headers=my_headers)
+            response.raise_for_status()
+            response.encoding = <span class="string">'utf-8'</span>
+            <span class="built_in">return</span> response.text
+        except requests.HTTPError as e:
+            <span class="built_in">print</span>(<span class="string">'error'</span>)
+
+    def findPage(self, content):
+        soup = BeautifulSoup(content, <span class="string">'html.parser'</span>)
+        page_str = soup.find(<span class="string">'div'</span>, <span class="string">'page-box house-lst-page-box'</span>).attrs[<span class="string">'page-data'</span>]
+        page = json.loads(page_str)[<span class="string">'totalPage'</span>]
+        <span class="built_in">return</span> page
+
+    def parseHouseHTML(self, content):
+        houseinfo_list = []
+        soup = BeautifulSoup(content, <span class="string">'html.parser'</span>)
+        house_list = soup.find_all(<span class="string">'div'</span>, <span class="string">'info clear'</span>)
+        <span class="keyword">for</span> house <span class="keyword">in</span> house_list:
+            housecode = house.find(<span class="string">'a'</span>)[<span class="string">'data-housecode'</span>]
+            name = house.find(<span class="string">'a'</span>, <span class="string">'no_resblock_a'</span>).string
+            address = house.find(<span class="string">'a'</span>, <span class="string">'no_resblock_a'</span>).string
+            district = house.find(<span class="string">'div'</span>, <span class="string">'positionInfo'</span>).find(<span class="string">'a'</span>).string
+            follow_info = house.find(<span class="string">'div'</span>, <span class="string">'followInfo'</span>).text
+            total_price = house.find(<span class="string">'div'</span>, <span class="string">'totalPrice'</span>).text
+            unit_price = house.find(<span class="string">'div'</span>, <span class="string">'unitPrice'</span>)[<span class="string">'data-price'</span>]
+            position_info = house.find(<span class="string">'div'</span>, <span class="string">'flood'</span>).find(<span class="string">'div'</span>, <span class="string">'positionInfo'</span>).text
+            houseinfo = HouseInfo(housecode, name, address, district, position_info, total_price, unit_price, follow_info)
+            houseinfo_list.append(houseinfo)
+        <span class="built_in">return</span> houseinfo_list
+
+    def HouseDetailHTML(self, content):
+        houseinfo = []
+        featuresinfo = []
+        soup = BeautifulSoup(content, <span class="string">'html.parser'</span>)
+        house_list = soup.find(<span class="string">'div'</span>, <span class="string">'introContent'</span>).find_all(<span class="string">'div'</span>, <span class="string">'content'</span>)
+        <span class="keyword">for</span> i <span class="keyword">in</span> house_list[0].find_all(<span class="string">'li'</span>):
+            houseinfo.append(i.text)
+        num = 1
+        <span class="keyword">for</span> j <span class="keyword">in</span> house_list[1].find_all(<span class="string">'span'</span>):
+            <span class="keyword">if</span> num%2 == 0:
+                houseinfo.append(j.string.strip())
+            num += 1
+        house_lis = soup.find_all(<span class="string">'div'</span>, <span class="string">'baseattribute'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> house_lis:
+            info = m.find(<span class="string">'div'</span>, <span class="string">'content'</span>).string.strip()
+            featuresinfo.append(info)
+        hsdl = HouseDetail(houseinfo, featuresinfo)
+        <span class="built_in">return</span> hsdl
+    <span class="string">''</span><span class="string">'</span>
+<span class="string">    #此种excel的存入方法，不需要提前写sheet名以及表头，当再次运行时，会报错显示表已存在</span>
+<span class="string">    def saveExcel(self, data_lis):</span>
+<span class="string">        ls = ['</span>房源编号<span class="string">', '</span>房源名称<span class="string">', '</span>房源地址<span class="string">', '</span>房源所属郑州的区<span class="string">', '</span>楼层信息<span class="string">', '</span>总价<span class="string">', '</span>单价<span class="string">', '</span>关注度<span class="string">', '</span>基本信息<span class="string">', '</span>房源特色<span class="string">']</span>
+<span class="string">        wbt = xlwt.Workbook()</span>
+<span class="string">        sheet = wbt.add_sheet('</span>详细信息表<span class="string">')</span>
+<span class="string">        for i in range(len(ls)):</span>
+<span class="string">            sheet.write(0, i, ls[i])</span>
+<span class="string">        for m in range(len(data_lis)):  # 输入表格内容</span>
+<span class="string">            for n in range(len(data_lis[m])):</span>
+<span class="string">                sheet.write(m+1, n, data_lis[m][n])</span>
+<span class="string">        wbt.save('</span>house.xls<span class="string">')</span>
+<span class="string">    '</span><span class="string">''</span>
+
+    <span class="comment">#选择一种即可</span>
+
+    <span class="comment">#此种excel的存入方法，要提前写sheet名以及表头,当再次运行时，抓取的结果会接着上一次的保存，不会报错</span>
+    def saveExcel(self, data_lis):
+        wb = xlrd.open_workbook(r<span class="string">'D:\PycharmText\text\lianjia_house\house.xls'</span>)
+        sheet = wb.sheet_by_name(<span class="string">'详细信息表'</span>)
+        new_wb = copy(wb)
+        new_sheet = new_wb.get_sheet(<span class="string">'详细信息表'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data_lis)):  <span class="comment"># 输入表格内容</span>
+            <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data_lis[m])):
+                new_sheet.write(sheet.nrows + m, n, data_lis[m][n])
+        new_wb.save(r<span class="string">'D:\PycharmText\text\lianjia_house\house.xls'</span>)
+</code></pre>
+<h4 id="house-info-py"><a href="#house-info-py" class="headerlink" title="house_info.py"></a>house_info.py</h4><pre><code class="bash">class HouseInfo:
+
+    def __init__(self, housecode, name, address, district, position_info, total_price, unit_price, follow_info):
+        self.__name = name
+        self.__address = address
+        self.__district = district
+        self.__position_info = position_info
+        self.__total_price = total_price
+        self.__unit_price = unit_price
+        self.__follow_info = follow_info
+        self.__housecode = housecode
+
+    @property
+    def housecode(self):
+        <span class="built_in">return</span> self.__housecode
+
+    @housecode.setter
+    def housecode(self, new_housecode):
+        self.__housecode = new_housecode
+
+    @property
+    def name(self):
+        <span class="built_in">return</span> self.__name
+
+    @name.setter
+    def name(self, new_name):
+        self.__name = new_name
+
+    @property
+    def district(self):
+        <span class="built_in">return</span> self.__district
+
+    @district.setter
+    def district(self, new_district):
+        self.__district = new_district
+
+    @property
+    def unit_price(self):
+        <span class="built_in">return</span> self.__unit_price
+
+    @unit_price.setter
+    def unit_price(self, new_unit_price):
+        self.__unit_price = new_unit_price
+
+    @property
+    def total_price(self):
+        <span class="built_in">return</span> self.__total_price
+
+    @total_price.setter
+    def total_price(self, new_total_price):
+        self.__total_price = new_total_price
+
+    @property
+    def position_info(self):
+        <span class="built_in">return</span> self.__position_info
+
+    @position_info.setter
+    def position_info(self, new_position_info):
+        self.__position_info = new_position_info
+
+    @property
+    def follow_info(self):
+        <span class="built_in">return</span> self.__follow_info
+
+    @follow_info.setter
+    def follow_info(self, new_follow_info):
+        self.__follow_info = new_follow_info
+
+    @property
+    def address(self):
+        <span class="built_in">return</span> self.__address
+
+    @address.setter
+    def address(self, new_address):
+        self.__address = new_address
+</code></pre>
+<h4 id="houseDetail-info-py"><a href="#houseDetail-info-py" class="headerlink" title="houseDetail_info.py"></a>houseDetail_info.py</h4><pre><code class="bash">class HouseDetail:
+    def __init__(self, baseinfo = [], featuresinfo = []):
+        self.__baseinfo = baseinfo
+        self.__featuresinfo = featuresinfo
+
+    @property
+    def baseinfo(self):
+        <span class="built_in">return</span> self.__baseinfo
+    @baseinfo.setter
+    def baseinfo(self, new_baseinfo):
+        self.__baseinfo = new_baseinfo
+
+    @property
+    def featuresinfo(self):
+        <span class="built_in">return</span> self.__featuresinfo
+    @featuresinfo.setter
+    def featuresinfo(self, new_featuresinfo):
+        self.__featuresinfo = new_featuresinfo
+</code></pre>
+<h4 id="testHouse-py"><a href="#testHouse-py" class="headerlink" title="testHouse.py"></a>testHouse.py</h4><pre><code class="bash">from house import House
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    area = input(<span class="string">'请输入郑州区名：'</span>)
+    url = <span class="string">'https://zz.lianjia.com/ershoufang/pg1rs{0}'</span>.format(area)
+    house = House(url)
+    content = house.getHouseHTML()
+    page = house.findPage(content)  <span class="comment"># 查询该地区的数据共多少页</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(1, page+1):
+        url = <span class="string">'https://zz.lianjia.com/ershoufang/pg{0}rs{1}'</span>.format(i, area)
+        house = House(url)
+        content = house.getHouseHTML()
+        ls = house.parseHouseHTML(content)
+
+        <span class="built_in">print</span>(<span class="string">'共{0}页，正在抓取第{1}页\n'</span>.format(page, i))
+        lss = []
+        <span class="keyword">for</span> item <span class="keyword">in</span> ls:
+            url = <span class="string">'https://zz.lianjia.com/ershoufang/{0}.html'</span>.format(item.housecode)
+            house = House(url)
+            content = house.getHouseHTML()
+            hsdl = house.HouseDetailHTML(content)
+            ls1 = [item.housecode, item.name, item.address, item.district, item.position_info, item.total_price, item.unit_price, item.follow_info, hsdl.baseinfo, hsdl.featuresinfo]
+            lss.append(ls1)
+        house.saveExcel(lss)
+</code></pre>
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>数据存放在excel表格中，表所在的位置是D:\PycharmText\text\zhilian_house文件夹中</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/exception/" class="archive-article-date">
-  	<time datetime="2018-08-02T09:35:55.750Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/exception/">异常的捕获、处理、抛出</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/23/case-lianjiahouse-spider/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/pack-module/" class="archive-article-date">
-  	<time datetime="2018-08-02T09:34:38.502Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/23/case-zhilian-job-spider/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">案例————智联招聘职位获取（爬虫）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/pack-module/">包与模块</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/case-ATM-def-log-@-txt/" class="archive-article-date">
-  	<time datetime="2018-08-02T01:00:27.124Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/case-ATM-def-log-@-txt/">案例——ATM取款机（函数、语法糖、日志、文本文件）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/01/practice--xml-excel/" class="archive-article-date">
-  	<time datetime="2018-08-01T11:40:07.291Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/01/practice--xml-excel/">作业练习——关于商品订购将xml文件读出并写入到excel中</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/31/xml/" class="archive-article-date">
-  	<time datetime="2018-07-31T13:40:47.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/31/xml/">Python对XML文件的解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/excel/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-binary/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-binary/">文件输入输出（I/O）(二进制文件)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/30/input-output-txt/" class="archive-article-date">
-  	<time datetime="2018-07-30T00:35:54.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/30/input-output-txt/">文件输入输出（I/O）(文本文件)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/26/def-recursion/" class="archive-article-date">
-  	<time datetime="2018-07-26T13:10:50.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/26/def-recursion/">函数的递归</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/25/def-higher-function/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:29:44.677Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/25/def-higher-function/">高阶函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/page/3/">3</a><a class="page-number" href="/archives/2018/page/4/">4</a><a class="page-number" href="/archives/2018/page/5/">5</a><a class="extend next" rel="next" href="/archives/2018/page/3/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -474,8 +555,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

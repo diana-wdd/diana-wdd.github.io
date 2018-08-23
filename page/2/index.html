@@ -161,6 +161,149 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-exception" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/02/exception/">异常的捕获、处理、抛出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/02/exception/" class="archive-article-date">
+  	<time datetime="2018-08-02T09:35:55.750Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h3><p>指因程序出错在正常的执行流程之外，采取的行为。异常是一个事件，会在程序的执行过程中执行，并影响程序的执行。</p>
+<h3 id="2、异常的阶段"><a href="#2、异常的阶段" class="headerlink" title="2、异常的阶段"></a>2、异常的阶段</h3><p>第一、产生异常（比如：代码错误、业务逻辑错误）<br>第二、处理异常（比如：将异常提示更加可理解、增强代码的健壮性）</p>
+<h3 id="3、常见的异常类"><a href="#3、常见的异常类" class="headerlink" title="3、常见的异常类"></a>3、常见的异常类</h3><p>（1）Exception：Python中所有异常的父类。<br>（2）NameError：访问了一个未声明的变量。<br>（3）keyError:访问一个不存在的字典key<br>（4）IndexError：索引超出序列的范围<br>（5）ValueError：传给函数的参数类型不正确。<br>（6）IOError：文件操作时输入输出错误<br>（7）ZeroDivisionError：除数为0<br>（8）SyntaxError：语法错误<br>（9）AttributeError：尝试访问未知的对象属性<br>（10）EOFError：发现一个不期望的文件尾</p>
+<h3 id="4、异常处理流程"><a href="#4、异常处理流程" class="headerlink" title="4、异常处理流程"></a>4、异常处理流程</h3><p>基本语法：</p>
+<h3 id="（1）-1个try，1个except"><a href="#（1）-1个try，1个except" class="headerlink" title="（1） 1个try，1个except"></a>（1） 1个try，1个except</h3><p>try：<br>   可能会产生异常的代码<br>except  对应的异常 as 别名：<br>   异常处理语句<br>说明：在try中，放置可能会产生错误的相关代码；except后标明对应的异常类型，一旦try中产生相关异常，except后声明的异常类能够对应捕获，执行相关异常处理语句。如果try外面后续还有其他语句，会继续执行。在产生异常时，出现异常的语句后，如果还有其他语句则不会执行。</p>
+<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">a = 10
+b = 0
+try:
+    result = a/b
+    <span class="built_in">print</span>(<span class="string">'ok'</span>) <span class="comment">#此语句不会执行，因try语句体已发生异常</span>
+except ZeroDivisionError as ze:
+    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
+<span class="built_in">print</span>(<span class="string">'我能被执行啦！'</span>) <span class="comment">#此语句能继续被执行，异常已被捕获，不影响下面语句运行</span>
+</code></pre>
+<h3 id="（2）1个try，1个except，一个else"><a href="#（2）1个try，1个except，一个else" class="headerlink" title="（2）1个try，1个except，一个else"></a>（2）1个try，1个except，一个else</h3><p>try:<br>   可能会产生异常的代码<br>except 对应的异常 as 别名：<br>   异常处理语句<br>else:<br>   程序代码<br>说明：在此结构中，如果try中的代码出现异常，则使用except后面声明的异常类进行捕获处理，如果没有异常出现，则执行else内部的代码。</p>
+<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">a = 10
+b = 1
+try:
+    result = a/b
+except ZeroDivisionError as ze:
+    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(result) <span class="comment">#此语句能继续被执行，异常已被捕获，不影响下面语句运行</span>
+</code></pre>
+<h3 id="（3）1个try，多个except，-一个else"><a href="#（3）1个try，多个except，-一个else" class="headerlink" title="（3）1个try，多个except，[一个else]"></a>（3）1个try，多个except，[一个else]</h3><p>try:<br>   可能会产生异常的代码<br>except 对应的异常 as 别名：<br>    异常处理语句<br>except 对应的异常 as 别名：<br>    异常处理语句<br>说明：当try中有多行代码可能会出现不同的异常，那么使用多个except与之对应，根据产生异常的顺序来依次捕获处理。</p>
+<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">try:
+    x = <span class="built_in">float</span>(input(<span class="string">"请输入被除数："</span>))
+    y = <span class="built_in">float</span>(input(<span class="string">"请输入除数："</span>))
+    z = x / y
+except ZeroDivisionError as e1:
+    <span class="built_in">print</span>(<span class="string">"除数不能为零"</span>)
+except ValueError as e2:
+    <span class="built_in">print</span>(<span class="string">"被除数和除数应为数值类型"</span>)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(z)
+</code></pre>
+<h3 id="（4）1个try，1个except，一个else，一个finally"><a href="#（4）1个try，1个except，一个else，一个finally" class="headerlink" title="（4）1个try，1个except，一个else，一个finally"></a>（4）1个try，1个except，一个else，一个finally</h3><p>try：<br>   可能会出产生异常的代码<br>except 对应的异常 as 别名：<br>   异常处理语句<br>finally：<br>   代码<br>说明：当异常捕获处理流程中，使用了finally来控制，表明不管是否出现异常进行捕获，最后代码都将执行finally内部的语句。<br>注意：finally中的语句，不管前面的代码出现何种操作，比如：break、return、exit等都会执行完finally内部的代码后，才会实现。</p>
+<h3 id="例如（1）："><a href="#例如（1）：" class="headerlink" title="例如（1）："></a>例如（1）：</h3><pre><code class="bash">a = 10
+b = 0
+try:
+    result = a/b
+except ZeroDivisionError as ze:
+    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
+<span class="keyword">else</span>:
+    <span class="built_in">print</span>(<span class="string">'我被执行啦'</span>)
+finally:
+    <span class="built_in">print</span>(<span class="string">'我是finally执行结果'</span>)
+</code></pre>
+<h3 id="例如（2）："><a href="#例如（2）：" class="headerlink" title="例如（2）："></a>例如（2）：</h3><pre><code class="bash">try:
+    f = open(<span class="string">'my.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
+    s = f.readline()
+    <span class="built_in">print</span>(s)
+except FileNotFoundError as fe:
+    <span class="built_in">print</span>(<span class="string">'文件不存在'</span>)
+except IOError as ioe:
+    <span class="built_in">print</span>(<span class="string">'文件读取有错误！'</span>)
+finally:
+    try:
+        f.close()
+    except NameError as ne:
+        <span class="built_in">print</span>(<span class="string">'变量未赋值'</span>)
+</code></pre>
+<h3 id="5、异常的大分类"><a href="#5、异常的大分类" class="headerlink" title="5、异常的大分类"></a>5、异常的大分类</h3><p>在Python中所有的异常都继承自BaseExcept,如下：<br>          |——&gt;KeyboardInterrupt（键盘中断异常）<br>          |<br>BaseExcept |——&gt;SystemExit(系统退出异常)<br>          |<br>          |——&gt;Exception（其他所有异常的父类）<br>其中：keyboardInterrupt在使用强制中断（Ctrl+C）程序时产生。<br>      SystemExit在使用sys.exit()函数时产生。</p>
+<h3 id="6、主动抛出异常"><a href="#6、主动抛出异常" class="headerlink" title="6、主动抛出异常"></a>6、主动抛出异常</h3><p>raise 异常类对象实例或自定义异常类实例<br>raise IOError(‘IO 错误’)<br>例如：<br>error.py内容：#自定义一个异常类</p>
+<pre><code class="bash">class MyError(Exception):
+    def __init__(self,value):
+        self.value = value
+
+    def __str__(self):
+        <span class="built_in">return</span> super(self,value)
+</code></pre>
+<p>在exception.py中调用自定义的异常类：</p>
+<pre><code class="bash">from error import MyError
+try:
+    raise MyError(<span class="string">'2*2'</span>)
+except MyError as my:
+    <span class="built_in">print</span>(<span class="string">'我是一个自定义异常类'</span>)
+</code></pre>
+<h3 id="7、finally的替换写法"><a href="#7、finally的替换写法" class="headerlink" title="7、finally的替换写法"></a>7、finally的替换写法</h3><p>with open(‘myfile.txt’,’r’) as f:<br>    for line in f:<br>        print(line)<br>其中打开的文件对象f，在执行完内容的读取后，被强制性关闭。及时在读取过程中，出现错误，也会被关闭。</p>
+<h3 id="8、使用异常机制的优势"><a href="#8、使用异常机制的优势" class="headerlink" title="8、使用异常机制的优势"></a>8、使用异常机制的优势</h3><p>第一，把错误控制与业务逻辑进行区分，增强程序的可读性和健壮性。<br>第二，代码结构更加清晰，复杂的业务流程的实现更加便利<br>第三，程序的容错性更强，不会因为一个小bug导致整体崩溃。</p>
+<h3 id="9、assert-断言"><a href="#9、assert-断言" class="headerlink" title="9、assert 断言"></a>9、assert 断言</h3><p>语法格式：assert 表达式，断言内容。代码如下<br>try:<br>    assert 1==2,’1 不等于 2’<br>except AssertionError as ae:<br>    print(‘{}{}’.format(ae.<strong>class</strong>.<strong>name</strong>, ae))<br>如果断言表达式为真，则正常执行，如果不为真，则返回断言内容，作为异常捕获的输出结果。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/02/exception/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-pack-module" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1062,6 +1205,140 @@ parser.parse(<span class="string">'test.xml'</span>)
 
 
   
+    <article id="post-excel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/30/excel/" class="archive-article-date">
+  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、需要三个主要的模块"><a href="#1、需要三个主要的模块" class="headerlink" title="1、需要三个主要的模块"></a>1、需要三个主要的模块</h2><p>xlrd:用来读取Excel文件中的内容<br>xlwt：用来生成Excel文件<br>xlutils：用来实现Excel文件的复制</p>
+<h2 id="2、xlrd"><a href="#2、xlrd" class="headerlink" title="2、xlrd"></a>2、xlrd</h2><h3 id="（1）open-workbook"><a href="#（1）open-workbook" class="headerlink" title="（1）open_workbook()"></a>（1）open_workbook()</h3><p>函数格式：open_workbook(文件名)<br>返回值：返回Excel对象<br>说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容</p>
+<h3 id="（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始"><a href="#（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始" class="headerlink" title="（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)"></a>（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)</h3><p>返回值：sheet页对象<br>说明：找到指定的sheet页，生成一个对应的sheet页对象，对其内部的数据进行检索</p>
+<h3 id="（3）函数格式：sheet-cell-rownum-colnum"><a href="#（3）函数格式：sheet-cell-rownum-colnum" class="headerlink" title="（3）函数格式：sheet.cell(rownum,colnum)"></a>（3）函数格式：sheet.cell(rownum,colnum)</h3><p>返回值：返回指定行列的单元格对象，如果要获取其中的内容，调用value属性。<br>说明：通过指定行、列，能够确认一个单元格。</p>
+<h2 id="3、xlwt"><a href="#3、xlwt" class="headerlink" title="3、xlwt"></a>3、xlwt</h2><h3 id="（1）函数名称：Workbook"><a href="#（1）函数名称：Workbook" class="headerlink" title="（1）函数名称：Workbook()"></a>（1）函数名称：Workbook()</h3><p>返回值：返回一个新创建的Excel空对象<br>说明：该函数用来生成一个Excel对象，但是该对象没有任何内容</p>
+<h3 id="（2）函数名称：add-sheet-sheet名字"><a href="#（2）函数名称：add-sheet-sheet名字" class="headerlink" title="（2）函数名称：add_sheet(sheet名字)"></a>（2）函数名称：add_sheet(sheet名字)</h3><p>返回值：返回一个新创建的sheet页对象<br>说明：该函数用来新增一个空的sheet页对象</p>
+<h3 id="（3）函数名称：write-row-col-value"><a href="#（3）函数名称：write-row-col-value" class="headerlink" title="（3）函数名称：write(row, col, value)"></a>（3）函数名称：write(row, col, value)</h3><p>返回值：无<br>说明：对指定的行列单元格内，写入value内容。</p>
+<h2 id="4、xlutils"><a href="#4、xlutils" class="headerlink" title="4、xlutils"></a>4、xlutils</h2><h3 id="（1）函数格式：copy-Excel对象"><a href="#（1）函数格式：copy-Excel对象" class="headerlink" title="（1）函数格式：copy(Excel对象)"></a>（1）函数格式：copy(Excel对象)</h3><p>返回值：返回一个指定对象的副本<br>说明：在Python中对Excel的修改，都是生成一个对应的副本，修改后保存。</p>
+<h3 id="（2）函数格式：get-sheet-索引位"><a href="#（2）函数格式：get-sheet-索引位" class="headerlink" title="（2）函数格式：get_sheet(索引位)"></a>（2）函数格式：get_sheet(索引位)</h3><p>返回值：返回一个指定对象副本中的sheet页<br>说明：我们实际修改的数据，都是位于sheet页中。因此要获取到指定的sheet页。</p>
+<p>例如：</p>
+<pre><code class="bash">import xlwt  <span class="comment">#写excel文件，选用该模块</span>
+import xlrd  <span class="comment">#读取写excel文件内容，选用该模块</span>
+from xlutils.copy import copy
+
+def saveExcel(title,data):
+    <span class="comment">#生成excel对象</span>
+    wbt = xlwt.Workbook()
+    <span class="comment">#生成一个sheet页</span>
+    sheet = wbt.add_sheet(<span class="string">'人员信息表'</span>)
+
+
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(title)):
+        sheet.write(0,i,title[i])
+
+    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data)):
+        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data[m])):
+            sheet.write(m+1,n,data[m][n])
+
+    wbt.save(<span class="string">'person.xls'</span>)
+
+def readExcel(bookname,sheetname):
+    <span class="comment">#打开excel文件</span>
+    wb = xlrd.open_workbook(bookname)
+    sheet = wb.sheet_by_name(sheetname)
+    <span class="comment">#for rownum in range(sheet.nrows):</span>
+        <span class="comment">#print(sheet.row_values(rownum))</span>
+    <span class="comment">#cell = sheet.cell(0,1).value</span>
+    <span class="comment">#print(sheet.nrows)  #行数</span>
+    <span class="comment">#print(sheet.ncols)  #列数</span>
+
+    <span class="keyword">for</span> rownum <span class="keyword">in</span> range(sheet.nrows):
+        msg = <span class="string">''</span>
+        <span class="keyword">for</span> colnum <span class="keyword">in</span> range(sheet.ncols):
+            msg += str(sheet.cell(rownum,colnum).value)
+        <span class="built_in">print</span>(msg)
+
+def updateExcel(bookname,sheetname):
+    wb = xlrd.open_workbook(bookname)
+    sheet = wb.sheet_by_name(sheetname)
+    new_wb = copy(wb)  <span class="comment">#将原有的excel，拷贝一个新的副本</span>
+    new_sheet = new_wb.get_sheet(0)  <span class="comment">#重新在新的excel中获取sheet页</span>
+    new_sheet.write(1,0,<span class="string">'大蚱蜢'</span>)
+    new_wb.save(<span class="string">'person_new.xls'</span>)
+
+
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="comment">#作为excel表中标题名称</span>
+    title = [<span class="string">'姓名'</span>,<span class="string">'年龄'</span>,<span class="string">'性别'</span>,<span class="string">'出生年月'</span>,<span class="string">'家庭住址'</span>,<span class="string">'婚姻状况'</span>,<span class="string">'身份证号'</span>]
+    <span class="comment">#生成excel中的数据</span>
+    data = [
+        [<span class="string">'蚱蜢'</span>,25,<span class="string">'女'</span>,<span class="string">'19930101'</span>,<span class="string">'河南'</span>,<span class="string">'未婚'</span>,<span class="string">'4111111111'</span>],
+        [<span class="string">'曹猛'</span>,26,<span class="string">'女'</span>,<span class="string">'19920202'</span>,<span class="string">'非洲'</span>,<span class="string">'未婚'</span>,<span class="string">'4112222222'</span>],
+        [<span class="string">'丹丹'</span>,22,<span class="string">'女'</span>,<span class="string">'19980303'</span>,<span class="string">'郑州'</span>,<span class="string">'未婚'</span>,<span class="string">'4115271999'</span>],
+        [<span class="string">'大头柯'</span>,30,<span class="string">'男'</span>,<span class="string">'19900101'</span>,<span class="string">'北京'</span>,<span class="string">'未婚'</span>,<span class="string">'411112221'</span>]
+    ]
+    saveExcel(title,data)
+    bookname = <span class="string">'person.xls'</span>
+    sheetname = <span class="string">'人员信息表'</span>
+    readExcel(bookname,sheetname)
+    updateExcel(bookname,sheetname)
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/30/excel/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-input-output-binary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1184,140 +1461,6 @@ n = pickle.load(f)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/30/input-output-binary/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-excel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/30/excel/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、需要三个主要的模块"><a href="#1、需要三个主要的模块" class="headerlink" title="1、需要三个主要的模块"></a>1、需要三个主要的模块</h2><p>xlrd:用来读取Excel文件中的内容<br>xlwt：用来生成Excel文件<br>xlutils：用来实现Excel文件的复制</p>
-<h2 id="2、xlrd"><a href="#2、xlrd" class="headerlink" title="2、xlrd"></a>2、xlrd</h2><h3 id="（1）open-workbook"><a href="#（1）open-workbook" class="headerlink" title="（1）open_workbook()"></a>（1）open_workbook()</h3><p>函数格式：open_workbook(文件名)<br>返回值：返回Excel对象<br>说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容</p>
-<h3 id="（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始"><a href="#（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始" class="headerlink" title="（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)"></a>（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)</h3><p>返回值：sheet页对象<br>说明：找到指定的sheet页，生成一个对应的sheet页对象，对其内部的数据进行检索</p>
-<h3 id="（3）函数格式：sheet-cell-rownum-colnum"><a href="#（3）函数格式：sheet-cell-rownum-colnum" class="headerlink" title="（3）函数格式：sheet.cell(rownum,colnum)"></a>（3）函数格式：sheet.cell(rownum,colnum)</h3><p>返回值：返回指定行列的单元格对象，如果要获取其中的内容，调用value属性。<br>说明：通过指定行、列，能够确认一个单元格。</p>
-<h2 id="3、xlwt"><a href="#3、xlwt" class="headerlink" title="3、xlwt"></a>3、xlwt</h2><h3 id="（1）函数名称：Workbook"><a href="#（1）函数名称：Workbook" class="headerlink" title="（1）函数名称：Workbook()"></a>（1）函数名称：Workbook()</h3><p>返回值：返回一个新创建的Excel空对象<br>说明：该函数用来生成一个Excel对象，但是该对象没有任何内容</p>
-<h3 id="（2）函数名称：add-sheet-sheet名字"><a href="#（2）函数名称：add-sheet-sheet名字" class="headerlink" title="（2）函数名称：add_sheet(sheet名字)"></a>（2）函数名称：add_sheet(sheet名字)</h3><p>返回值：返回一个新创建的sheet页对象<br>说明：该函数用来新增一个空的sheet页对象</p>
-<h3 id="（3）函数名称：write-row-col-value"><a href="#（3）函数名称：write-row-col-value" class="headerlink" title="（3）函数名称：write(row, col, value)"></a>（3）函数名称：write(row, col, value)</h3><p>返回值：无<br>说明：对指定的行列单元格内，写入value内容。</p>
-<h2 id="4、xlutils"><a href="#4、xlutils" class="headerlink" title="4、xlutils"></a>4、xlutils</h2><h3 id="（1）函数格式：copy-Excel对象"><a href="#（1）函数格式：copy-Excel对象" class="headerlink" title="（1）函数格式：copy(Excel对象)"></a>（1）函数格式：copy(Excel对象)</h3><p>返回值：返回一个指定对象的副本<br>说明：在Python中对Excel的修改，都是生成一个对应的副本，修改后保存。</p>
-<h3 id="（2）函数格式：get-sheet-索引位"><a href="#（2）函数格式：get-sheet-索引位" class="headerlink" title="（2）函数格式：get_sheet(索引位)"></a>（2）函数格式：get_sheet(索引位)</h3><p>返回值：返回一个指定对象副本中的sheet页<br>说明：我们实际修改的数据，都是位于sheet页中。因此要获取到指定的sheet页。</p>
-<p>例如：</p>
-<pre><code class="bash">import xlwt  <span class="comment">#写excel文件，选用该模块</span>
-import xlrd  <span class="comment">#读取写excel文件内容，选用该模块</span>
-from xlutils.copy import copy
-
-def saveExcel(title,data):
-    <span class="comment">#生成excel对象</span>
-    wbt = xlwt.Workbook()
-    <span class="comment">#生成一个sheet页</span>
-    sheet = wbt.add_sheet(<span class="string">'人员信息表'</span>)
-
-
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(title)):
-        sheet.write(0,i,title[i])
-
-    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data)):
-        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data[m])):
-            sheet.write(m+1,n,data[m][n])
-
-    wbt.save(<span class="string">'person.xls'</span>)
-
-def readExcel(bookname,sheetname):
-    <span class="comment">#打开excel文件</span>
-    wb = xlrd.open_workbook(bookname)
-    sheet = wb.sheet_by_name(sheetname)
-    <span class="comment">#for rownum in range(sheet.nrows):</span>
-        <span class="comment">#print(sheet.row_values(rownum))</span>
-    <span class="comment">#cell = sheet.cell(0,1).value</span>
-    <span class="comment">#print(sheet.nrows)  #行数</span>
-    <span class="comment">#print(sheet.ncols)  #列数</span>
-
-    <span class="keyword">for</span> rownum <span class="keyword">in</span> range(sheet.nrows):
-        msg = <span class="string">''</span>
-        <span class="keyword">for</span> colnum <span class="keyword">in</span> range(sheet.ncols):
-            msg += str(sheet.cell(rownum,colnum).value)
-        <span class="built_in">print</span>(msg)
-
-def updateExcel(bookname,sheetname):
-    wb = xlrd.open_workbook(bookname)
-    sheet = wb.sheet_by_name(sheetname)
-    new_wb = copy(wb)  <span class="comment">#将原有的excel，拷贝一个新的副本</span>
-    new_sheet = new_wb.get_sheet(0)  <span class="comment">#重新在新的excel中获取sheet页</span>
-    new_sheet.write(1,0,<span class="string">'大蚱蜢'</span>)
-    new_wb.save(<span class="string">'person_new.xls'</span>)
-
-
-
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    <span class="comment">#作为excel表中标题名称</span>
-    title = [<span class="string">'姓名'</span>,<span class="string">'年龄'</span>,<span class="string">'性别'</span>,<span class="string">'出生年月'</span>,<span class="string">'家庭住址'</span>,<span class="string">'婚姻状况'</span>,<span class="string">'身份证号'</span>]
-    <span class="comment">#生成excel中的数据</span>
-    data = [
-        [<span class="string">'蚱蜢'</span>,25,<span class="string">'女'</span>,<span class="string">'19930101'</span>,<span class="string">'河南'</span>,<span class="string">'未婚'</span>,<span class="string">'4111111111'</span>],
-        [<span class="string">'曹猛'</span>,26,<span class="string">'女'</span>,<span class="string">'19920202'</span>,<span class="string">'非洲'</span>,<span class="string">'未婚'</span>,<span class="string">'4112222222'</span>],
-        [<span class="string">'丹丹'</span>,22,<span class="string">'女'</span>,<span class="string">'19980303'</span>,<span class="string">'郑州'</span>,<span class="string">'未婚'</span>,<span class="string">'4115271999'</span>],
-        [<span class="string">'大头柯'</span>,30,<span class="string">'男'</span>,<span class="string">'19900101'</span>,<span class="string">'北京'</span>,<span class="string">'未婚'</span>,<span class="string">'411112221'</span>]
-    ]
-    saveExcel(title,data)
-    bookname = <span class="string">'person.xls'</span>
-    sheetname = <span class="string">'人员信息表'</span>
-    readExcel(bookname,sheetname)
-    updateExcel(bookname,sheetname)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/30/excel/">展开全文 >></a>
         </p>
       
 
@@ -2260,113 +2403,6 @@ result = filter(is_even,[1,2,3,4,5,6,7,8,9,10])
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/25/def-higher-function/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-def-nest-clouser" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/25/def-nest-clouser/">函数的嵌套、闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/25/def-nest-clouser/" class="archive-article-date">
-  	<time datetime="2018-07-25T13:24:52.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、函数嵌套"><a href="#1、函数嵌套" class="headerlink" title="1、函数嵌套"></a>1、函数嵌套</h2><p>根据python中，对函数的载入和调用的特点，我们可以清楚看到，当python运行相关文件时，如果遇到函数时，会先将其名字载入到内存中（即为函数名指定一个内存地址）。因此我们在使用函数名时，可以有以下三种情况：</p>
-<h3 id="（1）将函数名赋值给变量"><a href="#（1）将函数名赋值给变量" class="headerlink" title="（1）将函数名赋值给变量"></a>（1）将函数名赋值给变量</h3><p>例如：</p>
-<pre><code class="bash">def f1():
-   <span class="built_in">print</span>(<span class="string">'ok'</span>)
-a = f1
-</code></pre>
-<p>这是变量a中的值就是f1()函数名的内存地址。</p>
-<h3 id="（2）将函数名作为容器的元素"><a href="#（2）将函数名作为容器的元素" class="headerlink" title="（2）将函数名作为容器的元素"></a>（2）将函数名作为容器的元素</h3><p>例如：</p>
-<pre><code class="bash">def f1():
-   <span class="built_in">print</span>(<span class="string">'ok'</span>)
-ls = [1,2,f1]
-</code></pre>
-<p>注意，此时存入到列表ls中的f1，它的值仍然是该函数名对应的内存地址</p>
-<h3 id="（3）将函数名作为另外一个函数的参数进行传递"><a href="#（3）将函数名作为另外一个函数的参数进行传递" class="headerlink" title="（3）将函数名作为另外一个函数的参数进行传递"></a>（3）将函数名作为另外一个函数的参数进行传递</h3><p>例如：</p>
-<pre><code class="bash">def f1():
-   <span class="built_in">print</span>(<span class="string">'ok'</span>)
-def f2(x):
-   x()
-f2(f1)
-</code></pre>
-<p>其执行结果为OK，这种方式类似与函数的普通嵌套,代码如下：</p>
-<pre><code class="bash">def f2():
-   def f1():
-      <span class="built_in">print</span>(<span class="string">'ok'</span>)
-   f1()
-f2()
-</code></pre>
-<h2 id="2、函数闭包"><a href="#2、函数闭包" class="headerlink" title="2、函数闭包"></a>2、函数闭包</h2><h3 id="1）闭包格式"><a href="#1）闭包格式" class="headerlink" title="1）闭包格式"></a>1）闭包格式</h3><p>def outer():<br>    print(‘我是外部函数’)<br>    def inner():<br>        print(‘我是闭包函数’)<br>    return inner<br>f = outer()<br>f()</p>
-<h3 id="通过对例子的观察，我们发现闭包函数的写法有如下特点："><a href="#通过对例子的观察，我们发现闭包函数的写法有如下特点：" class="headerlink" title="通过对例子的观察，我们发现闭包函数的写法有如下特点："></a>通过对例子的观察，我们发现闭包函数的写法有如下特点：</h3><p>（1）闭包函数作为内部函数，嵌套在外部函数中<br>（2）闭包函数会作为外部函数的返回值，进行返回。返回闭包函数时，只返回函数名，不带括号。<br>（3）外部调用时，首先要执行外部函数，然后将结果赋值给一个变量，此时该变量对应了闭包函数。<br>（4）我们可以通过<strong>closure</strong>内部函数可以观察到，闭包函数的存在。前提是，闭包函数要与外部函数进行数据传递或调用。<br>总结：闭包使用的数据，必须是本身定义或外部函数中定义的相关变量，通常需要调用外部函数的数据，形成一个封闭的函数结构。不能与外部数据（全局变量）发生交流。</p>
-<h3 id="2）闭包的应用—装饰器"><a href="#2）闭包的应用—装饰器" class="headerlink" title="2）闭包的应用—装饰器"></a>2）闭包的应用—装饰器</h3><p>（1）概念：装饰器本身仍然是一个函数。是我们队闭包应用的一种具体实现。<br>（2）作用：装饰器可以在不改变函数本身功能的情况下，为函数添加额外的功能。诸如：日志、测试、性能检测等。装饰器同样也是返回一个函数对象。<br>（3）用法：<br>使用格式：@+装饰器名称</p>
-<pre><code class="bash">import time
-
-def outer(f):
-    def inner(*var):
-        start_time = time.time()
-        f(*var)
-        time.sleep(0.3)
-        end_time = time.time()
-        <span class="built_in">print</span>(<span class="string">'此函数执行时间为{0}'</span>.format(str(end_time-start_time)))
-    <span class="built_in">return</span> inner
-
-@outer      <span class="comment"># 此处就是装饰器的声明，这种方法我们成为语法糖</span>
-def func1():
-    <span class="built_in">print</span>(<span class="string">'hello world'</span>)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/25/def-nest-clouser/">展开全文 >></a>
         </p>
       
 

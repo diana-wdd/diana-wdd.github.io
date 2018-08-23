@@ -161,6 +161,286 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-case-lianjiahouse-spider" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/23/case-lianjiahouse-spider/">案例————链家二手房信息获取（郑州市所在的区）（爬虫）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/23/case-lianjiahouse-spider/" class="archive-article-date">
+  	<time datetime="2018-08-23T11:08:35.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h4 id="house-py"><a href="#house-py" class="headerlink" title="house.py"></a>house.py</h4><pre><code class="bash">import requests
+from bs4 import BeautifulSoup
+import json
+import xlwt
+import xlrd
+from xlutils.copy import copy
+from house_info import HouseInfo
+from houseDetail_info import HouseDetail
+
+class House:
+    def __init__(self, url):
+        self.url = url
+
+    def getHouseHTML(self):
+        my_headers = {
+            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64)\</span>
+<span class="string">                     AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'</span>,
+            <span class="string">'Host'</span>: <span class="string">'zz.lianjia.com'</span>,
+            <span class="string">'Referer'</span>: <span class="string">'https://zz.lianjia.com/?utm_source=baidu&amp;utm_medium=pinzhuan&amp;utm_term=biaoti&amp;\</span>
+<span class="string">            utm_content=biaotimiaoshu&amp;utm_campaign=sousuo&amp;ljref=pc_sem_baidu_ppzq_x'</span>
+        }
+        try:
+            response = requests.get(url=self.url, headers=my_headers)
+            response.raise_for_status()
+            response.encoding = <span class="string">'utf-8'</span>
+            <span class="built_in">return</span> response.text
+        except requests.HTTPError as e:
+            <span class="built_in">print</span>(<span class="string">'error'</span>)
+
+    def findPage(self, content):
+        soup = BeautifulSoup(content, <span class="string">'html.parser'</span>)
+        page_str = soup.find(<span class="string">'div'</span>, <span class="string">'page-box house-lst-page-box'</span>).attrs[<span class="string">'page-data'</span>]
+        page = json.loads(page_str)[<span class="string">'totalPage'</span>]
+        <span class="built_in">return</span> page
+
+    def parseHouseHTML(self, content):
+        houseinfo_list = []
+        soup = BeautifulSoup(content, <span class="string">'html.parser'</span>)
+        house_list = soup.find_all(<span class="string">'div'</span>, <span class="string">'info clear'</span>)
+        <span class="keyword">for</span> house <span class="keyword">in</span> house_list:
+            housecode = house.find(<span class="string">'a'</span>)[<span class="string">'data-housecode'</span>]
+            name = house.find(<span class="string">'a'</span>, <span class="string">'no_resblock_a'</span>).string
+            address = house.find(<span class="string">'a'</span>, <span class="string">'no_resblock_a'</span>).string
+            district = house.find(<span class="string">'div'</span>, <span class="string">'positionInfo'</span>).find(<span class="string">'a'</span>).string
+            follow_info = house.find(<span class="string">'div'</span>, <span class="string">'followInfo'</span>).text
+            total_price = house.find(<span class="string">'div'</span>, <span class="string">'totalPrice'</span>).text
+            unit_price = house.find(<span class="string">'div'</span>, <span class="string">'unitPrice'</span>)[<span class="string">'data-price'</span>]
+            position_info = house.find(<span class="string">'div'</span>, <span class="string">'flood'</span>).find(<span class="string">'div'</span>, <span class="string">'positionInfo'</span>).text
+            houseinfo = HouseInfo(housecode, name, address, district, position_info, total_price, unit_price, follow_info)
+            houseinfo_list.append(houseinfo)
+        <span class="built_in">return</span> houseinfo_list
+
+    def HouseDetailHTML(self, content):
+        houseinfo = []
+        featuresinfo = []
+        soup = BeautifulSoup(content, <span class="string">'html.parser'</span>)
+        house_list = soup.find(<span class="string">'div'</span>, <span class="string">'introContent'</span>).find_all(<span class="string">'div'</span>, <span class="string">'content'</span>)
+        <span class="keyword">for</span> i <span class="keyword">in</span> house_list[0].find_all(<span class="string">'li'</span>):
+            houseinfo.append(i.text)
+        num = 1
+        <span class="keyword">for</span> j <span class="keyword">in</span> house_list[1].find_all(<span class="string">'span'</span>):
+            <span class="keyword">if</span> num%2 == 0:
+                houseinfo.append(j.string.strip())
+            num += 1
+        house_lis = soup.find_all(<span class="string">'div'</span>, <span class="string">'baseattribute'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> house_lis:
+            info = m.find(<span class="string">'div'</span>, <span class="string">'content'</span>).string.strip()
+            featuresinfo.append(info)
+        hsdl = HouseDetail(houseinfo, featuresinfo)
+        <span class="built_in">return</span> hsdl
+    <span class="string">''</span><span class="string">'</span>
+<span class="string">    #此种excel的存入方法，不需要提前写sheet名以及表头，当再次运行时，会报错显示表已存在</span>
+<span class="string">    def saveExcel(self, data_lis):</span>
+<span class="string">        ls = ['</span>房源编号<span class="string">', '</span>房源名称<span class="string">', '</span>房源地址<span class="string">', '</span>房源所属郑州的区<span class="string">', '</span>楼层信息<span class="string">', '</span>总价<span class="string">', '</span>单价<span class="string">', '</span>关注度<span class="string">', '</span>基本信息<span class="string">', '</span>房源特色<span class="string">']</span>
+<span class="string">        wbt = xlwt.Workbook()</span>
+<span class="string">        sheet = wbt.add_sheet('</span>详细信息表<span class="string">')</span>
+<span class="string">        for i in range(len(ls)):</span>
+<span class="string">            sheet.write(0, i, ls[i])</span>
+<span class="string">        for m in range(len(data_lis)):  # 输入表格内容</span>
+<span class="string">            for n in range(len(data_lis[m])):</span>
+<span class="string">                sheet.write(m+1, n, data_lis[m][n])</span>
+<span class="string">        wbt.save('</span>house.xls<span class="string">')</span>
+<span class="string">    '</span><span class="string">''</span>
+
+    <span class="comment">#选择一种即可</span>
+
+    <span class="comment">#此种excel的存入方法，要提前写sheet名以及表头,当再次运行时，抓取的结果会接着上一次的保存，不会报错</span>
+    def saveExcel(self, data_lis):
+        wb = xlrd.open_workbook(r<span class="string">'D:\PycharmText\text\lianjia_house\house.xls'</span>)
+        sheet = wb.sheet_by_name(<span class="string">'详细信息表'</span>)
+        new_wb = copy(wb)
+        new_sheet = new_wb.get_sheet(<span class="string">'详细信息表'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data_lis)):  <span class="comment"># 输入表格内容</span>
+            <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data_lis[m])):
+                new_sheet.write(sheet.nrows + m, n, data_lis[m][n])
+        new_wb.save(r<span class="string">'D:\PycharmText\text\lianjia_house\house.xls'</span>)
+</code></pre>
+<h4 id="house-info-py"><a href="#house-info-py" class="headerlink" title="house_info.py"></a>house_info.py</h4><pre><code class="bash">class HouseInfo:
+
+    def __init__(self, housecode, name, address, district, position_info, total_price, unit_price, follow_info):
+        self.__name = name
+        self.__address = address
+        self.__district = district
+        self.__position_info = position_info
+        self.__total_price = total_price
+        self.__unit_price = unit_price
+        self.__follow_info = follow_info
+        self.__housecode = housecode
+
+    @property
+    def housecode(self):
+        <span class="built_in">return</span> self.__housecode
+
+    @housecode.setter
+    def housecode(self, new_housecode):
+        self.__housecode = new_housecode
+
+    @property
+    def name(self):
+        <span class="built_in">return</span> self.__name
+
+    @name.setter
+    def name(self, new_name):
+        self.__name = new_name
+
+    @property
+    def district(self):
+        <span class="built_in">return</span> self.__district
+
+    @district.setter
+    def district(self, new_district):
+        self.__district = new_district
+
+    @property
+    def unit_price(self):
+        <span class="built_in">return</span> self.__unit_price
+
+    @unit_price.setter
+    def unit_price(self, new_unit_price):
+        self.__unit_price = new_unit_price
+
+    @property
+    def total_price(self):
+        <span class="built_in">return</span> self.__total_price
+
+    @total_price.setter
+    def total_price(self, new_total_price):
+        self.__total_price = new_total_price
+
+    @property
+    def position_info(self):
+        <span class="built_in">return</span> self.__position_info
+
+    @position_info.setter
+    def position_info(self, new_position_info):
+        self.__position_info = new_position_info
+
+    @property
+    def follow_info(self):
+        <span class="built_in">return</span> self.__follow_info
+
+    @follow_info.setter
+    def follow_info(self, new_follow_info):
+        self.__follow_info = new_follow_info
+
+    @property
+    def address(self):
+        <span class="built_in">return</span> self.__address
+
+    @address.setter
+    def address(self, new_address):
+        self.__address = new_address
+</code></pre>
+<h4 id="houseDetail-info-py"><a href="#houseDetail-info-py" class="headerlink" title="houseDetail_info.py"></a>houseDetail_info.py</h4><pre><code class="bash">class HouseDetail:
+    def __init__(self, baseinfo = [], featuresinfo = []):
+        self.__baseinfo = baseinfo
+        self.__featuresinfo = featuresinfo
+
+    @property
+    def baseinfo(self):
+        <span class="built_in">return</span> self.__baseinfo
+    @baseinfo.setter
+    def baseinfo(self, new_baseinfo):
+        self.__baseinfo = new_baseinfo
+
+    @property
+    def featuresinfo(self):
+        <span class="built_in">return</span> self.__featuresinfo
+    @featuresinfo.setter
+    def featuresinfo(self, new_featuresinfo):
+        self.__featuresinfo = new_featuresinfo
+</code></pre>
+<h4 id="testHouse-py"><a href="#testHouse-py" class="headerlink" title="testHouse.py"></a>testHouse.py</h4><pre><code class="bash">from house import House
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    area = input(<span class="string">'请输入郑州区名：'</span>)
+    url = <span class="string">'https://zz.lianjia.com/ershoufang/pg1rs{0}'</span>.format(area)
+    house = House(url)
+    content = house.getHouseHTML()
+    page = house.findPage(content)  <span class="comment"># 查询该地区的数据共多少页</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(1, page+1):
+        url = <span class="string">'https://zz.lianjia.com/ershoufang/pg{0}rs{1}'</span>.format(i, area)
+        house = House(url)
+        content = house.getHouseHTML()
+        ls = house.parseHouseHTML(content)
+
+        <span class="built_in">print</span>(<span class="string">'共{0}页，正在抓取第{1}页\n'</span>.format(page, i))
+        lss = []
+        <span class="keyword">for</span> item <span class="keyword">in</span> ls:
+            url = <span class="string">'https://zz.lianjia.com/ershoufang/{0}.html'</span>.format(item.housecode)
+            house = House(url)
+            content = house.getHouseHTML()
+            hsdl = house.HouseDetailHTML(content)
+            ls1 = [item.housecode, item.name, item.address, item.district, item.position_info, item.total_price, item.unit_price, item.follow_info, hsdl.baseinfo, hsdl.featuresinfo]
+            lss.append(ls1)
+        house.saveExcel(lss)
+</code></pre>
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>数据存放在excel表格中，表所在的位置是D:\PycharmText\text\zhilian_house文件夹中</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/23/case-lianjiahouse-spider/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-case-zhilian-job-spider" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1168,149 +1448,6 @@ step = Stepper(<span class="string">'hello'</span>)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/09/object-oriented/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-exception" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/02/exception/">异常的捕获、处理、抛出</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/02/exception/" class="archive-article-date">
-  	<time datetime="2018-08-02T09:35:55.750Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h3><p>指因程序出错在正常的执行流程之外，采取的行为。异常是一个事件，会在程序的执行过程中执行，并影响程序的执行。</p>
-<h3 id="2、异常的阶段"><a href="#2、异常的阶段" class="headerlink" title="2、异常的阶段"></a>2、异常的阶段</h3><p>第一、产生异常（比如：代码错误、业务逻辑错误）<br>第二、处理异常（比如：将异常提示更加可理解、增强代码的健壮性）</p>
-<h3 id="3、常见的异常类"><a href="#3、常见的异常类" class="headerlink" title="3、常见的异常类"></a>3、常见的异常类</h3><p>（1）Exception：Python中所有异常的父类。<br>（2）NameError：访问了一个未声明的变量。<br>（3）keyError:访问一个不存在的字典key<br>（4）IndexError：索引超出序列的范围<br>（5）ValueError：传给函数的参数类型不正确。<br>（6）IOError：文件操作时输入输出错误<br>（7）ZeroDivisionError：除数为0<br>（8）SyntaxError：语法错误<br>（9）AttributeError：尝试访问未知的对象属性<br>（10）EOFError：发现一个不期望的文件尾</p>
-<h3 id="4、异常处理流程"><a href="#4、异常处理流程" class="headerlink" title="4、异常处理流程"></a>4、异常处理流程</h3><p>基本语法：</p>
-<h3 id="（1）-1个try，1个except"><a href="#（1）-1个try，1个except" class="headerlink" title="（1） 1个try，1个except"></a>（1） 1个try，1个except</h3><p>try：<br>   可能会产生异常的代码<br>except  对应的异常 as 别名：<br>   异常处理语句<br>说明：在try中，放置可能会产生错误的相关代码；except后标明对应的异常类型，一旦try中产生相关异常，except后声明的异常类能够对应捕获，执行相关异常处理语句。如果try外面后续还有其他语句，会继续执行。在产生异常时，出现异常的语句后，如果还有其他语句则不会执行。</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">a = 10
-b = 0
-try:
-    result = a/b
-    <span class="built_in">print</span>(<span class="string">'ok'</span>) <span class="comment">#此语句不会执行，因try语句体已发生异常</span>
-except ZeroDivisionError as ze:
-    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
-<span class="built_in">print</span>(<span class="string">'我能被执行啦！'</span>) <span class="comment">#此语句能继续被执行，异常已被捕获，不影响下面语句运行</span>
-</code></pre>
-<h3 id="（2）1个try，1个except，一个else"><a href="#（2）1个try，1个except，一个else" class="headerlink" title="（2）1个try，1个except，一个else"></a>（2）1个try，1个except，一个else</h3><p>try:<br>   可能会产生异常的代码<br>except 对应的异常 as 别名：<br>   异常处理语句<br>else:<br>   程序代码<br>说明：在此结构中，如果try中的代码出现异常，则使用except后面声明的异常类进行捕获处理，如果没有异常出现，则执行else内部的代码。</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">a = 10
-b = 1
-try:
-    result = a/b
-except ZeroDivisionError as ze:
-    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
-<span class="keyword">else</span>:
-    <span class="built_in">print</span>(result) <span class="comment">#此语句能继续被执行，异常已被捕获，不影响下面语句运行</span>
-</code></pre>
-<h3 id="（3）1个try，多个except，-一个else"><a href="#（3）1个try，多个except，-一个else" class="headerlink" title="（3）1个try，多个except，[一个else]"></a>（3）1个try，多个except，[一个else]</h3><p>try:<br>   可能会产生异常的代码<br>except 对应的异常 as 别名：<br>    异常处理语句<br>except 对应的异常 as 别名：<br>    异常处理语句<br>说明：当try中有多行代码可能会出现不同的异常，那么使用多个except与之对应，根据产生异常的顺序来依次捕获处理。</p>
-<h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">try:
-    x = <span class="built_in">float</span>(input(<span class="string">"请输入被除数："</span>))
-    y = <span class="built_in">float</span>(input(<span class="string">"请输入除数："</span>))
-    z = x / y
-except ZeroDivisionError as e1:
-    <span class="built_in">print</span>(<span class="string">"除数不能为零"</span>)
-except ValueError as e2:
-    <span class="built_in">print</span>(<span class="string">"被除数和除数应为数值类型"</span>)
-<span class="keyword">else</span>:
-    <span class="built_in">print</span>(z)
-</code></pre>
-<h3 id="（4）1个try，1个except，一个else，一个finally"><a href="#（4）1个try，1个except，一个else，一个finally" class="headerlink" title="（4）1个try，1个except，一个else，一个finally"></a>（4）1个try，1个except，一个else，一个finally</h3><p>try：<br>   可能会出产生异常的代码<br>except 对应的异常 as 别名：<br>   异常处理语句<br>finally：<br>   代码<br>说明：当异常捕获处理流程中，使用了finally来控制，表明不管是否出现异常进行捕获，最后代码都将执行finally内部的语句。<br>注意：finally中的语句，不管前面的代码出现何种操作，比如：break、return、exit等都会执行完finally内部的代码后，才会实现。</p>
-<h3 id="例如（1）："><a href="#例如（1）：" class="headerlink" title="例如（1）："></a>例如（1）：</h3><pre><code class="bash">a = 10
-b = 0
-try:
-    result = a/b
-except ZeroDivisionError as ze:
-    <span class="built_in">print</span>(<span class="string">'分母不能为0'</span>)
-<span class="keyword">else</span>:
-    <span class="built_in">print</span>(<span class="string">'我被执行啦'</span>)
-finally:
-    <span class="built_in">print</span>(<span class="string">'我是finally执行结果'</span>)
-</code></pre>
-<h3 id="例如（2）："><a href="#例如（2）：" class="headerlink" title="例如（2）："></a>例如（2）：</h3><pre><code class="bash">try:
-    f = open(<span class="string">'my.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-    s = f.readline()
-    <span class="built_in">print</span>(s)
-except FileNotFoundError as fe:
-    <span class="built_in">print</span>(<span class="string">'文件不存在'</span>)
-except IOError as ioe:
-    <span class="built_in">print</span>(<span class="string">'文件读取有错误！'</span>)
-finally:
-    try:
-        f.close()
-    except NameError as ne:
-        <span class="built_in">print</span>(<span class="string">'变量未赋值'</span>)
-</code></pre>
-<h3 id="5、异常的大分类"><a href="#5、异常的大分类" class="headerlink" title="5、异常的大分类"></a>5、异常的大分类</h3><p>在Python中所有的异常都继承自BaseExcept,如下：<br>          |——&gt;KeyboardInterrupt（键盘中断异常）<br>          |<br>BaseExcept |——&gt;SystemExit(系统退出异常)<br>          |<br>          |——&gt;Exception（其他所有异常的父类）<br>其中：keyboardInterrupt在使用强制中断（Ctrl+C）程序时产生。<br>      SystemExit在使用sys.exit()函数时产生。</p>
-<h3 id="6、主动抛出异常"><a href="#6、主动抛出异常" class="headerlink" title="6、主动抛出异常"></a>6、主动抛出异常</h3><p>raise 异常类对象实例或自定义异常类实例<br>raise IOError(‘IO 错误’)<br>例如：<br>error.py内容：#自定义一个异常类</p>
-<pre><code class="bash">class MyError(Exception):
-    def __init__(self,value):
-        self.value = value
-
-    def __str__(self):
-        <span class="built_in">return</span> super(self,value)
-</code></pre>
-<p>在exception.py中调用自定义的异常类：</p>
-<pre><code class="bash">from error import MyError
-try:
-    raise MyError(<span class="string">'2*2'</span>)
-except MyError as my:
-    <span class="built_in">print</span>(<span class="string">'我是一个自定义异常类'</span>)
-</code></pre>
-<h3 id="7、finally的替换写法"><a href="#7、finally的替换写法" class="headerlink" title="7、finally的替换写法"></a>7、finally的替换写法</h3><p>with open(‘myfile.txt’,’r’) as f:<br>    for line in f:<br>        print(line)<br>其中打开的文件对象f，在执行完内容的读取后，被强制性关闭。及时在读取过程中，出现错误，也会被关闭。</p>
-<h3 id="8、使用异常机制的优势"><a href="#8、使用异常机制的优势" class="headerlink" title="8、使用异常机制的优势"></a>8、使用异常机制的优势</h3><p>第一，把错误控制与业务逻辑进行区分，增强程序的可读性和健壮性。<br>第二，代码结构更加清晰，复杂的业务流程的实现更加便利<br>第三，程序的容错性更强，不会因为一个小bug导致整体崩溃。</p>
-<h3 id="9、assert-断言"><a href="#9、assert-断言" class="headerlink" title="9、assert 断言"></a>9、assert 断言</h3><p>语法格式：assert 表达式，断言内容。代码如下<br>try:<br>    assert 1==2,’1 不等于 2’<br>except AssertionError as ae:<br>    print(‘{}{}’.format(ae.<strong>class</strong>.<strong>name</strong>, ae))<br>如果断言表达式为真，则正常执行，如果不为真，则返回断言内容，作为异常捕获的输出结果。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/02/exception/">展开全文 >></a>
         </p>
       
 
