@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | diana</title>
+  <title>案例————美团美食店铺信息获取 | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="diana">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/4/index.html">
+  <meta name="description" content="源代码：import requests import json from bs4 import BeautifulSoup as bs import re from xlutils.copy import copy import xlrd import time  class MeituanSpider:     def __init__(self, url, page):         sel">
+<meta name="keywords" content="Python、爬虫、Web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="案例————美团美食店铺信息获取">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/case-meituan-eat-spider/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="源代码：import requests import json from bs4 import BeautifulSoup as bs import re from xlutils.copy import copy import xlrd import time  class MeituanSpider:     def __init__(self, url, page):         sel">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-23T09:27:09.331Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="案例————美团美食店铺信息获取">
+<meta name="twitter:description" content="源代码：import requests import json from bs4 import BeautifulSoup as bs import re from xlutils.copy import copy import xlrd import time  class MeituanSpider:     def __init__(self, url, page):         sel">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -159,295 +163,282 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-case-meituan-eat-spider" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      案例————美团美食店铺信息获取
+    </h1>
+  
+
+        
+        <a href="/2018/08/23/case-meituan-eat-spider/" class="archive-article-date">
+  	<time datetime="2018-08-23T09:20:47.929Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><pre><code class="bash">import requests
+import json
+from bs4 import BeautifulSoup as bs
+import re
+from xlutils.copy import copy
+import xlrd
+import time
+
+class MeituanSpider:
+    def __init__(self, url, page):
+        self.__url = url
+        self.__page = page
+
+    def getMeituan(self):
+        my_headers = {
+            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64)\</span>
+<span class="string">                             AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'</span>,
+            <span class="string">'Host'</span>: <span class="string">'zz.meituan.com'</span>,
+            <span class="string">'Referer'</span>: <span class="string">'http://zz.meituan.com/meishi/b166/pn{0}/'</span>.format(self.__page)
+        }
+        try:
+            response = requests.get(url=self.__url, headers=my_headers)
+            response.raise_for_status()
+            response.encoding = response.apparent_encoding
+            html = response.text
+            html = json.loads(html)[<span class="string">'data'</span>][<span class="string">'poiInfos'</span>]    <span class="comment">#用loads对抓到的json文本进行反序列化，主要是为了读出的不是字符串</span>
+            <span class="comment">#print(html)</span>
+            <span class="built_in">return</span> html
+        except requests.HTTPError as he:
+            <span class="built_in">print</span>(he.args)
+
+    def clearMeituan(self, content):
+        meituan_list = []
+        <span class="keyword">for</span> i <span class="keyword">in</span> content:
+            min_list = []
+            min_list.append(i[<span class="string">'poiId'</span>])  <span class="comment"># 店铺编码</span>
+            min_list.append(i[<span class="string">'title'</span>])  <span class="comment"># 店铺名称</span>
+            min_list.append(i[<span class="string">'avgScore'</span>])  <span class="comment"># 店铺评分</span>
+            min_list.append(i[<span class="string">'avgPrice'</span>])  <span class="comment"># 人均消费</span>
+            min_list.append(i[<span class="string">'address'</span>])  <span class="comment"># 店铺地址</span>
+            min_list.append(i[<span class="string">'allCommentNum'</span>])  <span class="comment"># 店铺评价数</span>
+            meituan_list.append(min_list)
+        <span class="built_in">return</span> meituan_list
+
+    def getDatil(self, lis):
+        <span class="keyword">for</span> i <span class="keyword">in</span> lis:
+            time.sleep(20)
+            url = <span class="string">'http://www.meituan.com/meishi/{0}/'</span>.format(i[0])
+            <span class="comment">#print(url)</span>
+            my_headers = {
+                <span class="string">'Host'</span>: <span class="string">'zz.meituan.com'</span>,
+                <span class="string">'Referer'</span>: <span class="string">'http://zz.meituan.com/meishi/b166/pn{0}/'</span>.format(self.__page),
+                <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106Safari/537.36'</span>
+        }
+
+            try:
+                response = requests.get(url=url, headers=my_headers)
+                response.raise_for_status()
+                response.encoding = response.apparent_encoding
+                html = response.text
+                <span class="comment">#print(html)</span>
+                soup = bs(html, <span class="string">'html.parser'</span>)     <span class="comment">#对html页面进行解析</span>
+                script__all = soup.find_all(<span class="string">'script'</span>)    <span class="comment">#得到所有的标签为script的信息，并以列表形式返回</span>
+                script = script__all[-3]    <span class="comment">#得到店铺营业时间、店铺推荐美食所在的标签为script的信息，该元素为html格式里包裹着json格式</span>
+                <span class="built_in">print</span>(script)
+                p1 = re.compile(r<span class="string">'= (.*);'</span>, re.S)  <span class="comment"># 贪婪匹配</span>
+                page = re.findall(p1, script.text)[0]       <span class="comment">#去除非json格式外的所有符号，以及无关的信息</span>
+                page = json.loads(page)     <span class="comment">#用loads对抓到的json文本进行反序列化，主要是为了读出的不是字符串</span>
+                <span class="comment"># print(page)</span>
+                i.append(page[<span class="string">'detailInfo'</span>][<span class="string">'openTime'</span>])   <span class="comment"># 店铺营业时间</span>
+                food_list = []
+                <span class="keyword">for</span> m <span class="keyword">in</span> range(len(page[<span class="string">'recommended'</span>])):
+                    food_list.append(page[<span class="string">'recommended'</span>][m][<span class="string">'name'</span>])
+                i.append(<span class="string">'，'</span>.join(food_list))   <span class="comment"># 店铺推荐美食</span>
+            except requests.HTTPError as he:
+                <span class="built_in">print</span>(he.args)
+        <span class="built_in">return</span> lis
+
+    def writeExcel(self, data_lis):
+        wb = xlrd.open_workbook(r<span class="string">'D:\PycharmText\text\meituaninfo.xls'</span>)
+        sheet = wb.sheet_by_name(<span class="string">'店铺信息'</span>)
+        new_wb = copy(wb)
+        new_sheet = new_wb.get_sheet(<span class="string">'店铺信息'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data_lis)):  <span class="comment"># 输入表格内容</span>
+            <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data_lis[m])):
+                new_sheet.write(sheet.nrows + m, n, data_lis[m][n])
+        new_wb.save(r<span class="string">'D:\PycharmText\text\meituaninfo.xls'</span>)
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    area_dict = {
+        <span class="string">'金水区'</span>: <span class="string">'166'</span>,
+        <span class="string">'中原区'</span>: <span class="string">'165'</span>,
+        <span class="string">'二七区'</span>: <span class="string">'167'</span>,
+        <span class="string">'管城回族区'</span>: <span class="string">'168'</span>,
+        <span class="string">'新郑市'</span>: <span class="string">'3249'</span>,
+        <span class="string">'惠济区'</span>: <span class="string">'169'</span>,
+        <span class="string">'上街区'</span>: <span class="string">'170'</span>,
+        <span class="string">'登封市'</span>: <span class="string">'3250'</span>,
+        <span class="string">'荥阳市'</span>: <span class="string">'3253'</span>,
+        <span class="string">'新密市'</span>: <span class="string">'3251'</span>,
+        <span class="string">'巩义市'</span>: <span class="string">'3252'</span>,
+        <span class="string">'中牟县'</span>: <span class="string">'3254'</span>,
+        <span class="string">'高新区'</span>: <span class="string">'7397'</span>,
+        <span class="string">'近郊'</span>: <span class="string">'171'</span>
+    }
+    <span class="keyword">for</span> k, v <span class="keyword">in</span> area_dict.items():
+        <span class="built_in">print</span>(k, <span class="string">': '</span>, v)                   <span class="comment">#打印出以上地区编号</span>
+    <span class="built_in">print</span>(<span class="string">'**********************欢迎访问地区美食************************'</span>)
+    area = input(<span class="string">'请输入地区编号：'</span>)
+    <span class="keyword">if</span> area <span class="keyword">in</span> area_dict.values():
+        <span class="keyword">for</span> item <span class="keyword">in</span> range(1, 33):
+            <span class="built_in">print</span>(<span class="string">'正在读出第{0}页'</span>.format(item))
+            url = <span class="string">'http://www.meituan.com/meishi/api/poi/getPoiList?cityName=%E9%83%91%E5%B7%9E&amp;cateId=0&amp;areaId={0}&amp;sort=&amp;dinnerCountAttrId=&amp;page={1}&amp;userId=&amp;uuid=92c99717-e6ba-40a0-b776-16007a81d026&amp;platform=1&amp;partner=126&amp;originUrl=http%3A%2F%2Fwww.meituan.com%2Fmeishi%2F%257B1%257D%2F&amp;riskLevel=1&amp;optimusCode=1&amp;_token=eJxNTltvgjAY%2FS9N9jQjLcilJnso4BwM0TGnjGUPVW4qUAJFxGX%2FfV2yZUu%2B5Fy%2Bc5LzARonBlMEIYZwBM5JA6YAjeFYAyPAW%2FFRFRVCQ5axoYrA%2Fr%2BnQKjII7BrNjaYviFF1kaa8v5tBEL%2FGX9Mnoj7TjgiAHLO66kk9X0%2FLpMD72g13rNSErzND9KNbqIb3ZbEECAq5VpUBJ5%2BkP4g%2F9ULsVxk20NWCZa4fXFcoyW5zp7y5Pa558ocZ03kuY5XEObCcE6GsHY8%2F1WaMxyx53yzrom3J2gZLGZ84Zs4qZo0ubRZTtJz4R5MIzCs8xWbwSrGXajiNMvSl5NH1Wg3qepCC27XlrOj2nDR4vu6shwaVFs%2BBF18cTuqN37pZWZ50tUh05G8fHIVectaO0dDQZT7JH5gkFmS6dU8P1rnEM1i3Gub%2FtoGSz7huKDGXKfRUA1bpjO%2FsvePPrFD3lyp5b%2FkUcc3yVFOe7JykXPJ7u7A5xc5UpB6'</span>.format(area, item)
+            spider = MeituanSpider(url, str(item))
+            msg = spider.getMeituan()
+            lis = spider.clearMeituan(msg)
+            <span class="comment">#print(lis)    #读出clearMeituan()里面的所有信息</span>
+            time.sleep(10)
+
+            msg1 = spider.getDatil(lis)
+            spider.writeExcel(msg1)
+            time.sleep(10)
+            <span class="keyword">for</span> i <span class="keyword">in</span> msg1:
+                <span class="built_in">print</span>(i)     <span class="comment">#读出一家店铺的所有信息</span>
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'该地区不存在！'</span>)
+</code></pre>
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>数据存放在excel表格中，表所在的位置是D:\PycharmText\text\meituaninfo.xls</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/17/combine-data-type-dict/" class="archive-article-date">
-  	<time datetime="2018-07-17T00:46:00.346Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/17/combine-data-type-dict/">组合数据类型（字典）</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/23/case-meituan-eat-spider/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/16/practice--triangel/" class="archive-article-date">
-  	<time datetime="2018-07-16T12:59:43.958Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/22/spider-reguler-expression/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">爬虫（正则表达式）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/16/practice--triangel/">作业练习——直角三角形在不同的方位</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/16/practice--comprehensive-day1-5/" class="archive-article-date">
-  	<time datetime="2018-07-16T12:13:34.636Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/16/practice--comprehensive-day1-5/">综合练习1</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/16/practice--combine-data-type-list/" class="archive-article-date">
-  	<time datetime="2018-07-16T02:52:36.862Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/16/practice--combine-data-type-list/">作业练习——组合数据类型（列表）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/13/combine-data-type-list-tuple/" class="archive-article-date">
-  	<time datetime="2018-07-13T05:05:00.528Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/13/combine-data-type-list-tuple/">组合数据类型（list和tuple）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/12/circulation-control-for-while/" class="archive-article-date">
-  	<time datetime="2018-07-12T13:59:26.855Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/12/circulation-control-for-while/">循环控制语句（for和while）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/12/condition-control-if/" class="archive-article-date">
-  	<time datetime="2018-07-12T13:15:51.755Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/12/condition-control-if/">条件控制语句（if）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/12/basic-data-type/" class="archive-article-date">
-  	<time datetime="2018-07-12T05:22:04.638Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/12/basic-data-type/">基本数据类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/12/basic-grammar/" class="archive-article-date">
-  	<time datetime="2018-07-12T00:28:21.645Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/12/basic-grammar/">基础语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/09/hello-world/" class="archive-article-date">
-  	<time datetime="2018-07-09T12:22:49.483Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><a class="page-number" href="/archives/2018/page/2/">2</a><a class="page-number" href="/archives/2018/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
   
 
 
@@ -474,8 +465,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

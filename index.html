@@ -161,6 +161,196 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-case-meituan-eat-spider" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/23/case-meituan-eat-spider/">案例————美团美食店铺信息获取</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/23/case-meituan-eat-spider/" class="archive-article-date">
+  	<time datetime="2018-08-23T09:20:47.929Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><pre><code class="bash">import requests
+import json
+from bs4 import BeautifulSoup as bs
+import re
+from xlutils.copy import copy
+import xlrd
+import time
+
+class MeituanSpider:
+    def __init__(self, url, page):
+        self.__url = url
+        self.__page = page
+
+    def getMeituan(self):
+        my_headers = {
+            <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64)\</span>
+<span class="string">                             AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'</span>,
+            <span class="string">'Host'</span>: <span class="string">'zz.meituan.com'</span>,
+            <span class="string">'Referer'</span>: <span class="string">'http://zz.meituan.com/meishi/b166/pn{0}/'</span>.format(self.__page)
+        }
+        try:
+            response = requests.get(url=self.__url, headers=my_headers)
+            response.raise_for_status()
+            response.encoding = response.apparent_encoding
+            html = response.text
+            html = json.loads(html)[<span class="string">'data'</span>][<span class="string">'poiInfos'</span>]    <span class="comment">#用loads对抓到的json文本进行反序列化，主要是为了读出的不是字符串</span>
+            <span class="comment">#print(html)</span>
+            <span class="built_in">return</span> html
+        except requests.HTTPError as he:
+            <span class="built_in">print</span>(he.args)
+
+    def clearMeituan(self, content):
+        meituan_list = []
+        <span class="keyword">for</span> i <span class="keyword">in</span> content:
+            min_list = []
+            min_list.append(i[<span class="string">'poiId'</span>])  <span class="comment"># 店铺编码</span>
+            min_list.append(i[<span class="string">'title'</span>])  <span class="comment"># 店铺名称</span>
+            min_list.append(i[<span class="string">'avgScore'</span>])  <span class="comment"># 店铺评分</span>
+            min_list.append(i[<span class="string">'avgPrice'</span>])  <span class="comment"># 人均消费</span>
+            min_list.append(i[<span class="string">'address'</span>])  <span class="comment"># 店铺地址</span>
+            min_list.append(i[<span class="string">'allCommentNum'</span>])  <span class="comment"># 店铺评价数</span>
+            meituan_list.append(min_list)
+        <span class="built_in">return</span> meituan_list
+
+    def getDatil(self, lis):
+        <span class="keyword">for</span> i <span class="keyword">in</span> lis:
+            time.sleep(20)
+            url = <span class="string">'http://www.meituan.com/meishi/{0}/'</span>.format(i[0])
+            <span class="comment">#print(url)</span>
+            my_headers = {
+                <span class="string">'Host'</span>: <span class="string">'zz.meituan.com'</span>,
+                <span class="string">'Referer'</span>: <span class="string">'http://zz.meituan.com/meishi/b166/pn{0}/'</span>.format(self.__page),
+                <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106Safari/537.36'</span>
+        }
+
+            try:
+                response = requests.get(url=url, headers=my_headers)
+                response.raise_for_status()
+                response.encoding = response.apparent_encoding
+                html = response.text
+                <span class="comment">#print(html)</span>
+                soup = bs(html, <span class="string">'html.parser'</span>)     <span class="comment">#对html页面进行解析</span>
+                script__all = soup.find_all(<span class="string">'script'</span>)    <span class="comment">#得到所有的标签为script的信息，并以列表形式返回</span>
+                script = script__all[-3]    <span class="comment">#得到店铺营业时间、店铺推荐美食所在的标签为script的信息，该元素为html格式里包裹着json格式</span>
+                <span class="built_in">print</span>(script)
+                p1 = re.compile(r<span class="string">'= (.*);'</span>, re.S)  <span class="comment"># 贪婪匹配</span>
+                page = re.findall(p1, script.text)[0]       <span class="comment">#去除非json格式外的所有符号，以及无关的信息</span>
+                page = json.loads(page)     <span class="comment">#用loads对抓到的json文本进行反序列化，主要是为了读出的不是字符串</span>
+                <span class="comment"># print(page)</span>
+                i.append(page[<span class="string">'detailInfo'</span>][<span class="string">'openTime'</span>])   <span class="comment"># 店铺营业时间</span>
+                food_list = []
+                <span class="keyword">for</span> m <span class="keyword">in</span> range(len(page[<span class="string">'recommended'</span>])):
+                    food_list.append(page[<span class="string">'recommended'</span>][m][<span class="string">'name'</span>])
+                i.append(<span class="string">'，'</span>.join(food_list))   <span class="comment"># 店铺推荐美食</span>
+            except requests.HTTPError as he:
+                <span class="built_in">print</span>(he.args)
+        <span class="built_in">return</span> lis
+
+    def writeExcel(self, data_lis):
+        wb = xlrd.open_workbook(r<span class="string">'D:\PycharmText\text\meituaninfo.xls'</span>)
+        sheet = wb.sheet_by_name(<span class="string">'店铺信息'</span>)
+        new_wb = copy(wb)
+        new_sheet = new_wb.get_sheet(<span class="string">'店铺信息'</span>)
+        <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data_lis)):  <span class="comment"># 输入表格内容</span>
+            <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data_lis[m])):
+                new_sheet.write(sheet.nrows + m, n, data_lis[m][n])
+        new_wb.save(r<span class="string">'D:\PycharmText\text\meituaninfo.xls'</span>)
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    area_dict = {
+        <span class="string">'金水区'</span>: <span class="string">'166'</span>,
+        <span class="string">'中原区'</span>: <span class="string">'165'</span>,
+        <span class="string">'二七区'</span>: <span class="string">'167'</span>,
+        <span class="string">'管城回族区'</span>: <span class="string">'168'</span>,
+        <span class="string">'新郑市'</span>: <span class="string">'3249'</span>,
+        <span class="string">'惠济区'</span>: <span class="string">'169'</span>,
+        <span class="string">'上街区'</span>: <span class="string">'170'</span>,
+        <span class="string">'登封市'</span>: <span class="string">'3250'</span>,
+        <span class="string">'荥阳市'</span>: <span class="string">'3253'</span>,
+        <span class="string">'新密市'</span>: <span class="string">'3251'</span>,
+        <span class="string">'巩义市'</span>: <span class="string">'3252'</span>,
+        <span class="string">'中牟县'</span>: <span class="string">'3254'</span>,
+        <span class="string">'高新区'</span>: <span class="string">'7397'</span>,
+        <span class="string">'近郊'</span>: <span class="string">'171'</span>
+    }
+    <span class="keyword">for</span> k, v <span class="keyword">in</span> area_dict.items():
+        <span class="built_in">print</span>(k, <span class="string">': '</span>, v)                   <span class="comment">#打印出以上地区编号</span>
+    <span class="built_in">print</span>(<span class="string">'**********************欢迎访问地区美食************************'</span>)
+    area = input(<span class="string">'请输入地区编号：'</span>)
+    <span class="keyword">if</span> area <span class="keyword">in</span> area_dict.values():
+        <span class="keyword">for</span> item <span class="keyword">in</span> range(1, 33):
+            <span class="built_in">print</span>(<span class="string">'正在读出第{0}页'</span>.format(item))
+            url = <span class="string">'http://www.meituan.com/meishi/api/poi/getPoiList?cityName=%E9%83%91%E5%B7%9E&amp;cateId=0&amp;areaId={0}&amp;sort=&amp;dinnerCountAttrId=&amp;page={1}&amp;userId=&amp;uuid=92c99717-e6ba-40a0-b776-16007a81d026&amp;platform=1&amp;partner=126&amp;originUrl=http%3A%2F%2Fwww.meituan.com%2Fmeishi%2F%257B1%257D%2F&amp;riskLevel=1&amp;optimusCode=1&amp;_token=eJxNTltvgjAY%2FS9N9jQjLcilJnso4BwM0TGnjGUPVW4qUAJFxGX%2FfV2yZUu%2B5Fy%2Bc5LzARonBlMEIYZwBM5JA6YAjeFYAyPAW%2FFRFRVCQ5axoYrA%2Fr%2BnQKjII7BrNjaYviFF1kaa8v5tBEL%2FGX9Mnoj7TjgiAHLO66kk9X0%2FLpMD72g13rNSErzND9KNbqIb3ZbEECAq5VpUBJ5%2BkP4g%2F9ULsVxk20NWCZa4fXFcoyW5zp7y5Pa558ocZ03kuY5XEObCcE6GsHY8%2F1WaMxyx53yzrom3J2gZLGZ84Zs4qZo0ubRZTtJz4R5MIzCs8xWbwSrGXajiNMvSl5NH1Wg3qepCC27XlrOj2nDR4vu6shwaVFs%2BBF18cTuqN37pZWZ50tUh05G8fHIVectaO0dDQZT7JH5gkFmS6dU8P1rnEM1i3Gub%2FtoGSz7huKDGXKfRUA1bpjO%2FsvePPrFD3lyp5b%2FkUcc3yVFOe7JykXPJ7u7A5xc5UpB6'</span>.format(area, item)
+            spider = MeituanSpider(url, str(item))
+            msg = spider.getMeituan()
+            lis = spider.clearMeituan(msg)
+            <span class="comment">#print(lis)    #读出clearMeituan()里面的所有信息</span>
+            time.sleep(10)
+
+            msg1 = spider.getDatil(lis)
+            spider.writeExcel(msg1)
+            time.sleep(10)
+            <span class="keyword">for</span> i <span class="keyword">in</span> msg1:
+                <span class="built_in">print</span>(i)     <span class="comment">#读出一家店铺的所有信息</span>
+    <span class="keyword">else</span>:
+        <span class="built_in">print</span>(<span class="string">'该地区不存在！'</span>)
+</code></pre>
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><p>数据存放在excel表格中，表所在的位置是D:\PycharmText\text\meituaninfo.xls</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/23/case-meituan-eat-spider/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-spider-reguler-expression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1046,422 +1236,6 @@ except MyError as my:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/02/pack-module/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-case-ATM-def-log-@-txt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/02/case-ATM-def-log-@-txt/">案例——ATM取款机（函数、语法糖、日志、文本文件）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/02/case-ATM-def-log-@-txt/" class="archive-article-date">
-  	<time datetime="2018-08-02T01:00:27.124Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>一、编写一个ATM取款机，功能，界面如下</p>
-<pre><code>1). 注册新用户
-2). 取款
-3). 存款
-4). 转账
-5). 查询余额
-6). 冻结账户
-7). 修改密码
-8). 退出
-9）.登陆
-</code></pre><p>1、注册用户，并存入本地文件count.txt中。其中文件格式如下：<br>   用户名   密码    账户余额    状态<br>    tom     1234    100000      正常<br>其中，注册新用户时，默认账户余额为100元、状态为正常。<br>2、取款、存款时都需要验证用户身份<br>3、取款的金额必须小于账户余额<br>4、冻结账户为修改账户状态为冻结<br>5、修改密码时，需要验证原密码后，方能修改</p>
-<p>二、修改上述的ATM取款系统，要求如下:<br>1). 每个选项操作前，显示用户欢迎信息;<br>    eg： “<strong><strong><strong>***</strong></strong></strong>ATM系统转账操作<strong><strong><strong>***</strong></strong></strong>“<br>    eg： “<strong><strong><strong>***</strong></strong></strong>ATM系统存款操作<strong><strong><strong>***</strong></strong></strong>“</p>
-<p>2). 用户执行操作前显示操作时间；<br>3). 用户执行后显示结束时间;<br>4).要求时间格式不是时间戳，而是我们可以看懂的即（YYYY-MM-DD）;</p>
-<p>1、要求使用日志，进行记录<br>2、采用装饰器进行日志的记录</p>
-<p>程序代码：</p>
-<pre><code class="bash">import os 
-from os import path
-import time
-import datetime
-import logging
-<span class="comment">#print(time.strftime('%Y-%m-%d',time.localtime()))</span>
-
-def <span class="built_in">log</span>(msg):
-    <span class="comment">#创建一个日志对象,并设置日志级别</span>
-    logger = logging.getLogger(<span class="string">'pythonlogger'</span>)
-    logger.setLevel(logging.INFO)
-
-    <span class="comment">#创建一个handler,用来将日志内容存入文件中</span>
-    file = logging.FileHandler(<span class="string">'test.log'</span>)
-    file.setLevel(logging.INFO)
-
-    <span class="comment">#创建一个handler,用来将日志输出到控制台</span>
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-
-    <span class="comment">#定义日志输出格式</span>
-    formatter = logging.Formatter(<span class="string">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>)
-    file.setFormatter(formatter)
-    console.setFormatter(formatter)
-
-    <span class="comment">#将logger添加到handler</span>
-    logger.addHandler(file)
-    logger.addHandler(console)
-
-    logger.info(msg)
-
-    logger.removeHandler(file)
-    logger.removeHandler(console)
-
-<span class="comment">#存放用户当前信息字典</span>
-user_status = {<span class="string">'username'</span>: None,<span class="string">'password'</span>: None,<span class="string">'money'</span>:None,<span class="string">'status'</span>:None,<span class="string">'state'</span>: False}
-<span class="comment">#存放被转账人的姓名和转账金额</span>
-transter_id = {<span class="string">'id_name'</span>:None,<span class="string">'money'</span>:None}
-
-dic={}
-def mylogger(f):
-    def inner(*var,**kw):
-        <span class="built_in">print</span>(<span class="string">'********ATM系统{}操作********'</span>.format(f.__name__)) 
-        current_time()
-        <span class="keyword">if</span> f(*var,**kw):
-            current_time()     
-            <span class="built_in">log</span>(f.__name__+<span class="string">'操作成功'</span>)
-        <span class="keyword">else</span>:
-            current_time()
-            <span class="built_in">log</span>(f.__name__+<span class="string">'操作失败'</span>)
-    <span class="built_in">return</span> inner
-
-def menu():
-    <span class="built_in">print</span>(<span class="string">'*******欢迎前来办理业务*******'</span>)
-    <span class="built_in">print</span>(<span class="string">'1、注册新用户'</span>)
-    <span class="built_in">print</span>(<span class="string">'2、登录'</span>)
-    <span class="built_in">print</span>(<span class="string">'3、取款'</span>)
-    <span class="built_in">print</span>(<span class="string">'4、存款'</span>)
-    <span class="built_in">print</span>(<span class="string">'5、转账'</span>)
-    <span class="built_in">print</span>(<span class="string">'6、查询余额'</span>)
-    <span class="built_in">print</span>(<span class="string">'7、冻结账户'</span>)
-    <span class="built_in">print</span>(<span class="string">'8、修改密码'</span>)
-    <span class="built_in">print</span>(<span class="string">'9、退出'</span>)
-    <span class="built_in">print</span>(<span class="string">'*'</span>*30)
-
-<span class="comment">#读取系统当前时间</span>
-def current_time():
-    now = datetime.datetime.now()  <span class="comment">#获取当前时间时分秒</span>
-    current = now.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)  <span class="comment">#显示当前时间的时分秒</span>
-    <span class="built_in">print</span>(<span class="string">'当前操作时间为：{}'</span>.format(current))  <span class="comment">#打印当前时间的时分秒</span>
-    <span class="built_in">return</span> current   <span class="comment">#返回当前时间的时分秒</span>
-
-<span class="comment">#判断该文件是否存在</span>
-def is_exist():   
-    <span class="keyword">if</span> os.path.exists(<span class="string">'count.txt'</span>):
-        pass
-    <span class="keyword">else</span>:
-        file = open(<span class="string">'count.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)  <span class="comment">#不存在则创建，并将用户名 密码 账户余额 状态输入到文件</span>
-        file.write(<span class="string">'用户名   密码    账户余额   状态\n'</span>)
-        file.close()
-
-<span class="comment">#读出文本文件内容</span>
-def readfile():
-    is_exist()     <span class="comment">#调用is_exist()函数，判断是否存在count.txt文件</span>
-    file = open(<span class="string">'count.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
-    msg = file.readline()
-    ls1 = msg.split()
-    <span class="keyword">while</span> True:
-        line = file.readline()
-        <span class="keyword">if</span> line == <span class="string">''</span>:
-            <span class="built_in">break</span>
-        ls2 = line.split()
-        value_dic = dict(zip(ls1,ls2)) <span class="comment">#将读出的信息生成一个字典</span>
-        dic[ls2[0]] = value_dic  <span class="comment">#以用户名为键值，将字典添加到字典中</span>
-    file.close()
-    <span class="built_in">return</span> dic  <span class="comment">#返回该字典</span>
-
-<span class="comment">#写入文本文件内容</span>
-def writefile():
-    file = open(<span class="string">'count.txt'</span>,<span class="string">'w'</span>,encoding= <span class="string">'UTF-8'</span>)
-    file.write(<span class="string">'用户名   密码    账户余额   状态\n'</span>)   <span class="comment">#写入文件的第一行用户名 密码 账户余额 状态</span>
-    file.close()
-    file = open(<span class="string">'count.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)
-    str1=<span class="string">''</span>
-    <span class="keyword">for</span> key <span class="keyword">in</span> dic.keys():
-        str1=str1+(dic[key][<span class="string">'用户名'</span>]+<span class="string">' '</span>+dic[key][<span class="string">'密码'</span>]+<span class="string">' '</span>+str(dic[key][<span class="string">'账户余额'</span>])+<span class="string">' '</span>+dic[key][<span class="string">'状态'</span>]+<span class="string">'\n'</span>)
-    file.write(str1)     
-    file.close()
-
-<span class="comment">#注册新用户</span>
-@mylogger
-def reginster():
-    flag = False
-    readfile()
-    username = input(<span class="string">'请输入用户名：'</span>)
-    password = input(<span class="string">'请输入密码：'</span>)
-    items = username+<span class="string">'     '</span>+password + <span class="string">'     '</span> + <span class="string">'100'</span> + <span class="string">'     '</span> + <span class="string">'正常'</span>
-    <span class="keyword">if</span> username <span class="keyword">in</span> dic.keys():
-        <span class="built_in">print</span>(<span class="string">'该用户名已存在，请重新输入！'</span>)
-        flag = False
-    <span class="keyword">else</span>:
-        file = open(<span class="string">'count.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
-        file.write(items+<span class="string">'\n'</span>)
-        items=items.split()
-        value_dic=dict(zip([<span class="string">'用户名'</span>,<span class="string">'密码'</span>,<span class="string">'账户余额'</span>, <span class="string">'状态'</span>],items))
-        dic[items[0]]=value_dic
-        <span class="built_in">print</span>(<span class="string">'注册成功！'</span>)
-        flag = True 
-    <span class="built_in">return</span> flag
-
-<span class="comment">#登录</span>
-@mylogger
-def login():
-    flag = True
-    readfile()
-    username = input(<span class="string">'请输入用户名：'</span>)
-    password = input(<span class="string">'请输入密码：'</span>)
-    <span class="keyword">if</span> username <span class="keyword">in</span> dic.keys():
-        <span class="keyword">if</span> password == dic[username][<span class="string">'密码'</span>]:
-            <span class="built_in">print</span>(<span class="string">'登录成功！'</span>)
-            user_status[<span class="string">'username'</span>] = username    <span class="comment">#将读取出来的信息存在user_status字典中，便于后续调用以及用其中的state判断用户是否登录</span>
-            user_status[<span class="string">'password'</span>] = password
-            user_status[<span class="string">'money'</span>] = dic[username][<span class="string">'账户余额'</span>]
-            user_status[<span class="string">'status'</span>] = dic[username][<span class="string">'状态'</span>]
-            user_status[<span class="string">'state'</span>] = True       
-            flag = True
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'密码不正确，请重新输入！'</span>)
-            flag = False
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'该用户不存在，请先注册再登录！'</span>)
-        flag = False
-    <span class="built_in">return</span> flag  
-
-@mylogger
-<span class="comment">#取款</span>
-def withdrawal():
-    flag = False
-    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
-    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
-    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
-        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
-        flag = False
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'身份验证通过，请继续进行操作！'</span>)
-        withdrawal_money = int(input(<span class="string">'请输入取款金额：'</span>))
-        <span class="keyword">if</span> withdrawal_money &gt; int(user_status[<span class="string">'money'</span>]):
-            <span class="built_in">print</span>(<span class="string">'账户余额不足，请重新输入取款金额！'</span>)
-            flag =False
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'取款成功！'</span>)
-            user_status[<span class="string">'money'</span>] = str(int(user_status[<span class="string">'money'</span>]) - withdrawal_money)
-            readfile()
-            dic[username][<span class="string">'账户余额'</span>] = user_status[<span class="string">'money'</span>]
-            writefile()
-            flag = True  
-    <span class="built_in">return</span> flag
-
-<span class="comment">#存款</span>
-@mylogger
-def deposit():
-    flag = False
-    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
-    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
-    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
-        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
-        flag = False
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'身份验证通过，请继续进行操作！'</span>)
-        deposit_money = int(input(<span class="string">'请输入存款金额：'</span>))
-        <span class="built_in">print</span>(<span class="string">'存款成功！'</span>)
-        user_status[<span class="string">'money'</span>] = str(int(user_status[<span class="string">'money'</span>]) + deposit_money)
-        readfile()
-        dic[username][<span class="string">'账户余额'</span>] = user_status[<span class="string">'money'</span>]
-        writefile()
-        flag = True
-    <span class="built_in">return</span> flag
-
-<span class="comment">#转账</span>
-@mylogger
-def transfer_accounts():
-    flag = False
-    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
-    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
-    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
-        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
-        flag = False
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'身份验证通过，请继续进行操作！'</span>)
-        id_name = input(<span class="string">'请输入转账人姓名：'</span>)
-        transfer_money = int(input(<span class="string">'请输入转账金额：'</span>))
-        readfile()
-        <span class="keyword">if</span> id_name <span class="keyword">in</span> dic.keys():
-            <span class="built_in">print</span>(<span class="string">'转账成功！'</span>)
-            transter_id[<span class="string">'id_name'</span>] = id_name
-            transter_id[<span class="string">'money'</span>] = transfer_money
-            user_status[<span class="string">'money'</span>] = str(int(user_status[<span class="string">'money'</span>]) - transfer_money)
-            dic[username][<span class="string">'账户余额'</span>] = user_status[<span class="string">'money'</span>]
-            dic[id_name][<span class="string">'账户余额'</span>] = str(int(dic[id_name][<span class="string">'账户余额'</span>]) + transfer_money)
-            writefile()
-            flag = True
-        <span class="keyword">else</span>:
-            <span class="built_in">print</span>(<span class="string">'不存在该用户！'</span>)
-            flag = False
-    <span class="built_in">return</span> flag
-
-<span class="comment">#余额查询</span>
-@mylogger
-def balance_inquiry():
-    flag = False
-    username = input(<span class="string">'请输入用户名进行身份验证：'</span>)
-    password = input(<span class="string">'请输入密码进行身份验证：'</span>)
-    <span class="keyword">if</span> user_status[<span class="string">'password'</span>] != password:
-        <span class="built_in">print</span>(<span class="string">'密码输入错误，请重新输入！'</span>)
-        flag = False
-    <span class="keyword">else</span>:
-        readfile()
-        money = dic[username][<span class="string">'账户余额'</span>]
-        <span class="built_in">print</span>(<span class="string">'当前余额为：{}元!'</span>.format(money))
-        flag = True
-    <span class="built_in">return</span> flag
-
-<span class="comment">#冻结账户</span>
-@mylogger
-def freeze_account():
-    flag = False
-    status = input(<span class="string">'请设置当前账户状态：'</span>)
-    user_status[<span class="string">'status'</span>] = <span class="string">'冻结'</span>
-    <span class="keyword">if</span> status == user_status[<span class="string">'status'</span>]:
-        <span class="built_in">print</span>(<span class="string">'当前账户已被冻结！无法进行其他操作！'</span>)
-        flag = True
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'当前账户状态正常！'</span>)
-    <span class="built_in">return</span> flag
-
-<span class="comment">#修改密码</span>
-@mylogger
-def change_password():
-    flag = False
-    username = input(<span class="string">'请输入用户名：'</span>)
-    password = input(<span class="string">'请输入原密码：'</span>)
-    repassword = input(<span class="string">'请输入修改后的密码：'</span>)
-    readfile()
-    <span class="keyword">if</span> password == dic[username][<span class="string">'密码'</span>]:
-        dic[username][<span class="string">'密码'</span>] = repassword
-        writefile()
-        <span class="built_in">print</span>(<span class="string">'密码修改成功！'</span>)
-        flag = True
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'密码输入错误！'</span>)
-        flag = False
-    <span class="built_in">return</span> flag
-
-<span class="comment">#退出</span>
-@mylogger
-def quit():
-    flag = False
-    mes = input(<span class="string">'确定要退出吗？退出请按Q：'</span>)
-    <span class="keyword">if</span> <span class="string">'Q'</span> == mes or <span class="string">'q'</span> == mes:
-        <span class="built_in">exit</span>()
-        flag = True
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span>(<span class="string">'按键错误，请重新选择！'</span>)
-        flag = False
-    <span class="built_in">return</span> flag
-
-
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    <span class="keyword">while</span> True:
-        menu()
-        msg = int(input(<span class="string">'请输入操作的编号：'</span>))
-        <span class="keyword">if</span> 1 == msg:
-            reginster()
-
-        <span class="keyword">elif</span> 2 == msg:
-            login()
-
-        <span class="keyword">elif</span> 3 == msg:
-            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
-                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-            <span class="keyword">else</span>:
-                withdrawal()
-
-        <span class="keyword">elif</span> 4 == msg:
-            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
-                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-            <span class="keyword">else</span>:
-                deposit()
-
-        <span class="keyword">elif</span> 5 == msg:
-            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
-                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-            <span class="keyword">else</span>: 
-                transfer_accounts()
-
-        <span class="keyword">elif</span> 6 == msg:
-            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
-                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-            <span class="keyword">else</span>:
-                balance_inquiry()
-
-        <span class="keyword">elif</span> 7 == msg:
-            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
-                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-            <span class="keyword">else</span>:  
-                freeze_account()
-
-        <span class="keyword">elif</span> 8 == msg:
-            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
-                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-            <span class="keyword">else</span>:
-                change_password()
-
-        <span class="keyword">else</span>:
-            <span class="keyword">if</span> user_status[<span class="string">'state'</span>] == False:
-                <span class="built_in">print</span>(<span class="string">'请登录后再操作！'</span>)
-            <span class="keyword">else</span>:
-                quit()
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/02/case-ATM-def-log-@-txt/">展开全文 >></a>
         </p>
       
 
