@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="diana">
 <meta property="og:description" content="源代码：house.pyimport requests from bs4 import BeautifulSoup import json import xlwt import xlrd from xlutils.copy import copy from house_info import HouseInfo from houseDetail_info import HouseDetail  c">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-23T11:41:08.151Z">
+<meta property="og:updated_time" content="2018-08-23T13:03:38.033Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="案例————链家二手房信息获取（郑州市所在的区）（爬虫）">
 <meta name="twitter:description" content="源代码：house.pyimport requests from bs4 import BeautifulSoup import json import xlwt import xlrd from xlutils.copy import copy from house_info import HouseInfo from houseDetail_info import HouseDetail  c">
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h4 id="house-py"><a href="#house-py" class="headerlink" title="house.py"></a>house.py</h4><pre><code class="bash">import requests
+        <h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><h3 id="house-py"><a href="#house-py" class="headerlink" title="house.py"></a>house.py</h3><pre><code class="bash">import requests
 from bs4 import BeautifulSoup
 import json
 import xlwt
@@ -280,7 +280,7 @@ class House:
                 new_sheet.write(sheet.nrows + m, n, data_lis[m][n])
         new_wb.save(r<span class="string">'D:\PycharmText\text\lianjia_house\house.xls'</span>)
 </code></pre>
-<h4 id="house-info-py"><a href="#house-info-py" class="headerlink" title="house_info.py"></a>house_info.py</h4><pre><code class="bash">class HouseInfo:
+<h3 id="house-info-py"><a href="#house-info-py" class="headerlink" title="house_info.py"></a>house_info.py</h3><pre><code class="bash">class HouseInfo:
 
     def __init__(self, housecode, name, address, district, position_info, total_price, unit_price, follow_info):
         self.__name = name
@@ -356,7 +356,7 @@ class House:
     def address(self, new_address):
         self.__address = new_address
 </code></pre>
-<h4 id="houseDetail-info-py"><a href="#houseDetail-info-py" class="headerlink" title="houseDetail_info.py"></a>houseDetail_info.py</h4><pre><code class="bash">class HouseDetail:
+<h3 id="houseDetail-info-py"><a href="#houseDetail-info-py" class="headerlink" title="houseDetail_info.py"></a>houseDetail_info.py</h3><pre><code class="bash">class HouseDetail:
     def __init__(self, baseinfo = [], featuresinfo = []):
         self.__baseinfo = baseinfo
         self.__featuresinfo = featuresinfo
@@ -375,7 +375,7 @@ class House:
     def featuresinfo(self, new_featuresinfo):
         self.__featuresinfo = new_featuresinfo
 </code></pre>
-<h4 id="testHouse-py"><a href="#testHouse-py" class="headerlink" title="testHouse.py"></a>testHouse.py</h4><pre><code class="bash">from house import House
+<h3 id="testHouse-py"><a href="#testHouse-py" class="headerlink" title="testHouse.py"></a>testHouse.py</h3><pre><code class="bash">from house import House
 
 <span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
     area = input(<span class="string">'请输入郑州区名：'</span>)
