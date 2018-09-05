@@ -161,6 +161,461 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-spider-reguler-expression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/22/spider-reguler-expression/">爬虫（正则表达式）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/22/spider-reguler-expression/" class="archive-article-date">
+  	<time datetime="2018-08-22T12:01:41.236Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、正则表达式的概念"><a href="#1、正则表达式的概念" class="headerlink" title="1、正则表达式的概念"></a>1、正则表达式的概念</h3><p>正则表达式就是使用一些特定的表达式，来表示符合其规范的字符串。</p>
+<h3 id="2、常用操作符"><a href="#2、常用操作符" class="headerlink" title="2、常用操作符"></a>2、常用操作符</h3><p>^:^ab,代表着必须是ab开头，[^ab]代表不能是a或b开头<br>$:表示字符串结尾，放在正则表达式的结尾<br>[]：代表了值域的范围，例如：[0-9][a-z]<br>{}：代表了字符出现的次数,例如：{n}代表了出现n次，{n,m}代表出现了n到m次<br>*:代表了字符出现0-n次<br>+：代表了字符出现1-n次<br>？：代表了字符出现0-1次</p>
+<h3 id="3、常用方法"><a href="#3、常用方法" class="headerlink" title="3、常用方法"></a>3、常用方法</h3><p>1）search()：会在指定的字符串中查找，是否有匹配正则表达式的内容<br>函数格式：search(pattern, str)<br>参数说明：<br>pattern：正则表达式<br>str：字符串<br>返回值：match对象，可以通过match.group(0)返回匹配正则表达式的内容<br>2）match():会从字符串的开始进行匹配<br>函数格式：match(pattern, str)<br>返回值：match对象<br>3）findall():会从指定的字符串中，匹配所有满足正则表达式的内容<br>函数格式：findall(pattern,str)<br>返回值：返回所有匹配的内容，以列表形式。<br>4）split():根据字符串匹配正则表达式的情况来切分<br>函数格式：split(pattern, str, maxsplit)<br>maxsplit：最大切分次数，剩余部分将作为一个整体输出<br>返回值：将切分后的字符串，以列表形式返回<br>5）finditer():根据字符串匹配正则表达式，返回一个迭代对象，其中的每一个对象都是match对象<br>函数格式：finditer(pattern,str)<br>返回值：返回迭代对象，其中每个对象都是match类型<br>6）sub():根据正则表达式，将指定的字符串内容替换<br>函数格式：sub(pattern, repl, string, count)<br>参数说明：<br>repl：替换匹配字符串的字符串<br>count：匹配的最大次数<br>返回值：返回替换后的字符串<br>7）compile():生成正则表达式对象<br>函数格式：compile(pattern)<br>返回值：返回一个正则表达式对象</p>
+<h3 id="4、match对象"><a href="#4、match对象" class="headerlink" title="4、match对象"></a>4、match对象</h3><p>1）match对象属性<br>string：待匹配的字符串<br>pos：匹配文本的开始位置<br>endpos：匹配文件的结束位置<br>re：正则表达式<br>2）match方法<br>group(0)：获得匹配后的字符串<br>start()：返回文本开始的位置<br>end()：返回文本结束的位置<br>span()：返回文本开始，结束的位置，以元组的形式返回</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/22/spider-reguler-expression/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spider-beautifulsoup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/22/spider-beautifulsoup/">爬虫（beautiful soup库）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/22/spider-beautifulsoup/" class="archive-article-date">
+  	<time datetime="2018-08-22T12:00:30.842Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、常用格式"><a href="#1、常用格式" class="headerlink" title="1、常用格式"></a>1、常用格式</h3><p>from bs4 import BeautifulSoup<br>soup = BeautifulSoup(content, ‘html.parser’)<br>参数说明：<br>content：使用requests或其他方式，发出请求后获取到的服务器响应内容，通常应该为HTML格式。<br>html.parser:HTML4格式解析器</p>
+<h3 id="2、常用的属性"><a href="#2、常用的属性" class="headerlink" title="2、常用的属性"></a>2、常用的属性</h3><p>标签自身属性：<br>tag：标签，例如soup.tag可以将指定的标签以及内部的内容返回<br>name：标签名，例如：soup.tag.name返回指定标签的名字<br>attrs：标签属性，在HTML中一个标签可以有0到N个标签，因此标签属性为字典类型，例如：soup.tag.attrs[‘class’]<br>string：标签内的文本内容，例如：soup.tag.string<br>标签树的属性：<br>contents:例如：soup.tag.contents,将指定的标签名内所有的标签都以列表形式返回。<br>children：例如：soup.tag.children，将指定的标签中所有的子标签内容，都以迭代器形式返回，进行遍历查询。<br>descendants：例如：soup.tag.descendants,将指定的标签中所有的子标签、孙标签都以迭代器形式返回，进行遍历查询。<br>注意：BeautifulSoup对象，作为标签树的根节点，即HTML节点</p>
+<h3 id="3、常用方法"><a href="#3、常用方法" class="headerlink" title="3、常用方法"></a>3、常用方法</h3><p>1）函数格式：soup.find(name,attrs)<br>参数说明：<br>name：标签名<br>attrs：标签中的属性值（属性=‘值’）<br>返回值：返回查找到第一个符合条件的标签以及内部元素</p>
+<p>2）函数格式：soup.find_all(name,attrs)<br>函数参数与上面find()相同<br>返回值：返回符合条件的所有的标签，以列表形式返回。</p>
+<h3 id="4、bs4的遍历模式"><a href="#4、bs4的遍历模式" class="headerlink" title="4、bs4的遍历模式"></a>4、bs4的遍历模式</h3><p>在BeautifulSoup中，有三种遍历模式：<br>1）下行遍历<br>children、descendants、contents<br>find()、find_all()<br>2）上行遍历<br>parent、parents<br>find_parent()、find_parents()<br>3）平行遍历<br>next_sibling、next_siblings<br>previous_sibling、previous_siblings<br>find_next_sibling()、find_next_siblings()<br>find_previous_siblings()、find_previous_sibling()</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/22/spider-beautifulsoup/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spider-requests" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/20/spider-requests/">爬虫（requests库）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/20/spider-requests/" class="archive-article-date">
+  	<time datetime="2018-08-20T11:43:52.113Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、requests库常用方法"><a href="#1、requests库常用方法" class="headerlink" title="1、requests库常用方法"></a>1、requests库常用方法</h3><p>requests.request()    构造一个请求，支撑以下各方法的基础方法<br>requests.get()        获取HTML网页的主要方法，对应于HTTP的GET<br>requests.head()    获取HTML网页头信息的方法，对应于HTTP的HEAD<br>requests.post()    向HTML网页提交POST请求的方法，对应于HTTP的POST<br>requests.put()        向HTML网页提交PUT请求的方法，对应于HTTP的PUT<br>requests.patch()    向HTML网页提交局部修改请求，对应于HTTP的PATCH<br>requests.delete()    向HTML页面提交删除请求，对应于HTTP的DELETE</p>
+<h3 id="1）函数格式：requests-request-method-url-kwargs"><a href="#1）函数格式：requests-request-method-url-kwargs" class="headerlink" title="1）函数格式：requests.request(method,url,**kwargs)"></a>1）函数格式：requests.request(method,url,**kwargs)</h3><p>method : 请求方式，对应get/put/post等7种<br>url: 拟获取页面的url链接<br>**kwargs: 控制访问的参数，共13个</p>
+<p>其中，7种method有：<br>requests.request(‘GET’,url, <strong>kvw)<br>requests.request(‘HEAD’,url, </strong>kvw)<br>requests.request(‘POST’,url, <strong>kvw)<br>requests.request(‘PUT’,url, </strong>kvw)<br>requests.request(‘PATCH’,url, <strong>kvw)<br>requests.request(‘DELETE’,url, </strong>kvw)<br>r = requests.request(‘OPTIONS’,url,**kwargs)</p>
+<p>**kvw:控制访问的参数，为可选项：<br>params:字典或字节流，作为参数添加到url中（get方法使用）<br>data：字典、字节流或文件对象（post方法使用）<br>json：JSON格式数据，作为request的内容<br>headers：字典，HTTP头信息<br>cookies：字典或cookie jar，存在于request的cookie中<br>auth：元组，支持HTTP认证<br>files：字典类型，传输文件<br>timeout：设定超时时间，秒为单位<br>proxies : 字典类型，设定访问代理服务器，可以增加登录认证<br>stream：True/False，默认为True。获取内容立即下载。<br>cert：本地SSL整数路径<br>verfiy：True/False，默认为True。认证SSL开关<br>allow_redirects：True/False,默认为True，重定向开发</p>
+<h3 id="2）函数格式：requests-get-url-param-kvw"><a href="#2）函数格式：requests-get-url-param-kvw" class="headerlink" title="2）函数格式：requests.get(url,[param], **kvw)"></a>2）函数格式：requests.get(url,[param], **kvw)</h3><p>参数说明:<br>url：指定爬取的网络地址<br>param：需要传递的参数，参数格式：字典或字节流<br>**kwargs: 12个控制访问的参数<br>返回值：response对象<br>属性：<br>status_code:状态码，即HTTP请求的返回状态，200表示连接成功，404表示失败<br>headers:头信息<br>text：抓取到的页面内容<br>encoding：页面的编码格式（从headers获取到）<br>apparent_encoding：页面的编码格式（从网页内容中获取到）<br>content：二进制形式的信息<br>注意：text属性返回的页面信息，是根据encoding来显示的。所以我们在使用requests抓取页面信息时，将encoding属性进行设置，通常设为utf-8。</p>
+<p>get()函数代表了发出一个request请求，而requests.get()表示返回一个response对象</p>
+<h3 id="3）函数格式：requests-head-url-kwargs"><a href="#3）函数格式：requests-head-url-kwargs" class="headerlink" title="3）函数格式：requests.head(url,**kwargs)"></a>3）函数格式：requests.head(url,**kwargs)</h3><p>url: 拟获取页面的url链接<br>**kwargs: 12个控制访问的参数</p>
+<h3 id="4）函数格式：requests-post-url-data-None-json-None-kwargs"><a href="#4）函数格式：requests-post-url-data-None-json-None-kwargs" class="headerlink" title="4）函数格式：requests.post(url,data=None, json=None, **kwargs)"></a>4）函数格式：requests.post(url,data=None, json=None, **kwargs)</h3><p>url: 拟更新页面的url链接<br>data : 字典、字节序列或文件，Request的内容<br>json: JSON格式的数据，Request的内容<br>**kwargs: 12个控制访问的参数</p>
+<h3 id="5）函数格式：requests-put-url-data-None-kwargs"><a href="#5）函数格式：requests-put-url-data-None-kwargs" class="headerlink" title="5）函数格式：requests.put(url,data=None, **kwargs)"></a>5）函数格式：requests.put(url,data=None, **kwargs)</h3><p>url: 拟更新页面的url链接<br>data : 字典、字节序列或文件，Request的内容<br>**kwargs: 12个控制访问的参数</p>
+<h3 id="6）函数格式：requests-patch-url-data-None-kwargs"><a href="#6）函数格式：requests-patch-url-data-None-kwargs" class="headerlink" title="6）函数格式：requests.patch(url,data=None, **kwargs)"></a>6）函数格式：requests.patch(url,data=None, **kwargs)</h3><p>url: 拟更新页面的url链接<br>data : 字典、字节序列或文件，Request的内容<br>**kwargs: 12个控制访问的参数</p>
+<h3 id="7）函数格式：requests-delete-url-kwargs"><a href="#7）函数格式：requests-delete-url-kwargs" class="headerlink" title="7）函数格式：requests.delete(url,**kwargs)"></a>7）函数格式：requests.delete(url,**kwargs)</h3><p>url: 拟删除页面的url链接<br>**kwargs: 12个控制访问的参数</p>
+<h3 id="2、requests库的异常"><a href="#2、requests库的异常" class="headerlink" title="2、requests库的异常"></a>2、requests库的异常</h3><p>requests.ConnectionError: 网络连接错误异常，如DNS查询失败、拒绝连接等<br>requests.HTTPError: HTTP错误异常<br>requests.URLRequired: URL缺失异常<br>requests.TooManyRedirects: 超过最大重定向次数，产生重定向异常<br>requests.ConnectTimeout: 连接远程服务器超时异常<br>requests.Timeout: 请求URL超时，产生超时异常</p>
+<p>response.raise_for_status: 如果不是200，产生异常requests.HTTPError</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/20/spider-requests/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spider-urllib" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/20/spider-urllib/">爬虫（urllib库）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/20/spider-urllib/" class="archive-article-date">
+  	<time datetime="2018-08-20T11:41:55.994Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、urllib库的基本使用"><a href="#1、urllib库的基本使用" class="headerlink" title="1、urllib库的基本使用"></a>1、urllib库的基本使用</h3><p>import urllib.request<br>函数格式：urllib.request.openurl(url, data, timeout)<br>参数说明：<br>url：指定的请求网址<br>data：请求时提交给服务器端的数据，如果在openurl中使用了data参数，那么提交方式为post，默认情况下为get。<br>timeout：指定连接url的超时时间，单位为秒。<br>response = urllib.request.openurl()函数返回一个HTTPResponse对象<br>我们可以使用response对象中的相关方法：<br>read()读取响应体中的内容<br>status/getcode()返回响应码<br>reason 返回响应信息的内容<br>info()返回响应头信息<br>geturl()返回请求的url地址</p>
+<h3 id="2、Request请求对象"><a href="#2、Request请求对象" class="headerlink" title="2、Request请求对象"></a>2、Request请求对象</h3><p>req = urllib.request.Request(url,data,headers,method)<br>参数说明：<br>url：指定的请求网址<br>data：请求时提交给服务器端的数据，如果在openurl中使用了data参数，那么提交方式为post，默认情况下为get。<br>headers：请求对象的头信息，用来将一个爬虫伪装成一个普通的浏览器请求，主要设置user-agent<br>method：请求的方式，默认为get，可以设置为get或post</p>
+<h3 id="3、urllib-error"><a href="#3、urllib-error" class="headerlink" title="3、urllib.error"></a>3、urllib.error</h3><p>在urllib库中有三个error对象<br>HTTPError：HTTP访问异常<br>URLError：url地址异常<br>ContentTooShortError：文件大小异常<br>注意，HTTPError是URLError的子类。<br>HTTPError，只有一个属性reason<br>URLError，有code，reason，headers三个属性。</p>
+<h3 id="4、urllib-robotparser"><a href="#4、urllib-robotparser" class="headerlink" title="4、urllib.robotparser"></a>4、urllib.robotparser</h3><p>作用：用来解析指定网站的robots.txt文件。用来分析哪些内容是允许抓取，哪些内容是不允许的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/20/spider-urllib/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spider-HTML" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/20/spider-HTML/">爬虫（HTML网页结构）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/20/spider-HTML/" class="archive-article-date">
+  	<time datetime="2018-08-20T11:39:41.290Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、HTML基本构成"><a href="#1、HTML基本构成" class="headerlink" title="1、HTML基本构成"></a>1、HTML基本构成</h3><p>HTML有三个标签来构成基本结构：</p>
+<pre><code class="bash">&lt;html&gt;:作为HTML文件的根标签，所有的页面中的标签和内容都要在HTML标签的范围内。
+&lt;head&gt;：作为HTML文件的头部标签，相关页面的信息、编码、引导外部的CSS文件和JS文件，都需要放置在head标签中。
+&lt;body&gt;：body标签中的内容，就是我们爬虫需要解析的主体。所有需要在页面上展现的内容，都会放置在该标签中。
+</code></pre>
+<h3 id="2、常见的HTML标签"><a href="#2、常见的HTML标签" class="headerlink" title="2、常见的HTML标签"></a>2、常见的HTML标签</h3><pre><code class="bash">1）h1...h6：标题标签，用来显示标题，h1最大，h6最小。
+2）&lt;p&gt;：段落标签。用来对文本内容进行分段。
+3）&lt;a&gt;：链接标签。用来跳转到指定的网址。
+&lt;a target=<span class="string">''</span> href=<span class="string">'URL'</span>&gt;链接地址&lt;/a&gt;
+其中参数target，_self:在自身的窗口重新打开指定的网址
+_blank：在一个新窗口中打开指定的网址
+4）&lt;img&gt;：图片标签。用来载入指定位置的图片，通常可以接收的图片类型：JPG、png、gif、bmp
+&lt;img src=<span class="string">""</span> alt=<span class="string">""</span>&gt;
+其中：src：指定图片的具体位置
+      alt：其中的内容，作为图片无法载入时，显示的内容。
+5）表格标签：table、tr、th、td
+&lt;table&gt;：表格标签，所有表格中的行和单元格内容都必须放置在内部。
+&lt;tr&gt;:表格行，代表表格一行
+&lt;th&gt;:表格头，代表表格的标题行
+&lt;td&gt;：表格单元格，代表表格中的每个单元内容
+6）列表
+有序列表：
+&lt;ol&gt;
+   &lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+无序列表:
+&lt;ul&gt;
+   &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+自定义列表：
+&lt;dl&gt;
+   &lt;dt&gt;
+      &lt;dd&gt;&lt;/dd&gt;
+   &lt;/dt&gt;
+&lt;/dl&gt;
+</code></pre>
+<p>7)div与span<br>div：块级元素，用来实现页面布局。自身没有任何效果<br>span:内联元素，用做文本容器。<br>8）表单</p>
+<pre><code class="bash">&lt;form name=<span class="string">"表单名"</span> action=<span class="string">"URL"</span> method=<span class="string">"get/post"</span>&gt;
+默认情况，如果没有声明method属性，缺省值为get
+&lt;input <span class="built_in">type</span>=<span class="string">""</span>&gt;
+输入标签，<span class="built_in">type</span>属性：
+text:文本框
+password：密码框
+checkbox：复选框
+radio：单选框
+submit：提交按钮
+reset：重置按钮
+button：按钮
+file:文件上传
+&lt;textarea cols=<span class="string">"列数"</span> rows=<span class="string">"行数"</span>&gt;：文件区标签
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/20/spider-HTML/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spider-wangluoyuanli" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/20/spider-wangluoyuanli/">爬虫（网络原理）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/20/spider-wangluoyuanli/" class="archive-article-date">
+  	<time datetime="2018-08-20T11:36:25.971Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、HTTP与HTTPS的区别"><a href="#1、HTTP与HTTPS的区别" class="headerlink" title="1、HTTP与HTTPS的区别"></a>1、HTTP与HTTPS的区别</h3><p>HTTP：我们称为超文本传输协议，主要用来实现从网络传输超文本到本地浏览器，实现高效且准确的超文本传送。目前HTTP的版本为1.1<br>HTTPS：我们认为就是以安全为目标的HTTP通道，即在HTTP协议的基础上加入了SSL层，简称HTTPS。</p>
+<p>SSL的主要作用分为以下两部分：<br>第一、为HTTP传输文件提供安全的传输通道<br>第二、确认网站的真实性，通过HTTPS访问的网站都需要获取到CA认证。</p>
+<h3 id="2、网络七层模型（从下到上的顺序）"><a href="#2、网络七层模型（从下到上的顺序）" class="headerlink" title="2、网络七层模型（从下到上的顺序）"></a>2、网络七层模型（从下到上的顺序）</h3><p>物理层<br>数据链路层<br>网络层<br>传输层（TCP、UDP）<br>会话层<br>表示层<br>应用层（HTTP FTP TFTP SMTP SNMP DNS TELNET HTTPS POP3 DHCP）</p>
+<h3 id="3、HTTP的请求机制"><a href="#3、HTTP的请求机制" class="headerlink" title="3、HTTP的请求机制"></a>3、HTTP的请求机制</h3><p>第一，由客户端（浏览器）发出请求<br>第二，通过网络传输，到指定的服务器地址<br>第三，服务器接收相关请求，并进行解析<br>第四，服务器将最终的结果响应回客户端<br>第五，客户端接收到服务器响应后，通过浏览器解析，最终将内容进行展现</p>
+<h3 id="4、客户端访问服务器，发出请求，有四部分构成"><a href="#4、客户端访问服务器，发出请求，有四部分构成" class="headerlink" title="4、客户端访问服务器，发出请求，有四部分构成"></a>4、客户端访问服务器，发出请求，有四部分构成</h3><p>第一，请求方法（request method），默认为get方式。只有在表单提交和文件上传时为post方法。<br>第二，请求网址（request url），即在浏览器中输入的网路地址。<br>第三，请求头（request header），用来标识为一个浏览器正常的访问<br>第四，请求体（request body），用来传输到服务器端的相关数据</p>
+<h3 id="5、请求方法中get与post的区别"><a href="#5、请求方法中get与post的区别" class="headerlink" title="5、请求方法中get与post的区别"></a>5、请求方法中get与post的区别</h3><p>第一、使用get方式提交请求时，相关数据会作为url的参数被一起进行提交，我们可以直接在地址栏中观察到相关数据。而采用post方式请求的url不会包含这些数据，而是直接通过表单提交到服务器。<br>第二、get方式提交请求，对于提交的数据大小不能大于1024字节，而post方式提交数据，没有大小的限制。<br>总之，如果提交的信息比较敏感或者字节较大时，需要使用post方式；如果只是普通的请求使用get方式。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/20/spider-wangluoyuanli/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-object-oriented" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1007,1536 +1462,6 @@ def quit():
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/02/case-ATM-def-log-@-txt/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-practice--xml-excel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/01/practice--xml-excel/">作业练习——关于商品订购将xml文件读出并写入到excel中</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/01/practice--xml-excel/" class="archive-article-date">
-  	<time datetime="2018-08-01T11:40:07.291Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目要求：<br>Alice Smith通过网络订购了部分商品，试为该订单建模（即书写保存订单信息的<br>XML文档所对应的Schema），并写出保存该订单的XML文档。 以下是订单的基本信息： <br>订购时间：2015-1-3 <br>客户地址： <br>国家：US <br>姓名：Alice Smith <br>街道：123 Maple Street  城市：Mill Valley 省份：CA  邮编：90952  <br>商家地址： <br>国家： US <br>姓名： Robert Smith  街道： 8 Oak Avenue  城市： Old Town  省份： PA  邮编： 95819  <br>订单上的附加说明：Hurry, my lawn is going wild! </p>
-<p>订单商品的详细清单：<br>商品编号     商品名称     数量     价格     急件      附言<br>872-AA      Lawnmower      1     148.92   YES      Confirm this is electric<br>926-AA      Baby Monitor   1     39.98    NO</p>
-<p>要求：<br>（1）将客户地址写入到一个sheet表中<br>（2）将商家地址写入到一个sheet表中<br>（3）意时间为sheet表名，将订单商品详细信息再写入到一个表中</p>
-<h3 id="order-xml文件内容为："><a href="#order-xml文件内容为：" class="headerlink" title="order.xml文件内容为："></a>order.xml文件内容为：</h3><pre><code class="bash">&lt;ORDER&gt;
-        &lt;DTIME&gt; 2005-1-3 &lt;/DTIME&gt;
-        &lt;CUSTOMERADDR&gt;
-                &lt;COUNTRY&gt; US &lt;/COUNTRY&gt;
-                &lt;NAME&gt; Alice Smith &lt;/NAME&gt;
-                &lt;STREET&gt; 123 Maple Street &lt;/STREET&gt;
-                &lt;CITY&gt; Mill Valley &lt;/CITY&gt;
-                &lt;PROVINCE&gt; CA &lt;/PROVINCE&gt;
-                &lt;ZIP&gt; 90952 &lt;/ZIP&gt;
-        &lt;/CUSTOMERADDR&gt;
-        &lt;MERCHANTADDR&gt;
-                &lt;COUNTRY&gt; US &lt;/COUNTRY&gt;
-                &lt;NAME&gt; Robert Smith &lt;/NAME&gt;
-                &lt;STREET&gt; 8 Oak Avenue &lt;/STREET&gt;
-                &lt;CITY&gt; Old Town &lt;/CITY&gt;
-                &lt;PROVINCE&gt; PA &lt;/PROVINCE&gt;
-                &lt;ZIP&gt; 95819 &lt;/ZIP&gt;
-        &lt;/MERCHANTADDR&gt;
-        &lt;INSTRUCTION&gt; Hurry, my lawn is going wild! &lt;/INSTRUCTION&gt;
-        &lt;DETAIL&gt;
-                &lt;SN&gt; 872-AA &lt;/SN&gt;
-                &lt;NAME&gt; Lawnmower &lt;/NAME&gt;
-                &lt;COUNT&gt; 1 &lt;/COUNT&gt;
-                &lt;PRICE&gt; 148.95 &lt;/PRICE&gt;
-                &lt;URGENT&gt; YES &lt;/URGENT&gt;
-                &lt;EXTRA&gt; Confirm this is electric &lt;/EXTRA&gt;
-        &lt;/DETAIL&gt;
-        &lt;DETAIL&gt;
-                &lt;SN&gt; 926-AA &lt;/SN&gt;
-                &lt;NAME&gt; Baby Monitor &lt;/NAME&gt;
-                &lt;COUNT&gt; 1 &lt;/COUNT&gt;
-                &lt;PRICE&gt; 39.98 &lt;/PRICE&gt;
-                &lt;URGENT&gt; NO &lt;/URGENT&gt;
-                &lt;EXTRA/&gt;
-        &lt;/DETAIL&gt;
-&lt;/ORDER&gt;
-</code></pre>
-<h3 id="源代码："><a href="#源代码：" class="headerlink" title="源代码："></a>源代码：</h3><pre><code class="bash">from xml.etree import ElementTree as et
-import xlwt
-def readXML(xmlfile):
-    tree = et.parse(xmlfile)
-    root = tree.getroot()
-    order_time = <span class="string">''</span>
-    order_add = {}
-    order_list = []
-    <span class="keyword">if</span> len(root) &gt; 0:
-        <span class="keyword">for</span> child <span class="keyword">in</span> root: <span class="comment"># 将一级子节点内容取出</span>
-            <span class="keyword">if</span> child.tag == <span class="string">'DTIME'</span>:
-                order_time = (child.text).strip()
-            <span class="keyword">elif</span> child.tag ==<span class="string">'CUSTOMERADDR'</span>: 
-                customer = []
-                <span class="keyword">for</span> node <span class="keyword">in</span> child:
-                    customer.append((node.tag,(node.text).strip()))
-                    order_add[<span class="string">'CUSTOMERADDR'</span>] = customer
-            <span class="keyword">elif</span> child.tag == <span class="string">'MERCHANTADDR'</span>:
-                mercharnt = []
-                <span class="keyword">for</span> node <span class="keyword">in</span> child:
-                    mercharnt.append((node.tag,(node.text).strip()))
-                    order_add[<span class="string">'MERCHANTADDR'</span>] = mercharnt
-            <span class="keyword">elif</span> child.tag == <span class="string">'DETAIL'</span>:
-                detail = []
-                <span class="keyword">for</span> node <span class="keyword">in</span> child:
-                    content = <span class="string">''</span>
-                    <span class="keyword">if</span> node.text != None:
-                        content = node.text.strip()
-                    <span class="keyword">else</span>:
-                        content = <span class="string">''</span>
-                    detail.append((node.tag, content))
-                order_list.append(detail)
-                order_add[order_time] = order_list
-    <span class="built_in">return</span> order_add
-
-def saveExcel(dic):
-    items = list(dic.keys())
-
-    book = xlwt.Workbook()
-    customer_sheet = book.add_sheet(items[0])
-    mercharnt_sheet = book.add_sheet(items[1])
-    detail_sheet = book.add_sheet(items[2])
-
-    customer_list = dic[items[0]]
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(customer_list)):
-        customer_sheet.write(0,i,customer_list[i][0])
-        customer_sheet.write(1,i,customer_list[i][1])
-
-    mercharnt_list = dic[items[1]]
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(mercharnt_list)):
-        mercharnt_sheet.write(0,i,mercharnt_list[i][0])
-        mercharnt_sheet.write(1,i,mercharnt_list[i][1])
-
-    detail_list = dic[items[2]]
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(detail_list)):
-        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(detail_list[i])):
-            <span class="keyword">if</span> i == 0:
-                detail_sheet.write(0, j, detail_list[i][j][0])
-            detail_sheet.write(i+1, j, detail_list[i][j][1])
-    book.save(<span class="string">'order.xls'</span>)
-
-dic = readXML(<span class="string">'order.xml'</span>)
-saveExcel(dic)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/01/practice--xml-excel/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-xml" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/31/xml/">Python对XML文件的解析</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/31/xml/" class="archive-article-date">
-  	<time datetime="2018-07-31T13:40:47.736Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、XML解析的两种方式：DOM与SAX"><a href="#1、XML解析的两种方式：DOM与SAX" class="headerlink" title="1、XML解析的两种方式：DOM与SAX"></a>1、XML解析的两种方式：DOM与SAX</h2><h3 id="（1）DOM：文档对象模型，是Python处理XML文件的标准模式。"><a href="#（1）DOM：文档对象模型，是Python处理XML文件的标准模式。" class="headerlink" title="（1）DOM：文档对象模型，是Python处理XML文件的标准模式。"></a>（1）DOM：文档对象模型，是Python处理XML文件的标准模式。</h3><p>一个DOM的解析器在解析XML文档时 ，一次性读入整个文档，把文档中的所有元素（标签和文本）保存在内存中的一个树形结构，然后我们可以利用DOM提供的各种函数，来读取或修改文档中的内容。</p>
-<h3 id="（2）SAX：是一种时间驱动的API，利用SAX解析XML-。"><a href="#（2）SAX：是一种时间驱动的API，利用SAX解析XML-。" class="headerlink" title="（2）SAX：是一种时间驱动的API，利用SAX解析XML 。"></a>（2）SAX：是一种时间驱动的API，利用SAX解析XML 。</h3><p>主要使用解析器负责读取XML文档，并向事件处理器发送事件，比如：元素开始、元素结束。常用在1）大型文档的处理，2）只需要文件的部分内容，或者从文件中得到特定的部分3）建立自己的对象模型。</p>
-<h3 id="（3）dom与sax对比："><a href="#（3）dom与sax对比：" class="headerlink" title="（3）dom与sax对比："></a>（3）dom与sax对比：</h3><p>（a）DOM解析需要读取整个文档到内存中，并且将所有元素保存到树形结构。那也就意味着，可以根据树形结构导航到任意节点，获取其相关内容。<br>（b）SAX解析文档，将文档边读入，边解析的方式，不需要一次性读入全部文档内容，只需要读入一部分即可。同时，因为其边读入边解析的工作方式，能够适应大文件的解析，提高解析效率。</p>
-<h3 id="例1：dom方式对文件解析并写入到excel文件中"><a href="#例1：dom方式对文件解析并写入到excel文件中" class="headerlink" title="例1：dom方式对文件解析并写入到excel文件中"></a>例1：dom方式对文件解析并写入到excel文件中</h3><h3 id="text-xml文件内容为："><a href="#text-xml文件内容为：" class="headerlink" title="text.xml文件内容为："></a>text.xml文件内容为：</h3><pre><code class="bash">&lt;catalog&gt; 
-    &lt;car&gt;
-        &lt;brand&gt;Audio&lt;/brand&gt;
-        &lt;comperny&gt;奥迪&lt;/comperny&gt;
-        &lt;price&gt;60万&lt;/price&gt;
-        &lt;color&gt;红色&lt;/color&gt;
-        &lt;model&gt;A7&lt;/model&gt;
-        &lt;country&gt;德国&lt;/country&gt;
-    &lt;/car&gt;
-    &lt;car&gt;
-        &lt;brand&gt;奔驰&lt;/brand&gt;
-        &lt;comperny&gt;梅赛德斯奔驰&lt;/comperny&gt;
-        &lt;price&gt;500万&lt;/price&gt;
-        &lt;color&gt;红色&lt;/color&gt;
-        &lt;model&gt;SL400&lt;/model&gt;
-        &lt;country&gt;德国&lt;/country&gt;
-    &lt;/car&gt;
-    &lt;car&gt;
-        &lt;brand&gt;宝马&lt;/brand&gt;
-        &lt;comperny&gt;宝马&lt;/comperny&gt;
-        &lt;price&gt;200万&lt;/price&gt;
-        &lt;color&gt;黑色&lt;/color&gt;
-        &lt;model&gt;BMW 7i&lt;/model&gt;
-        &lt;country&gt;德国&lt;/country&gt;
-    &lt;/car&gt;
-&lt;/catalog&gt;
-</code></pre>
-<h3 id="（1）仅用dom方式对test-xml文件进行解析，并打印"><a href="#（1）仅用dom方式对test-xml文件进行解析，并打印" class="headerlink" title="（1）仅用dom方式对test.xml文件进行解析，并打印"></a>（1）仅用dom方式对test.xml文件进行解析，并打印</h3><pre><code class="bash"><span class="comment">#引入minidom，以dom方式解析xml文件</span>
-from xml.dom import minidom 
-<span class="comment">#打开xml文件</span>
-dom = minidom.parse(<span class="string">'test.xml'</span>)
-<span class="comment">#得到文档的元素对象</span>
-root = dom.documentElement
-<span class="built_in">print</span>(<span class="string">'根标签名为:{}'</span>.format(root.nodeName))  <span class="comment">#获得节点名字，即标签名</span>
-<span class="built_in">print</span>(<span class="string">'根节点值为:{}'</span>.format(root.nodeValue))  <span class="comment">#获得节点值</span>
-<span class="built_in">print</span>(<span class="string">'根节点类型为:{}'</span>.format(root.nodeType))  <span class="comment">#获得节点类型</span>
-<span class="comment">#获得在根节点下，所有名字是car的节点对象</span>
-nodes = root.getElementsByTagName(<span class="string">'car'</span>)
-<span class="built_in">print</span>(<span class="string">'根节点下的car节点对象有:{}'</span>.format(nodes))
-<span class="comment">#法1获得car节点中，第一个节点中brand子节点的文本内容</span>
-<span class="built_in">print</span>(<span class="string">'第一个car节点对象下的第一个节点中的第一个子节点的值:{}'</span>.format(nodes[0].getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data))
-<span class="comment">#法2获得car节点中，第一个节点中brand子节点的文本内容</span>
-<span class="built_in">print</span>(<span class="string">'第一个car节点对象下的第一个节点中的第一个子节点的值:{}'</span>.format(root.getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data))
-<span class="keyword">for</span> i <span class="keyword">in</span> range(len(nodes[0].childNodes)):
-    <span class="keyword">if</span> nodes[0].childNodes[i].nodeType == 1:
-        <span class="built_in">print</span>(nodes[0].childNodes[i].nodeName,end = <span class="string">' '</span>)
-<span class="built_in">print</span>()
-<span class="keyword">for</span> i <span class="keyword">in</span> range(len(nodes)):
-    <span class="comment">#print(nodes[i])</span>
-    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'brand'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'comperny'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'price'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'color'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'model'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>(root.getElementsByTagName(<span class="string">'country'</span>)[i].firstChild.data,end = <span class="string">' '</span>)
-    <span class="built_in">print</span>()
-</code></pre>
-<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/test-xml-dom.py<br>根标签名为:catalog<br>根节点值为:None<br>根节点类型为:1<br>根节点下的car节点对象有:[<dom element:="" car="" at="" 0x195a448dc28="">, <dom element:="" car="" at="" 0x195a454e0e0="">, <dom element:="" car="" at="" 0x195a454e508="">]<br>第一个car节点对象下的第一个节点中的第一个子节点的值:Audio<br>第一个car节点对象下的第一个节点中的第一个子节点的值:Audio<br>brand comperny price color model country<br>Audio 奥迪 60万 红色 A7 德国<br>奔驰 梅赛德斯奔驰 500万 红色 SL400 德国<br>宝马 宝马 200万 黑色 BMW 7i 德国<br>PS D:\pythoncode&gt;</dom></dom></dom></p>
-<h3 id="（2）使用函数，用dom方式对test-xml文件进行解析，并写入到excel文件中"><a href="#（2）使用函数，用dom方式对test-xml文件进行解析，并写入到excel文件中" class="headerlink" title="（2）使用函数，用dom方式对test.xml文件进行解析，并写入到excel文件中"></a>（2）使用函数，用dom方式对test.xml文件进行解析，并写入到excel文件中</h3><pre><code class="bash">from xml.dom import minidom  <span class="comment">#引入minidom，以dom方式解析xml文件</span>
-import xlwt  <span class="comment">#写excel文件，选用该模块 </span>
-
-def readXML(xmlfile):
-    dic = {}
-    <span class="comment">#载入xml文档进行解析，生成一个document对象</span>
-    document = minidom.parse(xmlfile)
-    <span class="comment">#得到文档的元素对象</span>
-    root = document.documentElement
-    <span class="comment">#根据根节点下，向下查找内部所有名字是car的节点，并将节点名字返回</span>
-    sheet_name = root.getElementsByTagName(<span class="string">'car'</span>)[0].nodeName
-    <span class="comment">#通过getElementsByTagName()函数，获得指定的节点对象，不管节点对象有几个，都是返回一个列表类型</span>
-    node = root.getElementsByTagName(<span class="string">'car'</span>)
-    cars = []
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(node)):
-        item = []
-        item.append(node[i].getElementsByTagName(<span class="string">'brand'</span>)[0].firstChild.data)
-        item.append(node[i].getElementsByTagName(<span class="string">'comperny'</span>)[0].firstChild.data)
-        item.append(node[i].getElementsByTagName(<span class="string">'price'</span>)[0].firstChild.data)
-        item.append(node[i].getElementsByTagName(<span class="string">'color'</span>)[0].firstChild.data)
-        item.append(node[i].getElementsByTagName(<span class="string">'model'</span>)[0].firstChild.data)
-        item.append(node[i].getElementsByTagName(<span class="string">'country'</span>)[0].firstChild.data)
-        cars.append(item)
-    dic[sheet_name] = cars
-    dic[<span class="string">'title'</span>] = [<span class="string">'brand'</span>,<span class="string">'comperny'</span>,<span class="string">'price'</span>,<span class="string">'color'</span>,<span class="string">'model'</span>,<span class="string">'country'</span>]
-    <span class="comment">#print(dic)</span>
-    <span class="built_in">return</span> dic
-def saveXML(dic):
-    <span class="comment">#生成一个excel文件对象</span>
-    book = xlwt.Workbook()
-    <span class="comment">#生成一个sheet页</span>
-    sheet = book.add_sheet(<span class="string">'car'</span>)
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dic[<span class="string">'title'</span>])):
-        sheet.write(0,i,dic[<span class="string">'title'</span>][i])
-    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>])):
-        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>][m])):
-            sheet.write(m+1,n,dic[<span class="string">'car'</span>][m][n])
-    book.save(<span class="string">'car.xls'</span>)
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    dic = readXML(<span class="string">'test.xml'</span>)
-    saveXML(dic)
-</code></pre>
-<p>结果：<br>将三条车的信息以表格的形式存到excel文件中</p>
-<h3 id="例2、etree方式对文件解析并写入到excel文件中"><a href="#例2、etree方式对文件解析并写入到excel文件中" class="headerlink" title="例2、etree方式对文件解析并写入到excel文件中"></a>例2、etree方式对文件解析并写入到excel文件中</h3><h3 id="（1）仅用etree方式对test-xml文件进行解析，并打印"><a href="#（1）仅用etree方式对test-xml文件进行解析，并打印" class="headerlink" title="（1）仅用etree方式对test.xml文件进行解析，并打印"></a>（1）仅用etree方式对test.xml文件进行解析，并打印</h3><p>1）循环式写法：</p>
-<pre><code class="bash">from xml.etree import ElementTree
-tree = ElementTree.parse(<span class="string">'test.xml'</span>)
-root = tree.getroot()   <span class="comment">#获取根节点</span>
-<span class="built_in">print</span>(root)
-<span class="keyword">for</span> child <span class="keyword">in</span> root:
-    <span class="built_in">print</span>(<span class="string">'遍历root:'</span>,child.tag,<span class="string">'：'</span>,child.attrib)
-    <span class="keyword">for</span> node <span class="keyword">in</span> child:
-        <span class="built_in">print</span>(<span class="string">'遍历child:'</span>,node.tag,<span class="string">'：'</span>,node.text)
-
-2）递归写法 
-from xml.etree import ElementTree
-tree = ElementTree.parse(<span class="string">'test.xml'</span>)
-root = tree.getroot()   <span class="comment">#获取根节点</span>
-
-def parseXML(element):
-    <span class="comment">#dic1 = {}</span>
-    <span class="comment">#dic2 = {}</span>
-    <span class="keyword">if</span> len(element) &gt; 0:
-         <span class="keyword">for</span> child <span class="keyword">in</span> element:
-            <span class="comment"># print(child.tag,':',child.text)</span>
-            <span class="keyword">if</span> child.tag != <span class="string">'car'</span>:
-                <span class="built_in">print</span>(child.tag,<span class="string">':'</span>,child.text,end = <span class="string">' '</span>)
-            <span class="built_in">print</span>()
-            parseXML(child)  
-parseXML(root)
-</code></pre>
-<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/test-xml-etree.py</p>
-<p>brand : Audio<br>comperny : 奥迪<br>price : 60万<br>color : 红色<br>model : A7<br>country : 德国</p>
-<p>brand : 奔驰<br>comperny : 梅赛德斯奔驰<br>price : 500万<br>color : 红色<br>model : SL400<br>country : 德国</p>
-<p>brand : 宝马<br>comperny : 宝马<br>price : 200万<br>color : 黑色<br>model : BMW 7i<br>country : 德国<br>PS D:\pythoncode&gt;</p>
-<h3 id="（2）使用函数，用etree方式对test-xml文件进行解析，并写入到excel文件中"><a href="#（2）使用函数，用etree方式对test-xml文件进行解析，并写入到excel文件中" class="headerlink" title="（2）使用函数，用etree方式对test.xml文件进行解析，并写入到excel文件中"></a>（2）使用函数，用etree方式对test.xml文件进行解析，并写入到excel文件中</h3><pre><code class="bash">from xml.etree import ElementTree
-import xlwt  <span class="comment">#写excel文件，选用该模块</span>
-def readXML2(xmlfile):
-    dic = {}
-    document = ElementTree.parse(<span class="string">'test.xml'</span>)
-    root = document.getroot()   <span class="comment">#获取根节点</span>
-    cars = []  <span class="comment">#存放各种汽车信息</span>
-    <span class="keyword">for</span> child <span class="keyword">in</span> root:
-        <span class="comment">#print('遍历root:',child.tag,'：',child.attrib)</span>
-        item = []  <span class="comment">#存放一条关于汽车的信息</span>
-        sheet_name = child.tag
-        <span class="keyword">for</span> node <span class="keyword">in</span> child:
-            <span class="comment">#print('遍历child:',node.tag,'：',node.text)</span>
-            item.append(node.text)
-        cars.append(item)
-        dic[sheet_name] = cars
-        dic[<span class="string">'title'</span>] = [<span class="string">'brand'</span>,<span class="string">'comperny'</span>,<span class="string">'price'</span>,<span class="string">'color'</span>,<span class="string">'model'</span>,<span class="string">'country'</span>]
-        <span class="comment">#print(dic)</span>
-    <span class="built_in">return</span> dic 
-def saveXML(dic):
-    <span class="comment">#生成一个excel文件对象</span>
-    book = xlwt.Workbook()
-    <span class="comment">#生成一个sheet页</span>
-    sheet = book.add_sheet(<span class="string">'car'</span>)
-
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dic[<span class="string">'title'</span>])):
-        sheet.write(0,i,dic[<span class="string">'title'</span>][i])
-
-    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>])):
-        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(dic[<span class="string">'car'</span>][m])):
-            sheet.write(m+1,n,dic[<span class="string">'car'</span>][m][n])
-
-    book.save(<span class="string">'car2.xls'</span>)
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    dic = readXML2(<span class="string">'test.xml'</span>)
-    saveXML(dic)
-</code></pre>
-<p>结果：<br>将三条车的信息以表格的形式存到excel文件中</p>
-<h2 id="2、SAX解析文件步骤："><a href="#2、SAX解析文件步骤：" class="headerlink" title="2、SAX解析文件步骤："></a>2、SAX解析文件步骤：</h2><h3 id="（1）创建解析器"><a href="#（1）创建解析器" class="headerlink" title="（1）创建解析器"></a>（1）创建解析器</h3><p>parser = sax.make_parser()</p>
-<h3 id="（2）读取xml文档"><a href="#（2）读取xml文档" class="headerlink" title="（2）读取xml文档"></a>（2）读取xml文档</h3><p>xml.sax.parse(xmlfile)</p>
-<h3 id="（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法"><a href="#（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法" class="headerlink" title="（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法"></a>（3）设置ContentHandler对象，重写startDocument、endDocument、startElement、endElement方法</h3><p>（a）startDocument():文档载入时调用，文档开始<br>（b）endDocument()：当解析器达到文档结尾时调用<br>（c）startElement(name,attrs):当遇到XML标签时调用，name是标签的名字，attrs标签的属性字典<br>（d）endElement(name):当遇到XML标签结束时调用，name是标签名</p>
-<h3 id="4-使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。"><a href="#4-使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。" class="headerlink" title="(4)使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。"></a>(4)使用SAX解析文件，需要为解析器配置ContentHandler，定义了如何解析标签，以及处理标签间文本内容的业务逻辑。</h3><p>carhandler = CarHandler()<br>parser.setContentHandler(carhandler)</p>
-<h3 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h3><pre><code class="bash">from xml import sax
-from handler import CarHandler
-<span class="comment">#创建一个解析器</span>
-parser = sax.make_parser()
-<span class="comment"># 给解析器指定一个handler</span>
-carhandler = CarHandler()
-parser.setContentHandler(carhandler)
-<span class="comment"># 解析指定的xml文档</span>
-parser.parse(<span class="string">'test.xml'</span>)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/31/xml/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-input-output-binary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/30/input-output-binary/">文件输入输出（I/O）(二进制文件)</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/30/input-output-binary/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、struct和pickle"><a href="#1、struct和pickle" class="headerlink" title="1、struct和pickle"></a>1、struct和pickle</h2><h3 id="（1）使用struct模块，进行数据的输入输出"><a href="#（1）使用struct模块，进行数据的输入输出" class="headerlink" title="（1）使用struct模块，进行数据的输入输出"></a>（1）使用struct模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入到文件中的各种类型数据，进行统一打包<br>struct.pack(‘if?’,10,12.4，True),其中，i:代表了整数，f：代表了浮点数，？：代表布尔型<br>第二，使用write()写入，写入后以二进制的方式进行文件存储。<br>第三，读取时，首先采用struct.unpack()来解包里面包含的相关数据，返回一个序列，即写入时的顺序，与读取时的顺序应该一致。<br>注意：需要将所有写入的数据，一次性都封装到一个bytes中，因为在Python中没有byte的概念，所以需要第三方的模块进行封装。</p>
-<h3 id="例如1：写入与读出浮点数、布尔型、整型"><a href="#例如1：写入与读出浮点数、布尔型、整型" class="headerlink" title="例如1：写入与读出浮点数、布尔型、整型"></a>例如1：写入与读出浮点数、布尔型、整型</h3><pre><code class="bash">import struct
-<span class="comment">#读出</span>
-a = 123.3
-b = True
-c = 10
-sn = struct.pack(<span class="string">'if?'</span>,c,a,b)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read(9)
-ls = struct.unpack(<span class="string">'if?'</span>,sn)
-<span class="built_in">print</span>(ls[0])
-<span class="built_in">print</span>(ls[1])
-<span class="built_in">print</span>(ls[2])
-f.close()
-</code></pre>
-<h3 id="例如2：写入与读出字符串"><a href="#例如2：写入与读出字符串" class="headerlink" title="例如2：写入与读出字符串"></a>例如2：写入与读出字符串</h3><p>#写入</p>
-<pre><code class="bash">import struct
-str1=b<span class="string">'hello'</span>
-sn = struct.pack(<span class="string">'5s'</span>,str1)
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-f.write(sn)
-f.close()
-
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-sn = f.read()
-a = struct.unpack(<span class="string">'5s'</span>,sn)
-<span class="built_in">print</span>(a)
-f.close()
-</code></pre>
-<h3 id="（2）使用pickel模块，进行数据的输入输出"><a href="#（2）使用pickel模块，进行数据的输入输出" class="headerlink" title="（2）使用pickel模块，进行数据的输入输出"></a>（2）使用pickel模块，进行数据的输入输出</h3><p>使用步骤：<br>第一，对要写入文件中的数据，进行逐一的写入。例如：<br>f = open(‘myfile.dat’,’wb’)<br>pickle.dump(10, f)<br>第二，读取数据时，同理，需要逐一的读取。例如：<br>pickle.load(f)<br>注意，在使用时，我们能够观察到该模块的dump和load函数，与前面所学的json模块的函数一致，在Python中json与pickle都能够实现序列化和反序列化的两个模块。<br>在实际的使用中，推荐使用pickle 模块。</p>
-<h3 id="例如1：一同写入与读出浮点数、布尔型、整型、字符串"><a href="#例如1：一同写入与读出浮点数、布尔型、整型、字符串" class="headerlink" title="例如1：一同写入与读出浮点数、布尔型、整型、字符串"></a>例如1：一同写入与读出浮点数、布尔型、整型、字符串</h3><pre><code class="bash">import pickle
-<span class="comment">#写入</span>
-a = 123.3
-b = True
-c = 10
-d = <span class="string">'ok'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(a,f)
-pickle.dump(b,f)
-pickle.dump(c,f)
-pickle.dump(d,f)
-f.close()
-
-<span class="comment">#读出，前提是要知道文件里有多少行</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-i = 0
-<span class="keyword">while</span> i &lt; 4:
-    x = pickle.load(f)
-    <span class="built_in">print</span>(x)
-    i = i+1
-f.close()
-
-<span class="comment">#读出，此方法不用写f.close()</span>
-with open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>) as f:
-    x = pickle.load(f)
-    y = pickle.load(f)
-    z = pickle.load(f)
-    s = pickle.load(f)
-    <span class="built_in">print</span>(x,y,z,s)
-</code></pre>
-<h3 id="例如2：写入与读出嵌套列表"><a href="#例如2：写入与读出嵌套列表" class="headerlink" title="例如2：写入与读出嵌套列表"></a>例如2：写入与读出嵌套列表</h3><pre><code class="bash"><span class="comment">#写入</span>
-c = [[1,2,3],[4,5,6]]
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
-
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
-</code></pre>
-<h3 id="例如3：写入与读出文字字符串"><a href="#例如3：写入与读出文字字符串" class="headerlink" title="例如3：写入与读出文字字符串"></a>例如3：写入与读出文字字符串</h3><pre><code class="bash"><span class="comment">#写入文字字符串</span>
-c = <span class="string">'我很好'</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>)
-pickle.dump(c,f)
-f.close()
-<span class="comment">#读出文字字符串</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-n = pickle.load(f)
-<span class="built_in">print</span>(n)
-</code></pre>
-<h2 id="2、文件定位"><a href="#2、文件定位" class="headerlink" title="2、文件定位"></a>2、文件定位</h2><h3 id="（1）seek"><a href="#（1）seek" class="headerlink" title="（1）seek()"></a>（1）seek()</h3><p>函数格式：seek(n)<br>返回值：返回指定的位置<br>说明：通过指定元素的位置，将文件指针移动到该位置。</p>
-<h3 id="（2）seek-函数有三个固定值，分别为：0-1-2"><a href="#（2）seek-函数有三个固定值，分别为：0-1-2" class="headerlink" title="（2）seek()函数有三个固定值，分别为：0,1,2"></a>（2）seek()函数有三个固定值，分别为：0,1,2</h3><p>0：文件的开头<br>1：文件当前的位置<br>2：文件的结尾位置<br>seek(0,2):代表着将指针定位到文件尾，然后进行添加操作<br>seek(0,1):代表着在当前指针的位置，进行替换</p>
-<h3 id="（3）补充："><a href="#（3）补充：" class="headerlink" title="（3）补充："></a>（3）补充：</h3><p>对文件的读取时，如果文件大小未知，切忌不要使用read(),readline()，readlines()将文件内容一次性读取到内存中。因为有可能文件内容过多，造成读取时的IO阻塞。建议，将文件分多次分批读入内存中，我们通常可以先获取到文件大小，即：<br>size = path.getsize(‘myfile.txt’)<br>根据其大小来判断我们采用何种方式进行读取数据内容。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/30/input-output-binary/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-excel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/30/excel/">Python对Excel文件的操作</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/30/excel/" class="archive-article-date">
-  	<time datetime="2018-07-30T13:41:21.959Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、需要三个主要的模块"><a href="#1、需要三个主要的模块" class="headerlink" title="1、需要三个主要的模块"></a>1、需要三个主要的模块</h2><p>xlrd:用来读取Excel文件中的内容<br>xlwt：用来生成Excel文件<br>xlutils：用来实现Excel文件的复制</p>
-<h2 id="2、xlrd"><a href="#2、xlrd" class="headerlink" title="2、xlrd"></a>2、xlrd</h2><h3 id="（1）open-workbook"><a href="#（1）open-workbook" class="headerlink" title="（1）open_workbook()"></a>（1）open_workbook()</h3><p>函数格式：open_workbook(文件名)<br>返回值：返回Excel对象<br>说明：打开指定的Excel文件，生成一个Excel对象用来实现读取行、列及单元格内容</p>
-<h3 id="（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始"><a href="#（2）函数格式：sheet-by-name-sheet页面名-sheet-by-index-sheet页索引位，默认从0开始" class="headerlink" title="（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)"></a>（2）函数格式：sheet_by_name(sheet页面名)/sheet_by_index(sheet页索引位，默认从0开始)</h3><p>返回值：sheet页对象<br>说明：找到指定的sheet页，生成一个对应的sheet页对象，对其内部的数据进行检索</p>
-<h3 id="（3）函数格式：sheet-cell-rownum-colnum"><a href="#（3）函数格式：sheet-cell-rownum-colnum" class="headerlink" title="（3）函数格式：sheet.cell(rownum,colnum)"></a>（3）函数格式：sheet.cell(rownum,colnum)</h3><p>返回值：返回指定行列的单元格对象，如果要获取其中的内容，调用value属性。<br>说明：通过指定行、列，能够确认一个单元格。</p>
-<h2 id="3、xlwt"><a href="#3、xlwt" class="headerlink" title="3、xlwt"></a>3、xlwt</h2><h3 id="（1）函数名称：Workbook"><a href="#（1）函数名称：Workbook" class="headerlink" title="（1）函数名称：Workbook()"></a>（1）函数名称：Workbook()</h3><p>返回值：返回一个新创建的Excel空对象<br>说明：该函数用来生成一个Excel对象，但是该对象没有任何内容</p>
-<h3 id="（2）函数名称：add-sheet-sheet名字"><a href="#（2）函数名称：add-sheet-sheet名字" class="headerlink" title="（2）函数名称：add_sheet(sheet名字)"></a>（2）函数名称：add_sheet(sheet名字)</h3><p>返回值：返回一个新创建的sheet页对象<br>说明：该函数用来新增一个空的sheet页对象</p>
-<h3 id="（3）函数名称：write-row-col-value"><a href="#（3）函数名称：write-row-col-value" class="headerlink" title="（3）函数名称：write(row, col, value)"></a>（3）函数名称：write(row, col, value)</h3><p>返回值：无<br>说明：对指定的行列单元格内，写入value内容。</p>
-<h2 id="4、xlutils"><a href="#4、xlutils" class="headerlink" title="4、xlutils"></a>4、xlutils</h2><h3 id="（1）函数格式：copy-Excel对象"><a href="#（1）函数格式：copy-Excel对象" class="headerlink" title="（1）函数格式：copy(Excel对象)"></a>（1）函数格式：copy(Excel对象)</h3><p>返回值：返回一个指定对象的副本<br>说明：在Python中对Excel的修改，都是生成一个对应的副本，修改后保存。</p>
-<h3 id="（2）函数格式：get-sheet-索引位"><a href="#（2）函数格式：get-sheet-索引位" class="headerlink" title="（2）函数格式：get_sheet(索引位)"></a>（2）函数格式：get_sheet(索引位)</h3><p>返回值：返回一个指定对象副本中的sheet页<br>说明：我们实际修改的数据，都是位于sheet页中。因此要获取到指定的sheet页。</p>
-<p>例如：</p>
-<pre><code class="bash">import xlwt  <span class="comment">#写excel文件，选用该模块</span>
-import xlrd  <span class="comment">#读取写excel文件内容，选用该模块</span>
-from xlutils.copy import copy
-
-def saveExcel(title,data):
-    <span class="comment">#生成excel对象</span>
-    wbt = xlwt.Workbook()
-    <span class="comment">#生成一个sheet页</span>
-    sheet = wbt.add_sheet(<span class="string">'人员信息表'</span>)
-
-
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(title)):
-        sheet.write(0,i,title[i])
-
-    <span class="keyword">for</span> m <span class="keyword">in</span> range(len(data)):
-        <span class="keyword">for</span> n <span class="keyword">in</span> range(len(data[m])):
-            sheet.write(m+1,n,data[m][n])
-
-    wbt.save(<span class="string">'person.xls'</span>)
-
-def readExcel(bookname,sheetname):
-    <span class="comment">#打开excel文件</span>
-    wb = xlrd.open_workbook(bookname)
-    sheet = wb.sheet_by_name(sheetname)
-    <span class="comment">#for rownum in range(sheet.nrows):</span>
-        <span class="comment">#print(sheet.row_values(rownum))</span>
-    <span class="comment">#cell = sheet.cell(0,1).value</span>
-    <span class="comment">#print(sheet.nrows)  #行数</span>
-    <span class="comment">#print(sheet.ncols)  #列数</span>
-
-    <span class="keyword">for</span> rownum <span class="keyword">in</span> range(sheet.nrows):
-        msg = <span class="string">''</span>
-        <span class="keyword">for</span> colnum <span class="keyword">in</span> range(sheet.ncols):
-            msg += str(sheet.cell(rownum,colnum).value)
-        <span class="built_in">print</span>(msg)
-
-def updateExcel(bookname,sheetname):
-    wb = xlrd.open_workbook(bookname)
-    sheet = wb.sheet_by_name(sheetname)
-    new_wb = copy(wb)  <span class="comment">#将原有的excel，拷贝一个新的副本</span>
-    new_sheet = new_wb.get_sheet(0)  <span class="comment">#重新在新的excel中获取sheet页</span>
-    new_sheet.write(1,0,<span class="string">'大蚱蜢'</span>)
-    new_wb.save(<span class="string">'person_new.xls'</span>)
-
-
-
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    <span class="comment">#作为excel表中标题名称</span>
-    title = [<span class="string">'姓名'</span>,<span class="string">'年龄'</span>,<span class="string">'性别'</span>,<span class="string">'出生年月'</span>,<span class="string">'家庭住址'</span>,<span class="string">'婚姻状况'</span>,<span class="string">'身份证号'</span>]
-    <span class="comment">#生成excel中的数据</span>
-    data = [
-        [<span class="string">'蚱蜢'</span>,25,<span class="string">'女'</span>,<span class="string">'19930101'</span>,<span class="string">'河南'</span>,<span class="string">'未婚'</span>,<span class="string">'4111111111'</span>],
-        [<span class="string">'曹猛'</span>,26,<span class="string">'女'</span>,<span class="string">'19920202'</span>,<span class="string">'非洲'</span>,<span class="string">'未婚'</span>,<span class="string">'4112222222'</span>],
-        [<span class="string">'丹丹'</span>,22,<span class="string">'女'</span>,<span class="string">'19980303'</span>,<span class="string">'郑州'</span>,<span class="string">'未婚'</span>,<span class="string">'4115271999'</span>],
-        [<span class="string">'大头柯'</span>,30,<span class="string">'男'</span>,<span class="string">'19900101'</span>,<span class="string">'北京'</span>,<span class="string">'未婚'</span>,<span class="string">'411112221'</span>]
-    ]
-    saveExcel(title,data)
-    bookname = <span class="string">'person.xls'</span>
-    sheetname = <span class="string">'人员信息表'</span>
-    readExcel(bookname,sheetname)
-    updateExcel(bookname,sheetname)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/30/excel/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-input-output-txt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/30/input-output-txt/">文件输入输出（I/O）(文本文件)</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/30/input-output-txt/" class="archive-article-date">
-  	<time datetime="2018-07-30T00:35:54.452Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、格式化函数"><a href="#1、格式化函数" class="headerlink" title="1、格式化函数"></a>1、格式化函数</h2><h3 id="（1）repr"><a href="#（1）repr" class="headerlink" title="（1）repr()"></a>（1）repr()</h3><p>函数格式：repr(object) ，python内置函数<br>返回值：返回一个字符串类型的数据<br>说明：该函数，将参数中的对象进行处理，变为字符串类型，其中如果参数为字符串仍然会在外部加上“”，其内部的字符串的边界符仍然存在。</p>
-<h3 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; repr(2.5)
-<span class="string">'2.5'</span>
-&gt;&gt;&gt; repr(<span class="string">"hello world"</span>)
-<span class="string">"'hello world'"</span>
-&gt;&gt;&gt; repr(<span class="string">'hello world'</span>)
-<span class="string">"'hello world'"</span>
-&gt;&gt;&gt; str((1,2,3))
-<span class="string">'(1, 2, 3)'</span>
-&gt;&gt;&gt; repr((1,2,3))
-<span class="string">'(1, 2, 3)'</span>
-</code></pre>
-<h3 id="（2）居左、居右、居中函数"><a href="#（2）居左、居右、居中函数" class="headerlink" title="（2）居左、居右、居中函数"></a>（2）居左、居右、居中函数</h3><p>rjust()、ljust()、center()<br>函数格式：rjust(int)、ljust(int)、center(int)<br>返回值：无<br>说明：该函数将输出的字符串居右/左/中对齐，左侧/右侧/左右两侧使用参数中规定的空格数来对齐。例如当int的值为5时，靠右对齐时，输出的数值左侧包括该数值有5位，其中空格4位；靠左对齐时，输出的数值右侧包括该数值有5位，其中空格4位；居中对齐时，输出的数值左右两侧包括该数值有5位，其中左侧空格2位，右侧空格2位，中间一位数字。</p>
-<h3 id="例如：-1"><a href="#例如：-1" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
-    <span class="built_in">print</span>(repr(i).rjust(5))
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-   10
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
-    <span class="built_in">print</span>(repr(i).center(5)) 
-  1  
-  2  
-  3  
-  4  
-  5  
-  6  
-  7  
-  8  
-  9  
-  10 
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
-    <span class="built_in">print</span>(repr(i).ljust(5))  
-1    
-2    
-3    
-4    
-5    
-6    
-7    
-8    
-9    
-10   
-</code></pre>
-<h3 id="（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。"><a href="#（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。" class="headerlink" title="（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。"></a>（3）print输出字符的最小宽度，即输出的结果占有固定的位数，不够用空格补齐。</h3><h3 id="例如：-2"><a href="#例如：-2" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
-    <span class="built_in">print</span>(<span class="string">'{0:2d}{1:3d}{2:4d}'</span>.format(i,i*i,i*i*i))
- 1  1   1
- 2  4   8
- 3  9  27
- 4 16  64
- 5 25 125
- 6 36 216
- 7 49 343
- 8 64 512
- 9 81 729
-101001000
-&gt;&gt;&gt; <span class="keyword">for</span> i <span class="keyword">in</span> range(1,11):
-    <span class="built_in">print</span>(<span class="string">'{0:3d}{1:4d}{2:6d}'</span>.format(i,i*i,i*i*i))
-  1   1     1
-  2   4     8
-  3   9    27
-  4  16    64
-  5  25   125
-  6  36   216
-  7  49   343
-  8  64   512
-  9  81   729
- 10 100  1000
-</code></pre>
-<h2 id="2、文本文件的输入输出"><a href="#2、文本文件的输入输出" class="headerlink" title="2、文本文件的输入输出"></a>2、文本文件的输入输出</h2><p>文本文件的操作步骤：</p>
-<h3 id="（1）打开文件"><a href="#（1）打开文件" class="headerlink" title="（1）打开文件"></a>（1）打开文件</h3><p>函数格式：open(file,mode,buffering,encoding)<br>返回值：返回一个文件对象，用来对文件进行操作。<br>说明：该函数主要是进行文件打开操作，如果文件不存在，则新建一个文件；如果存在就打开原有文件。</p>
-<h3 id="（2）操作文件"><a href="#（2）操作文件" class="headerlink" title="（2）操作文件"></a>（2）操作文件</h3><h3 id="1）写文件"><a href="#1）写文件" class="headerlink" title="1）写文件"></a>1）写文件</h3><h3 id="a-函数格式：write-str"><a href="#a-函数格式：write-str" class="headerlink" title="(a)函数格式：write(str)"></a>(a)函数格式：write(str)</h3><p>返回值：返回所写入文件的字符串中字符数。<br>说明：该函数可以一次性写入一个字符串内容到文件中。每次写入文件时，如果使用的模式为w，那么因为本次写入为覆盖式写入，即写入的内容会替换掉原有文件的内容。</p>
-<h3 id="例如：-3"><a href="#例如：-3" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>)
-num = file.write(<span class="string">'这是姐们创建的第一个文本文件！'</span>)
-<span class="built_in">print</span>(num)
-</code></pre>
-<p>结果：15</p>
-<h3 id="b-函数格式：writelines-sequence"><a href="#b-函数格式：writelines-sequence" class="headerlink" title="(b)函数格式：writelines(sequence)"></a>(b)函数格式：writelines(sequence)</h3><p>返回值：无<br>说明：该函数可以使用列表、字符串、元组、集合、字典等作为参数，其中这些序列中的元素必须为字符串类型，同时可以一次性写入多行字符串。</p>
-<h3 id="例如：写入列表（写入其他与之类似）"><a href="#例如：写入列表（写入其他与之类似）" class="headerlink" title="例如：写入列表（写入其他与之类似）"></a>例如：写入列表（写入其他与之类似）</h3><pre><code class="bash">ls = [<span class="string">'tv'</span>,<span class="string">'apple'</span>,<span class="string">'computer'</span>,<span class="string">'phone'</span>,<span class="string">'car'</span>]
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)
-file.writelines(ls)
-file.close()
-</code></pre>
-<h3 id="例如：一次写入多行（writelines（））"><a href="#例如：一次写入多行（writelines（））" class="headerlink" title="例如：一次写入多行（writelines（））"></a>例如：一次写入多行（writelines（））</h3><pre><code class="bash">str1 = <span class="string">''</span><span class="string">'</span>
-<span class="string">我去上学了</span>
-<span class="string">中午回来吃饭</span>
-<span class="string">好吗</span>
-<span class="string">'</span><span class="string">''</span>
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
-file.writelines(str1)
-file.close()
-</code></pre>
-<p>结果：<br>在文件里显示：<br>我去上学了<br>中午回来吃饭<br>好吗</p>
-<h3 id="或者用write-写："><a href="#或者用write-写：" class="headerlink" title="或者用write()写："></a>或者用write()写：</h3><pre><code class="bash">str1 = <span class="string">'我去上学了\n中午回来吃饭\n好吗'</span>
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
-file.write(str1)
-file.close()
-</code></pre>
-<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>方法函数：flush()<br>函数格式：file.flush()<br>返回值：无<br>说明：该函数是来刷新缓冲区的，即将缓冲区中的数据立刻写入文件，同时清空缓冲区。下例中，就是将信息项达到100条时，进行一次刷新。</p>
-<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
-<span class="keyword">for</span> i <span class="keyword">in</span> range(10000):
-    file.write(<span class="string">'hello'</span>+str(i))
-    <span class="keyword">if</span> i % 100 == 0:
-        file.flush()
-file.close()
-</code></pre>
-<h3 id="2）读文件（读出来的均是字符串）"><a href="#2）读文件（读出来的均是字符串）" class="headerlink" title="2）读文件（读出来的均是字符串）"></a>2）读文件（读出来的均是字符串）</h3><h3 id="a-函数格式：read-size"><a href="#a-函数格式：read-size" class="headerlink" title="(a)函数格式：read([size])"></a>(a)函数格式：read([size])</h3><p>返回值：返回按照字节逐一读取的数据。<br>说明：该函数按照字节个数逐一读取文件中的数据，如果没有规定读取数据的字节大小size，会一直读完文件中全部数据，如果规定了数据的字节大小，只读取规定字节数的内容。</p>
-<h3 id="例如：-4"><a href="#例如：-4" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-a = file.read(5)
-<span class="built_in">print</span>(a)
-file.close()
-</code></pre>
-<h3 id="（b）函数格式：readline-size"><a href="#（b）函数格式：readline-size" class="headerlink" title="（b）函数格式：readline([size])"></a>（b）函数格式：readline([size])</h3><p>返回值：返回读取的一行字符串<br>说明：该函数一次能够读取文件中一行内容，如果需要读取全部内容，需要配合while循环使用，注意使用读取到的文件内容作为条件判断，即文件内容为空字符串时，退出循环。</p>
-<h3 id="例如：-5"><a href="#例如：-5" class="headerlink" title="例如："></a>例如：</h3><p>读取一行：</p>
-<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-a = file.readline()
-<span class="built_in">print</span>(a)
-file.close()
-</code></pre>
-<p>读取所有加循环：</p>
-<pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-<span class="keyword">while</span> True:
-a = file.readline()
-<span class="built_in">print</span>(a)
-<span class="keyword">if</span> a == <span class="string">''</span>:
-<span class="built_in">break</span>
-file.close()
-</code></pre>
-<h3 id="（c）函数格式：readlines-size"><a href="#（c）函数格式：readlines-size" class="headerlink" title="（c）函数格式：readlines([size])"></a>（c）函数格式：readlines([size])</h3><p>返回值：返回一个包含多个字符串的列表<br>说明：该函数能够一次性将文件中的数据全部读取出来，然后将文件中每行字符串作为一个列表的元素，将其组装成一个列表返回。</p>
-<h3 id="例如：-6"><a href="#例如：-6" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-a = file.readlines()
-<span class="built_in">print</span>(a)
-file.close()
-</code></pre>
-<h3 id="（3）关闭文件"><a href="#（3）关闭文件" class="headerlink" title="（3）关闭文件"></a>（3）关闭文件</h3><p>函数格式：file.close（）<br>返回值：无<br>说明：当我们操作文件时，进行相关的写入操作，Python将数据写入文件之前，会将文件保存在文件缓冲区中，在我们调用close()函数时，首先会将文件缓冲区内还没有写入到文件中的数据进行刷新并强制写入文件，然后关闭Python与文件的通道，释放相关资源。</p>
-<h3 id="例如：-7"><a href="#例如：-7" class="headerlink" title="例如："></a>例如：</h3><pre><code class="bash">set1 = {<span class="string">'hello'</span>,<span class="string">'world'</span>,<span class="string">'zhameng'</span>}
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'a+'</span>,encoding = <span class="string">'UTF-8'</span>)
-file.writelines(set1)
-file.close()
-</code></pre>
-<h2 id="3、json格式处理"><a href="#3、json格式处理" class="headerlink" title="3、json格式处理"></a>3、json格式处理</h2><p>在Python中，提供了json模块可以实现对特殊数据结构的读写。比如：列表和字典。</p>
-<h3 id="（1）将嵌套列表或字典转为json格式数据"><a href="#（1）将嵌套列表或字典转为json格式数据" class="headerlink" title="（1）将嵌套列表或字典转为json格式数据"></a>（1）将嵌套列表或字典转为json格式数据</h3><pre><code class="bash">import json
-item = json.dumps(list/dict)
-file.writelines(item)  或者（json.dump(list, file)）
-</code></pre>
-<h3 id="（2）将文件中的列表或字典json字符串读取出来"><a href="#（2）将文件中的列表或字典json字符串读取出来" class="headerlink" title="（2）将文件中的列表或字典json字符串读取出来"></a>（2）将文件中的列表或字典json字符串读取出来</h3><pre><code class="bash">f= open(file,mode)
-json.load(f)
-</code></pre>
-<p>下面小总结里有例子</p>
-<h2 id="小总结："><a href="#小总结：" class="headerlink" title="小总结："></a>小总结：</h2><h3 id="（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。"><a href="#（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。" class="headerlink" title="（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。"></a>（1）列表嵌套列表、列表嵌套字典、字典嵌套列表、字典嵌套字典、其写入文本文件的内容都保持原有的嵌套类型，输出也是原有的嵌套类型。</h3><h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><p>写入：</p>
-<pre><code class="bash">import json
-ls1 = [[<span class="string">'tv'</span>,<span class="string">'apple'</span>],[<span class="string">'computer'</span>,<span class="string">'phone'</span>,<span class="string">'car'</span>]]
-a = json.dumps(ls1)
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
-file.writelines(a)
-file.close()
-</code></pre>
-<p>读出：</p>
-<pre><code class="bash">import json
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-ls = json.load(file)
-<span class="built_in">print</span>(ls)
-file.close()
-</code></pre>
-<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[[‘tv’, ‘apple’], [‘computer’, ‘phone’, ‘car’]]<br>PS D:\pythoncode&gt;</p>
-<h3 id="（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“-”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。"><a href="#（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“-”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。" class="headerlink" title="（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“[]”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。"></a>（2）列表嵌套元组、元组嵌套元组、元组嵌套列表、元组嵌套字典，其写入文本文件的内容都把元组的边界符括号“（）”变成了列表的边界符“[]”，嵌套的列表也变成了元组的边界符，其他嵌套类型保持不变；输出的内容和写入文本文件的内容保持一致。</h3><h3 id="举例：-1"><a href="#举例：-1" class="headerlink" title="举例："></a>举例：</h3><p>写入：</p>
-<pre><code class="bash">import json
-ls1 = [(1,2,3),5,6,3,(7,8,9)]
-a = json.dumps(ls1)
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
-json.dump(ls1,file)
-file.close()
-</code></pre>
-<p>读出：</p>
-<pre><code class="bash">import json
-ls1 = [(1,2,3),5,6,3,[7,8,9]]
-a = json.dumps(ls1)
-file = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-ls = json.load(file)
-<span class="built_in">print</span>(ls)
-file.close()
-</code></pre>
-<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[[1, 2, 3], 5, 6, 3, [7, 8, 9]]<br>PS D:\pythoncode&gt;<br>归纳：输入文本文件的内容只要包含元组，只要有元组的边界符括号“（）”出现，其符号都会变成列表的边界符“[ ]”，其余所有内容保持不变。</p>
-<h2 id="4、文件及路径操作函数"><a href="#4、文件及路径操作函数" class="headerlink" title="4、文件及路径操作函数"></a>4、文件及路径操作函数</h2><h3 id="（1）isfile-与isdir-（os-path模块）"><a href="#（1）isfile-与isdir-（os-path模块）" class="headerlink" title="（1）isfile()与isdir() （os.path模块）"></a>（1）isfile()与isdir() （os.path模块）</h3><p>函数格式：os.path.isfile(file)<br>返回值：bool<br>说明：根据传入的参数，判断该内容是否为文件类型。如果是文件类型返回True，如果不是返回False<br>isdir()</p>
-<p>函数格式：os.path.isdir(path)<br>返回值：bool<br>说明：根据传入的参数，判断内容是否为目录类型，如果是目录就返回True，如果不是返回False</p>
-<h3 id="（2）创建路径-mkdir-、删除路径removedirs-os模块"><a href="#（2）创建路径-mkdir-、删除路径removedirs-os模块" class="headerlink" title="（2）创建路径 mkdir()、删除路径removedirs() (os模块)"></a>（2）创建路径 mkdir()、删除路径removedirs() (os模块)</h3><p>函数格式：os.mkdir(path)<br>返回值：无<br>说明：如果指定路径中不存在该目录，那么创建该目录。注意，如果存在同名目录，则报错</p>
-<p>函数格式：os.removedirs(path)，os.rmdir(path)<br>返回值：无<br>说明：删除指定的目录，如果该目录中存在文件或子目录，都不允许删除。否则报错。</p>
-<h3 id="（3）删除文件-remove-（os模块）"><a href="#（3）删除文件-remove-（os模块）" class="headerlink" title="（3）删除文件 remove() （os模块）"></a>（3）删除文件 remove() （os模块）</h3><p>函数格式：os.remove(file)<br>返回值：无<br>说明：删除指定的文件，如果该文件不存在则报错。如果文件存在就删除。</p>
-<h3 id="（4）判断文件-目录是否存在-exists"><a href="#（4）判断文件-目录是否存在-exists" class="headerlink" title="（4）判断文件/目录是否存在 exists()"></a>（4）判断文件/目录是否存在 exists()</h3><p>函数格式：os.path.exists(file/path)<br>返回值：bool<br>说明：判断指定的文件或路径是否存在，如果存在返回True，如果不存在返回False。</p>
-<h3 id="（5）返回指定路径下，所有子路径-listdir"><a href="#（5）返回指定路径下，所有子路径-listdir" class="headerlink" title="（5）返回指定路径下，所有子路径 listdir()"></a>（5）返回指定路径下，所有子路径 listdir()</h3><p>函数格式：os.listdir(path)<br>返回值：list<br>说明：返回指定路径下，所有的子路径。</p>
-<h3 id="（6）返回当前路径-getcwd"><a href="#（6）返回当前路径-getcwd" class="headerlink" title="（6）返回当前路径 getcwd()"></a>（6）返回当前路径 getcwd()</h3><p>函数格式：os.getcwd()<br>返回值：path<br>说明：返回当前程序所在的绝对路径</p>
-<h3 id="（7）返回文件大小-getsize"><a href="#（7）返回文件大小-getsize" class="headerlink" title="（7）返回文件大小 getsize()"></a>（7）返回文件大小 getsize()</h3><p>函数格式：path.getsize()<br>返回值：int<br>说明：返回指定文件的大小，单位是字节</p>
-<h3 id="（8）重命名-rename"><a href="#（8）重命名-rename" class="headerlink" title="（8）重命名 rename()"></a>（8）重命名 rename()</h3><p>函数格式：os.rename(oldfilename/oldpath,newfilename/newpath)<br>返回值：无<br>说明:将指定的文件名或目录名进行重命名。</p>
-<h3 id="（9）替换-replace"><a href="#（9）替换-replace" class="headerlink" title="（9）替换 replace()"></a>（9）替换 replace()</h3><p>函数格式：os.replace(src,dst)<br>返回值：无<br>说明：使用目标文件替换掉原文件</p>
-<h3 id="注意：在Python3-x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from-pathlib-import-Path，使用。"><a href="#注意：在Python3-x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from-pathlib-import-Path，使用。" class="headerlink" title="注意：在Python3.x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from pathlib import Path，使用。"></a>注意：在Python3.x版本中，将pathlib作为内置模块进行了引入。我们可以通过使用from pathlib import Path，使用。</h3><p>其使用的前提为：需要先创建一个path对象，然后对其进行操作。<br>p = Path(‘c:\pythoncode\etc’)</p>
-<h2 id="作业练习"><a href="#作业练习" class="headerlink" title="作业练习"></a>作业练习</h2><h3 id="1、文件a-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#1、文件a-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="1、文件a.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>1、文件a.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p> apple        10        3<br> tesla        100000    1<br> mac          3000      2<br> lenovo       30000     3<br> chicken      10        3<br>通过代码，将其构建成这种数据类型：[{‘name’:’apple’,’price’:10,’amount’:3},{‘name’:’tesla’,’price’:1000000,’amount’:1}……] 并计算出总价钱。</p>
-<pre><code class="bash">def writeFile():
-    n=0
-    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
-    <span class="keyword">while</span> True:
-        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
-        file.write(item + <span class="string">'\n'</span>)
-        <span class="keyword">if</span> n == 5:
-            <span class="built_in">break</span>
-        n=n+1
-    file.close()
-
-writeFile()
-
-def readFile():
-    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
-    items = []
-    <span class="keyword">while</span> True:
-        dic = {}
-        line = file.readline()
-        <span class="keyword">if</span> line == <span class="string">''</span>:
-            <span class="built_in">break</span>
-        ls = line.split()
-        dic[<span class="string">'name'</span>]=ls[0]
-        dic[<span class="string">'price'</span>]=ls[1]
-        dic[<span class="string">'amount'</span>]=ls[2]
-        dic[<span class="string">'total'</span>]=int(ls[1])*int(ls[2])
-        items.append(dic)
-    file.close()
-    <span class="built_in">return</span> items
-
-l = readFile()
-<span class="built_in">print</span>(l)
-</code></pre>
-<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘name’: ‘apple’, ‘price’: ‘10’, ‘amount’: ‘3’, ‘total’: 30}, {‘name’: ‘tesla’, ‘price’: ‘100000’, ‘amount’: ‘1’, ‘total’: 100000}, {‘name’: ‘mac’, ‘price’: ‘3000’, ‘amount’: ‘2’, ‘total’: 6000}, {‘name’: ‘lenovo’, ‘price’: ‘30000’,<br>‘amount’: ‘3’, ‘total’: 90000}, {‘name’: ‘chicken’, ‘price’: ‘10’, ‘amount’: ‘3’, ‘total’: 30}]<br>PS D:\pythoncode&gt;</p>
-<h3 id="2、文件a1-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#2、文件a1-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="2、文件a1.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>2、文件a1.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p> 文件内容：<br> name:apple price:10 amount:3 year:2012<br> name:tesla price:100000 amount:1 year:2013<br> 通过代码，将其构建成这种数据类型：<br>[{‘name’:’apple’,’price’:10,’amount’:3},<br>{‘name’:’tesla’,’price’:1000000,’amount’:1}……]<br>并计算出总价钱。<br>思路 {key1 : {‘name’:’apple’,’price’:10,’amount’:3} ….}</p>
-<pre><code class="bash">def writeFile():
-    n=0
-    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
-    <span class="keyword">while</span> True:
-        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
-        file.write(item + <span class="string">'\n'</span>)
-        <span class="keyword">if</span> n == 5:
-            <span class="built_in">break</span>
-        n=n+1
-    file.close()
-writeFile()
-
-def readFile():
-    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
-    items1 = []
-    total= 0
-    <span class="keyword">while</span> True:
-        dic = {}
-        line = file.readline()
-        <span class="keyword">if</span> line == <span class="string">''</span>:
-            <span class="built_in">break</span>
-        items2 = line.split()
-        price = items2[1].split(<span class="string">':'</span>)
-        num = items2[2].split(<span class="string">':'</span>)
-        total = int(price[1])*int(num[1])
-        <span class="keyword">for</span> i <span class="keyword">in</span> items2:
-            items3=i.split(<span class="string">":"</span>)
-            dic[items3[0]]=items3[1].strip()
-        dic[<span class="string">'total'</span>] = total
-        items1.append(dic)
-    file.close()
-    <span class="built_in">return</span> items1
-
-l = readFile()
-<span class="built_in">print</span>(l)
-</code></pre>
-<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘name’: ‘apple’, ‘price’: ‘10’, ‘amount’: ‘5’, ‘year’: ‘2013’, ‘total’: 50}, {‘name’: ‘vivo’, ‘price’: ‘20’, ‘amount’: ‘6’, ‘year’: ‘2014’, ‘total’: 120}, {‘name’: ‘oppo’, ‘price’: ‘30’, ‘amount’: ‘7’, ‘year’: ‘2015’, ‘total’: 210}, {‘name’: ‘nubia’, ‘price’: ‘40’, ‘amount’: ‘8’, ‘year’: ‘2016’, ‘total’: 320}, {‘name’: ‘xiaomi’, ‘price’: ‘5’, ‘amount’: ‘5’, ‘year’: ‘2017’, ‘total’: 25}, {‘name’: ‘asus’, ‘price’: ‘100’, ‘amount’: ‘2’, ‘year’: ‘2018’, ‘total’: 200}]<br>PS D:\pythoncode&gt;</p>
-<h3 id="3、文件a2-txt内容：每一行内容分别为商品名字，价钱，个数。"><a href="#3、文件a2-txt内容：每一行内容分别为商品名字，价钱，个数。" class="headerlink" title="3、文件a2.txt内容：每一行内容分别为商品名字，价钱，个数。"></a>3、文件a2.txt内容：每一行内容分别为商品名字，价钱，个数。</h3><p>文件内容：<br>序号   部门   人数  平均年龄  备注<br>1     python   30      26    单身狗<br>2     Linux    26      30    没对象<br>3     运营部   20      24    女生多<br>通过代码，将其构建成这种数据类型：<br>[{‘序号’:’1’,’部门’:Python,’人数’:30,’平均年龄’:26,’备注’:’单身狗’},……]<br>思路 {‘序号’:’1’,’部门’:Python,’人数’:30,’平均年龄’:26,’备注’:’单身狗’}</p>
-<pre><code class="bash">def writeFile():
-    n=0
-    file = open(<span class="string">'zm.txt'</span>,<span class="string">'a+'</span>,encoding= <span class="string">'UTF-8'</span>)
-    <span class="keyword">while</span> True:
-        item = input(<span class="string">'请输入文件内容，中间用空格隔开：'</span>)
-        file.write(item + <span class="string">'\n'</span>)
-        <span class="keyword">if</span> n == 5:
-            <span class="built_in">break</span>
-        n=n+1
-    file.close()
-
-writeFile()
-
-def readFile():
-    file = open(<span class="string">'zm.txt'</span>,<span class="string">'r'</span>,encoding= <span class="string">'UTF-8'</span>)
-    items1 = []
-    <span class="keyword">while</span> True:
-        dic = {}
-        items3 = []
-        line = file.readline()
-        <span class="keyword">if</span> line == <span class="string">''</span>:
-            <span class="built_in">break</span>
-        items2 = line.split()
-        dic[<span class="string">"序号"</span>] = items2[0]
-        dic[<span class="string">"部门"</span>] = items2[1]
-        dic[<span class="string">"人数"</span>] = items2[2]
-        dic[<span class="string">"平均年龄"</span>] = items2[3]
-        dic[<span class="string">"备注"</span>] = items2[4]
-        items1.append(dic)
-    file.close()
-    <span class="built_in">return</span> items1
-
-l = readFile()
-<span class="built_in">print</span>(l)
-</code></pre>
-<p>结果：<br>PS D:\pythoncode&gt; &amp; python d:/pythoncode/io.py<br>[{‘序号’: ‘1’, ‘部门’: ‘python’, ‘人数’: ‘30’, ‘平均年龄’: ‘26’, ‘备注’: ‘单身狗’}, {‘序号’: ‘2’, ‘部门’: ‘Linux’, ‘人数’: ‘26’, ‘平均年龄’: ‘30’, ‘备注’: ‘没对象’}, {‘序号’: ‘3’, ‘部门’: ‘运营部’, ‘人数’: ‘20’, ‘平均年龄’: ‘24’, ‘备注’: ‘女生多’}, {‘序号’: ‘4’, ‘部门’: ‘市场部’, ‘人数’: ‘25’, ‘平均年龄’: ‘25’, ‘备注’: ‘全脱单’}]<br>PS D:\pythoncode&gt;</p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="1、json"><a href="#1、json" class="headerlink" title="1、json"></a>1、json</h3><p>json不支持元组，不支持除了str数据类型之外的key<br>（1）dumps序列化，loads反序列化，只在内存中操作数据。主要用于网络传输 和多个数据与文件打交道。<br>例如：</p>
-<pre><code class="bash">import json
-dic = {<span class="string">'name'</span>:<span class="string">'张三'</span>,<span class="string">'age'</span>:20}
-result = json.dumps(dic)
-<span class="built_in">print</span>(<span class="built_in">type</span>(result),result)
-
-item = json.loads(result)
-<span class="built_in">print</span>(item)
-</code></pre>
-<p>（2）json的dump序列化，load反序列化 ，主要用于一个数据直接存在文件里–直接和文件打交道。<br>例如：</p>
-<pre><code class="bash"><span class="comment">#json文件单行写入与读出</span>
-import json
-dic = {<span class="string">'name'</span>:<span class="string">'张三'</span>,<span class="string">'age'</span>:20}
-<span class="comment">#写入</span>
-f = open(<span class="string">'myfile.txt'</span>,<span class="string">'w'</span>,encoding = <span class="string">'UTF-8'</span>)
-json.dump(dic,f)
-f.close()
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.txt'</span>,<span class="string">'r'</span>,encoding = <span class="string">'UTF-8'</span>)
-result = json.load(f)
-<span class="built_in">print</span>(result)
-</code></pre>
-<p>（3）json如果要写入多个元素，可以先将元素dumps序列化， f.write(序列化+‘\n’)写入文件，读出元素的时候，应该先按行读文件，在使用loads将读出来的字符串转换成对应的数据类型。<br>例如：</p>
-<pre><code class="bash">import json
-<span class="comment">#将多个字典写入文件</span>
-def write_dic(file,*dic):   
-    f = open(file,<span class="string">'w'</span>,encoding = <span class="string">'utf-8'</span>)
-    <span class="keyword">for</span> dic <span class="keyword">in</span> dic:
-        results =  json.dumps(dic)
-        f.write(results+<span class="string">'\n'</span>)
-    f.close()
-<span class="comment">#将字典从文件中读出</span>
-def read_dic(file):     
-    f = open(file,<span class="string">'r'</span>,encoding = <span class="string">'utf-8'</span>)
-    <span class="keyword">while</span> True:
-        line = f.readline()
-        <span class="keyword">if</span> line == <span class="string">''</span>:
-            <span class="built_in">break</span>
-        results = json.loads(line)
-        <span class="built_in">print</span>(results)
-    f.close()
-
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    dic1 = {<span class="string">'name'</span>:<span class="string">'张三'</span>,<span class="string">'age'</span>:20}
-    dic2 = {<span class="string">'name'</span>:<span class="string">'蚱蜢'</span>,<span class="string">'age'</span>:28}
-    dic3 = {<span class="string">'name'</span>:<span class="string">'大大蚱蜢'</span>,<span class="string">'age'</span>:38}
-    write_dic(<span class="string">'my.txt'</span>,dic1,dic2,dic3)
-    read_dic(<span class="string">'my.txt'</span>)
-</code></pre>
-<h3 id="2、pickle"><a href="#2、pickle" class="headerlink" title="2、pickle"></a>2、pickle</h3><p>（1）dumps序列化，loads反序列化，只在内存中操作数据。主要用于网络传输 和多个数据与文件打交道。<br>例如：</p>
-<pre><code class="bash">import pickle
-dic = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
-result = pickle.dumps(dic)
-<span class="built_in">print</span>(<span class="built_in">type</span>(result),result)
-
-item = pickle.loads(result)
-<span class="built_in">print</span>(item)
-</code></pre>
-<p>（2）dump序列化，load反序列化 ，主要用于一个数据直接存在文件里–直接和文件打交道。（二进制文件）<br>例如：</p>
-<pre><code class="bash"><span class="comment">#pickle单行写入与读出</span>
-import pickle
-<span class="comment">#写入</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>) <span class="comment">#二进制文件不需要写编码</span>
-dic = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
-pickle.dump(dic,f)
-f.close()
-<span class="comment">#读出</span>
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-item = pickle.load(f)
-<span class="built_in">print</span>(item)
-</code></pre>
-<p>（3）pickle可以，在写入多次dump的时候，能对应执行多次load来取出数据，而json不可以<br>例如：</p>
-<pre><code class="bash"><span class="comment">#pickle多行写入与读出</span>
-import pickle
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'wb'</span>) <span class="comment">#二进制文件不需要写编码</span>
-dic1 = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
-dic2 = {<span class="string">'id'</span>:<span class="string">'123666'</span>,<span class="string">'name'</span>:<span class="string">'小红'</span>}
-dic3 = {<span class="string">'id'</span>:<span class="string">'123356'</span>,<span class="string">'name'</span>:<span class="string">'小蓝'</span>}
-pickle.dump(dic1,f)
-pickle.dump(dic2,f)
-pickle.dump(dic3,f)
-f.close()
-
-f = open(<span class="string">'myfile.dat'</span>,<span class="string">'rb'</span>)
-<span class="keyword">while</span> True:
-    try:
-        item = pickle.load(f)
-        <span class="built_in">print</span>(item)
-    except Exception as e:
-        <span class="built_in">print</span>(<span class="string">'文件读取完毕'</span>)
-        <span class="built_in">break</span>
-f.close()
-</code></pre>
-<h3 id="3、shelve"><a href="#3、shelve" class="headerlink" title="3、shelve"></a>3、shelve</h3><pre><code class="bash"><span class="comment">#shelve文件的读取与写入，一般不使用此方法</span>
-import shelve
-s = shelve.open(<span class="string">'myfile'</span>)
-s[<span class="string">'key'</span>] = {<span class="string">'id'</span>:<span class="string">'123456'</span>,<span class="string">'name'</span>:<span class="string">'小明'</span>}
-s.close()
-
-s = shelve.open(<span class="string">'myfile'</span>)
-<span class="built_in">print</span>(s[<span class="string">'key'</span>])
-</code></pre>
-<h3 id="4、configparser文件的生成、写入、读取、以及增删改"><a href="#4、configparser文件的生成、写入、读取、以及增删改" class="headerlink" title="4、configparser文件的生成、写入、读取、以及增删改"></a>4、configparser文件的生成、写入、读取、以及增删改</h3><h3 id="（1）普通写法"><a href="#（1）普通写法" class="headerlink" title="（1）普通写法"></a>（1）普通写法</h3><pre><code class="bash">import configparser
-<span class="comment">#生成一个配置文件对象</span>
-config = configparser.ConfigParser()
-config[<span class="string">'account'</span>] = {
-    <span class="string">'username'</span>:<span class="string">'tom'</span>,
-    <span class="string">'password'</span>:<span class="string">'123'</span>
-}
-<span class="comment">#写文件</span>
-with open(<span class="string">'user.ini'</span>,<span class="string">'w'</span>) as f:
-    config.write(f)
-<span class="comment">#读文件</span>
-config = configparser.ConfigParser()
-<span class="comment">#将配置文件中的内容读出，那么原有的section及option都会被取出</span>
-config.read(<span class="string">'user.ini'</span>)
-<span class="comment">#得到配置文件里所有的小节名称</span>
-<span class="built_in">print</span>(config.sections()) 
-<span class="comment">#通过指定的小节的名称，得到其内部所有的options选项的key</span>
-<span class="built_in">print</span>(config.options(<span class="string">'account'</span>)) 
-<span class="comment">#判断指定的小节名称是否在文件里 </span>
-<span class="built_in">print</span>(<span class="string">'account'</span> <span class="keyword">in</span> config) 
-<span class="comment">#通过指定的小节名称，已经option的选项，得到对应的value</span>
-<span class="built_in">print</span>(config[<span class="string">'account'</span>][<span class="string">'username'</span>])
-<span class="built_in">print</span>(config[<span class="string">'account'</span>][<span class="string">'password'</span>])
-<span class="comment">#增删改</span>
-config = configparser.ConfigParser()
-<span class="comment">#将配置文件中的内容读出，那么原有的section及option都会被取出</span>
-config.read(<span class="string">'user.ini'</span>)
-<span class="comment">#增加一个section</span>
-config.add_section(<span class="string">'info'</span>)
-<span class="comment">#根据section，添加option</span>
-config.set(<span class="string">'info'</span>,<span class="string">'address'</span>,<span class="string">'zhengzhou'</span>)
-<span class="comment">#将以上新加的内容写入文件中</span>
-with open(<span class="string">'user.ini'</span>,<span class="string">'w'</span>) as f:
-    config.write(f)
-<span class="comment">#删除指定的section,同时会删除其内部的option</span>
-<span class="comment">#config.remove_section('info')</span>
-<span class="comment">#删除指定section下面的option内容</span>
-config.remove_option(<span class="string">'account'</span>,<span class="string">'password'</span>)
-with open(<span class="string">'user.ini'</span>,<span class="string">'w'</span>) as f:
-    config.write(f)
-</code></pre>
-<h3 id="（2）函数写法"><a href="#（2）函数写法" class="headerlink" title="（2）函数写法"></a>（2）函数写法</h3><pre><code class="bash">import configparser
-def saveConfig(file,config):
-    with open(file, <span class="string">'w'</span>) as f:
-        config.write(f)
-def createConfig(section, content, file):
-    <span class="comment"># 生成一个配置文件对象</span>
-    config = configparser.ConfigParser()
-    config[section] = content
-    saveConfig(file,config)
-def readConfig(file):
-    config = configparser.ConfigParser()
-    <span class="comment"># 将配置文件中的内容读取，原有的section及option都会被取出</span>
-    config.read(file)
-    <span class="built_in">return</span> config
-def removeSection(config, section, file):
-    <span class="comment"># 删除指定的section,同时会删除其内部的option</span>
-    config.remove_section(section)
-    saveConfig(file,config)
-def removeOption(config, section, option, file):
-    <span class="comment"># 删除指定的option</span>
-    config.remove_option(section, option)
-    saveConfig(file,config)
-def addSection(config, section, file):
-    <span class="comment">#添加section</span>
-    config.add_section(section)
-    saveConfig(file,config)
-def addOption(config, section, file, *option):
-    <span class="comment">#添加option</span>
-    config.set(section, option[0], option[1])
-    saveConfig(file,config)
-def findSection(config):
-    <span class="comment">#查找section</span>
-    <span class="built_in">return</span> config.sections()
-def findOptions(config, section):
-    <span class="comment">#查找option</span>
-    <span class="built_in">return</span> config.options(section)
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    <span class="comment">#生成一个配置文件，并写入到文件中</span>
-    section = <span class="string">'info'</span>
-    content = {<span class="string">'addr'</span>: <span class="string">'zhengzhou'</span>, <span class="string">'type'</span>: <span class="string">'A'</span>}
-    file = <span class="string">'book.ini'</span>
-    createConfig(section, content, file)
-
-    <span class="comment">#添加一个section，名为account</span>
-    section = <span class="string">'account'</span>
-    file = <span class="string">'book.ini'</span>
-    config = readConfig(file)
-    addSection(config, section, file)
-
-    <span class="comment">#添加一个option</span>
-    section = <span class="string">'account'</span>
-    option = [<span class="string">'id'</span>,<span class="string">'123456'</span>]
-    file = <span class="string">'book.ini'</span>
-    config = readConfig(file)
-    addOption(config, section, file, *option)
-
-    <span class="comment"># 删除指定的section,同时会删除其内部的option</span>
-    section = <span class="string">'account'</span>
-    file = <span class="string">'book.ini'</span>
-    config = readConfig(file)
-    removeSection(config, section, file)
-
-    <span class="comment"># 删除指定的option</span>
-    section = <span class="string">'info'</span>
-    option = <span class="string">'type'</span>
-    file = <span class="string">'book.ini'</span>
-    config = readConfig(file)
-    removeOption(config, section, option, file)
-
-    <span class="comment">#查找Section</span>
-    file = <span class="string">'book.ini'</span>
-    config = readConfig(file)
-    findSection(config)
-    <span class="built_in">print</span>(config.sections())
-
-    <span class="comment">#查找Options</span>
-    section = <span class="string">'info'</span>
-    file = <span class="string">'book.ini'</span>
-    config = readConfig(file)
-    findOptions(config, section)
-    <span class="built_in">print</span>(config.options(section))
-</code></pre>
-<h3 id="5、collections模块"><a href="#5、collections模块" class="headerlink" title="5、collections模块"></a>5、collections模块</h3><p>在内置数据类型（dict、list、set、tuple）的基础上，collections模块还提供了几个额外的数据类型：Counter、deque、defaultdict、namedtuple和OrderedDict等<br>（1）namedtuple: 生成可以使用名字来访问元素内容的tuple<br>例如：tuple元组，表示不变集合，例如，一个点的二维坐标就可以表示成：</p>
-<pre><code class="bash">from collections import namedtuple
-<span class="comment">#tuple元组，表示不变集合，例如，一个点的二维坐标就可以表示成：</span>
-<span class="built_in">test</span> = namedtuple(<span class="string">'hello'</span>,[<span class="string">'x'</span>,<span class="string">'y'</span>])
-p = <span class="built_in">test</span>(1,2)
-<span class="built_in">print</span>(p.x)
-<span class="built_in">print</span>(p.y)
-</code></pre>
-<p>（2）deque: 双端队列，可以快速的从另外一侧追加和推出对象<br>队列是为了维护秩序的(例如:抢票,请求之类的)，如果需要用到增删改查，不适合用队列。<br>双端队列:deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，这样就可以非常高效地往头部添加或删除元素<br>例如：</p>
-<pre><code class="bash">from collections import deque
-dq = deque()
-dq.append(1)
-dq.append(2)
-dq.append(3)
-dq.append(4)
-dq.append(5)
-dq.popleft()
-dq.pop()
-<span class="built_in">print</span>(dq)
-</code></pre>
-<p>（3）OrderedDict: 有序字典<br>例如：</p>
-<pre><code class="bash">from collections import OrderedDict
-dic1 = OrderedDict([(<span class="string">'1'</span>,<span class="string">'one'</span>),(<span class="string">'2'</span>,<span class="string">'two'</span>),(<span class="string">'3'</span>,<span class="string">'three'</span>)])
-<span class="built_in">print</span>(dic1)
-</code></pre>
-<p>（4）Counter: 计数器，主要用来计数<br>counter类的目的是用来跟踪值出现的次数，它是一个无序的容器类型，以字典的键值对形式存储，其中元素作为key,其计数作为value.计数值可以使任意的interger(包括0和负数)<br>例如：</p>
-<pre><code class="bash">from collections import Counter
-c = Counter(<span class="string">'sdfsnioefuhoimmjcbowdjpqdn'</span>)
-<span class="built_in">print</span>(c)
-<span class="built_in">print</span>(c.keys())
-</code></pre>
-<h3 id="6、time"><a href="#6、time" class="headerlink" title="6、time"></a>6、time</h3><p>在python中，通常有三种方式来表示时间：时间戳，元组(struct_time),格式化的时间字符串</p>
-<h3 id="1）时间戳-timestamp-：通常来说，时间戳表示的是从1970年1月1日00-00-00开始按秒计算的偏移量。我们运行“type-time-time-”，返回的是float类型"><a href="#1）时间戳-timestamp-：通常来说，时间戳表示的是从1970年1月1日00-00-00开始按秒计算的偏移量。我们运行“type-time-time-”，返回的是float类型" class="headerlink" title="1）时间戳(timestamp) ：通常来说，时间戳表示的是从1970年1月1日00:00:00开始按秒计算的偏移量。我们运行“type(time.time())”，返回的是float类型"></a>1）时间戳(timestamp) ：通常来说，时间戳表示的是从1970年1月1日00:00:00开始按秒计算的偏移量。我们运行“type(time.time())”，返回的是float类型</h3><p>例如：</p>
-<pre><code class="bash">import time
-<span class="comment">#时间戳，返回的是float类型</span>
-<span class="built_in">print</span>(time.time())
-</code></pre>
-<h3 id="2）元组-struct-time-：struct-time元组共有9个元素共九个元素-年，月，日，时，分，秒，一年中第几周，一年中第几天等）"><a href="#2）元组-struct-time-：struct-time元组共有9个元素共九个元素-年，月，日，时，分，秒，一年中第几周，一年中第几天等）" class="headerlink" title="2）元组(struct_time) ：struct_time元组共有9个元素共九个元素:(年，月，日，时，分，秒，一年中第几周，一年中第几天等）"></a>2）元组(struct_time) ：struct_time元组共有9个元素共九个元素:(年，月，日，时，分，秒，一年中第几周，一年中第几天等）</h3><p>索引（index）   属性（attribute）         值（values）<br>0                 tm_year（年）           比如2011<br>1                 tm_mon（月）            1-12<br>2                 tm_mday（日）           1-31<br>3                 tm_hour（时）           0-23<br>4                 tm_min（分）            0-59<br>5                 tm_sec（秒）            0-60<br>6                 tm_wday（weekday）      0-6（0表示周一）<br>7                 tm_yday（一年中的第几天） 1-366<br>8                 tm_isdst（是否是夏令时）  默认为0</p>
-<p>例如：</p>
-<pre><code class="bash">import time
-<span class="comment">#本地结构化时间</span>
-<span class="built_in">print</span>(time.localtime())
-<span class="comment">#英国结构化时间</span>
-<span class="built_in">print</span>(time.gmtime())
-</code></pre>
-<h3 id="3）格式化的时间字符串-Format-String-‘1999-12-06’"><a href="#3）格式化的时间字符串-Format-String-‘1999-12-06’" class="headerlink" title="3）格式化的时间字符串(Format String): ‘1999-12-06’"></a>3）格式化的时间字符串(Format String): ‘1999-12-06’</h3><p>%y 两位数的年份表示（00-99）<br>%Y 四位数的年份表示（000-9999）<br>%m 月份（01-12）<br>%d 月内中的一天（0-31）<br>%H 24小时制小时数（0-23）<br>%I 12小时制小时数（01-12）<br>%M 分钟数（00=59）<br>%S 秒（00-59）<br>%a 本地简化星期名称<br>%A 本地完整星期名称<br>%b 本地简化的月份名称<br>%B 本地完整的月份名称<br>%c 本地相应的日期表示和时间表示<br>%j 年内的一天（001-366）<br>%p 本地A.M.或P.M.的等价符<br>%U 一年中的星期数（00-53）星期天为星期的开始<br>%w 星期（0-6），星期天为星期的开始<br>%W 一年中的星期数（00-53）星期一为星期的开始<br>%x 本地相应的日期表示<br>%X 本地相应的时间表示<br>%Z 当前时区的名称<br>%% %号本身<br>例如：<br>import time</p>
-<pre><code class="bash">A）<span class="comment">#格式化时间</span>
-<span class="built_in">print</span>(time.strftime(<span class="string">'%Y-%m-%d %A %H:%M:%S'</span>))
-</code></pre>
-<p>B）时间的转换：<br>import time<br>（1）#格式化时间转换的时间戳</p>
-<pre><code class="bash">p = time.strptime(<span class="string">'2018-08-08'</span>,<span class="string">'%Y-%m-%d'</span>)
-<span class="built_in">print</span>(time.mktime(p))
-</code></pre>
-<p>（2）#时间戳转换的格式化时间</p>
-<pre><code class="bash">p2 = time.localtime(1500000000)
-<span class="built_in">print</span>(time.strftime(<span class="string">'%Y-%m-%d'</span>,p2))
-</code></pre>
-<p>（3）结构化时间转格式化时间</p>
-<pre><code class="bash"><span class="built_in">print</span>(time.strftime(<span class="string">'%Y-%m-%d,%H:%M:%S'</span>,time.localtime（1500000000）))<span class="comment">#年月日时分秒</span>
-</code></pre>
-<p>（4）格式化时间转结构化时间</p>
-<pre><code class="bash"><span class="built_in">print</span>(time.strptime(‘2018-01-24’，<span class="string">'%Y-%m-%d'</span>))
-<span class="built_in">print</span>(time.strptime(‘04/24/2018’，‘%m%d%Y’))
-</code></pre>
-<p>（5）结构化时间—–&gt;%a %b %d %H:%M:%S(格式化时间)</p>
-<pre><code class="bash">time.asctime(结构化时间) 如果不传参数，直接返回当前时间的格式化串
-<span class="comment">#当前时间</span>
-<span class="built_in">print</span>(time.asctime())
-<span class="comment">#指定时间</span>
-<span class="built_in">print</span>(time.asctime(time.localtime(1500000000)))
-</code></pre>
-<p>（6）时间戳—–&gt; %a %b % d %H:%M:%S(格式化时间)</p>
-<pre><code class="bash">time.ctime(时间戳) 如果不传参数，直接返回当前时间的格式化串
-<span class="comment">#当前时间</span>
-<span class="built_in">print</span>(time.ctime())
-<span class="comment">#指定时间</span>
-<span class="built_in">print</span>(time.ctime(1500000000))
-</code></pre>
-<h3 id="7、random"><a href="#7、random" class="headerlink" title="7、random"></a>7、random</h3><p>import random<br>（1）#大于0且小于1之间的小数<br>print(random.random())<br>（2）#大于1且小于3之间的小数<br>print(random.uniform(1,3))<br>（3）#大于等于1且小于等于10之间的数<br>print(random.randrange(1,10))<br>（4）#大于等于1且小于等于10之间的奇数<br>print(random.randrange(1,10，2))<br>（5）#大于等于1且小于等于10之间的整数<br>print(random.randint(1,10))<br>（6）#在指定序列中随机抽取一个数字<br>print(random.choice([1,2,3,4,5,6,7,8,9]))<br>（7）#在指定序列中随机抽取2个</p>
-<p>#print(random.sample([1,2,[4,5]],2))<br>（8）#打乱秩序<br>item = [1,2,3,4,5]<br>random.shuffle(item)<br>print(item)</p>
-<h3 id="8、sys"><a href="#8、sys" class="headerlink" title="8、sys"></a>8、sys</h3><p>（1）sys模块是与python解释器交互的一个接口<br>sys.argv     命令行参数List，第一个元素是程序本身路径<br>sys.exit(n)  退出程序，正常退出时exit(0),错误退出sys.exit(1)<br>sys.version  获取Python解释程序的版本信息<br>sys.path    返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值<br>sys.platform   返回操作系统平台名称<br>例如：</p>
-<pre><code class="bash">import sys
-<span class="built_in">print</span>(sys.argv)
-<span class="built_in">print</span>(sys.path)
-<span class="built_in">print</span>(sys.platform)
-<span class="built_in">print</span>(sys.version)
-<span class="built_in">print</span>(sys.argv)
-sys.exit(0)
-</code></pre>
-<p>例题：<br>（1）#生成6位随机验证码</p>
-<pre><code class="bash">import random
-def confident():
-    list1=[]
-    <span class="comment">#随机产生6位数字</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(6):
-        num = str(random.randint(0,9))  <span class="comment">#将数字转为字符串</span>
-        list1.append(num)
-        confident_num = <span class="string">''</span>.join(list1)
-    <span class="built_in">return</span> confident_num
-
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    <span class="built_in">print</span>(confident())
-</code></pre>
-<p>（2）#生成4位数字+字母验证码</p>
-<pre><code class="bash">import random
-def confident():
-    <span class="comment">#随机产生4个数字</span>
-    list1 = [str(random.randint(0,9)) <span class="keyword">for</span> i <span class="keyword">in</span> range(4)]
-    <span class="comment">#随机产生4个大写字母  </span>
-    list2 = [chr(random.randint(65,90)) <span class="keyword">for</span> i <span class="keyword">in</span> range(4)]
-    <span class="comment">#随机产生4个小写字母  </span>
-    list3 = [chr(random.randint(97,122)) <span class="keyword">for</span> i <span class="keyword">in</span> range(4)]
-    <span class="comment">#将随机产生的数字、大小写字母连在一起</span>
-    list4 = list1+list2+list3
-    <span class="comment">#从随机产生的数字、字母中随机返回4个，并连接成字符串</span>
-    confident_num = <span class="string">''</span>.join(random.sample(list4,4))  
-    <span class="built_in">return</span> confident_num
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    <span class="built_in">print</span>(confident())
-
-import time
-def timepass(old_time):
-    old_time = time.mktime(time.strptime(old_time,<span class="string">'%Y-%m-%d %H:%M:%S'</span>))
-    pass_time = time.time() - old_time   <span class="comment">#计算输入的时间距今相差多少秒</span>
-    <span class="built_in">return</span> pass_time
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    old_time = input(<span class="string">'请以YYYY-MM-DD HH:MM:SS格式输入一个时间：'</span>)
-    now_time = time.strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)  <span class="comment">#当前时间</span>
-    second = timepass(old_time)   <span class="comment">#相差秒数</span>
-    minutes = second//60  <span class="comment">#相差分钟数</span>
-    hour = minutes//60  <span class="comment">#相差小时数</span>
-    day = hour//24   <span class="comment">#相差天数</span>
-    month = day//30  <span class="comment">#相差月数</span>
-    year = month//12  <span class="comment">#相差年数</span>
-    <span class="built_in">print</span>(<span class="string">'从{0}开始，比起{1}过去了{2}年，{3}月，{4}天，{5}小时，{6}分钟，{7}秒'</span>.format(now_time,old_time,year,month,day,hour,minutes,second))
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/30/input-output-txt/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-def-recursion" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/26/def-recursion/">函数的递归</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/26/def-recursion/" class="archive-article-date">
-  	<time datetime="2018-07-26T13:10:50.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="递归概念"><a href="#递归概念" class="headerlink" title="递归概念"></a>递归概念</h3><p>就是使用自身函数对自身进行调用，每调用一次将当前次的运行结果保存到函数的堆栈中，以副本形式保存，一直到最后完成全部调用。然后逐一向外将当期函数的结果返回并退出到其调用的位置。<br>在Python中，通常推荐使用迭代，递归本身对内存的消耗和运行效率低下的问题较少使用。<br>举例：</p>
-<h4 id="普通写法求n的阶乘"><a href="#普通写法求n的阶乘" class="headerlink" title="普通写法求n的阶乘"></a>普通写法求n的阶乘</h4><pre><code class="bash">def func1(n):
-    result = n
-    <span class="keyword">for</span> i <span class="keyword">in</span> range(1,n):
-        result *= i
-    <span class="built_in">return</span> result
-
-<span class="built_in">print</span>(func1(5))
-</code></pre>
-<h3 id="递归写法求n的阶乘"><a href="#递归写法求n的阶乘" class="headerlink" title="递归写法求n的阶乘"></a>递归写法求n的阶乘</h3><pre><code class="bash">def func2(n):
-    <span class="keyword">if</span> n == 1:
-        <span class="built_in">return</span> 1
-    <span class="keyword">else</span>:
-        <span class="built_in">return</span> n * func2(n-1)
-
-<span class="built_in">print</span>(func2(5))
-</code></pre>
-<h3 id="递归写法求n的阶乘的和"><a href="#递归写法求n的阶乘的和" class="headerlink" title="递归写法求n的阶乘的和"></a>递归写法求n的阶乘的和</h3><pre><code class="bash">Sum=0
-factorial=1
-num = int(input(<span class="string">'请输入一个数字：'</span>))
-<span class="keyword">for</span> i <span class="keyword">in</span> range(1,num+1):
-    factorial = factorial*i
-    Sum +=factorial
-<span class="built_in">print</span>(<span class="string">'阶乘之和：'</span>,Sum) 
-</code></pre>
-<h3 id="递归写法求n的阶乘的和-1"><a href="#递归写法求n的阶乘的和-1" class="headerlink" title="递归写法求n的阶乘的和"></a>递归写法求n的阶乘的和</h3><pre><code class="bash">from functools import reduce
-def func3(n):
-    <span class="keyword">if</span> n == 1:
-        <span class="built_in">return</span> 1
-    <span class="keyword">else</span>:
-        <span class="built_in">return</span> n * func3(n-1)
-result = reduce(lambda x,y:x+func3(y),[1,2,3,4,5])
-<span class="built_in">print</span>(result)
-</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/26/def-recursion/">展开全文 >></a>
         </p>
       
 
