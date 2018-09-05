@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>diana</title>
+  <title>MySQL（数据库的导入与导出） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
+  <meta name="description" content="1、数据库导出命令：C:\Users\Administrator&amp;gt;mysqldump -u root -p sakila &amp;gt;d:\sakila.sql 其中，sakila是给导出的数据库随意起的名字。 2、数据库导入命令：将上导出的sakila数据库中的表导入到mydb数据库中（1）C:\Users\Administrator&amp;gt;mysql -u root -p（2）use myd">
+<meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="diana">
+<meta property="og:title" content="MySQL（数据库的导入与导出）">
 <meta property="og:url" content="http://yoursite.com/2018/09/05/mysql-qita/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="1、数据库导出命令：C:\Users\Administrator&amp;gt;mysqldump -u root -p sakila &amp;gt;d:\sakila.sql 其中，sakila是给导出的数据库随意起的名字。 2、数据库导入命令：将上导出的sakila数据库中的表导入到mydb数据库中（1）C:\Users\Administrator&amp;gt;mysql -u root -p（2）use myd">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-05T12:38:23.777Z">
+<meta property="og:updated_time" content="2018-09-05T12:53:53.138Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="MySQL（数据库的导入与导出）">
+<meta name="twitter:description" content="1、数据库导出命令：C:\Users\Administrator&amp;gt;mysqldump -u root -p sakila &amp;gt;d:\sakila.sql 其中，sakila是给导出的数据库随意起的名字。 2、数据库导入命令：将上导出的sakila数据库中的表导入到mydb数据库中（1）C:\Users\Administrator&amp;gt;mysql -u root -p（2）use myd">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,9 +166,27 @@
             <article id="post-mysql-qita" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL（数据库的导入与导出）
+    </h1>
+  
+
+        
+        <a href="/2018/09/05/mysql-qita/" class="archive-article-date">
+  	<time datetime="2018-09-05T12:38:23.776Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-05</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="1、数据库导出命令："><a href="#1、数据库导出命令：" class="headerlink" title="1、数据库导出命令："></a>1、数据库导出命令：</h3><pre><code>C:\Users\Administrator&gt;mysqldump -u root -p sakila &gt;d:\sakila.sql
+</code></pre><p>其中，sakila是给导出的数据库随意起的名字。</p>
+<h3 id="2、数据库导入命令："><a href="#2、数据库导入命令：" class="headerlink" title="2、数据库导入命令："></a>2、数据库导入命令：</h3><p>将上导出的sakila数据库中的表导入到mydb数据库中<br>（1）C:\Users\Administrator&gt;mysql -u root -p<br>（2）use mydb;<br>（3）source d:/sakila.sql;</p>
+
       
 
       
@@ -260,7 +281,7 @@
   
   
     <a href="/2018/09/05/mysql-trans/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">MySQL（数据库事务）</div>
       <i class="icon-circle-right"></i>
     </a>
   

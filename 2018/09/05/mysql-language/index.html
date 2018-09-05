@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>diana</title>
+  <title>MySQL（数据库语言） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
+  <meta name="description" content="1、分类数据库定义语言   DDL（create database/table，drop database/table，alter database/table）数据库操纵语言   DML(insert、delete、update、select)数据库控制语言   DCL（grant、revoke）注意，数据库定义语言和数据库控制语言都是不可撤销的。而数据库操作语言是可以撤销 。 2、数据定义语言">
+<meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="diana">
+<meta property="og:title" content="MySQL（数据库语言）">
 <meta property="og:url" content="http://yoursite.com/2018/09/05/mysql-language/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="1、分类数据库定义语言   DDL（create database/table，drop database/table，alter database/table）数据库操纵语言   DML(insert、delete、update、select)数据库控制语言   DCL（grant、revoke）注意，数据库定义语言和数据库控制语言都是不可撤销的。而数据库操作语言是可以撤销 。 2、数据定义语言">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-05T12:34:12.465Z">
+<meta property="og:updated_time" content="2018-09-05T12:53:51.383Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="MySQL（数据库语言）">
+<meta name="twitter:description" content="1、分类数据库定义语言   DDL（create database/table，drop database/table，alter database/table）数据库操纵语言   DML(insert、delete、update、select)数据库控制语言   DCL（grant、revoke）注意，数据库定义语言和数据库控制语言都是不可撤销的。而数据库操作语言是可以撤销 。 2、数据定义语言">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,9 +166,49 @@
             <article id="post-mysql-language" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL（数据库语言）
+    </h1>
+  
+
+        
+        <a href="/2018/09/05/mysql-language/" class="archive-article-date">
+  	<time datetime="2018-09-05T12:34:12.465Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-05</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="1、分类"><a href="#1、分类" class="headerlink" title="1、分类"></a>1、分类</h3><p>数据库定义语言   DDL（create database/table，drop database/table，alter database/table）<br>数据库操纵语言   DML(insert、delete、update、select)<br>数据库控制语言   DCL（grant、revoke）<br>注意，数据库定义语言和数据库控制语言都是不可撤销的。而数据库操作语言是可以撤销 。</p>
+<h3 id="2、数据定义语言-DDL"><a href="#2、数据定义语言-DDL" class="headerlink" title="2、数据定义语言(DDL)"></a>2、数据定义语言(DDL)</h3><p>1）创建数据库<br>create database 数据库名；</p>
+<p>2）删除数据库<br>drop database 数据库名；</p>
+<p>3）打开数据库<br>use 数据库名；</p>
+<p>4）创建数据表<br>create table 表名(列名 数据类型(长度),列名 数据类型（长度）,……)default charset=utf8;<br>注意，如果创建表的时候，没有指定字符集，那么该表将默认采用其所在数据库的字符集。通常我们建议指定缺省的字符集。</p>
+<p>5)、查看数据表的字符集情况<br>show variables like ‘character%’;</p>
+<p>6）查看表结构<br>desc 表名</p>
+<p>7）、数据库字段类型<br>（1）字符类型：<br>char(长度)：定长的字符类型，一旦声明了长度，即使定义的字段数据不能达到最大长度，也会按照最大长度进行所占字节的分配。取值范围：0-255<br>varchar(长度)： 变长的字符类型，声明长度后，如果字段数据的长度达不到最大长度，则会根据实际长度给出数据的长度。取值范围：0-2^16-1<br>数值类型：<br>（2）int(长度)：给出指定的字段数据长度。如果没有明确指定长度，则采用默认长度11。所占字节4个字节。<br>（3）日期类型：<br>date：日期类型的字段，在定义时不需要指定长度。格式为YYYY-MM-DD<br>time：日期类型的字段，格式HH:MM:SS<br>datatime：日期类型的字段，格式YYYY-MM-DD HH:MM:SS<br>布尔型：<br>bool:布尔类型的字段，在定义时采用0代表假，1代表真。<br>实际在mysql数据库中，bool类型等同于数值型的tinyint(1)</p>
+<p>8)、修改表结构<br>alter table 表名 [add/modify/change/drop] 字段名 [数据类型]；</p>
+<p>（1）添加字段：<br>alter table tablename add 字段名 数据类型；<br>注意：添加字段，位于表中的最后一列。</p>
+<p>（2）删除字段<br>alter table tablename drop 字段名；<br>注意：删除一列，如果列中有数据，则全部被删除且不可恢复。</p>
+<p>（3）修改指定字段的数据类型及长度<br>alter talbe tablename modify 字段名 数据类型；</p>
+<p>（4）修改指定字段的名字<br>alter table tablename change oldcolumn newcolumn 数据类型</p>
+<p>9）修改表名<br>rename table 旧表名 to 新表名</p>
+<h3 id="3、数据操作语言（DML）"><a href="#3、数据操作语言（DML）" class="headerlink" title="3、数据操作语言（DML）"></a>3、数据操作语言（DML）</h3><p>1）数据类型间的默认转换<br>（1）字符串=&gt;日期型<br>如果字段数据类型定义为日期型，例如：date（YYYY-MM-DD），如果我们队该字段插入数据时，采用’2018-08-23’的字符串格式进行数据插入，mysql会自动将字符串转为日期型。</p>
+<p>（2）字符串=&gt;数值型<br>当字段数据类型为字符型时，但具体值为数值，我们使用该字段的值与数值进行运算，那么得到的结果为数值型。<br>同时，如果字段类型定义为数值型，我们可以将数值型字符串插入到指定的字段中。<br>如果，字段类型为字符型，其中由字符与数字混合组成（只要不是纯数字构成的字符串），此时与数值进行算数运算，那么该字段内容被转换为0来进行处理。</p>
+<p>2）运算符<br>算数运算符<br>比较运算符<br>逻辑运算符<br>位运算符</p>
+<p>3）插入数据<br>（1）标准格式：<br>insert into 表名（字段1，字段2，字段3，….） values(字段1值，字段2值，字段3值，…)<br>insert into persons(pno,pname,age,hire_date,salary) values(‘10001’,’tom’,21,’2018-03-12’,3459);<br>通常，我们在声明表名的时候将需要插入数据的字段名一起进行声明，有利于提高插入的效率。同时如果有些字段值为null，可以在实际插入的时候省略。另外，字段值只需要与字段名称对应即可，不需要按照表中实际字段的位置进行填写。</p>
+<p>（2）省略写法<br>insert into 表名 values(字段1值，字段2值，字段3值，…)<br>这种写法，需要我们在values的后面，按照表中各个字段的实际顺序进行一一对应的填写。同时，如果某个字段的值为null，也必须将null值进行标明。</p>
+<p>（3）插入多条语句（一次性插入多条数据）：<br>insert into 表名（字段名） values(字段值1,…，字段值n)，(字段值1,…，字段值n)</p>
+<p>（4）将指定表的查询结果，作为要插入到目标表中的数据，进行插入<br> insert into person_bak(pno,pname,age,hire_date,salary) select * from persons;<br>要求：是目标表结构与指定表的结构相同。</p>
+<p>4）更新数据<br>格式：<br>update 表名 set 字段1=新值，字段2=新值，…，字段n=新值 where 条件<br>进行更新操作时，一定要进行条件的约束，如果该语句没有条件子句的话，就表示对全表进行更新操作。</p>
+<p>5）删除数据<br>delete from 表名 where 条件<br>进行删除操作时，一定要添加条件，如果没有条件子句，就意味着删除全表内容。</p>
+<p>6）数据操作的撤销和提交<br>mysql数据库默认模式为自动提交：autocommit=on<br>我们如果需要对mysql进行撤销和提交操作，需要先将默认的自动提交模式取消，设置为off<br>即：set autocommit=off<br>当我们进行增删改操作时，如果执行rollback操作，那么该操作就会被撤销；<br>如果执行commit操作，那么该操作就会持久化到数据库中。<br>commit<br>Rollback</p>
+<h3 id="4、数据控制语言（DCL）"><a href="#4、数据控制语言（DCL）" class="headerlink" title="4、数据控制语言（DCL）"></a>4、数据控制语言（DCL）</h3><p>1）创建用户<br>create user 用户名 identified by 密码<br>2）授予用户权限<br>grant 权限 on 数据库 to 用户名<br>grant all privileges on mydb.<em> to ‘pythondb‘@’localhost’;<br>此处，将mydb数据库的所有权限都授予pythondb用户<br>同时，在授予权限时，可以选择授予不同的权限，如：查询、删除、修改、新增、修改表、创建表、删除表等等。<br>3）撤销用户权限<br>revoke 权限 on 数据库 from 用户名<br>revoke all privileges on mydb.</em> from ‘pythondb‘@’localhost’;<br>将mydb数据库上的所有权限，从pythondb用户收回<br>4）删除用户<br>drop user 用户名<br> drop user ‘pythondb‘@’localhost’;</p>
+
       
 
       
@@ -262,7 +305,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          MySQL（查询语句）
         
       </div>
     </a>

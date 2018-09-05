@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>diana</title>
+  <title>MySQL（数据库函数） | diana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Python、爬虫、Web开发">
+  <meta name="description" content="1、字符串函数length(字段)：返回该字段字符串的实际长度。trim(字段)：将字符串左右两端的空格去除。repeat(字段,n)：将字段中的字符串重复n次replace(s,s1,s2)：使用s2替换字段s中的s1substring(s,n,len):对字符串s的第n个位置开始，截取长度为len的子字符串。注意，此处字符串的字符位置从1开始。 2、数值函数ceil()：返回数值的上限（只入不">
+<meta name="keywords" content="Python、爬虫、Web开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="diana">
+<meta property="og:title" content="MySQL（数据库函数）">
 <meta property="og:url" content="http://yoursite.com/2018/09/05/mysql-func/index.html">
 <meta property="og:site_name" content="diana">
+<meta property="og:description" content="1、字符串函数length(字段)：返回该字段字符串的实际长度。trim(字段)：将字符串左右两端的空格去除。repeat(字段,n)：将字段中的字符串重复n次replace(s,s1,s2)：使用s2替换字段s中的s1substring(s,n,len):对字符串s的第n个位置开始，截取长度为len的子字符串。注意，此处字符串的字符位置从1开始。 2、数值函数ceil()：返回数值的上限（只入不">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-05T12:36:45.520Z">
+<meta property="og:updated_time" content="2018-09-05T12:53:49.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="diana">
+<meta name="twitter:title" content="MySQL（数据库函数）">
+<meta name="twitter:description" content="1、字符串函数length(字段)：返回该字段字符串的实际长度。trim(字段)：将字符串左右两端的空格去除。repeat(字段,n)：将字段中的字符串重复n次replace(s,s1,s2)：使用s2替换字段s中的s1substring(s,n,len):对字符串s的第n个位置开始，截取长度为len的子字符串。注意，此处字符串的字符位置从1开始。 2、数值函数ceil()：返回数值的上限（只入不">
   
     <link rel="alternative" href="/atom.xml" title="diana" type="application/atom+xml">
   
@@ -163,9 +166,28 @@
             <article id="post-mysql-func" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL（数据库函数）
+    </h1>
+  
+
+        
+        <a href="/2018/09/05/mysql-func/" class="archive-article-date">
+  	<time datetime="2018-09-05T12:35:37.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-05</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="1、字符串函数"><a href="#1、字符串函数" class="headerlink" title="1、字符串函数"></a>1、字符串函数</h3><p>length(字段)：返回该字段字符串的实际长度。<br>trim(字段)：将字符串左右两端的空格去除。<br>repeat(字段,n)：将字段中的字符串重复n次<br>replace(s,s1,s2)：使用s2替换字段s中的s1<br>substring(s,n,len):对字符串s的第n个位置开始，截取长度为len的子字符串。注意，此处字符串的字符位置从1开始。</p>
+<h3 id="2、数值函数"><a href="#2、数值函数" class="headerlink" title="2、数值函数"></a>2、数值函数</h3><p>ceil()：返回数值的上限（只入不舍）<br>floor()：返回数值的下限（只舍不入）<br>mod(x,y)：返回两个数的余数<br>round(x,[y])：对x进行四舍五入操作，如果声明了y,则保留到小数点后y位<br>truncate(x,y)：对x进行截断操作，保留小数位y位</p>
+<h3 id="3、日期函数"><a href="#3、日期函数" class="headerlink" title="3、日期函数"></a>3、日期函数</h3><p>curdate():当前日期年月日<br>curtime():当期时间时分秒<br>now():当前的时间 年月日 时分秒<br>year():返回当前的年份<br>month()：返回当前的月份<br>dayofmonth()：返回当前的天数<br>date_format():格式化指定字段的日期<br>adddate(d，时间间隔):将指定的日期增加或减少对应的时间。</p>
+<h3 id="4、系统函数"><a href="#4、系统函数" class="headerlink" title="4、系统函数"></a>4、系统函数</h3><p>user():返回当前登录数据库的用户名<br>database():返回当前登录的数据库名</p>
+
       
 
       
@@ -262,14 +284,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          MySQL（数据库事务）
         
       </div>
     </a>
   
   
     <a href="/2018/09/05/mysql-select/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">MySQL（查询语句）</div>
       <i class="icon-circle-right"></i>
     </a>
   
